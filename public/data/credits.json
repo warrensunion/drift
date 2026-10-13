@@ -1,0 +1,30 @@
+[
+  {
+    "name": "OSCAR surface currents (1/3 deg, 5-day, 2011-12-06..2014-09-26)",
+    "url": "https://coastwatch.pfeg.noaa.gov/erddap/griddap/jplOscar",
+    "licence": "Free to use and redistribute, no warranty (ERDDAP dataset licence)",
+    "fetched": "2026-10-13",
+    "processing": "Every 3rd grid point (1 deg), averaged by calendar month ignoring NaN, shifted to 1 deg cell centres by a NaN-aware 4-point mean, lon wrapped to -180..180, packed as int16 at 0.001 m/s in 12 DRFT tiles"
+  },
+  {
+    "name": "QuikSCAT SeaWinds monthly 10 m winds (RSS science quality, 1999-08..2009-10)",
+    "url": "https://coastwatch.pfeg.noaa.gov/erddap/griddap/erdQSwindmday",
+    "licence": "Free to use and redistribute, no warranty (ERDDAP dataset licence)",
+    "fetched": "2026-10-13",
+    "processing": "Every 16th point (2 deg, 75S..75N), averaged by calendar month, monthly means over 25 m/s masked (sea-ice contamination), packed as int16 at 0.01 m/s in one 12-frame DRFT tile. Replaces the planned ICOADS climatology, which the ERDDAP server stopped serving"
+  },
+  {
+    "name": "NOAA Global Drifter Program 6-hourly QC drifters, 2012-01-01..2014-09-26",
+    "url": "https://erddap.aoml.noaa.gov/gdp/erddap/tabledap/drifter_6hour_qc",
+    "licence": "CC BY 4.0",
+    "fetched": "2026-10-13",
+    "processing": "One fix per drifter-day, consecutive-day pairs with displacement under 300 km, windage = fix on/after drogue loss, joined to the sampled monthly current and wind fields; training pairs only (not shipped)"
+  },
+  {
+    "name": "Natural Earth 1:50m land",
+    "url": "https://github.com/nvkelso/natural-earth-vector",
+    "licence": "Public domain",
+    "fetched": "2026-10-13",
+    "processing": "Polygons rasterised to a 2048x1024 equirectangular PNG, 255 = land"
+  }
+]
