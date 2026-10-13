@@ -44,7 +44,7 @@ export const SALISH_PROFILE = {
   speedGroup: 'Simulated hours per second',
   formatAge: formatHours,
   zero: 'Hour 0',
-  fates: [['coast', 'On a beach'], ['left', 'Left the chart area'], ['floating', 'Still floating']],
+  fates: [['coast', 'On a beach'], ['left', 'Left the strait'], ['floating', 'Still floating']],
   when: (t) => (t >= MAX_H ? 'after 30 days' : `after ${formatHours(t).toLowerCase()} (still computing)`),
   primary: 'Drop at the river mouth',
   notes: ['Tidal currents from SalishSeaCast, one 25-hour cycle repeated.', 'No wind or breaking up at this scale.'],
@@ -68,6 +68,13 @@ const PLACES = [
   { name: 'Gabriola Island', lon: -123.78, lat: 49.165, kind: 'land' },
   { name: 'Galiano Island', lon: -123.45, lat: 48.92, kind: 'land' },
   { name: 'Nanaimo', lon: -123.95, lat: 49.17, kind: 'land' },
+  { name: 'Haro Strait', lon: -123.20, lat: 48.57, kind: 'water' },
+  { name: 'Juan de Fuca Strait', lon: -123.70, lat: 48.30, kind: 'sea' },
+  { name: 'Boundary Pass', lon: -123.08, lat: 48.765, kind: 'water' },
+  { name: 'Victoria', lon: -123.37, lat: 48.43, kind: 'land' },
+  { name: 'San Juan Islands', lon: -123.08, lat: 48.53, kind: 'land' },
+  { name: 'Saturna Island', lon: -123.20, lat: 48.79, kind: 'land' },
+  { name: 'Salt Spring Island', lon: -123.50, lat: 48.80, kind: 'land' },
 ];
 
 function loadImage(url) {
@@ -238,7 +245,7 @@ export function mountSalish(el, { embedded = true } = {}) {
 
   function clampView() {
     if (!map) return;
-    view.ts = Math.min(view.cover, Math.max(view.cover / 7, view.ts));
+    view.ts = Math.min(view.cover, Math.max(view.cover / 14, view.ts));
     const hw = (size.w / 2) * view.ts, hh = (size.h / 2) * view.ts;
     const mx = Math.max(0, map.width / 2 - hw), my = Math.max(0, map.height / 2 - hh);
     view.tcx = Math.min(mx, Math.max(-mx, view.tcx));
@@ -257,11 +264,15 @@ export function mountSalish(el, { embedded = true } = {}) {
       const cover = Math.min(map.width / w, map.height / h);
       const ratio = view.ts / view.cover;
       view.cover = cover;
-      view.ts = first ? cover * (phone ? 0.62 : 0.8) : cover * ratio;
+      // First frame: the Fraser mouth and the central Strait of Georgia (about 0.9 degrees of
+      // latitude tall on desktop, 0.7 degrees of longitude wide on a phone), whatever the extent;
+      // pan and zoom then reach the whole chart.
+      const framed = phone ? (0.7 * cosC) / w : 0.9 / h;
+      view.ts = first ? Math.min(cover, framed) : cover * ratio;
       if (first) {
-        // Frame the river mouth: right of centre on desktop (the left column is the UI), above
-        // the bottom sheet on a phone.
-        const [mx, my] = toWorld(RIVER_MOUTH.lon + (phone ? 0.02 : -0.06), RIVER_MOUTH.lat + (phone ? -0.05 : 0.04));
+        // River mouth right of centre on desktop (the left column is the UI), above the bottom
+        // sheet on a phone.
+        const [mx, my] = toWorld(RIVER_MOUTH.lon + (phone ? 0.02 : -0.1), RIVER_MOUTH.lat + (phone ? -0.04 : 0.05));
         view.tcx = mx - (phone ? 0 : w * 0.12 * view.ts);
         view.tcy = my;
       }
@@ -327,8 +338,8 @@ export function mountSalish(el, { embedded = true } = {}) {
     const n = tile.nx * tile.ny * 2;
     fieldTex = fieldTextures(Array.from({ length: tile.nframes }, (_, f) => ({ ...tile, nframes: 1, data: tile.data.subarray(f * n, (f + 1) * n) })));
     lines = createStreamlines(renderer, {
-      fieldTex: fieldTex[0], reducedMotion, seeds: 7000, region: extent,
-      gain: 0.0007, dotScale: 0.0017, trailSize: [1280, 1100],
+      fieldTex: fieldTex[0], reducedMotion, seeds: 14000, region: extent,
+      gain: 0.0007, dotScale: 0.0017, trailSize: [2048, 1400],
     });
     scene = new THREE.Scene();
     map = createMap({ extent, cosC, landTex, trailTex: lines.texture, waterTex, paperTex });
@@ -368,16 +379,25 @@ export function mountSalish(el, { embedded = true } = {}) {
   }
 
   function placeLabels() {
-    for (const { e, p } of labelEls) {
-      const [x, y] = toScreen(p.lon, p.lat);
-      e.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) translate(-50%, -50%)`;
-    }
+    // Zoom-dependent label sizes: chart labels grow a little as you zoom in.
+    labels.style.setProperty('--salish-zoom', String(Math.min(1.5, Math.max(0.85, Math.sqrt(view.cover / view.s) * 0.9))));
+    // Labels in list order (sea and water names first); one that would touch a label already
+    // placed, or the river-mouth marker, is hidden at this zoom.
+    const kept = [];
     if (marker) {
       const [x, y] = toScreen(RIVER_MOUTH.lon, RIVER_MOUTH.lat);
       marker.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+      kept.push({ l: x - 18, r: x + 160, t: y - 18, b: y + 18 });
     }
-    // Zoom-dependent label sizes: chart labels grow a little as you zoom in.
-    labels.style.setProperty('--salish-zoom', String(Math.min(1.5, Math.max(0.85, Math.sqrt(view.cover / view.s) * 0.9))));
+    for (const { e, p } of labelEls) {
+      const [x, y] = toScreen(p.lon, p.lat);
+      e.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) translate(-50%, -50%)`;
+      const w = e.offsetWidth, h = e.offsetHeight;
+      const box = { l: x - w / 2 - 6, r: x + w / 2 + 6, t: y - h / 2 - 3, b: y + h / 2 + 3 };
+      const clash = kept.some((k) => box.l < k.r && box.r > k.l && box.t < k.b && box.b > k.t);
+      e.style.visibility = clash ? 'hidden' : '';
+      if (!clash) kept.push(box);
+    }
   }
 
   // ---- worker ----
@@ -501,7 +521,7 @@ export function mountSalish(el, { embedded = true } = {}) {
   };
   const zoomAt = (sx, sy, factor) => {
     const [wx, wy] = [view.tcx + (sx - size.w / 2) * view.ts, view.tcy - (sy - size.h / 2) * view.ts];
-    const ns = Math.min(view.cover, Math.max(view.cover / 7, view.ts * factor));
+    const ns = Math.min(view.cover, Math.max(view.cover / 14, view.ts * factor));
     view.tcx = wx - (sx - size.w / 2) * ns;
     view.tcy = wy + (sy - size.h / 2) * ns;
     view.ts = ns;

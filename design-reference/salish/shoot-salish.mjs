@@ -49,6 +49,7 @@ for (const [w, h] of [[1440, 900], [390, 844]]) {
     await shot(page, `${tag}-mouth-${label}`);
     report[`${tag} panel at ${label}`] = await page.evaluate(() => document.querySelector('.globe-panel').innerText.replace(/\s+/g, ' ').slice(0, 260));
   }
+  report[`${tag} fates at 10 d (Sand Heads, seed 7)`] = await page.evaluate((id) => { const tr = window.__drift.debug().S.tracks.get(id); const i = tr.snaps.findIndex((s) => s && s.day >= 240); return tr.snaps[i].fragments[0].fates; }, id);
   report[`${tag} no horizontal scroll`] = await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   // fps while playing at 30 h/s from hour 0 with the drops on screen.
   await page.evaluate(() => { const D = window.__drift; D.setDay(0); D.speed(30); D.play(true); D.resetFrames(); });
