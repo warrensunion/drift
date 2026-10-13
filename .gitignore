@@ -1,0 +1,8 @@
+node_modules/
+dist/
+scripts/train/.venv/
+scripts/data/cache/
+art-src/gen/_raw/
+design-reference/**/video/*.webm
+*.log
+__pycache__/
