@@ -1,0 +1,48 @@
+/* Drift design tokens (docs/design.md). Motion numbers measured from 2019.makemepulse.com. */
+:root {
+  /* Colour follows depth; the only artificial colour is plastic, coloured by age. */
+  --petrol: #0E2F36;
+  --deep: #1F5A5E;
+  --glass: #7FB7AE;
+  --foam: #E6EEE9;
+  --fresh: #FF4D8D;
+  --oxidised: #F2B544;
+  --bleached: #F1E9D2;
+  --abyss: #071C21;
+  --ink: var(--petrol);
+
+  /* Type */
+  --font-display: 'Anybody', 'Arial Narrow', system-ui, sans-serif;
+  --font-body: 'Literata', Georgia, 'Times New Roman', serif;
+  --t-13: 0.8125rem;
+  --t-16: 1rem;
+  --t-21: 1.3125rem;
+  --t-28: 1.75rem;
+  --t-38: 2.375rem;
+  --t-50: 3.125rem;
+  --t-67: 4.1875rem;
+  --t-89: 5.5625rem;
+  --display: clamp(2.6rem, 6.2vw, 7.4rem);
+  --measure: 34rem;
+  --lh-body: 1.6;
+
+  /* Layout */
+  --margin: 40px;
+  --icon: 32px;
+  --hit: 44px;
+
+  /* Motion */
+  --ease-settle: cubic-bezier(0.04, 1, 0.31, 0.98);
+  --ease-scene: cubic-bezier(.77, 0, .175, 1);
+  --ease-slide: cubic-bezier(.645, .045, .355, 1);
+  --ease-reveal: cubic-bezier(.215, .61, .355, 1);
+  --ease-hide: cubic-bezier(.755, .05, .855, .06);
+  --d-scene: 1.75s;
+  --d-reveal: 1s;
+  --d-stagger: .15s;
+  --d-fade: .4s;
+}
+
+@media (max-width: 600px) {
+  :root { --margin: 20px; }
+}
