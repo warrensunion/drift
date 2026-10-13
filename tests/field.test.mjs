@@ -1,28 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { decodeTile, sample, sampleTime } from '../src/sim/field.js';
-
-// Build a DRFT ArrayBuffer. cells: function(frame, y, x) -> [u, v] int16 units.
-export function buildTile({ nx, ny, nframes = 1, lon0, lat0, dlon, dlat, scale = 1, cell }) {
-  const buf = new ArrayBuffer(32 + nframes * ny * nx * 4);
-  const dv = new DataView(buf);
-  'DRFT'.split('').forEach((c, i) => dv.setUint8(i, c.charCodeAt(0)));
-  dv.setUint16(4, 1, true);
-  dv.setUint16(6, nx, true);
-  dv.setUint16(8, ny, true);
-  dv.setUint16(10, nframes, true);
-  [lon0, lat0, dlon, dlat, scale].forEach((v, i) => dv.setFloat32(12 + i * 4, v, true));
-  let o = 32;
-  for (let f = 0; f < nframes; f++)
-    for (let y = 0; y < ny; y++)
-      for (let x = 0; x < nx; x++) {
-        const [u, v] = cell(f, y, x);
-        dv.setInt16(o, u, true);
-        dv.setInt16(o + 2, v, true);
-        o += 4;
-      }
-  return buf;
-}
+import { buildTile } from './helpers/tile.mjs';
 
 const near = (a, b, eps = 1e-6) => assert.ok(Math.abs(a - b) < eps, `${a} vs ${b}`);
 
@@ -98,4 +77,12 @@ test('sampleTime negative t wraps and land in either frame is null', () => {
   assert.equal(sampleTime(f, 0.5, 0.5, 0.5), null);
   assert.equal(sampleTime(f, 0.5, 0.5, -0.5), null);
   assert.notEqual(sampleTime(f, 0.5, 0.5, 0), null);
+});
+
+test('float32 dlon=0.1, nx=3600 is still a global grid (wraps across the seam)', () => {
+  const f = decodeTile(buildTile({ nx: 3600, ny: 2, lon0: -179.95, lat0: 0, dlon: 0.1, dlat: 1, scale: 1, cell: (fr, y, x) => [x, 0] }));
+  const r = sample(f, 179.99, 0.5);
+  assert.notEqual(r, null);
+  const fx = (179.99 - f.lon0) / f.dlon;
+  near(r[0], 3599 * (1 - (fx - 3599)), 1e-6);
 });

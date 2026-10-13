@@ -29,7 +29,7 @@ export function decodeTile(buf) {
   };
 }
 
-const isGlobal = (f) => Math.abs(f.nx * f.dlon - 360) < 1e-6;
+const isGlobal = (f) => Math.abs(f.nx * f.dlon - 360) < 0.5 * f.dlon;
 
 export function sample(field, lon, lat, frame = 0) {
   const { nx, ny, lon0, lat0, dlon, dlat, scale, data } = field;
