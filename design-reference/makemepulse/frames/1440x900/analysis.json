@@ -1,0 +1,7935 @@
+{
+ "size": "1440x900",
+ "fps": 60.118249118456134,
+ "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 (0x00002503) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+ "marks": [
+  {
+   "label": "goto",
+   "t": -1904
+  },
+  {
+   "label": "landing logo fully visible",
+   "t": 26142
+  },
+  {
+   "label": "click reveal",
+   "t": 77661
+  },
+  {
+   "label": "start button visible",
+   "t": 94083
+  },
+  {
+   "label": "click start",
+   "t": 146891
+  },
+  {
+   "label": "08_s1_eclosion enter",
+   "t": 151602
+  },
+  {
+   "label": "08_s1_eclosion: next button visible",
+   "t": 218989
+  },
+  {
+   "label": "08_s1_eclosion: next clicked (natural)",
+   "t": null
+  },
+  {
+   "label": "09_s2_adieu enter",
+   "t": 224629
+  },
+  {
+   "label": "09_s2_adieu: next button visible",
+   "t": 282328
+  },
+  {
+   "label": "09_s2_adieu: next clicked (natural)",
+   "t": null
+  },
+  {
+   "label": "10_s3_voyage enter",
+   "t": 288442
+  },
+  {
+   "label": "10_s3_voyage: next button visible",
+   "t": 345909
+  },
+  {
+   "label": "10_s3_voyage: next clicked (natural)",
+   "t": null
+  },
+  {
+   "label": "11_s4_premiere enter",
+   "t": 351599
+  },
+  {
+   "label": "11_s4_premiere: next button visible",
+   "t": 426649
+  },
+  {
+   "label": "11_s4_premiere: next clicked (natural)",
+   "t": null
+  },
+  {
+   "label": "ending",
+   "t": 433712
+  },
+  {
+   "label": "done",
+   "t": 484775
+  }
+ ],
+ "preloader": [
+  {
+   "t": 39,
+   "loader": null,
+   "fgY": null,
+   "bar": null,
+   "logo": null,
+   "audioText": null,
+   "canvas": null
+  },
+  {
+   "t": 4908,
+   "loader": "loader enter is-hidden",
+   "fgY": 100,
+   "bar": "283px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "0.00",
+   "canvas": "1"
+  },
+  {
+   "t": 5070,
+   "loader": "loader enter is-hidden",
+   "fgY": 100,
+   "bar": "283px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "0.00",
+   "canvas": "0"
+  },
+  {
+   "t": 6413,
+   "loader": "loader",
+   "fgY": 100,
+   "bar": "113.1px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "0.68",
+   "canvas": "0"
+  },
+  {
+   "t": 6530,
+   "loader": "loader",
+   "fgY": 100,
+   "bar": "59.1px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "0.91",
+   "canvas": "0"
+  },
+  {
+   "t": 7307,
+   "loader": "loader",
+   "fgY": 100,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 7698,
+   "loader": "loader",
+   "fgY": 98.374,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 8688,
+   "loader": "loader",
+   "fgY": 91.8699,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 8801,
+   "loader": "loader",
+   "fgY": 90.2439,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 8928,
+   "loader": "loader",
+   "fgY": 89.4309,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 9167,
+   "loader": "loader",
+   "fgY": 86.9919,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 9400,
+   "loader": "loader",
+   "fgY": 85.3659,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 9538,
+   "loader": "loader",
+   "fgY": 84.5528,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 9782,
+   "loader": "loader",
+   "fgY": 82.9268,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 10014,
+   "loader": "loader",
+   "fgY": 80.4878,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 10166,
+   "loader": "loader",
+   "fgY": 78.8618,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 10279,
+   "loader": "loader",
+   "fgY": 78.0488,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 10420,
+   "loader": "loader",
+   "fgY": 77.2358,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 10569,
+   "loader": "loader",
+   "fgY": 75.6098,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 10727,
+   "loader": "loader",
+   "fgY": 66.6667,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 10997,
+   "loader": "loader",
+   "fgY": 56.0976,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 11107,
+   "loader": "loader",
+   "fgY": 47.1545,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 11265,
+   "loader": "loader",
+   "fgY": 43.9024,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 11382,
+   "loader": "loader",
+   "fgY": 38.2114,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 12197,
+   "loader": "loader",
+   "fgY": 17.8862,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 12336,
+   "loader": "loader",
+   "fgY": 17.0732,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 12460,
+   "loader": "loader",
+   "fgY": 15.4472,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 12609,
+   "loader": "loader",
+   "fgY": 12.1951,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 13072,
+   "loader": "loader",
+   "fgY": 8.13008,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 13188,
+   "loader": "loader",
+   "fgY": 7.31707,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 13295,
+   "loader": "loader",
+   "fgY": 5.69106,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 13404,
+   "loader": "loader",
+   "fgY": 4.87805,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 13673,
+   "loader": "loader",
+   "fgY": 4.06504,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 13887,
+   "loader": "loader",
+   "fgY": 2.43902,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 14671,
+   "loader": "loader",
+   "fgY": 1.62602,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 16050,
+   "loader": "loader",
+   "fgY": 0.813008,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 21801,
+   "loader": "loader",
+   "fgY": 0,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 23880,
+   "loader": "loader is-hidden",
+   "fgY": 0,
+   "bar": "-136.4px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 23996,
+   "loader": "loader is-hidden",
+   "fgY": 0,
+   "bar": "-204.4px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 24557,
+   "loader": "loader is-hidden hide",
+   "fgY": 0,
+   "bar": "none",
+   "logo": "shown op=0.00 matrix(1.3, 0, 0, 1.3, 0, 0)",
+   "audioText": "0.27",
+   "canvas": "0"
+  },
+  {
+   "t": 24909,
+   "loader": "loader is-hidden hide",
+   "fgY": 0,
+   "bar": "none",
+   "logo": "shown op=0.81 translate3d(0px, 0px, 0px) scale(1.0563, 1.0563)",
+   "audioText": "0.00",
+   "canvas": "0"
+  },
+  {
+   "t": 25053,
+   "loader": "loader is-hidden hide",
+   "fgY": 0,
+   "bar": "none",
+   "logo": "shown op=0.90 translate3d(0px, 0px, 0px) scale(1.03044, 1.03044)",
+   "audioText": "0.00",
+   "canvas": "0"
+  },
+  {
+   "t": 25641,
+   "loader": "loader is-hidden hide",
+   "fgY": 0,
+   "bar": "none",
+   "logo": "shown op=1.00 translate3d(0px, 0px, 0px) scale(1.00148, 1.00148)",
+   "audioText": "0.00",
+   "canvas": "0"
+  },
+  {
+   "t": 26269,
+   "loader": "loader is-hidden hide",
+   "fgY": 0,
+   "bar": "none",
+   "logo": "shown op=1.00 matrix(1, 0, 0, 1, 0, 0)",
+   "audioText": "0.00",
+   "canvas": "0"
+  }
+ ],
+ "preloaderFrames": 91,
+ "preloaderMotion": [
+  {
+   "off": 808,
+   "mad": 17.89
+  },
+  {
+   "off": 4924,
+   "mad": 0.13
+  },
+  {
+   "off": 5274,
+   "mad": 134.56
+  },
+  {
+   "off": 5374,
+   "mad": 0
+  },
+  {
+   "off": 5924,
+   "mad": 0
+  },
+  {
+   "off": 6041,
+   "mad": 0
+  },
+  {
+   "off": 6441,
+   "mad": 0.06
+  },
+  {
+   "off": 6541,
+   "mad": 0.02
+  },
+  {
+   "off": 7058,
+   "mad": 0.04
+  },
+  {
+   "off": 7324,
+   "mad": 0
+  },
+  {
+   "off": 7424,
+   "mad": 0
+  },
+  {
+   "off": 7708,
+   "mad": 0
+  },
+  {
+   "off": 8107,
+   "mad": 0
+  },
+  {
+   "off": 8241,
+   "mad": 0
+  },
+  {
+   "off": 8841,
+   "mad": 0
+  },
+  {
+   "off": 8957,
+   "mad": 0
+  },
+  {
+   "off": 9091,
+   "mad": 0
+  },
+  {
+   "off": 9241,
+   "mad": 0
+  },
+  {
+   "off": 9341,
+   "mad": 0
+  },
+  {
+   "off": 9457,
+   "mad": 0
+  },
+  {
+   "off": 9641,
+   "mad": 0
+  },
+  {
+   "off": 9757,
+   "mad": 0
+  },
+  {
+   "off": 9857,
+   "mad": 0
+  },
+  {
+   "off": 10124,
+   "mad": 0
+  },
+  {
+   "off": 10224,
+   "mad": 0
+  },
+  {
+   "off": 10407,
+   "mad": 0
+  },
+  {
+   "off": 10574,
+   "mad": 0
+  },
+  {
+   "off": 10691,
+   "mad": 0
+  },
+  {
+   "off": 10807,
+   "mad": 0
+  },
+  {
+   "off": 10957,
+   "mad": 0
+  },
+  {
+   "off": 11124,
+   "mad": 0
+  },
+  {
+   "off": 11241,
+   "mad": 0
+  },
+  {
+   "off": 11341,
+   "mad": 0
+  },
+  {
+   "off": 11457,
+   "mad": 0
+  },
+  {
+   "off": 12124,
+   "mad": 0.01
+  },
+  {
+   "off": 12357,
+   "mad": 0.01
+  },
+  {
+   "off": 12507,
+   "mad": 0
+  },
+  {
+   "off": 12624,
+   "mad": 0
+  },
+  {
+   "off": 13091,
+   "mad": 0
+  },
+  {
+   "off": 13191,
+   "mad": 0
+  },
+  {
+   "off": 13641,
+   "mad": 0
+  },
+  {
+   "off": 13791,
+   "mad": 0
+  },
+  {
+   "off": 13924,
+   "mad": 0
+  },
+  {
+   "off": 14257,
+   "mad": 0
+  },
+  {
+   "off": 14691,
+   "mad": 0
+  },
+  {
+   "off": 15091,
+   "mad": 0
+  },
+  {
+   "off": 15191,
+   "mad": 0
+  },
+  {
+   "off": 15291,
+   "mad": 0
+  },
+  {
+   "off": 15607,
+   "mad": 0
+  },
+  {
+   "off": 15924,
+   "mad": 0
+  },
+  {
+   "off": 16057,
+   "mad": 0
+  },
+  {
+   "off": 16224,
+   "mad": 0
+  },
+  {
+   "off": 16557,
+   "mad": 0
+  },
+  {
+   "off": 16774,
+   "mad": 0
+  },
+  {
+   "off": 17390,
+   "mad": 0
+  },
+  {
+   "off": 17690,
+   "mad": 0
+  },
+  {
+   "off": 17790,
+   "mad": 0
+  },
+  {
+   "off": 18074,
+   "mad": 0
+  },
+  {
+   "off": 18374,
+   "mad": 0
+  },
+  {
+   "off": 18507,
+   "mad": 0
+  },
+  {
+   "off": 18607,
+   "mad": 0
+  },
+  {
+   "off": 18724,
+   "mad": 0
+  },
+  {
+   "off": 19240,
+   "mad": 0
+  },
+  {
+   "off": 19357,
+   "mad": 0
+  },
+  {
+   "off": 19457,
+   "mad": 0
+  },
+  {
+   "off": 20274,
+   "mad": 0
+  },
+  {
+   "off": 20790,
+   "mad": 0
+  },
+  {
+   "off": 20974,
+   "mad": 0
+  },
+  {
+   "off": 21224,
+   "mad": 0
+  },
+  {
+   "off": 21540,
+   "mad": 0
+  },
+  {
+   "off": 21640,
+   "mad": 0
+  },
+  {
+   "off": 22157,
+   "mad": 0
+  },
+  {
+   "off": 22307,
+   "mad": 0
+  },
+  {
+   "off": 22674,
+   "mad": 0
+  },
+  {
+   "off": 22807,
+   "mad": 0
+  },
+  {
+   "off": 23390,
+   "mad": 0
+  },
+  {
+   "off": 23907,
+   "mad": 0.04
+  },
+  {
+   "off": 24007,
+   "mad": 0.02
+  },
+  {
+   "off": 24357,
+   "mad": 0.17
+  },
+  {
+   "off": 24574,
+   "mad": 16.37
+  },
+  {
+   "off": 24823,
+   "mad": 21.89
+  },
+  {
+   "off": 24923,
+   "mad": 5.09
+  },
+  {
+   "off": 25023,
+   "mad": 2.96
+  },
+  {
+   "off": 25657,
+   "mad": 1.55
+  },
+  {
+   "off": 26173,
+   "mad": 0.02
+  },
+  {
+   "off": 26307,
+   "mad": 0
+  },
+  {
+   "off": 26457,
+   "mad": 0
+  },
+  {
+   "off": 27123,
+   "mad": 0
+  },
+  {
+   "off": 27257,
+   "mad": 0
+  },
+  {
+   "off": 27723,
+   "mad": 0
+  }
+ ],
+ "resources": {
+  "count": 169,
+  "bytes": 24564631,
+  "lastEnd": 16245
+ },
+ "lag": {
+  "02_landing_mouse_tl": {
+   "x": 2,
+   "y": 2,
+   "samples": 202,
+   "camX": {
+    "span": 0.7975,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.5,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 282,
+    "t90ms": 948,
+    "t99ms": 1881
+   },
+   "camY": {
+    "span": 0.4479,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.5,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 282,
+    "t90ms": 948,
+    "t99ms": 1881
+   },
+   "cursorLatencyMs": 16.5
+  },
+  "02_landing_mouse_tl_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 219,
+   "camX": {
+    "span": -0.7977,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.3,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": -0.4479,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.3,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 16
+  },
+  "02_landing_mouse_tr": {
+   "x": 1438,
+   "y": 2,
+   "samples": 187,
+   "camX": {
+    "span": -0.7975,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.1,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407,
+    "t50ms": 302,
+    "t90ms": 950,
+    "t99ms": 1883
+   },
+   "camY": {
+    "span": 0.4477,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.1,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407,
+    "t50ms": 302,
+    "t90ms": 950,
+    "t99ms": 1883
+   },
+   "cursorLatencyMs": 16.1
+  },
+  "02_landing_mouse_tr_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 208,
+   "camX": {
+    "span": 0.7974,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.8,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.2,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": -0.4478,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.8,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.2,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 34
+  },
+  "02_landing_mouse_br": {
+   "x": 1438,
+   "y": 898,
+   "samples": 227,
+   "camX": {
+    "span": -0.7976,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 14.3,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 417.8,
+    "t50ms": 283,
+    "t90ms": 965,
+    "t99ms": 1898
+   },
+   "camY": {
+    "span": -0.448,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 14.3,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 417.8,
+    "t50ms": 283,
+    "t90ms": 965,
+    "t99ms": 1898
+   },
+   "cursorLatencyMs": 14.3
+  },
+  "02_landing_mouse_br_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 255,
+   "camX": {
+    "span": 0.7977,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.2,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1884
+   },
+   "camY": {
+    "span": 0.448,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.2,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1884
+   },
+   "cursorLatencyMs": 16
+  },
+  "02_landing_mouse_bl": {
+   "x": 2,
+   "y": 898,
+   "samples": 201,
+   "camX": {
+    "span": 0.7976,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 14.9,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 282,
+    "t90ms": 949,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": -0.4478,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 14.9,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 282,
+    "t90ms": 949,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 14.9
+  },
+  "02_landing_mouse_bl_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 216,
+   "camX": {
+    "span": -0.7975,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 15.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 283,
+    "t90ms": 951,
+    "t99ms": 1883
+   },
+   "camY": {
+    "span": 0.4479,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 15.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 283,
+    "t90ms": 951,
+    "t99ms": 1883
+   },
+   "cursorLatencyMs": 15.7
+  },
+  "06_revealed_mouse_tl": {
+   "x": 2,
+   "y": 2,
+   "samples": 433,
+   "camX": {
+    "span": 0.7978,
+    "framesMedianMs": 16.4,
+    "firstMotionMs": 15.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.4,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": 0.448,
+    "framesMedianMs": 16.4,
+    "firstMotionMs": 15.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.3,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 15.7
+  },
+  "06_revealed_mouse_tl_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 289,
+   "camX": {
+    "span": -0.7978,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 15.5,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 406.1,
+    "t50ms": 298,
+    "t90ms": 965,
+    "t99ms": 1899
+   },
+   "camY": {
+    "span": -0.448,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 15.5,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 406,
+    "t50ms": 298,
+    "t90ms": 965,
+    "t99ms": 1899
+   },
+   "cursorLatencyMs": 15.5
+  },
+  "06_revealed_mouse_tr": {
+   "x": 1438,
+   "y": 2,
+   "samples": 284,
+   "camX": {
+    "span": -0.7978,
+    "framesMedianMs": 16.5,
+    "firstMotionMs": 13.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.3,
+    "t50ms": 280,
+    "t90ms": 946,
+    "t99ms": 1879
+   },
+   "camY": {
+    "span": 0.448,
+    "framesMedianMs": 16.5,
+    "firstMotionMs": 13.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.2,
+    "t50ms": 280,
+    "t90ms": 946,
+    "t99ms": 1879
+   },
+   "cursorLatencyMs": 13.6
+  },
+  "06_revealed_mouse_tr_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 184,
+   "camX": {
+    "span": 0.7973,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 19.9,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.3,
+    "t50ms": 282,
+    "t90ms": 949,
+    "t99ms": 1868
+   },
+   "camY": {
+    "span": -0.4477,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 19.9,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.2,
+    "t50ms": 282,
+    "t90ms": 949,
+    "t99ms": 1868
+   },
+   "cursorLatencyMs": 32.3
+  },
+  "06_revealed_mouse_br": {
+   "x": 1438,
+   "y": 898,
+   "samples": 282,
+   "camX": {
+    "span": -0.7975,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.3,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1884
+   },
+   "camY": {
+    "span": -0.4482,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.3,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1884
+   },
+   "cursorLatencyMs": 16.7
+  },
+  "06_revealed_mouse_br_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 220,
+   "camX": {
+    "span": 0.7977,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 13,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.1,
+    "t50ms": 283,
+    "t90ms": 948,
+    "t99ms": 1897
+   },
+   "camY": {
+    "span": 0.4479,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 13,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.1,
+    "t50ms": 283,
+    "t90ms": 948,
+    "t99ms": 1897
+   },
+   "cursorLatencyMs": 29.6
+  },
+  "06_revealed_mouse_bl": {
+   "x": 2,
+   "y": 898,
+   "samples": 212,
+   "camX": {
+    "span": 0.7977,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 13.2,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.6,
+    "t50ms": 280,
+    "t90ms": 947,
+    "t99ms": 1881
+   },
+   "camY": {
+    "span": -0.4479,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 13.2,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.6,
+    "t50ms": 280,
+    "t90ms": 947,
+    "t99ms": 1881
+   },
+   "cursorLatencyMs": 13.2
+  },
+  "06_revealed_mouse_bl_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 379,
+   "camX": {
+    "span": -0.7978,
+    "framesMedianMs": 16.5,
+    "firstMotionMs": 12.3,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.1,
+    "t50ms": 278,
+    "t90ms": 946,
+    "t99ms": 1883
+   },
+   "camY": {
+    "span": 0.448,
+    "framesMedianMs": 16.5,
+    "firstMotionMs": 12.3,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407,
+    "t50ms": 278,
+    "t90ms": 946,
+    "t99ms": 1883
+   },
+   "cursorLatencyMs": 12.3
+  },
+  "08_s1_eclosion_mouse_tl": {
+   "x": 2,
+   "y": 2,
+   "samples": 185,
+   "camX": {
+    "span": -0.7973,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.4,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.4,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1884
+   },
+   "camY": {
+    "span": 0.4478,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.4,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.4,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1884
+   },
+   "cursorLatencyMs": 17.4
+  },
+  "08_s1_eclosion_mouse_tl_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 186,
+   "camX": {
+    "span": 0.7973,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.1,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.5,
+    "t50ms": 283,
+    "t90ms": 949,
+    "t99ms": 1866
+   },
+   "camY": {
+    "span": -0.4477,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.1,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.5,
+    "t50ms": 283,
+    "t90ms": 949,
+    "t99ms": 1866
+   },
+   "cursorLatencyMs": 17.1
+  },
+  "08_s1_eclosion_mouse_tr": {
+   "x": 1438,
+   "y": 2,
+   "samples": 193,
+   "camX": {
+    "span": 0.7978,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.8,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.5,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1867
+   },
+   "camY": {
+    "span": 0.4476,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.8,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.5,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1867
+   },
+   "cursorLatencyMs": 17.8
+  },
+  "08_s1_eclosion_mouse_tr_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 187,
+   "camX": {
+    "span": -0.7972,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 17,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.2,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1867
+   },
+   "camY": {
+    "span": -0.4477,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 17,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.2,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1867
+   },
+   "cursorLatencyMs": 17
+  },
+  "08_s1_eclosion_mouse_br": {
+   "x": 1438,
+   "y": 898,
+   "samples": 204,
+   "camX": {
+    "span": 0.7972,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 14,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.4,
+    "t50ms": 280,
+    "t90ms": 947,
+    "t99ms": 1864
+   },
+   "camY": {
+    "span": -0.4478,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 14,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.4,
+    "t50ms": 280,
+    "t90ms": 947,
+    "t99ms": 1864
+   },
+   "cursorLatencyMs": 14
+  },
+  "08_s1_eclosion_mouse_br_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 210,
+   "camX": {
+    "span": -0.7974,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 15.4,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 282,
+    "t90ms": 948,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": 0.4478,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 15.4,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 282,
+    "t90ms": 948,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 15.4
+  },
+  "08_s1_eclosion_mouse_bl": {
+   "x": 2,
+   "y": 898,
+   "samples": 194,
+   "camX": {
+    "span": -0.7975,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.7,
+    "t50ms": 283,
+    "t90ms": 949,
+    "t99ms": 1866
+   },
+   "camY": {
+    "span": -0.4478,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.7,
+    "t50ms": 283,
+    "t90ms": 949,
+    "t99ms": 1866
+   },
+   "cursorLatencyMs": 16
+  },
+  "08_s1_eclosion_mouse_bl_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 211,
+   "camX": {
+    "span": 0.7976,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.5,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.7,
+    "t50ms": 283,
+    "t90ms": 949,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": 0.4479,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.5,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.7,
+    "t50ms": 283,
+    "t90ms": 949,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 16.5
+  },
+  "09_s2_adieu_mouse_tl": {
+   "x": 2,
+   "y": 2,
+   "samples": 212,
+   "camX": {
+    "span": 0.7976,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 15.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408,
+    "t50ms": 282,
+    "t90ms": 948,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": 0.4478,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 15.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408,
+    "t50ms": 282,
+    "t90ms": 948,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 15.7
+  },
+  "09_s2_adieu_mouse_tl_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 227,
+   "camX": {
+    "span": -0.7977,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 15.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.2,
+    "t50ms": 282,
+    "t90ms": 949,
+    "t99ms": 1883
+   },
+   "camY": {
+    "span": -0.4479,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 15.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.1,
+    "t50ms": 282,
+    "t90ms": 949,
+    "t99ms": 1883
+   },
+   "cursorLatencyMs": 15.1
+  },
+  "09_s2_adieu_mouse_tr": {
+   "x": 1438,
+   "y": 2,
+   "samples": 194,
+   "camX": {
+    "span": -0.7975,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 14.3,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 450.1,
+    "t50ms": 398,
+    "t90ms": 1081,
+    "t99ms": 2031
+   },
+   "camY": {
+    "span": 0.4478,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 14.3,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 450.1,
+    "t50ms": 398,
+    "t90ms": 1081,
+    "t99ms": 2031
+   },
+   "cursorLatencyMs": 14.3
+  },
+  "09_s2_adieu_mouse_tr_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 195,
+   "camX": {
+    "span": 0.7973,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.9,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.4,
+    "t50ms": 284,
+    "t90ms": 949,
+    "t99ms": 1867
+   },
+   "camY": {
+    "span": -0.4478,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.9,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.4,
+    "t50ms": 284,
+    "t90ms": 949,
+    "t99ms": 1867
+   },
+   "cursorLatencyMs": 17.9
+  },
+  "09_s2_adieu_mouse_br": {
+   "x": 1438,
+   "y": 898,
+   "samples": 223,
+   "camX": {
+    "span": -0.7975,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.8,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.1,
+    "t50ms": 284,
+    "t90ms": 951,
+    "t99ms": 1883
+   },
+   "camY": {
+    "span": -0.4481,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.8,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.1,
+    "t50ms": 284,
+    "t90ms": 951,
+    "t99ms": 1883
+   },
+   "cursorLatencyMs": 16.8
+  },
+  "09_s2_adieu_mouse_br_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 214,
+   "camX": {
+    "span": 0.7976,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1884
+   },
+   "camY": {
+    "span": 0.4479,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1884
+   },
+   "cursorLatencyMs": 16.1
+  },
+  "09_s2_adieu_mouse_bl": {
+   "x": 2,
+   "y": 898,
+   "samples": 200,
+   "camX": {
+    "span": 0.7976,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 12.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 280,
+    "t90ms": 946,
+    "t99ms": 1897
+   },
+   "camY": {
+    "span": -0.4478,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 12.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 280,
+    "t90ms": 946,
+    "t99ms": 1897
+   },
+   "cursorLatencyMs": 12.7
+  },
+  "09_s2_adieu_mouse_bl_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 205,
+   "camX": {
+    "span": -0.7975,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 14.3,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408,
+    "t50ms": 282,
+    "t90ms": 947,
+    "t99ms": 1881
+   },
+   "camY": {
+    "span": 0.4478,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 14.3,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408,
+    "t50ms": 282,
+    "t90ms": 947,
+    "t99ms": 1881
+   },
+   "cursorLatencyMs": 30.5
+  },
+  "10_s3_voyage_mouse_tl": {
+   "x": 2,
+   "y": 2,
+   "samples": 216,
+   "camX": {
+    "span": -1.9941,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 13.4,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 281,
+    "t90ms": 946,
+    "t99ms": 1880
+   },
+   "camY": {
+    "span": 0.9952,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 13.4,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 281,
+    "t90ms": 946,
+    "t99ms": 1880
+   },
+   "cursorLatencyMs": 13.4
+  },
+  "10_s3_voyage_mouse_tl_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 201,
+   "camX": {
+    "span": 1.9937,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.6,
+    "t50ms": 283,
+    "t90ms": 948,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": -0.9952,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.6,
+    "t50ms": 283,
+    "t90ms": 948,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 16.1
+  },
+  "10_s3_voyage_mouse_tr": {
+   "x": 1438,
+   "y": 2,
+   "samples": 217,
+   "camX": {
+    "span": 1.9945,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 284,
+    "t90ms": 952,
+    "t99ms": 1883
+   },
+   "camY": {
+    "span": 0.9952,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408,
+    "t50ms": 284,
+    "t90ms": 952,
+    "t99ms": 1883
+   },
+   "cursorLatencyMs": 16.6
+  },
+  "10_s3_voyage_mouse_tr_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 183,
+   "camX": {
+    "span": -1.9932,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.5,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.3,
+    "t50ms": 284,
+    "t90ms": 951,
+    "t99ms": 1868
+   },
+   "camY": {
+    "span": -0.9949,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.5,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.3,
+    "t50ms": 284,
+    "t90ms": 951,
+    "t99ms": 1868
+   },
+   "cursorLatencyMs": 16.5
+  },
+  "10_s3_voyage_mouse_br": {
+   "x": 1438,
+   "y": 898,
+   "samples": 224,
+   "camX": {
+    "span": 1.9933,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 13.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 282,
+    "t90ms": 948,
+    "t99ms": 1880
+   },
+   "camY": {
+    "span": -0.9959,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 13.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 282,
+    "t90ms": 948,
+    "t99ms": 1880
+   },
+   "cursorLatencyMs": 13.6
+  },
+  "10_s3_voyage_mouse_br_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 201,
+   "camX": {
+    "span": -1.9938,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 15.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 283,
+    "t90ms": 948,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": 0.9952,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 15.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 283,
+    "t90ms": 948,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 15.1
+  },
+  "10_s3_voyage_mouse_bl": {
+   "x": 2,
+   "y": 898,
+   "samples": 204,
+   "camX": {
+    "span": -1.9943,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.1,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1884
+   },
+   "camY": {
+    "span": -0.9951,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.1,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1884
+   },
+   "cursorLatencyMs": 17.6
+  },
+  "10_s3_voyage_mouse_bl_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 186,
+   "camX": {
+    "span": 1.9931,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.2,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.3,
+    "t50ms": 284,
+    "t90ms": 949,
+    "t99ms": 1866
+   },
+   "camY": {
+    "span": 0.9949,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.2,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.3,
+    "t50ms": 284,
+    "t90ms": 949,
+    "t99ms": 1866
+   },
+   "cursorLatencyMs": 17.2
+  },
+  "11_s4_premiere_mouse_tl": {
+   "x": 2,
+   "y": 2,
+   "samples": 185,
+   "camX": {
+    "span": -0.7973,
+    "framesMedianMs": 16.8,
+    "firstMotionMs": 15.2,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.5,
+    "t50ms": 281,
+    "t90ms": 948,
+    "t99ms": 1865
+   },
+   "camY": {
+    "span": 0.4477,
+    "framesMedianMs": 16.8,
+    "firstMotionMs": 15.2,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.5,
+    "t50ms": 281,
+    "t90ms": 948,
+    "t99ms": 1865
+   },
+   "cursorLatencyMs": 15.2
+  },
+  "11_s4_premiere_mouse_tl_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 222,
+   "camX": {
+    "span": 0.7977,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 13.4,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.2,
+    "t50ms": 280,
+    "t90ms": 948,
+    "t99ms": 1880
+   },
+   "camY": {
+    "span": -0.4479,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 13.4,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.2,
+    "t50ms": 280,
+    "t90ms": 948,
+    "t99ms": 1880
+   },
+   "cursorLatencyMs": 13.4
+  },
+  "11_s4_premiere_mouse_tr": {
+   "x": 1438,
+   "y": 2,
+   "samples": 245,
+   "camX": {
+    "span": 0.7978,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 18.2,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.2,
+    "t50ms": 285,
+    "t90ms": 951,
+    "t99ms": 1884
+   },
+   "camY": {
+    "span": 0.4479,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 18.2,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.2,
+    "t50ms": 285,
+    "t90ms": 951,
+    "t99ms": 1884
+   },
+   "cursorLatencyMs": 18.2
+  },
+  "11_s4_premiere_mouse_tr_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 221,
+   "camX": {
+    "span": -0.7977,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 14.5,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.7,
+    "t50ms": 281,
+    "t90ms": 947,
+    "t99ms": 1881
+   },
+   "camY": {
+    "span": -0.4479,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 14.5,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.7,
+    "t50ms": 281,
+    "t90ms": 947,
+    "t99ms": 1881
+   },
+   "cursorLatencyMs": 14.5
+  },
+  "11_s4_premiere_mouse_br": {
+   "x": 1438,
+   "y": 898,
+   "samples": 202,
+   "camX": {
+    "span": 0.7975,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.3,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 284,
+    "t90ms": 951,
+    "t99ms": 1883
+   },
+   "camY": {
+    "span": -0.4479,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.3,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 284,
+    "t90ms": 951,
+    "t99ms": 1883
+   },
+   "cursorLatencyMs": 17.3
+  },
+  "11_s4_premiere_mouse_br_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 235,
+   "camX": {
+    "span": -0.7976,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 18.2,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1884
+   },
+   "camY": {
+    "span": 0.4479,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 18.2,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1884
+   },
+   "cursorLatencyMs": 18.2
+  },
+  "11_s4_premiere_mouse_bl": {
+   "x": 2,
+   "y": 898,
+   "samples": 209,
+   "camX": {
+    "span": -0.7976,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 418.9,
+    "t50ms": 283,
+    "t90ms": 966,
+    "t99ms": 1899
+   },
+   "camY": {
+    "span": -0.4479,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 418.9,
+    "t50ms": 283,
+    "t90ms": 966,
+    "t99ms": 1899
+   },
+   "cursorLatencyMs": 16.7
+  },
+  "11_s4_premiere_mouse_bl_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 195,
+   "camX": {
+    "span": 0.7974,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 14.9,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.7,
+    "t50ms": 282,
+    "t90ms": 949,
+    "t99ms": 1865
+   },
+   "camY": {
+    "span": 0.4478,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 14.9,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.7,
+    "t50ms": 282,
+    "t90ms": 949,
+    "t99ms": 1865
+   },
+   "cursorLatencyMs": 14.9
+  },
+  "12_ending_mouse_tl": {
+   "x": 2,
+   "y": 2,
+   "samples": 184,
+   "camX": {
+    "span": 0.7973,
+    "framesMedianMs": 16.5,
+    "firstMotionMs": 19.1,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 405.9,
+    "t50ms": 283,
+    "t90ms": 949,
+    "t99ms": 1867
+   },
+   "camY": {
+    "span": 0.4476,
+    "framesMedianMs": 16.5,
+    "firstMotionMs": 19.1,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 405.9,
+    "t50ms": 283,
+    "t90ms": 949,
+    "t99ms": 1867
+   },
+   "cursorLatencyMs": 19.1
+  },
+  "12_ending_mouse_tl_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 220,
+   "camX": {
+    "span": -0.7977,
+    "framesMedianMs": 16.5,
+    "firstMotionMs": 16.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.7,
+    "t50ms": 284,
+    "t90ms": 951,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": -0.4479,
+    "framesMedianMs": 16.5,
+    "firstMotionMs": 16.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.7,
+    "t50ms": 284,
+    "t90ms": 951,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 16.6
+  },
+  "12_ending_mouse_tr": {
+   "x": 1438,
+   "y": 2,
+   "samples": 221,
+   "camX": {
+    "span": -0.7977,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 14.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 284,
+    "t90ms": 947,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": 0.4479,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 14.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 284,
+    "t90ms": 947,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 14.6
+  },
+  "12_ending_mouse_tr_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 217,
+   "camX": {
+    "span": 0.7977,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 15.5,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.2,
+    "t50ms": 282,
+    "t90ms": 950,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": -0.4479,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 15.5,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.2,
+    "t50ms": 282,
+    "t90ms": 950,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 33.1
+  },
+  "12_ending_mouse_br": {
+   "x": 1438,
+   "y": 898,
+   "samples": 188,
+   "camX": {
+    "span": -0.7973,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.4,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.2,
+    "t50ms": 284,
+    "t90ms": 958,
+    "t99ms": 1867
+   },
+   "camY": {
+    "span": -0.4478,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.4,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.3,
+    "t50ms": 284,
+    "t90ms": 958,
+    "t99ms": 1867
+   },
+   "cursorLatencyMs": 17.4
+  },
+  "12_ending_mouse_br_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 207,
+   "camX": {
+    "span": 0.7976,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 14.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.4,
+    "t50ms": 283,
+    "t90ms": 947,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": 0.4478,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 14.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.4,
+    "t50ms": 283,
+    "t90ms": 947,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 32.3
+  },
+  "12_ending_mouse_bl": {
+   "x": 2,
+   "y": 898,
+   "samples": 204,
+   "camX": {
+    "span": 0.7974,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 5,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.4,
+    "t50ms": 274,
+    "t90ms": 940,
+    "t99ms": 1859
+   },
+   "camY": {
+    "span": -0.4477,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 5,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.4,
+    "t50ms": 274,
+    "t90ms": 940,
+    "t99ms": 1859
+   },
+   "cursorLatencyMs": 5
+  },
+  "12_ending_mouse_bl_back": {
+   "x": 720,
+   "y": 450,
+   "samples": 285,
+   "camX": {
+    "span": -0.7978,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 17.3,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.3,
+    "t50ms": 284,
+    "t90ms": 951,
+    "t99ms": 1883
+   },
+   "camY": {
+    "span": 0.4479,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 17.3,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.2,
+    "t50ms": 284,
+    "t90ms": 951,
+    "t99ms": 1883
+   },
+   "cursorLatencyMs": 17.3
+  }
+ },
+ "parallax": {
+  "02_landing_mouse": {
+   "tl": {
+    "mouseDx": -718,
+    "mouseDy": -448,
+    "global": 14.9,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 0,
+      "dy": 60,
+      "sad": 4.38,
+      "sad0": 22.31,
+      "ratioX": 0,
+      "ratioY": -0.1339
+     },
+     {
+      "band": "20-40%",
+      "dx": -16,
+      "dy": 76,
+      "sad": 8.01,
+      "sad0": 13.74,
+      "ratioX": 0.0223,
+      "ratioY": -0.1696
+     },
+     {
+      "band": "40-60%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 15.15,
+      "sad0": 15.15,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "60-80%",
+      "dx": 8,
+      "dy": -76,
+      "sad": 7.98,
+      "sad0": 13.74,
+      "ratioX": -0.0111,
+      "ratioY": 0.1696
+     },
+     {
+      "band": "80-100%",
+      "dx": 0,
+      "dy": -60,
+      "sad": 4.4,
+      "sad0": 22.32,
+      "ratioX": 0,
+      "ratioY": 0.1339
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 24,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 441,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 524,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 608,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 991,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1441,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 2141,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 2391,
+      "dx": 0,
+      "dy": 0
+     }
+    ]
+   },
+   "br": {
+    "mouseDx": 718,
+    "mouseDy": 448,
+    "global": 14.9,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 0,
+      "dy": 60,
+      "sad": 4.38,
+      "sad0": 22.31,
+      "ratioX": 0,
+      "ratioY": 0.1339
+     },
+     {
+      "band": "20-40%",
+      "dx": -16,
+      "dy": 76,
+      "sad": 8.01,
+      "sad0": 13.74,
+      "ratioX": -0.0223,
+      "ratioY": 0.1696
+     },
+     {
+      "band": "40-60%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 15.15,
+      "sad0": 15.15,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "60-80%",
+      "dx": 8,
+      "dy": -76,
+      "sad": 7.98,
+      "sad0": 13.74,
+      "ratioX": 0.0111,
+      "ratioY": -0.1696
+     },
+     {
+      "band": "80-100%",
+      "dx": 0,
+      "dy": -60,
+      "sad": 4.4,
+      "sad0": 22.32,
+      "ratioX": 0,
+      "ratioY": -0.1339
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 0,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 34,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 84,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 167,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 300,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 400,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 500,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1383,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1467,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 2100,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 2750,
+      "dx": 0,
+      "dy": 0
+     }
+    ]
+   }
+  },
+  "06_revealed_mouse": {
+   "tl": {
+    "mouseDx": -718,
+    "mouseDy": -448,
+    "global": 1.07,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 0,
+      "sad0": 0,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "20-40%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 1.98,
+      "sad0": 1.98,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "40-60%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 3.75,
+      "sad0": 3.75,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "60-80%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 0.79,
+      "sad0": 0.79,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "80-100%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 0,
+      "sad0": 0,
+      "ratioX": 0,
+      "ratioY": 0
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 1,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 51,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 184,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 268,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 401,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 518,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 618,
+      "dx": 0,
+      "dy": 0
+     }
+    ]
+   },
+   "br": {
+    "mouseDx": 718,
+    "mouseDy": 448,
+    "global": 0.92,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 0,
+      "sad0": 0,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "20-40%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 1.67,
+      "sad0": 1.67,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "40-60%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 3.51,
+      "sad0": 3.51,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "60-80%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 0.58,
+      "sad0": 0.58,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "80-100%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 0,
+      "sad0": 0,
+      "ratioX": 0,
+      "ratioY": 0
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 19,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 885,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 919,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1385,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 2202,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 2252,
+      "dx": 0,
+      "dy": 0
+     }
+    ]
+   }
+  },
+  "08_s1_eclosion_mouse": {
+   "tl": {
+    "mouseDx": -718,
+    "mouseDy": -448,
+    "global": 22.37,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 20,
+      "dy": 0,
+      "sad": 26.75,
+      "sad0": 29.29,
+      "ratioX": -0.0279,
+      "ratioY": 0
+     },
+     {
+      "band": "20-40%",
+      "dx": -16,
+      "dy": -8,
+      "sad": 16.71,
+      "sad0": 22.08,
+      "ratioX": 0.0223,
+      "ratioY": 0.0179
+     },
+     {
+      "band": "40-60%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 7.56,
+      "sad0": 7.56,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "60-80%",
+      "dx": 20,
+      "dy": 12,
+      "sad": 11.31,
+      "sad0": 14.35,
+      "ratioX": -0.0279,
+      "ratioY": -0.0268
+     },
+     {
+      "band": "80-100%",
+      "dx": 28,
+      "dy": 12,
+      "sad": 22.31,
+      "sad0": 32.63,
+      "ratioX": -0.039,
+      "ratioY": -0.0268
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 33,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 367,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 400,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 483,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 633,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1150,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1183,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1983,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 2533,
+      "dx": 0,
+      "dy": 0
+     }
+    ]
+   },
+   "br": {
+    "mouseDx": 718,
+    "mouseDy": 448,
+    "global": 22.57,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": -20,
+      "dy": -4,
+      "sad": 21.26,
+      "sad0": 24.93,
+      "ratioX": -0.0279,
+      "ratioY": -0.0089
+     },
+     {
+      "band": "20-40%",
+      "dx": 16,
+      "dy": 8,
+      "sad": 15.8,
+      "sad0": 20.87,
+      "ratioX": 0.0223,
+      "ratioY": 0.0179
+     },
+     {
+      "band": "40-60%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 8.29,
+      "sad0": 8.29,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "60-80%",
+      "dx": -24,
+      "dy": -12,
+      "sad": 12.03,
+      "sad0": 15.56,
+      "ratioX": -0.0334,
+      "ratioY": -0.0268
+     },
+     {
+      "band": "80-100%",
+      "dx": -80,
+      "dy": -64,
+      "sad": 30.92,
+      "sad0": 42.01,
+      "ratioX": -0.1114,
+      "ratioY": -0.1429
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 27,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 360,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 444,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 727,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1010,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1227,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1977,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 2927,
+      "dx": 0,
+      "dy": 0
+     }
+    ]
+   }
+  },
+  "09_s2_adieu_mouse": {
+   "tl": {
+    "mouseDx": -718,
+    "mouseDy": -448,
+    "global": 21.68,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 44,
+      "dy": -76,
+      "sad": 9.88,
+      "sad0": 19.16,
+      "ratioX": -0.0613,
+      "ratioY": 0.1696
+     },
+     {
+      "band": "20-40%",
+      "dx": 12,
+      "dy": 28,
+      "sad": 19.46,
+      "sad0": 25.2,
+      "ratioX": -0.0167,
+      "ratioY": -0.0625
+     },
+     {
+      "band": "40-60%",
+      "dx": 20,
+      "dy": -8,
+      "sad": 15.66,
+      "sad0": 22.33,
+      "ratioX": -0.0279,
+      "ratioY": 0.0179
+     },
+     {
+      "band": "60-80%",
+      "dx": 4,
+      "dy": -4,
+      "sad": 13.01,
+      "sad0": 14.41,
+      "ratioX": -0.0056,
+      "ratioY": 0.0089
+     },
+     {
+      "band": "80-100%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 22.27,
+      "sad0": 22.27,
+      "ratioX": 0,
+      "ratioY": 0
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 30,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 97,
+      "dx": 0,
+      "dy": 0
+     }
+    ]
+   },
+   "br": {
+    "mouseDx": 718,
+    "mouseDy": 448,
+    "global": 18.4,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 24,
+      "dy": -12,
+      "sad": 7.24,
+      "sad0": 8.73,
+      "ratioX": 0.0334,
+      "ratioY": -0.0268
+     },
+     {
+      "band": "20-40%",
+      "dx": 12,
+      "dy": -20,
+      "sad": 14.18,
+      "sad0": 16.26,
+      "ratioX": 0.0167,
+      "ratioY": -0.0446
+     },
+     {
+      "band": "40-60%",
+      "dx": -16,
+      "dy": 8,
+      "sad": 14.9,
+      "sad0": 19.37,
+      "ratioX": -0.0223,
+      "ratioY": 0.0179
+     },
+     {
+      "band": "60-80%",
+      "dx": -4,
+      "dy": 4,
+      "sad": 14.31,
+      "sad0": 15.45,
+      "ratioX": -0.0056,
+      "ratioY": 0.0089
+     },
+     {
+      "band": "80-100%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 23.65,
+      "sad0": 23.65,
+      "ratioX": 0,
+      "ratioY": 0
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 14,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 81,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 181,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 281,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 397,
+      "dx": -8,
+      "dy": 4
+     }
+    ]
+   }
+  },
+  "10_s3_voyage_mouse": {
+   "tl": {
+    "mouseDx": -718,
+    "mouseDy": -448,
+    "global": 20.58,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 28,
+      "dy": 8,
+      "sad": 26.38,
+      "sad0": 30.29,
+      "ratioX": -0.039,
+      "ratioY": -0.0179
+     },
+     {
+      "band": "20-40%",
+      "dx": 36,
+      "dy": 4,
+      "sad": 21.33,
+      "sad0": 24.44,
+      "ratioX": -0.0501,
+      "ratioY": -0.0089
+     },
+     {
+      "band": "40-60%",
+      "dx": -4,
+      "dy": -52,
+      "sad": 20.53,
+      "sad0": 26.54,
+      "ratioX": 0.0056,
+      "ratioY": 0.1161
+     },
+     {
+      "band": "60-80%",
+      "dx": 4,
+      "dy": 8,
+      "sad": 13.54,
+      "sad0": 13.63,
+      "ratioX": -0.0056,
+      "ratioY": -0.0179
+     },
+     {
+      "band": "80-100%",
+      "dx": -108,
+      "dy": 144,
+      "sad": 10.78,
+      "sad0": 16.05,
+      "ratioX": 0.1504,
+      "ratioY": -0.3214
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 26,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 76,
+      "dx": 0,
+      "dy": -4
+     },
+     {
+      "off": 643,
+      "dx": 0,
+      "dy": -28
+     },
+     {
+      "off": 676,
+      "dx": 0,
+      "dy": -32
+     },
+     {
+      "off": 1060,
+      "dx": -4,
+      "dy": -32
+     },
+     {
+      "off": 1510,
+      "dx": -16,
+      "dy": -32
+     },
+     {
+      "off": 1993,
+      "dx": -32,
+      "dy": -8
+     },
+     {
+      "off": 2326,
+      "dx": -20,
+      "dy": 8
+     }
+    ]
+   },
+   "br": {
+    "mouseDx": 718,
+    "mouseDy": 448,
+    "global": 23.5,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": -96,
+      "dy": 36,
+      "sad": 24.78,
+      "sad0": 27.2,
+      "ratioX": -0.1337,
+      "ratioY": 0.0804
+     },
+     {
+      "band": "20-40%",
+      "dx": 160,
+      "dy": -120,
+      "sad": 23.88,
+      "sad0": 32.48,
+      "ratioX": 0.2228,
+      "ratioY": -0.2679
+     },
+     {
+      "band": "40-60%",
+      "dx": -120,
+      "dy": 52,
+      "sad": 23.64,
+      "sad0": 30.81,
+      "ratioX": -0.1671,
+      "ratioY": 0.1161
+     },
+     {
+      "band": "60-80%",
+      "dx": -80,
+      "dy": 92,
+      "sad": 11.95,
+      "sad0": 16.02,
+      "ratioX": -0.1114,
+      "ratioY": 0.2054
+     },
+     {
+      "band": "80-100%",
+      "dx": -52,
+      "dy": 0,
+      "sad": 10.47,
+      "sad0": 15.15,
+      "ratioX": -0.0724,
+      "ratioY": 0
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 9,
+      "dx": 0,
+      "dy": -4
+     },
+     {
+      "off": 42,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 76,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 426,
+      "dx": -16,
+      "dy": 20
+     },
+     {
+      "off": 459,
+      "dx": -20,
+      "dy": 24
+     },
+     {
+      "off": 726,
+      "dx": -32,
+      "dy": 40
+     },
+     {
+      "off": 976,
+      "dx": -52,
+      "dy": 52
+     },
+     {
+      "off": 1426,
+      "dx": -72,
+      "dy": 48
+     },
+     {
+      "off": 2009,
+      "dx": -80,
+      "dy": 88
+     },
+     {
+      "off": 2759,
+      "dx": -80,
+      "dy": 52
+     }
+    ]
+   }
+  },
+  "11_s4_premiere_mouse": {
+   "tl": {
+    "mouseDx": -718,
+    "mouseDy": -448,
+    "global": 11.59,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 4.45,
+      "sad0": 4.45,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "20-40%",
+      "dx": -16,
+      "dy": -8,
+      "sad": 10.56,
+      "sad0": 20.58,
+      "ratioX": 0.0223,
+      "ratioY": 0.0179
+     },
+     {
+      "band": "40-60%",
+      "dx": -12,
+      "dy": -4,
+      "sad": 7.51,
+      "sad0": 11.59,
+      "ratioX": 0.0167,
+      "ratioY": 0.0089
+     },
+     {
+      "band": "60-80%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 4.43,
+      "sad0": 4.43,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "80-100%",
+      "dx": 16,
+      "dy": 8,
+      "sad": 6.61,
+      "sad0": 11.06,
+      "ratioX": -0.0223,
+      "ratioY": -0.0179
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 40,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 373,
+      "dx": -8,
+      "dy": -4
+     },
+     {
+      "off": 1689,
+      "dx": -8,
+      "dy": -4
+     },
+     {
+      "off": 1823,
+      "dx": -8,
+      "dy": -4
+     },
+     {
+      "off": 2773,
+      "dx": -8,
+      "dy": -4
+     }
+    ]
+   },
+   "br": {
+    "mouseDx": 718,
+    "mouseDy": 448,
+    "global": 13.08,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 20,
+      "dy": 8,
+      "sad": 6.14,
+      "sad0": 7.76,
+      "ratioX": 0.0279,
+      "ratioY": 0.0179
+     },
+     {
+      "band": "20-40%",
+      "dx": 16,
+      "dy": 8,
+      "sad": 8.3,
+      "sad0": 21.39,
+      "ratioX": 0.0223,
+      "ratioY": 0.0179
+     },
+     {
+      "band": "40-60%",
+      "dx": 12,
+      "dy": 8,
+      "sad": 8,
+      "sad0": 13.14,
+      "ratioX": 0.0167,
+      "ratioY": 0.0179
+     },
+     {
+      "band": "60-80%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 4.66,
+      "sad0": 4.66,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "80-100%",
+      "dx": -16,
+      "dy": -12,
+      "sad": 6.68,
+      "sad0": 11.45,
+      "ratioX": -0.0223,
+      "ratioY": -0.0268
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 12,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 46,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 79,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 146,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 196,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1246,
+      "dx": 8,
+      "dy": 4
+     },
+     {
+      "off": 1279,
+      "dx": 8,
+      "dy": 4
+     },
+     {
+      "off": 2595,
+      "dx": 8,
+      "dy": 4
+     }
+    ]
+   }
+  },
+  "12_ending_mouse": {
+   "tl": {
+    "mouseDx": -718,
+    "mouseDy": -448,
+    "global": 2.89,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 1.58,
+      "sad0": 1.58,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "20-40%",
+      "dx": -8,
+      "dy": 4,
+      "sad": 2.7,
+      "sad0": 3.1,
+      "ratioX": 0.0111,
+      "ratioY": -0.0089
+     },
+     {
+      "band": "40-60%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 4.44,
+      "sad0": 4.44,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "60-80%",
+      "dx": -8,
+      "dy": 4,
+      "sad": 2.65,
+      "sad0": 6.24,
+      "ratioX": 0.0111,
+      "ratioY": -0.0089
+     },
+     {
+      "band": "80-100%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 1.97,
+      "sad0": 1.97,
+      "ratioX": 0,
+      "ratioY": 0
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 35,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 85,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 219,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 969,
+      "dx": -8,
+      "dy": 4
+     },
+     {
+      "off": 1002,
+      "dx": -8,
+      "dy": 4
+     },
+     {
+      "off": 1535,
+      "dx": -8,
+      "dy": 4
+     },
+     {
+      "off": 2019,
+      "dx": -8,
+      "dy": 4
+     },
+     {
+      "off": 2902,
+      "dx": -8,
+      "dy": 4
+     }
+    ]
+   },
+   "br": {
+    "mouseDx": 718,
+    "mouseDy": 448,
+    "global": 2.89,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 1.67,
+      "sad0": 1.67,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "20-40%",
+      "dx": 8,
+      "dy": -4,
+      "sad": 2.83,
+      "sad0": 3.11,
+      "ratioX": 0.0111,
+      "ratioY": -0.0089
+     },
+     {
+      "band": "40-60%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 4.45,
+      "sad0": 4.45,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "60-80%",
+      "dx": 8,
+      "dy": -4,
+      "sad": 2.78,
+      "sad0": 6.05,
+      "ratioX": 0.0111,
+      "ratioY": -0.0089
+     },
+     {
+      "band": "80-100%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 1.82,
+      "sad0": 1.82,
+      "ratioX": 0,
+      "ratioY": 0
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 9,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 109,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 159,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 192,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 276,
+      "dx": 4,
+      "dy": 0
+     },
+     {
+      "off": 526,
+      "dx": 4,
+      "dy": -4
+     },
+     {
+      "off": 759,
+      "dx": 8,
+      "dy": -4
+     },
+     {
+      "off": 1142,
+      "dx": 8,
+      "dy": -4
+     },
+     {
+      "off": 1509,
+      "dx": 8,
+      "dy": -4
+     },
+     {
+      "off": 1976,
+      "dx": 8,
+      "dy": -4
+     },
+     {
+      "off": 2126,
+      "dx": 8,
+      "dy": -4
+     }
+    ]
+   }
+  }
+ },
+ "wheel": {
+  "04_landing_wheel": {
+   "wheelEvents": 4,
+   "madBeforeAfter": 1.87,
+   "scrollY": [
+    0
+   ],
+   "chapter": [
+    4
+   ],
+   "camRange": [
+    0.1582,
+    0.0859,
+    0
+   ]
+  },
+  "08_s1_eclosion_wheel": {
+   "wheelEvents": 6,
+   "madBeforeAfter": 1,
+   "scrollY": [
+    0
+   ],
+   "chapter": [
+    0
+   ],
+   "camRange": [
+    0,
+    0,
+    0
+   ]
+  },
+  "09_s2_adieu_wheel": {
+   "wheelEvents": 8,
+   "madBeforeAfter": 4.26,
+   "scrollY": [
+    0
+   ],
+   "chapter": [
+    1
+   ],
+   "camRange": [
+    0,
+    0,
+    0
+   ]
+  },
+  "10_s3_voyage_wheel": {
+   "wheelEvents": 7,
+   "madBeforeAfter": 15.42,
+   "scrollY": [
+    0
+   ],
+   "chapter": [
+    2
+   ],
+   "camRange": [
+    0,
+    0,
+    0
+   ]
+  },
+  "11_s4_premiere_wheel": {
+   "wheelEvents": 4,
+   "madBeforeAfter": 0.31,
+   "scrollY": [
+    0
+   ],
+   "chapter": [
+    3
+   ],
+   "camRange": [
+    0,
+    0,
+    0
+   ]
+  }
+ },
+ "ambient": {
+  "02_landing_mouse": 0.53,
+  "06_revealed_mouse": 0.99,
+  "08_s1_eclosion_mouse": 4.22,
+  "09_s2_adieu_mouse": 9.29,
+  "10_s3_voyage_mouse": 16.17,
+  "11_s4_premiere_mouse": 0.74,
+  "12_ending_mouse": 0.54
+ },
+ "transitions": {
+  "05_reveal": {
+   "framesCaptured": 29,
+   "motionStartMs": 642,
+   "motionEndMs": 1758,
+   "energy": [
+    {
+     "off": -425,
+     "mad": 0
+    },
+    {
+     "off": 392,
+     "mad": 0.01
+    },
+    {
+     "off": 558,
+     "mad": 0.53
+    },
+    {
+     "off": 692,
+     "mad": 1.62
+    },
+    {
+     "off": 925,
+     "mad": 5.81
+    },
+    {
+     "off": 1608,
+     "mad": 2.06
+    },
+    {
+     "off": 1758,
+     "mad": 1.21
+    },
+    {
+     "off": 2475,
+     "mad": 0.02
+    },
+    {
+     "off": 2792,
+     "mad": 0.01
+    },
+    {
+     "off": 3058,
+     "mad": 0.01
+    }
+   ],
+   "dom": [
+    {
+     "t": 0,
+     "ch": 4,
+     "trans": -1,
+     "canvas": "none",
+     "landing": "none",
+     "logo": "1.00 matrix(1.1, 0, 0, 1.1, 0, 0)"
+    },
+    {
+     "t": 440,
+     "ch": 4,
+     "trans": -1,
+     "canvas": "none",
+     "landing": "none",
+     "logo": "1.00 translate3d(0px, 5.9524px, 0px) scale(1.13557, 1.13557)"
+    },
+    {
+     "t": 1210,
+     "ch": 4,
+     "trans": -1,
+     "canvas": "none",
+     "landing": "none",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 1599,
+     "ch": 4,
+     "trans": -1,
+     "canvas": "none",
+     "landing": "none",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 2362,
+     "ch": 4,
+     "trans": -1,
+     "canvas": "none",
+     "landing": "none",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 2800,
+     "ch": 4,
+     "trans": -1,
+     "canvas": "none",
+     "landing": "none",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    }
+   ]
+  },
+  "07_enter_scene1": {
+   "framesCaptured": 20,
+   "motionStartMs": 522,
+   "motionEndMs": 1872,
+   "energy": [
+    {
+     "off": -112,
+     "mad": 0.01
+    },
+    {
+     "off": 355,
+     "mad": 0.11
+    },
+    {
+     "off": 1138,
+     "mad": 0.71
+    },
+    {
+     "off": 1872,
+     "mad": 2.21
+    },
+    {
+     "off": 2971,
+     "mad": 0.07
+    },
+    {
+     "off": 3221,
+     "mad": 0.05
+    },
+    {
+     "off": 4405,
+     "mad": 0.05
+    }
+   ],
+   "camWorldY": [
+    {
+     "t": 0,
+     "ch": 4,
+     "y": 18.68
+    },
+    {
+     "t": 378,
+     "ch": 4,
+     "y": 18.68
+    },
+    {
+     "t": 578,
+     "ch": 4,
+     "y": 18.68
+    },
+    {
+     "t": 744,
+     "ch": 0,
+     "y": 17.69
+    },
+    {
+     "t": 912,
+     "ch": 0,
+     "y": 17.58
+    },
+    {
+     "t": 1079,
+     "ch": 0,
+     "y": 17.5
+    },
+    {
+     "t": 1244,
+     "ch": 0,
+     "y": 17.45
+    },
+    {
+     "t": 1411,
+     "ch": 0,
+     "y": 17.4
+    },
+    {
+     "t": 1577,
+     "ch": 0,
+     "y": 17.32
+    },
+    {
+     "t": 1853,
+     "ch": 0,
+     "y": 17.04
+    },
+    {
+     "t": 2010,
+     "ch": 0,
+     "y": 16.75
+    },
+    {
+     "t": 2178,
+     "ch": 0,
+     "y": 16.69
+    },
+    {
+     "t": 2344,
+     "ch": 0,
+     "y": 16.68
+    },
+    {
+     "t": 2510,
+     "ch": 0,
+     "y": 16.68
+    },
+    {
+     "t": 2677,
+     "ch": 0,
+     "y": 16.68
+    },
+    {
+     "t": 2845,
+     "ch": 0,
+     "y": 16.68
+    },
+    {
+     "t": 3019,
+     "ch": 0,
+     "y": 16.68
+    },
+    {
+     "t": 3179,
+     "ch": 0,
+     "y": 16.68
+    },
+    {
+     "t": 3346,
+     "ch": 0,
+     "y": 16.68
+    },
+    {
+     "t": 3527,
+     "ch": 0,
+     "y": 16.68
+    },
+    {
+     "t": 3693,
+     "ch": 0,
+     "y": 16.68
+    },
+    {
+     "t": 3860,
+     "ch": 0,
+     "y": 16.68
+    },
+    {
+     "t": 4027,
+     "ch": 0,
+     "y": 16.68
+    },
+    {
+     "t": 4195,
+     "ch": 0,
+     "y": 16.68
+    },
+    {
+     "t": 4362,
+     "ch": 0,
+     "y": 16.68
+    },
+    {
+     "t": 4535,
+     "ch": 0,
+     "y": 16.68
+    }
+   ],
+   "dom": [
+    {
+     "t": 0,
+     "ch": 4,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 1474,
+     "ch": 0,
+     "trans": -1,
+     "canvas": "translate(0%, -5.2577%) translate3d(0px, 0px, 0px)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 2989,
+     "ch": 0,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 3435,
+     "ch": 0,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    }
+   ]
+  },
+  "08_s1_eclosion_transition": {
+   "framesCaptured": 12,
+   "motionStartMs": 1235,
+   "motionEndMs": 2102,
+   "energy": [
+    {
+     "off": 2,
+     "mad": 0.11
+    },
+    {
+     "off": 885,
+     "mad": 0.18
+    },
+    {
+     "off": 1335,
+     "mad": 4.33
+    },
+    {
+     "off": 2102,
+     "mad": 3.84
+    }
+   ],
+   "offsetProgress": {
+    "activeForMs": 2465,
+    "maxErrVsInOutQuart1750": 0.885,
+    "curve": [
+     {
+      "t": 0,
+      "p": 0
+     },
+     {
+      "t": 866,
+      "p": 0
+     },
+     {
+      "t": 1031,
+      "p": 0.007
+     },
+     {
+      "t": 1198,
+      "p": 0.041
+     },
+     {
+      "t": 1365,
+      "p": 0.152
+     },
+     {
+      "t": 1532,
+      "p": 0.356
+     },
+     {
+      "t": 1698,
+      "p": 0.686
+     },
+     {
+      "t": 1865,
+      "p": 0.88
+     },
+     {
+      "t": 2032,
+      "p": 0.966
+     },
+     {
+      "t": 2199,
+      "p": 0.995
+     },
+     {
+      "t": 2365,
+      "p": 1
+     }
+    ]
+   },
+   "camWorldY": [
+    {
+     "t": 0,
+     "ch": 0,
+     "y": 17.36
+    },
+    {
+     "t": 866,
+     "ch": 1,
+     "y": -0.8
+    },
+    {
+     "t": 1034,
+     "ch": 1,
+     "y": -0.6
+    },
+    {
+     "t": 1200,
+     "ch": 1,
+     "y": 0.06
+    },
+    {
+     "t": 1376,
+     "ch": 1,
+     "y": 1.87
+    },
+    {
+     "t": 1534,
+     "ch": 1,
+     "y": 5.93
+    },
+    {
+     "t": 1700,
+     "ch": 1,
+     "y": 12.49
+    },
+    {
+     "t": 1867,
+     "ch": 1,
+     "y": 16.66
+    },
+    {
+     "t": 2033,
+     "ch": 1,
+     "y": 18.58
+    },
+    {
+     "t": 2200,
+     "ch": 1,
+     "y": 19.23
+    },
+    {
+     "t": 2366,
+     "ch": 1,
+     "y": 19.36
+    },
+    {
+     "t": 2534,
+     "ch": 1,
+     "y": 19.37
+    },
+    {
+     "t": 2701,
+     "ch": 1,
+     "y": 19.37
+    },
+    {
+     "t": 2868,
+     "ch": 1,
+     "y": 19.37
+    },
+    {
+     "t": 3034,
+     "ch": 1,
+     "y": 19.37
+    },
+    {
+     "t": 3200,
+     "ch": 1,
+     "y": 19.37
+    },
+    {
+     "t": 3366,
+     "ch": 1,
+     "y": 19.37
+    },
+    {
+     "t": 3535,
+     "ch": 1,
+     "y": 19.37
+    },
+    {
+     "t": 3699,
+     "ch": 1,
+     "y": 19.37
+    },
+    {
+     "t": 3868,
+     "ch": 1,
+     "y": 19.37
+    },
+    {
+     "t": 4034,
+     "ch": 1,
+     "y": 19.37
+    }
+   ],
+   "dom": [
+    {
+     "t": 0,
+     "ch": 1,
+     "trans": 0,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 1185,
+     "ch": 1,
+     "trans": 0,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    }
+   ]
+  },
+  "09_s2_adieu_transition": {
+   "framesCaptured": 10,
+   "motionStartMs": 2357,
+   "motionEndMs": 2873,
+   "energy": [
+    {
+     "off": -193,
+     "mad": 0.25
+    },
+    {
+     "off": 857,
+     "mad": 0.25
+    },
+    {
+     "off": 2390,
+     "mad": 1.44
+    }
+   ],
+   "offsetProgress": {
+    "activeForMs": 2427,
+    "maxErrVsInOutQuart1750": 0.881,
+    "curve": [
+     {
+      "t": 0,
+      "p": 0
+     },
+     {
+      "t": 861,
+      "p": 0
+     },
+     {
+      "t": 1027,
+      "p": 0.009
+     },
+     {
+      "t": 1197,
+      "p": 0.048
+     },
+     {
+      "t": 1361,
+      "p": 0.158
+     },
+     {
+      "t": 1528,
+      "p": 0.391
+     },
+     {
+      "t": 1694,
+      "p": 0.712
+     },
+     {
+      "t": 1862,
+      "p": 0.892
+     },
+     {
+      "t": 2028,
+      "p": 0.971
+     },
+     {
+      "t": 2195,
+      "p": 0.996
+     },
+     {
+      "t": 2362,
+      "p": 1
+     }
+    ]
+   },
+   "camWorldY": [
+    {
+     "t": 0,
+     "ch": 2,
+     "y": 58.87
+    },
+    {
+     "t": 861,
+     "ch": 2,
+     "y": 47.85
+    },
+    {
+     "t": 1027,
+     "ch": 2,
+     "y": 48.17
+    },
+    {
+     "t": 1197,
+     "ch": 2,
+     "y": 48.76
+    },
+    {
+     "t": 1361,
+     "ch": 2,
+     "y": 50.09
+    },
+    {
+     "t": 1528,
+     "ch": 2,
+     "y": 52.77
+    },
+    {
+     "t": 1694,
+     "ch": 2,
+     "y": 56.4
+    },
+    {
+     "t": 1862,
+     "ch": 2,
+     "y": 58.44
+    },
+    {
+     "t": 2028,
+     "ch": 2,
+     "y": 59.34
+    },
+    {
+     "t": 2195,
+     "ch": 2,
+     "y": 59.62
+    },
+    {
+     "t": 2362,
+     "ch": 2,
+     "y": 59.68
+    },
+    {
+     "t": 2528,
+     "ch": 2,
+     "y": 59.68
+    },
+    {
+     "t": 2695,
+     "ch": 2,
+     "y": 59.68
+    },
+    {
+     "t": 2863,
+     "ch": 2,
+     "y": 59.69
+    },
+    {
+     "t": 3027,
+     "ch": 2,
+     "y": 59.69
+    },
+    {
+     "t": 3193,
+     "ch": 2,
+     "y": 59.69
+    },
+    {
+     "t": 3361,
+     "ch": 2,
+     "y": 59.69
+    },
+    {
+     "t": 3527,
+     "ch": 2,
+     "y": 59.69
+    },
+    {
+     "t": 3694,
+     "ch": 2,
+     "y": 59.69
+    },
+    {
+     "t": 3860,
+     "ch": 2,
+     "y": 59.69
+    }
+   ],
+   "dom": [
+    {
+     "t": 0,
+     "ch": 2,
+     "trans": 1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 2056,
+     "ch": 2,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    }
+   ]
+  },
+  "10_s3_voyage_transition": {
+   "framesCaptured": 23,
+   "motionStartMs": 25,
+   "motionEndMs": 1341,
+   "energy": [
+    {
+     "off": -9,
+     "mad": 0.74
+    },
+    {
+     "off": 141,
+     "mad": 2.81
+    },
+    {
+     "off": 925,
+     "mad": 5.54
+    },
+    {
+     "off": 1341,
+     "mad": 3.98
+    },
+    {
+     "off": 2124,
+     "mad": 0.06
+    },
+    {
+     "off": 2524,
+     "mad": 0.07
+    },
+    {
+     "off": 2841,
+     "mad": 0.02
+    },
+    {
+     "off": 3374,
+     "mad": 0.01
+    }
+   ],
+   "offsetProgress": {
+    "activeForMs": 1733,
+    "maxErrVsInOutQuart1750": 0.066,
+    "curve": [
+     {
+      "t": 0,
+      "p": 0
+     },
+     {
+      "t": 205,
+      "p": 0.001
+     },
+     {
+      "t": 367,
+      "p": 0.014
+     },
+     {
+      "t": 535,
+      "p": 0.063
+     },
+     {
+      "t": 700,
+      "p": 0.172
+     },
+     {
+      "t": 866,
+      "p": 0.454
+     },
+     {
+      "t": 1034,
+      "p": 0.76
+     },
+     {
+      "t": 1200,
+      "p": 0.904
+     },
+     {
+      "t": 1367,
+      "p": 0.979
+     },
+     {
+      "t": 1533,
+      "p": 0.997
+     },
+     {
+      "t": 1700,
+      "p": 1
+     }
+    ]
+   },
+   "camWorldY": [
+    {
+     "t": 0,
+     "ch": 2,
+     "y": 59.66
+    },
+    {
+     "t": 212,
+     "ch": 3,
+     "y": -8.72
+    },
+    {
+     "t": 368,
+     "ch": 3,
+     "y": -8.42
+    },
+    {
+     "t": 534,
+     "ch": 3,
+     "y": -7.49
+    },
+    {
+     "t": 700,
+     "ch": 3,
+     "y": -5.13
+    },
+    {
+     "t": 867,
+     "ch": 3,
+     "y": -0.17
+    },
+    {
+     "t": 1034,
+     "ch": 3,
+     "y": 6.1
+    },
+    {
+     "t": 1201,
+     "ch": 3,
+     "y": 9.45
+    },
+    {
+     "t": 1368,
+     "ch": 3,
+     "y": 10.8
+    },
+    {
+     "t": 1535,
+     "ch": 3,
+     "y": 11.3
+    },
+    {
+     "t": 1700,
+     "ch": 3,
+     "y": 11.36
+    },
+    {
+     "t": 1868,
+     "ch": 3,
+     "y": 11.37
+    },
+    {
+     "t": 2034,
+     "ch": 3,
+     "y": 11.37
+    },
+    {
+     "t": 2202,
+     "ch": 3,
+     "y": 11.37
+    },
+    {
+     "t": 2367,
+     "ch": 3,
+     "y": 11.37
+    },
+    {
+     "t": 2534,
+     "ch": 3,
+     "y": 11.37
+    },
+    {
+     "t": 2700,
+     "ch": 3,
+     "y": 11.37
+    },
+    {
+     "t": 2866,
+     "ch": 3,
+     "y": 11.37
+    },
+    {
+     "t": 3032,
+     "ch": 3,
+     "y": 11.37
+    },
+    {
+     "t": 3200,
+     "ch": 3,
+     "y": 11.37
+    },
+    {
+     "t": 3366,
+     "ch": 3,
+     "y": 11.37
+    },
+    {
+     "t": 3533,
+     "ch": 3,
+     "y": 11.37
+    },
+    {
+     "t": 3700,
+     "ch": 3,
+     "y": 11.37
+    }
+   ],
+   "dom": [
+    {
+     "t": 0,
+     "ch": 3,
+     "trans": 2,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 904,
+     "ch": 3,
+     "trans": 2,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 2091,
+     "ch": 3,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 2455,
+     "ch": 3,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 2811,
+     "ch": 3,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 3425,
+     "ch": 3,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    }
+   ]
+  },
+  "11_s4_premiere_transition": {
+   "framesCaptured": 39,
+   "motionStartMs": 741,
+   "motionEndMs": 1908,
+   "energy": [
+    {
+     "off": 8,
+     "mad": 0.03
+    },
+    {
+     "off": 208,
+     "mad": 0.1
+    },
+    {
+     "off": 741,
+     "mad": 1.37
+    },
+    {
+     "off": 875,
+     "mad": 1.57
+    },
+    {
+     "off": 1158,
+     "mad": 0.3
+    },
+    {
+     "off": 1758,
+     "mad": 4
+    },
+    {
+     "off": 1958,
+     "mad": 0.26
+    },
+    {
+     "off": 2208,
+     "mad": 0.67
+    },
+    {
+     "off": 2508,
+     "mad": 0.32
+    },
+    {
+     "off": 2908,
+     "mad": 0.01
+    },
+    {
+     "off": 3025,
+     "mad": 0.01
+    },
+    {
+     "off": 3191,
+     "mad": 0.02
+    },
+    {
+     "off": 3358,
+     "mad": 0.03
+    }
+   ],
+   "offsetProgress": {
+    "activeForMs": 2744,
+    "maxErrVsInOutQuart1750": 0.968,
+    "curve": [
+     {
+      "t": 0,
+      "p": 0
+     },
+     {
+      "t": 175,
+      "p": 0
+     },
+     {
+      "t": 345,
+      "p": 0
+     },
+     {
+      "t": 508,
+      "p": 0
+     },
+     {
+      "t": 676,
+      "p": 0
+     },
+     {
+      "t": 842,
+      "p": 0
+     },
+     {
+      "t": 1009,
+      "p": 0
+     },
+     {
+      "t": 1175,
+      "p": 0.001
+     },
+     {
+      "t": 1342,
+      "p": 0.01
+     },
+     {
+      "t": 1565,
+      "p": 0.054
+     },
+     {
+      "t": 1728,
+      "p": 0.224
+     },
+     {
+      "t": 1926,
+      "p": 0.589
+     },
+     {
+      "t": 2093,
+      "p": 0.833
+     },
+     {
+      "t": 2259,
+      "p": 0.947
+     },
+     {
+      "t": 2425,
+      "p": 0.99
+     },
+     {
+      "t": 2593,
+      "p": 0.999
+     }
+    ]
+   },
+   "camWorldY": [
+    {
+     "t": 0,
+     "ch": 4,
+     "y": 18.68
+    },
+    {
+     "t": 175,
+     "ch": 4,
+     "y": -50.42
+    },
+    {
+     "t": 345,
+     "ch": 4,
+     "y": -50.32
+    },
+    {
+     "t": 508,
+     "ch": 4,
+     "y": -50.26
+    },
+    {
+     "t": 676,
+     "ch": 4,
+     "y": -50.22
+    },
+    {
+     "t": 842,
+     "ch": 4,
+     "y": -50.19
+    },
+    {
+     "t": 1009,
+     "ch": 4,
+     "y": -50.17
+    },
+    {
+     "t": 1175,
+     "ch": 4,
+     "y": -50.1
+    },
+    {
+     "t": 1342,
+     "ch": 4,
+     "y": -49.16
+    },
+    {
+     "t": 1565,
+     "ch": 4,
+     "y": -44.8
+    },
+    {
+     "t": 1728,
+     "ch": 4,
+     "y": -28.03
+    },
+    {
+     "t": 1926,
+     "ch": 4,
+     "y": 8
+    },
+    {
+     "t": 2093,
+     "ch": 4,
+     "y": 32.07
+    },
+    {
+     "t": 2259,
+     "ch": 4,
+     "y": 43.31
+    },
+    {
+     "t": 2425,
+     "ch": 4,
+     "y": 47.51
+    },
+    {
+     "t": 2593,
+     "ch": 4,
+     "y": 48.47
+    },
+    {
+     "t": 2758,
+     "ch": 4,
+     "y": 48.53
+    },
+    {
+     "t": 2925,
+     "ch": 4,
+     "y": 48.53
+    },
+    {
+     "t": 3092,
+     "ch": 4,
+     "y": 48.53
+    },
+    {
+     "t": 3259,
+     "ch": 4,
+     "y": 48.53
+    },
+    {
+     "t": 3426,
+     "ch": 4,
+     "y": 48.53
+    },
+    {
+     "t": 3591,
+     "ch": 4,
+     "y": 48.53
+    },
+    {
+     "t": 3759,
+     "ch": 4,
+     "y": 48.53
+    },
+    {
+     "t": 3925,
+     "ch": 4,
+     "y": 48.53
+    },
+    {
+     "t": 4095,
+     "ch": 4,
+     "y": 48.53
+    },
+    {
+     "t": 4260,
+     "ch": 4,
+     "y": 48.53
+    }
+   ],
+   "dom": [
+    {
+     "t": 0,
+     "ch": 4,
+     "trans": 3,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 718,
+     "ch": 4,
+     "trans": 3,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 1144,
+     "ch": 4,
+     "trans": 3,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 1943,
+     "ch": 4,
+     "trans": 3,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 2343,
+     "ch": 4,
+     "trans": 3,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 2776,
+     "ch": 4,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    },
+    {
+     "t": 3131,
+     "ch": 4,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54604, 0, 0, 2.54604, 0, 241.992)"
+    }
+   ]
+  }
+ },
+ "look": {
+  "loader": {
+   "file": "01_preloader/p_+007324ms.jpg",
+   "palette": [
+    {
+     "hex": "#61667c",
+     "pct": 92.5
+    },
+    {
+     "hex": "#5f647a",
+     "pct": 6.7
+    },
+    {
+     "hex": "#636781",
+     "pct": 0.6
+    },
+    {
+     "hex": "#6d7187",
+     "pct": 0.1
+    },
+    {
+     "hex": "#73788c",
+     "pct": 0
+    },
+    {
+     "hex": "#a7aab7",
+     "pct": 0
+    }
+   ],
+   "cornerLum": 103.3,
+   "centreLum": 103.5,
+   "hfStd": 1.97
+  },
+  "landing": {
+   "file": "02_landing_mouse/center_settled.jpg",
+   "palette": [
+    {
+     "hex": "#61657e",
+     "pct": 45.4
+    },
+    {
+     "hex": "#f1ece6",
+     "pct": 30.4
+    },
+    {
+     "hex": "#eeeae3",
+     "pct": 12
+    },
+    {
+     "hex": "#5f647c",
+     "pct": 8.1
+    },
+    {
+     "hex": "#f8f3ea",
+     "pct": 1.1
+    },
+    {
+     "hex": "#575c75",
+     "pct": 0.6
+    }
+   ],
+   "cornerLum": 102,
+   "centreLum": 225.1,
+   "hfStd": 7.17
+  },
+  "landing_hover": {
+   "file": "03_landing_hover/enter_settled.jpg",
+   "palette": [
+    {
+     "hex": "#61657e",
+     "pct": 45.4
+    },
+    {
+     "hex": "#f1ece6",
+     "pct": 30.4
+    },
+    {
+     "hex": "#eeeae3",
+     "pct": 12
+    },
+    {
+     "hex": "#5f647c",
+     "pct": 8.1
+    },
+    {
+     "hex": "#f8f3ea",
+     "pct": 1.1
+    },
+    {
+     "hex": "#575c75",
+     "pct": 0.6
+    }
+   ],
+   "cornerLum": 102,
+   "centreLum": 225.1,
+   "hfStd": 7.17
+  },
+  "revealed": {
+   "file": "05_reveal/revealed_settled.jpg",
+   "palette": [
+    {
+     "hex": "#f1ece6",
+     "pct": 37.2
+    },
+    {
+     "hex": "#eee9e3",
+     "pct": 14.5
+    },
+    {
+     "hex": "#777d96",
+     "pct": 5.1
+    },
+    {
+     "hex": "#f3e1dd",
+     "pct": 3.2
+    },
+    {
+     "hex": "#f8f2eb",
+     "pct": 2.6
+    },
+    {
+     "hex": "#f1dedb",
+     "pct": 2.3
+    }
+   ],
+   "cornerLum": 234.5,
+   "centreLum": 194.9,
+   "hfStd": 11.82
+  },
+  "s1": {
+   "file": "08_s1_eclosion/title.jpg",
+   "palette": [
+    {
+     "hex": "#c2e6ca",
+     "pct": 19
+    },
+    {
+     "hex": "#556969",
+     "pct": 6.5
+    },
+    {
+     "hex": "#ddd8ca",
+     "pct": 5.5
+    },
+    {
+     "hex": "#bee3c6",
+     "pct": 5.1
+    },
+    {
+     "hex": "#e3d7c9",
+     "pct": 4.9
+    },
+    {
+     "hex": "#77b59b",
+     "pct": 3.4
+    }
+   ],
+   "cornerLum": 134.4,
+   "centreLum": 214,
+   "hfStd": 15.43
+  },
+  "s2": {
+   "file": "09_s2_adieu/title.jpg",
+   "palette": [
+    {
+     "hex": "#ebcccb",
+     "pct": 13.5
+    },
+    {
+     "hex": "#a9b3c6",
+     "pct": 11.8
+    },
+    {
+     "hex": "#6b728b",
+     "pct": 7.7
+    },
+    {
+     "hex": "#eed1cc",
+     "pct": 3.4
+    },
+    {
+     "hex": "#98a8a9",
+     "pct": 3.4
+    },
+    {
+     "hex": "#f1d4cd",
+     "pct": 3.4
+    }
+   ],
+   "cornerLum": 139,
+   "centreLum": 153.2,
+   "hfStd": 16.13
+  },
+  "s3": {
+   "file": "10_s3_voyage/title.jpg",
+   "palette": [
+    {
+     "hex": "#456282",
+     "pct": 53.5
+    },
+    {
+     "hex": "#b7bbd8",
+     "pct": 9.1
+    },
+    {
+     "hex": "#354b63",
+     "pct": 5.6
+    },
+    {
+     "hex": "#435d7c",
+     "pct": 3.8
+    },
+    {
+     "hex": "#3c597a",
+     "pct": 2.3
+    },
+    {
+     "hex": "#32445b",
+     "pct": 1.8
+    }
+   ],
+   "cornerLum": 142.2,
+   "centreLum": 104.7,
+   "hfStd": 10.44
+  },
+  "s4": {
+   "file": "11_s4_premiere/title.jpg",
+   "palette": [
+    {
+     "hex": "#e4dcd1",
+     "pct": 32.4
+    },
+    {
+     "hex": "#d7e7ea",
+     "pct": 13.4
+    },
+    {
+     "hex": "#e6ece9",
+     "pct": 7.1
+    },
+    {
+     "hex": "#e1dace",
+     "pct": 5.7
+    },
+    {
+     "hex": "#dcd5c9",
+     "pct": 4.2
+    },
+    {
+     "hex": "#765a57",
+     "pct": 2.7
+    }
+   ],
+   "cornerLum": 179.7,
+   "centreLum": 219.8,
+   "hfStd": 14.58
+  },
+  "ending": {
+   "file": "12_ending/end_settled.jpg",
+   "palette": [
+    {
+     "hex": "#f1ede4",
+     "pct": 71.1
+    },
+    {
+     "hex": "#efeae2",
+     "pct": 18.4
+    },
+    {
+     "hex": "#f7f2e9",
+     "pct": 0.8
+    },
+    {
+     "hex": "#e9e5dd",
+     "pct": 0.7
+    },
+    {
+     "hex": "#656a85",
+     "pct": 0.6
+    },
+    {
+     "hex": "#77aa95",
+     "pct": 0.3
+    }
+   ],
+   "cornerLum": 232.5,
+   "centreLum": 148.7,
+   "hfStd": 10.6
+  }
+ },
+ "type": [
+  {
+   "at": "landing",
+   "items": [
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      692,
+      768,
+      54,
+      16
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      703,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      720,
+      450,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1228,
+      851,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "landing hover",
+   "items": [
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      692,
+      768,
+      54,
+      16
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      703,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Enter",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      703,
+      444,
+      35,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1228,
+      851,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "start hover",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      668,
+      540,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "It is time to leave the island",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      101,
+      234,
+      301,
+      84
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      692,
+      768,
+      54,
+      16
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      703,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Enter",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      701,
+      769,
+      35,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1228,
+      851,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "08_s1_eclosion",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      841,
+      720,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "It is time to leave the island",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      301,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A year has gone since we set f",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      835,
+      720,
+      461,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "We witnessed the birth of ever",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "As the last flowers bloom, our",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "1",
+     "rect": [
+      716,
+      108,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      703,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Drag",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      702,
+      784,
+      31,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1228,
+      851,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "08_s1_eclosion next hover",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      841,
+      720,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "It is time to leave the island",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      301,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A year has gone since we set f",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      835,
+      720,
+      461,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "We witnessed the birth of ever",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "As the last flowers bloom, our",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      108,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      703,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Drag",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      704,
+      73,
+      31,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1228,
+      851,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "09_s2_adieu",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      841,
+      720,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "It is time to leave the island",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      301,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A year has gone since we set f",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      835,
+      720,
+      461,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "We witnessed the birth of ever",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "As the last flowers bloom, our",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      108,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Let us hear one last time the ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "1",
+     "rect": [
+      716,
+      720,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      703,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Drag",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      704,
+      73,
+      31,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1228,
+      851,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "09_s2_adieu next hover",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      841,
+      720,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "It is time to leave the island",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      301,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A year has gone since we set f",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      835,
+      720,
+      461,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "We witnessed the birth of ever",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "As the last flowers bloom, our",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      108,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Let us hear one last time the ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      720,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "The rest of the tribe is alrea",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      420,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "soon ready to fly away towards",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      108,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      703,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Drag",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      704,
+      73,
+      31,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1228,
+      851,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "10_s3_voyage",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      841,
+      720,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "It is time to leave the island",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      301,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A year has gone since we set f",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      835,
+      720,
+      461,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "We witnessed the birth of ever",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "As the last flowers bloom, our",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      108,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Let us hear one last time the ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      720,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "The rest of the tribe is alrea",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      420,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "soon ready to fly away towards",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      108,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "At night time, the majestic bi",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      746,
+      720,
+      550,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Like every year, as the sun br",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "1",
+     "rect": [
+      86,
+      405,
+      425,
+      84
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      703,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Hold",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      705,
+      73,
+      30,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1228,
+      851,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "10_s3_voyage next hover",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      841,
+      720,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "It is time to leave the island",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      301,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A year has gone since we set f",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      835,
+      720,
+      461,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "We witnessed the birth of ever",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "As the last flowers bloom, our",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      108,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Let us hear one last time the ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      720,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "The rest of the tribe is alrea",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      420,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "soon ready to fly away towards",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      108,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "At night time, the majestic bi",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      746,
+      720,
+      550,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Like every year, as the sun br",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      425,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "they will leave us on the new ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      934,
+      108,
+      362,
+      84
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      703,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Hold",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      705,
+      73,
+      30,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1228,
+      851,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "11_s4_premiere",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      841,
+      720,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "It is time to leave the island",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      301,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A year has gone since we set f",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      835,
+      720,
+      461,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "We witnessed the birth of ever",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "As the last flowers bloom, our",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      108,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Let us hear one last time the ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      720,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "The rest of the tribe is alrea",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      420,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "soon ready to fly away towards",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      108,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "At night time, the majestic bi",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      746,
+      720,
+      550,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Like every year, as the sun br",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      425,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "they will leave us on the new ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      934,
+      108,
+      362,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "With the rising of the sun, th",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      720,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Everything is still to be done",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "1",
+     "rect": [
+      86,
+      405,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      703,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Drag",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      704,
+      88,
+      31,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1228,
+      851,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "11_s4_premiere next hover",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      841,
+      720,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "It is time to leave the island",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      301,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A year has gone since we set f",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      835,
+      720,
+      461,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "We witnessed the birth of ever",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "As the last flowers bloom, our",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      108,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Let us hear one last time the ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      720,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "The rest of the tribe is alrea",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      420,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "soon ready to fly away towards",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      108,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "At night time, the majestic bi",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      746,
+      720,
+      550,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Like every year, as the sun br",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      425,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "they will leave us on the new ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      934,
+      108,
+      362,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "With the rising of the sun, th",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      720,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Everything is still to be done",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      86,
+      405,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Quietly, the first flower bloo",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      716,
+      108,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      703,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Drag",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      704,
+      73,
+      31,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1228,
+      851,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "ending",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      697,
+      135,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "It is time to leave the island",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      360,
+      585,
+      301,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A year has gone since we set f",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      691,
+      135,
+      461,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "We witnessed the birth of ever",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      360,
+      585,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "As the last flowers bloom, our",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      572,
+      135,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Let us hear one last time the ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      572,
+      135,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "The rest of the tribe is alrea",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      360,
+      585,
+      420,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "soon ready to fly away towards",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      572,
+      135,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "At night time, the majestic bi",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      602,
+      135,
+      550,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Like every year, as the sun br",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      360,
+      585,
+      425,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "they will leave us on the new ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      790,
+      135,
+      362,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "With the rising of the sun, th",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      572,
+      135,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Everything is still to be done",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      360,
+      585,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Quietly, the first flower bloo",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      572,
+      135,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A page has been turned.",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      877,
+      135,
+      275,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "May this year bring us many ex",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      360,
+      585,
+      449,
+      84
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      703,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Drag",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      704,
+      73,
+      31,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1228,
+      851,
+      172,
+      9
+     ]
+    }
+   ]
+  }
+ ],
+ "sheets": [
+  "design-reference\\compare\\makemepulse_1440x900_keyframes.jpg",
+  "design-reference\\compare\\makemepulse_1440x900_motion.jpg"
+ ]
+}
