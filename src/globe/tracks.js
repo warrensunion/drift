@@ -20,9 +20,28 @@ export const codeSize = (code) => code & 3;
 export const codeFate = (code) => (code >> 2) & 3;
 export const codeFrag = (code) => (code >> 4) & 255;
 
-export function createDropTrack({ dropId, item, lon, lat, startDoy }) {
+/** Index of the last schedule entry <= min(t, computed) and the fraction toward the next one. */
+export function indexForSchedule(days, t, computed) {
+  const eff = Math.max(0, Math.min(t, computed));
+  let lo = 0, hi = days.length - 1;
+  while (lo < hi) {
+    const mid = (lo + hi + 1) >> 1;
+    if (days[mid] <= eff) lo = mid; else hi = mid - 1;
+  }
+  const next = days[lo + 1];
+  const frac = next !== undefined && next <= computed ? (eff - days[lo]) / (next - days[lo]) : 0;
+  return { index: lo, frac };
+}
+
+/**
+ * schedule: snapshot times (default the global snapshotDays(); Salish passes its hours). Positions
+ * arrive as Int16 (lon*90, lat*180, global) or Float32 degrees (Salish); sx/sy hold the scale.
+ */
+export function createDropTrack({ dropId, item, lon, lat, startDoy, schedule = null }) {
   return {
     dropId, item, lon, lat, startDoy,
+    schedule,
+    sx: 90, sy: 180,
     snaps: [], // by snapshot index: {day, n (identities), pos Int16Array[2n], code Uint16Array[n], fragments}
     lastIndex: -1,
     lastDay: -1,
@@ -48,6 +67,7 @@ const newIdentity = (tr, ancestor, index) => {
 /** Add a worker snapshot to a drop track. */
 export function addSnapshot(tr, { index, day, positions, meta, fragments }) {
   const n = positions.length >> 1;
+  if (positions instanceof Float32Array || positions instanceof Float64Array) { tr.sx = 1; tr.sy = 1; }
   for (const f of fragments || []) tr.frags.set(f.id, { id: f.id, local: f.local, sizeClass: f.sizeClass, parentId: f.parentId, bornDay: f.bornDay });
   const prev = index === tr.lastIndex + 1 ? tr.snaps[tr.lastIndex] : null;
   const prevGroups = prev ? tr.groups : new Map();
@@ -83,11 +103,11 @@ export function addSnapshot(tr, { index, day, positions, meta, fragments }) {
     }
     for (let j = 0; j < ks.length; j++) {
       const k = ks[j];
-      idOf[k] = newIdentity(tr, prev ? nearestIdentity(prev, positions[2 * k], positions[2 * k + 1]) : -1, index);
+      idOf[k] = newIdentity(tr, prev ? nearestIdentity(prev, positions[2 * k], positions[2 * k + 1], tr.sx, tr.sy) : -1, index);
     }
   }
   const total = tr.ancestor.length;
-  const pos = new Int16Array(2 * total);
+  const pos = new positions.constructor(2 * total);
   const code = new Uint16Array(total).fill(ABSENT);
   for (let k = 0; k < n; k++) {
     const id = idOf[k];
@@ -108,13 +128,13 @@ export function addSnapshot(tr, { index, day, positions, meta, fragments }) {
   return tr;
 }
 
-function nearestIdentity(snap, qx, qy) {
+function nearestIdentity(snap, qx, qy, sx, sy) {
   let best = -1, bd = Infinity;
   for (let id = 0; id < snap.n; id++) {
     if (snap.code[id] === ABSENT) continue;
-    let dx = Math.abs(snap.pos[2 * id] - qx);
-    if (dx > 16200) dx = 32400 - dx; // lon*90 wraps at +-16200
-    const dy = (snap.pos[2 * id + 1] - qy) * 0.5; // lat*180 -> same degree scale as lon*90
+    let dx = Math.abs(snap.pos[2 * id] - qx) / sx; // degrees
+    if (dx > 180) dx = 360 - dx;
+    const dy = (snap.pos[2 * id + 1] - qy) / sy;
     const d = dx * dx + dy * dy;
     if (d < bd) { bd = d; best = id; }
   }
@@ -133,13 +153,13 @@ export function stateAt(tr, id, index) {
   if (i < 0 || i >= snap.n) return null;
   const c = snap.code[i];
   if (c === ABSENT) return null;
-  return { lon: snap.pos[2 * i] / 90, lat: snap.pos[2 * i + 1] / 180, code: c };
+  return { lon: snap.pos[2 * i] / tr.sx, lat: snap.pos[2 * i + 1] / tr.sy, code: c };
 }
 
 /** Snapshot index and fraction for the shared age t (days), clamped to this drop's computed days. */
 export function frameFor(tr, t) {
   if (tr.lastIndex < 0) return null;
-  const { index, frac } = indexForDay(t, tr.lastDay);
+  const { index, frac } = tr.schedule ? indexForSchedule(tr.schedule, t, tr.lastDay) : indexForDay(t, tr.lastDay);
   return { index: Math.min(index, tr.lastIndex), frac: index >= tr.lastIndex ? 0 : frac, day: Math.max(0, Math.min(t, tr.lastDay)) };
 }
 
@@ -210,13 +230,15 @@ export function fragmentStats(tr, fragId, t) {
   }
   const last = tr.snaps[tr.lastIndex];
   const end = lineageAt(tr, tr.lastIndex, fragId);
-  const fates = { gyre: 0, coast: 0, seafloor: 0, floating: 0 };
+  // Fate keys come from the snapshots (global: floating/gyre/coast/seafloor; Salish:
+  // floating/coast/left).
+  const fates = Object.fromEntries(FATE_NAMES.map((k) => [k, 0]));
   let endMembers = 0;
   for (const f of end) {
     endMembers += f.members;
-    for (const k of FATE_NAMES) fates[k] += (f.fates[k] || 0) * f.members;
+    for (const [k, v] of Object.entries(f.fates)) fates[k] = (fates[k] || 0) + (v || 0) * f.members;
   }
-  if (endMembers) for (const k of FATE_NAMES) fates[k] /= endMembers;
+  if (endMembers) for (const k of Object.keys(fates)) fates[k] /= endMembers;
   const root = tr.frags.get(fragId);
   return {
     item: tr.item,

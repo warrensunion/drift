@@ -69,8 +69,18 @@ export const ageColor = (day) => {
 };
 
 // ---- GPU state --------------------------------------------------------------------------------
-export function createParticles() {
-  const days = snapshotDays();
+/**
+ * Options (all optional; defaults are the globe):
+ *  flat: {lonC, latC} draws on a flat map instead of the sphere: world x = (lon - lonC) cos(latC),
+ *        y = lat - latC, z = 0 (degrees of latitude as the unit).
+ *  days: the snapshot schedule (Salish: hours); ageScale maps schedule units onto the age ramp's
+ *        days; fadeSpan / ghost: how long (schedule units) fate-3 members take to fade, and to what.
+ *  jump: schedule units per frame above which a frame counts as a fast scrub.
+ */
+export function createParticles({ flat = null, days = snapshotDays(), ageScale = 1, fadeSpan = 150, ghost = 0.13, jump = 20 } = {}) {
+  const cosC = flat ? Math.cos(flat.latC * Math.PI / 180) : 1;
+  const nrm = flat ? (v) => v : normalize;
+  const age = (d) => ageColor(d.mul(ageScale));
   const layerData = new Float32Array(CAP * LAYERS * 4);
   const layers = new THREE.DataArrayTexture(layerData, COLS_W, COLS_H, LAYERS);
   layers.format = THREE.RGBAFormat; layers.type = THREE.FloatType;
@@ -82,6 +92,7 @@ export function createParticles() {
   const colTex = new THREE.DataTexture(colData, COLS_W, COLS_H, THREE.RGBAFormat, THREE.FloatType);
   colTex.minFilter = colTex.magFilter = THREE.NearestFilter; colTex.generateMipmaps = false; colTex.needsUpdate = true;
 
+  // Per drop: (snapshot index, frac, age, 1 + current trail segments).
   const dropData = new Float32Array(MAX_DROPS * 4);
   const dropTex = new THREE.DataTexture(dropData, MAX_DROPS, 1, THREE.RGBAFormat, THREE.FloatType);
   dropTex.minFilter = dropTex.magFilter = THREE.NearestFilter; dropTex.generateMipmaps = false; dropTex.needsUpdate = true;
@@ -103,12 +114,14 @@ export function createParticles() {
   const layerOf = (idx) => int(mod(idx, LAYERS));
   const texel = (c, idx) => textureLoad(layers, c).depth(layerOf(idx));
   const dayAt = (idx) => textureLoad(dayTex, ivec2(int(idx), 0)).x;
-  const toWorld = (ll, r = 1) => {
-    const la = radians(ll.y), lo = radians(ll.x);
-    return vec3(cos(la).mul(sin(lo)), sin(la), cos(la).mul(cos(lo))).mul(r);
-  };
-  // 1 when the surface point n faces the camera, fading out at the limb.
-  const facing = (n) => smoothstep(-0.02, 0.12, dot(n, normalize(cameraPosition.sub(n))));
+  const toWorld = flat
+    ? (ll) => vec3(ll.x.sub(flat.lonC).mul(cosC), ll.y.sub(flat.latC), 0)
+    : (ll, r = 1) => {
+      const la = radians(ll.y), lo = radians(ll.x);
+      return vec3(cos(la).mul(sin(lo)), sin(la), cos(la).mul(cos(lo))).mul(r);
+    };
+  // 1 when the surface point n faces the camera, fading out at the limb (always 1 on a flat map).
+  const facing = (n) => (flat ? float(1) : smoothstep(-0.02, 0.12, dot(n, normalize(cameraPosition.sub(n)))));
   const decode = (code) => {
     const size = mod(code, 4);
     const fate = mod(floor(code.div(4)), 4);
@@ -118,10 +131,10 @@ export function createParticles() {
   // Alpha from fate: beached dim; sunk fades over 150 days after it sank, to a faint ghost that
   // marks where it went down.
   const fateAlpha = (fate, sunkDay, tDay) => {
-    const sunkFade = mix(float(1), float(0.13), smoothstep(0, 150, tDay.sub(sunkDay)));
+    const sunkFade = mix(float(1), float(ghost), smoothstep(0, fadeSpan, tDay.sub(sunkDay)));
     return select(fate.equal(3), sunkFade, select(fate.equal(2), float(0.38), float(1)));
   };
-  const sinkDepth = (fate, sunkDay, tDay) => select(fate.equal(3), smoothstep(0, 150, tDay.sub(sunkDay)).mul(0.035), float(0));
+  const sinkDepth = (fate, sunkDay, tDay) => (flat ? float(0) : select(fate.equal(3), smoothstep(0, fadeSpan, tDay.sub(sunkDay)).mul(0.035), float(0)));
 
   // ---- heads ----
   const anySel = uSelSlot.greaterThanEqual(0);
@@ -132,7 +145,7 @@ export function createParticles() {
     const hDs = textureLoad(dropTex, ivec2(int(max(hSlot, 0)), 0));
     const hIdx = hDs.x, hFrac = hDs.y, hDay = hDs.z, hAlive = hDs.w;
     const hA = texel(hC, hIdx), hB = texel(hC, hIdx.add(1));
-    const hN = normalize(select(hB.z.greaterThanEqual(0).and(hFrac.greaterThan(0)), mix(toWorld(hA.xy), toWorld(hB.xy), hFrac), toWorld(hA.xy)));
+    const hN = nrm(select(hB.z.greaterThanEqual(0).and(hFrac.greaterThan(0)), mix(toWorld(hA.xy), toWorld(hB.xy), hFrac), toWorld(hA.xy)));
     const hDec = decode(hA.z);
     const hValid = hSlot.greaterThanEqual(0).and(hAlive.greaterThan(0.5)).and(hA.z.greaterThanEqual(0));
     const hSel = hSlot.equal(uSelSlot).and(isSelFrag(hDec.frag));
@@ -142,7 +155,7 @@ export function createParticles() {
     // CSS px by size class: macro, meso, micro, small.
     const hPx = select(hDec.size.equal(0), float(9), select(hDec.size.equal(1), float(6.5), select(hDec.size.equal(2), float(4.5), float(3.4))));
     const hScale = hPx.mul(3).mul(select(hSel, float(1.45), float(1))).mul(uPxWorld).mul(select(hAlpha.greaterThan(0.001), float(1), float(0)));
-    return { pos: hN.mul(float(1.004).sub(sinkDepth(hDec.fate, hA.w, hDay))), scale: hScale, col: vec4(ageColor(hDay), hAlpha) };
+    return { pos: flat ? hN : hN.mul(float(1.004).sub(sinkDepth(hDec.fate, hA.w, hDay))), scale: hScale, col: vec4(age(hDay), hAlpha) };
   };
   const headCol = varying(buildHead().col, 'vHeadCol');
 
@@ -185,7 +198,7 @@ export function createParticles() {
     const h0 = texel(tC, tIdx), hn = texel(tC, tIdx.add(1));
     const e0raw = texel(tC, i0), e1 = texel(tC, i1);
     const isHeadSeg = seg.equal(0);
-    const headLL = normalize(select(hn.z.greaterThanEqual(0).and(tFrac.greaterThan(0)), mix(toWorld(h0.xy), toWorld(hn.xy), tFrac), toWorld(h0.xy)));
+    const headLL = nrm(select(hn.z.greaterThanEqual(0).and(tFrac.greaterThan(0)), mix(toWorld(h0.xy), toWorld(hn.xy), tFrac), toWorld(h0.xy)));
     const p0 = select(isHeadSeg, headLL, toWorld(e0raw.xy));
     const p1 = toWorld(e1.xy);
     const code0 = select(isHeadSeg, h0.z, e0raw.z);
@@ -202,18 +215,18 @@ export function createParticles() {
     const tSel = tSlot.equal(uSelSlot).and(isSelFrag(tDec.frag));
     const tFade = float(1).sub(segF.add(select(end, float(1), float(0))).div(TRAIL));
     const tAlpha = select(tValid,
-      pow(tFade, 1.6).mul(0.42).mul(fateAlpha(tDec.fate, sunkW, tDay)).mul(facing(normalize(pEnd)))
+      pow(tFade, 1.6).mul(0.42).mul(fateAlpha(tDec.fate, sunkW, tDay)).mul(facing(nrm(pEnd)))
         .mul(select(anySel.and(tSel.not()), float(0.4), select(tSel, float(1.6), float(1)))),
       float(0));
     // Ribbon ~1.2 CSS px wide, built in world space: offset across the segment, tangent to the
     // sphere. A zero-length segment gets no width and so draws nothing.
     const segV = p1.sub(p0);
-    const across = cross(segV, normalize(pEnd));
+    const across = cross(segV, flat ? vec3(0, 0, 1) : normalize(pEnd));
     const aLen = length(across);
     const acrossN = select(aLen.greaterThan(1e-7), across.div(max(aLen, 1e-7)), vec3(0, 0, 0));
-    const ribbon = pEnd.mul(1.003).add(acrossN.mul(side).mul(uPxWorld).mul(0.6));
+    const ribbon = (flat ? pEnd : pEnd.mul(1.003)).add(acrossN.mul(side).mul(uPxWorld).mul(0.6));
     const clipPos = cameraProjectionMatrix.mul(cameraViewMatrix).mul(vec4(ribbon, 1));
-    return { clip: select(tValid, clipPos, vec4(2, 2, 2, 1)), col: vec4(ageColor(select(end, day1, day0)), tAlpha) };
+    return { clip: select(tValid, clipPos, vec4(2, 2, 2, 1)), col: vec4(age(select(end, day1, day0)), tAlpha) };
   };
   const trailCol = varying(buildTrail().col, 'vTrailCol');
   const trailMat = new THREE.MeshBasicNodeMaterial({ transparent: true, depthTest: false, depthWrite: false, ...GLOW, side: THREE.DoubleSide });
@@ -292,13 +305,16 @@ export function createParticles() {
       if (b === undefined) break;
       const o = base + 4 * (b * BLOCK + (id % BLOCK));
       let i = id;
-      while (i >= 0 && tr.born[i] > s) i = tr.ancestor[i];
+      // An identity born after this snapshot (a later fragment) is not drawn here: drawing its
+      // ancestor's position would stack every future child on its parent (64 copies of a glow
+      // per spot after a few splits). Its trail starts where it was born.
+      if (tr.born[i] > s) i = -1;
       if (!snap || i < 0 || i >= snap.n || snap.code[i] === ABSENT) {
         layerData[o + 2] = -1;
         continue;
       }
-      layerData[o] = snap.pos[2 * i] / 90;
-      layerData[o + 1] = snap.pos[2 * i + 1] / 180;
+      layerData[o] = snap.pos[2 * i] / tr.sx;
+      layerData[o + 1] = snap.pos[2 * i + 1] / tr.sy;
       layerData[o + 2] = snap.code[i];
       const sd = tr.sunkDay[i];
       layerData[o + 3] = sd === Infinity ? 1e9 : sd;
@@ -339,7 +355,7 @@ export function createParticles() {
     }
     // Pass 2: trail layers, newest first, within the budget. While the age jumps by more than
     // 20 days a frame (a fast scrub), only the heads are drawn; the trails catch up when it settles.
-    const jumping = Math.abs(t - lastT) > 20;
+    const jumping = Math.abs(t - lastT) > jump;
     lastT = t;
     let budget = jumping ? 0 : trailWriteBudget;
     const n = list.length;
@@ -375,6 +391,7 @@ export function createParticles() {
   }
 
   /** Interpolated world positions of drop d's identities at its current frame (for picking). */
+  const worldOf = (lon, lat) => (flat ? [(lon - flat.lonC) * cosC, lat - flat.latC, 0] : lonLatToVec3(lon, lat));
   function forEachMember(fn) {
     const v = new THREE.Vector3();
     for (const d of drops.values()) {
@@ -385,15 +402,16 @@ export function createParticles() {
       for (let id = 0; id < nIds; id++) {
         const a = stateOf(tr, id, fr.index);
         if (!a) continue;
-        let p = lonLatToVec3(a.lon, a.lat);
+        let p = worldOf(a.lon, a.lat);
         if (fr.frac > 0) {
           const b = stateOf(tr, id, fr.index + 1);
           if (b) {
-            const q = lonLatToVec3(b.lon, b.lat);
+            const q = worldOf(b.lon, b.lat);
             p = p.map((x, k) => x + (q[k] - x) * fr.frac);
           }
         }
-        v.set(p[0], p[1], p[2]).normalize();
+        v.set(p[0], p[1], p[2]);
+        if (!flat) v.normalize();
         fn(v, d.track, codeFrag(a.code), a.code);
       }
     }
@@ -406,6 +424,7 @@ export function createParticles() {
     update,
     forEachMember,
     hasDrop: (id) => drops.has(id),
+    worldOf,
     _debug: () => ({ layerData, colData, dropData, drops, LAYERS, CAP, BLOCK }),
     slotOf: (id) => (drops.has(id) ? drops.get(id).slot : -1),
     /** Highlight fragments (local ids) of one drop; null clears. */
@@ -430,7 +449,7 @@ function stateOf(tr, id, index) {
   const snap = tr.snaps[index];
   if (!snap) return null;
   let i = id;
-  while (i >= 0 && tr.born[i] > index) i = tr.ancestor[i];
+  if (tr.born[i] > index) return null; // not born yet (see writeLayer)
   if (i < 0 || i >= snap.n || snap.code[i] === ABSENT) return null;
-  return { lon: snap.pos[2 * i] / 90, lat: snap.pos[2 * i + 1] / 180, code: snap.code[i] };
+  return { lon: snap.pos[2 * i] / tr.sx, lat: snap.pos[2 * i + 1] / tr.sy, code: snap.code[i] };
 }

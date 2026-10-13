@@ -11,6 +11,10 @@ import { createDropTrack, addSnapshot, fragmentStats, frameFor, lineageLocalsAt 
 import { isTap, dropTarget, isLandAt, lonLatToVec3 } from './pick.js';
 import { decodeTile, sample } from '../sim/field.js';
 import { monthOfDoy } from '../sim/ensemble.js';
+import { mountSalish } from './salish.js';
+
+/** Views mountGlobe can show (the story page enables its mode switch from this). */
+export const MODES = Object.freeze(['global', 'salish']);
 
 const FOV = 32;
 const PICK_PX = 16;
@@ -47,6 +51,7 @@ function starfield(w = 900, h = 900) {
  * Returns {dispose()} at once; loading continues in the background.
  */
 export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
+  if (mode === 'salish') return mountSalish(el, { embedded });
   const base = (import.meta.env && import.meta.env.BASE_URL) || '/';
   const params = new URLSearchParams(location.search);
   const reducedMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);

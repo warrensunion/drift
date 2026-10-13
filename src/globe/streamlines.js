@@ -40,7 +40,12 @@ export function fieldTextures(tiles) {
   });
 }
 
-export function createStreamlines(renderer, { fieldTex, reducedMotion = false, seeds = SEEDS }) {
+/**
+ * region: {west, east, south, north} for a regional map (Salish): seeds respawn uniformly inside
+ * it and the trail texture spans it; gain is degrees per frame at 1 m/s; dotScale the stamp size
+ * in degrees; trailSize the trail texture size. Without region: the whole globe.
+ */
+export function createStreamlines(renderer, { fieldTex, reducedMotion = false, seeds = SEEDS, region = null, gain = 0.17, dotScale = 0.5, trailSize = [TRAIL_W, TRAIL_H] }) {
   const grid = fieldTex.userData.grid;
   // Texture coordinates of (lon, lat) in the field: cell centres at lon0 + i*dlon.
   const lonSpan = grid.nx * grid.dlon, latSpan = grid.ny * grid.dlat;
@@ -51,24 +56,27 @@ export function createStreamlines(renderer, { fieldTex, reducedMotion = false, s
   const fieldNode = texture(fieldTex);
   const uDt = uniform(1 / 60);
   const uSeed = uniform(1, 'uint');
-  const uGain = uniform(0.17); // degrees per frame at 1 m/s (60 fps), before the speed curve
+  const uGain = uniform(gain); // degrees per frame at 1 m/s (60 fps), before the speed curve
   const uLife = uniform(1); // 0 during the reduced-motion bake: seeds never age out
 
   const rand = (k) => hash(instanceIndex.add(uSeed.mul(uint(16411))).add(uint(k * 7919)));
 
+  const spawnLonLat = (r1, r2) => (region
+    ? [r2.mul(region.east - region.west).add(region.west), r1.mul(region.north - region.south).add(region.south)]
+    : [r2.mul(360).sub(180), asin(r1.mul(2).sub(1).mul(Math.sin(latLimit * Math.PI / 180))).mul(180 / Math.PI)]);
   const respawn = (s) => {
     const r1 = rand(1), r2 = rand(2), r3 = rand(3);
-    const lat = asin(r1.mul(2).sub(1).mul(Math.sin(latLimit * Math.PI / 180))).mul(180 / Math.PI);
-    s.assign(vec4(r2.mul(360).sub(180), lat, r3.mul(-2), r3.mul(4).add(3.5)));
+    const [lon, lat] = spawnLonLat(r1, r2);
+    s.assign(vec4(lon, lat, r3.mul(-2), r3.mul(4).add(3.5)));
   };
 
   const init = Fn(() => {
     const s = state.element(instanceIndex);
     const r1 = rand(1), r2 = rand(2), r3 = rand(3);
-    const lat = asin(r1.mul(2).sub(1).mul(Math.sin(latLimit * Math.PI / 180))).mul(180 / Math.PI);
+    const [lon, lat] = spawnLonLat(r1, r2);
     const life = r3.mul(4).add(3.5);
     // Spread initial ages so the field does not pulse in unison.
-    s.assign(vec4(r2.mul(360).sub(180), lat, rand(4).mul(life), life));
+    s.assign(vec4(lon, lat, rand(4).mul(life), life));
   })().compute(seeds);
 
   const update = Fn(() => {
@@ -84,7 +92,10 @@ export function createStreamlines(renderer, { fieldTex, reducedMotion = false, s
     age.addAssign(uDt.mul(uLife));
     If(lon.greaterThan(180), () => { lon.subAssign(360); });
     If(lon.lessThan(-180), () => { lon.addAssign(360); });
-    If(f.z.lessThan(0.5).or(age.greaterThan(life)).or(abs(lat).greaterThan(latLimit)), () => {
+    const out = region
+      ? lon.lessThan(region.west).or(lon.greaterThan(region.east)).or(lat.lessThan(region.south)).or(lat.greaterThan(region.north))
+      : abs(lat).greaterThan(latLimit);
+    If(f.z.lessThan(0.5).or(age.greaterThan(life)).or(out), () => {
       respawn(s);
     }).Else(() => {
       s.assign(vec4(lon, lat, age, life));
@@ -93,8 +104,8 @@ export function createStreamlines(renderer, { fieldTex, reducedMotion = false, s
 
   // Trail texture ping-pong.
   const rtOpts = { type: THREE.HalfFloatType, format: THREE.RGBAFormat, depthBuffer: false, generateMipmaps: false, magFilter: THREE.LinearFilter, minFilter: THREE.LinearFilter, wrapS: THREE.RepeatWrapping };
-  let rtA = new THREE.RenderTarget(TRAIL_W, TRAIL_H, rtOpts);
-  let rtB = new THREE.RenderTarget(TRAIL_W, TRAIL_H, rtOpts);
+  let rtA = new THREE.RenderTarget(trailSize[0], trailSize[1], rtOpts);
+  let rtB = new THREE.RenderTarget(trailSize[0], trailSize[1], rtOpts);
   rtA.texture.wrapS = rtB.texture.wrapS = THREE.RepeatWrapping;
 
   const uFade = uniform(0.986);
@@ -111,7 +122,7 @@ export function createStreamlines(renderer, { fieldTex, reducedMotion = false, s
   const dotMat = new THREE.SpriteNodeMaterial({ transparent: true, blending: THREE.AdditiveBlending, depthTest: false, depthWrite: false });
   const sAttr = state.toAttribute();
   dotMat.positionNode = vec3(sAttr.x, sAttr.y, 0);
-  dotMat.scaleNode = float(0.5);
+  dotMat.scaleNode = float(dotScale);
   const uDot = uniform(0.11);
   dotMat.colorNode = Fn(() => {
     const age = sAttr.z, life = sAttr.w;
@@ -130,7 +141,9 @@ export function createStreamlines(renderer, { fieldTex, reducedMotion = false, s
   dots.frustumCulled = false;
   const dotScene = new THREE.Scene();
   dotScene.add(dots);
-  const ortho = new THREE.OrthographicCamera(-180, 180, 90, -90, -1, 1);
+  const ortho = region
+    ? new THREE.OrthographicCamera(region.west, region.east, region.north, region.south, -1, 1)
+    : new THREE.OrthographicCamera(-180, 180, 90, -90, -1, 1);
 
   let initialised = false;
   let frozen = false;

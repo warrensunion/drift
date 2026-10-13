@@ -21,11 +21,17 @@ export const SIZE_COPY = {
   small: 'Fine microplastic, under 1 mm',
 };
 
-// Timeline scale: log-like so the first month is not a sliver. pos 0..1 <-> day 0..3650.
-const K = 10;
-const LN = Math.log(1 + MAX_DAY / K);
-export const dayToPos = (d) => Math.log(1 + Math.max(0, Math.min(MAX_DAY, d)) / K) / LN;
-export const posToDay = (p) => K * (Math.exp(Math.max(0, Math.min(1, p)) * LN) - 1);
+// Timeline scale: log-like so the first month is not a sliver. pos 0..1 <-> t 0..maxT.
+export const timeScale = (maxT, K) => {
+  const LN = Math.log(1 + maxT / K);
+  return {
+    toPos: (d) => Math.log(1 + Math.max(0, Math.min(maxT, d)) / K) / LN,
+    fromPos: (p) => K * (Math.exp(Math.max(0, Math.min(1, p)) * LN) - 1),
+  };
+};
+const GLOBAL_SCALE = timeScale(MAX_DAY, 10);
+export const dayToPos = GLOBAL_SCALE.toPos;
+export const posToDay = GLOBAL_SCALE.fromPos;
 
 export function formatAge(day) {
   const d = Math.floor(day);
@@ -50,7 +56,30 @@ function el(tag, cls, text) {
   return e;
 }
 
-export function createUI(root, { base = '/', touch = false, reducedMotion = false } = {}) {
+/** Copy and timeline settings of the global globe; the Salish view passes its own (salish.js). */
+export const GLOBAL_PROFILE = {
+  title: 'Drop your own',
+  lede: (touch) => `Pick something, then ${touch ? 'tap' : 'click'} the ocean. Each piece becomes a cloud of possible paths, one for each simulated copy.`,
+  target: 'the ocean',
+  maxT: MAX_DAY,
+  scaleK: 10,
+  ticks: [[0, '0'], [30, '1 mo'], [365, '1 y'], [1826, '5 y'], [3650, '10 y']],
+  tickOrder: [0, 4, 2, 1, 3], // label priority when they crowd: 0, 10 y, 1 y, 1 mo, 5 y
+  speedText: (s) => [String(s), '×'],
+  speedLabel: (s) => `${s} times`,
+  speedTitle: (s) => (s === 1 ? '1 simulated day per second' : `${s} simulated days per second`),
+  speedGroup: 'Playback speed',
+  formatAge,
+  zero: 'Day 0',
+  fates: [['gyre', 'In a gyre'], ['coast', 'On a coastline'], ['seafloor', 'On the seafloor'], ['floating', 'Still floating']],
+  when: (t) => (t >= MAX_DAY ? 'after 10 years' : `after ${formatAge(t).toLowerCase()} (still computing)`),
+  primary: null,
+  notes: [],
+};
+
+export function createUI(root, { base = '/', touch = false, reducedMotion = false, profile = GLOBAL_PROFILE } = {}) {
+  const P = { ...GLOBAL_PROFILE, ...profile };
+  const scale = timeScale(P.maxT, P.scaleK);
   const handlers = {};
   const on = (name, fn) => { handlers[name] = fn; };
   const emit = (name, ...a) => handlers[name] && handlers[name](...a);
@@ -59,9 +88,16 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
   const side = el('aside', 'globe-ui');
   side.setAttribute('aria-label', 'Drop controls');
   const head = el('header', 'globe-ui__head');
-  head.append(el('h2', 'globe-ui__title', 'Drop your own'));
-  head.append(el('p', 'globe-ui__lede', `Pick something, then ${touch ? 'tap' : 'click'} the ocean. Each piece becomes a cloud of possible paths, one for each simulated copy.`));
+  head.append(el('h2', 'globe-ui__title', P.title));
+  head.append(el('p', 'globe-ui__lede', P.lede(touch)));
   side.append(head);
+  let primaryBtn = null;
+  if (P.primary) {
+    primaryBtn = el('button', 'globe-primary', P.primary);
+    primaryBtn.type = 'button';
+    primaryBtn.addEventListener('click', () => emit('primary'));
+    side.append(primaryBtn);
+  }
 
   const items = el('div', 'globe-items');
   items.setAttribute('role', 'group');
@@ -115,7 +151,7 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
   const endTitle = el('h4', 'globe-panel__sub', 'Where it likely ends up');
   const endNote = el('p', 'globe-panel__note');
   const bars = el('ul', 'globe-fates');
-  const FATES = [['gyre', 'In a gyre'], ['coast', 'On a coastline'], ['seafloor', 'On the seafloor'], ['floating', 'Still floating']];
+  const FATES = P.fates;
   const fateRows = {};
   for (const [k, label] of FATES) {
     const li = el('li', `globe-fate globe-fate--${k}`);
@@ -153,9 +189,9 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
   range.min = '0'; range.max = '1000'; range.step = '1'; range.value = '0';
   range.setAttribute('aria-label', 'Age of the drops');
   const ticks = el('div', 'globe-scrub__ticks');
-  for (const [d, label, key] of [[0, '0', '0'], [30, '1 mo', '1mo'], [365, '1 y', '1y'], [1826, '5 y', '5y'], [3650, '10 y', '10y']]) {
-    const t = el('span', `globe-tick globe-tick--${key}`, label);
-    t.style.left = `${dayToPos(d) * 100}%`;
+  for (const [d, label] of P.ticks) {
+    const t = el('span', `globe-tick globe-tick--${label.split(' ').join('')}`, label);
+    t.style.left = `${scale.toPos(d) * 100}%`;
     ticks.append(t);
   }
   scrub.append(track, range, ticks);
@@ -163,7 +199,7 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
   const tickEls = [...ticks.children];
   const fitTicks = () => {
     for (const t of tickEls) t.classList.remove('is-hidden');
-    const order = [0, 4, 2, 1, 3]; // priority: 0, 10 y, 1 y, 1 mo, 5 y
+    const order = P.tickOrder;
     const kept = [];
     for (const i of order) {
       const r = tickEls[i].getBoundingClientRect();
@@ -176,22 +212,23 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
   if (tickRO) tickRO.observe(scrub);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTicks);
   let scrubbing = false;
-  range.addEventListener('input', () => { scrubbing = true; emit('scrub', posToDay(+range.value / 1000)); });
+  range.addEventListener('input', () => { scrubbing = true; emit('scrub', scale.fromPos(+range.value / 1000)); });
   range.addEventListener('change', () => { scrubbing = false; });
   range.addEventListener('pointerup', () => { scrubbing = false; });
 
   const speeds = el('div', 'globe-speeds');
   speeds.setAttribute('role', 'radiogroup');
-  speeds.setAttribute('aria-label', 'Playback speed');
+  speeds.setAttribute('aria-label', P.speedGroup);
   const speedButtons = SPEEDS.map((s) => {
-    const b = el('button', 'globe-speed', String(s));
-    const x = el('span', 'globe-speed__x', '×');
+    const [num, unit] = P.speedText(s);
+    const b = el('button', 'globe-speed', num);
+    const x = el('span', 'globe-speed__x', unit);
     x.setAttribute('aria-hidden', 'true');
     b.append(x);
-    b.setAttribute('aria-label', `${s} times`);
+    b.setAttribute('aria-label', P.speedLabel(s));
     b.type = 'button';
     b.setAttribute('role', 'radio');
-    b.title = s === 1 ? '1 simulated day per second' : `${s} simulated days per second`;
+    b.title = P.speedTitle(s);
     b.addEventListener('click', () => emit('speed', s));
     speeds.append(b);
     return b;
@@ -200,6 +237,7 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
   tl.append(play, scrub, speeds, readout);
 
   const disclaimer = el('p', 'globe-disclaimer', DISCLAIMER);
+  for (const n of P.notes) disclaimer.append(el('span', 'globe-disclaimer__note', n));
   const toast = el('p', 'globe-toast');
   toast.setAttribute('role', 'status');
 
@@ -218,7 +256,7 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
   function setItem(it) {
     current = it;
     for (const [k, b] of Object.entries(itemButtons)) b.setAttribute('aria-pressed', k === it ? 'true' : 'false');
-    hint.textContent = `${touch ? 'Tap' : 'Click'} the ocean to drop ${it === 'line' ? 'fishing line' : it === 'tyre' ? 'tyre dust' : `a ${ITEM_COPY[it].short}`}.`;
+    hint.textContent = `${touch ? 'Tap' : 'Click'} ${P.target} to drop ${it === 'line' ? 'fishing line' : it === 'tyre' ? 'tyre dust' : `a ${ITEM_COPY[it].short}`}.`;
   }
   setItem(current);
 
@@ -239,11 +277,11 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
   }
 
   function setTime(day, { playing, speed, computedDay }) {
-    if (!scrubbing) range.value = String(Math.round(dayToPos(day) * 1000));
-    fill.style.width = `${dayToPos(day) * 100}%`;
-    computed.style.width = `${dayToPos(computedDay) * 100}%`;
-    range.setAttribute('aria-valuetext', formatAge(day));
-    readout.textContent = day < 1 ? 'Day 0' : formatAge(day);
+    if (!scrubbing) range.value = String(Math.round(scale.toPos(day) * 1000));
+    fill.style.width = `${scale.toPos(day) * 100}%`;
+    computed.style.width = `${scale.toPos(computedDay) * 100}%`;
+    range.setAttribute('aria-valuetext', P.formatAge(day));
+    readout.textContent = day < 1 ? P.zero : P.formatAge(day);
     play.setAttribute('aria-label', playing ? 'Pause' : 'Play');
     play.classList.toggle('is-playing', playing);
     speedButtons.forEach((b, i) => {
@@ -262,14 +300,14 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
     const copy = ITEM_COPY[stats.item] || { name: stats.item };
     pTitle.textContent = stats.pieces > 1 ? `${copy.name}, now ${stats.pieces} pieces` : copy.name;
     fSize.textContent = stats.sizeClasses.length ? stats.sizeClasses.map((c) => SIZE_COPY[c] || c).join('; ') : 'Gone from the surface';
-    fAge.textContent = formatAge(stats.day);
+    fAge.textContent = P.formatAge(stats.day);
     fDist.textContent = `${fmtKm(stats.distanceKm)} on average`;
     for (const [k] of FATES) {
       const f = stats.fates[k] || 0;
       fateRows[k].val.textContent = pct(f);
       fateRows[k].fill.style.width = `${Math.round(f * 100)}%`;
     }
-    const when = stats.fatesDay >= MAX_DAY ? 'after 10 years' : `after ${formatAge(stats.fatesDay).toLowerCase()} (still computing)`;
+    const when = P.when(stats.fatesDay);
     endNote.textContent = `Probability across ${stats.endMembers || 'its'} simulated copies, ${when}.`;
   }
 
@@ -283,7 +321,7 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
     setHint(text) { hint.textContent = text; },
     showToast,
     setDropEnabled(ok, why = '') {
-      for (const b of Object.values(itemButtons)) { b.disabled = !ok; b.title = ok ? '' : why; }
+      for (const b of [...Object.values(itemButtons), primaryBtn].filter(Boolean)) { b.disabled = !ok; b.title = ok ? '' : why; }
       if (!ok && why) hint.textContent = why;
     },
     contains: (node) => side.contains(node) || tl.contains(node),
