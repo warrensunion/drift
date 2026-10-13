@@ -20,7 +20,13 @@ function img(file, cls, style) {
 const CORE_TEXTURE = { reeds: 's1-reeds.webp', wave: 'ui-water.webp', cloud: 's3-clouds.webp', bubbles: 'ui-water.webp', snow: 's5-snow.webp' };
 
 const BUILD = {
-  reeds(edgeTop, edgeBot, r) {
+  reeds(edgeTop, edgeBot, r, core) {
+    // A dense thicket through the core so the cover is painted, not flat.
+    for (let row = 0; row < 4; row++) {
+      for (let k = 0; k < 8; k++) {
+        core.append(img('s1-reeds.webp', 'sw-core-art', { left: `${-10 + k * 14 + r() * 8}%`, top: `${-6 + row * 24 + r() * 8}%`, height: `${38 + r() * 18}%`, transform: `scaleX(${r() < 0.5 ? -1 : 1})` }));
+      }
+    }
     for (let k = 0; k < 9; k++) {
       const h = 70 + r() * 45;
       edgeTop.append(img('s1-reeds.webp', 'sw-art', { left: `${-12 + k * 13 + r() * 6}%`, bottom: `${-10 - r() * 8}%`, height: `${h}%`, transform: `scaleX(${r() < 0.5 ? -1 : 1})` }));
@@ -33,7 +39,12 @@ const BUILD = {
       edgeBot.append(img('s2-wave.webp', 'sw-art', { left: `${-6 + k * 44}%`, top: '-14%', width: '58%', transform: `scale(${k % 2 ? 1 : -1}, -1)` }));
     }
   },
-  cloud(edgeTop, edgeBot, r) {
+  cloud(edgeTop, edgeBot, r, core) {
+    for (let row = 0; row < 4; row++) {
+      for (let k = 0; k < 3; k++) {
+        core.append(img('s3-clouds.webp', 'sw-core-art', { left: `${-30 + k * 40 + r() * 10}%`, top: `${-12 + row * 26 + r() * 6}%`, width: '70%', opacity: String(0.55 + r() * 0.4), transform: `scaleX(${r() < 0.5 ? -1 : 1})` }));
+      }
+    }
     for (let k = 0; k < 4; k++) {
       edgeTop.append(img('s3-clouds.webp', 'sw-art', { left: `${-25 + k * 33 + r() * 8}%`, bottom: `${-30 - r() * 10}%`, width: '62%', transform: `scaleX(${k % 2 ? -1 : 1})` }));
       edgeBot.append(img('s3-clouds.webp', 'sw-art', { left: `${-20 + k * 33}%`, top: `${-30 - r() * 10}%`, width: '60%', transform: `scale(${k % 2 ? 1 : -1}, -1)` }));
@@ -71,7 +82,7 @@ export function createSweep(kind) {
   const bot = document.createElement('div');
   bot.className = 'sweep__edge sweep__edge--bottom';
   el.append(top, core, bot);
-  BUILD[kind](top, bot, rng(kind.length * 977));
+  BUILD[kind](top, bot, rng(kind.length * 977), core);
   core.dataset.bg = CORE_TEXTURE[kind];
 
   let loaded = null;

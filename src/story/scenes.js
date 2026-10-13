@@ -72,14 +72,14 @@ export const CHAPTERS = [
       { cls: 'sea', src: 's3-ocean.webp', small: 's3-ocean-1280.webp', depth: 'far', plate: true },
       { cls: 'underwater', src: 's2-surface.webp', small: 's2-surface-1280.webp', depth: 'mid', plate: true },
       { cls: 'rays2', src: 's3-rays.webp', depth: 'mid' },
-      { cls: 'sand', depth: 'near', html: '<i class="sand__lip"></i>' },
-      { cls: 'specks', depth: 'near', particles: { mode: 'cascade', count: 70, size: [0.2, 0.6], speed: 0.05, from: [0.24, 0.3], to: [0.9, 0.98], spreadAt: 0.3, cls: 'pt--speck', reveal: (t) => 0.3 + 0.7 * smoothstep(0.05, 0.65, t) } },
+      { cls: 'sand', src: 's5-deep.webp', small: 's5-deep-1280.webp', depth: 'near', plate: true },
+      { cls: 'specks', depth: 'near', particles: { mode: 'cascade', count: 110, size: [0.25, 0.8], speed: 0.05, from: [0.24, 0.3], to: [0.9, 0.98], spreadAt: 0.3, cls: 'pt--speck', reveal: (t) => 0.3 + 0.7 * smoothstep(0.05, 0.65, t) } },
       { cls: 'wave', src: 's2-wave.webp', depth: 'near' },
       {
         cls: 'bottle2', src: 'asset-bottle.webp', depth: 'near',
         move: (t, time) => ({ x: Math.sin(time * 0.6) * 0.4, y: Math.sin(time * 0.8) * 0.6, r: -104 + Math.sin(time * 0.5) * 3, o: 1 - 0.55 * smoothstep(0.2, 0.9, t), unit: 'vh' }),
       },
-      { cls: 'shards', depth: 'fg', particles: { mode: 'cascade', count: 30, size: [1.4, 7.5], speed: 0.035, spin: 90, from: [0.24, 0.3], to: [0.84, 0.96], spreadAt: 0.26, srcs: [...SHARD, ...SHARD, ...FILM.slice(0, 3), ...NURDLE.slice(0, 4)], reveal: (t) => 0.35 + 0.65 * smoothstep(0.05, 0.7, t) } },
+      { cls: 'shards', depth: 'fg', particles: { mode: 'cascade', count: 44, size: [1.4, 7.5], speed: 0.035, spin: 90, from: [0.24, 0.3], to: [0.84, 0.96], spreadAt: 0.26, srcs: [...SHARD, ...SHARD, ...FILM.slice(0, 3), ...NURDLE.slice(0, 4)], reveal: (t) => 0.35 + 0.65 * smoothstep(0.05, 0.7, t) } },
       { cls: 'edge-shard', src: 'frag/shard-1.webp', depth: 'edge' },
       { cls: 'edge-film', src: 'frag/film-5.webp', depth: 'edge' },
     ],
@@ -286,6 +286,7 @@ export function buildScene(ch, index, { reduced = false, phone = false } = {}) {
       for (const img of imgs) if (!img.src) img.src = resolveArt(img.dataset.src);
       for (const b of bgEls) b.el.style.setProperty('--tex', `url("${resolveArt(b.file)}")`);
       const pimgs = systems.flatMap((s) => s.load());
+      for (const b of bgEls) { const im = new Image(); im.src = resolveArt(b.file); pimgs.push(im); }
       loaded = Promise.all([...imgs, ...pimgs].map((i) => decodeImg(i)));
     }
     return loaded;
