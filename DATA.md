@@ -2,7 +2,7 @@
 
 Every dataset used by Drift, where it came from, its licence, when it was
 fetched, and how it was processed. `public/data/credits.json` is generated
-from this table (same rows). Fetch and processing scripts live in
+from this table by `scripts/data/make_credits.py` (same rows, cells verbatim). Fetch and processing scripts live in
 `scripts/data/`; raw downloads are cached in `scripts/data/cache/` (not committed).
 
 | Dataset | Source | Licence | Fetched | Processing |

@@ -6,50 +6,74 @@ a day's travel). Writes public/model/drift.meta.json and scripts/train/out/eval.
 and out/eval.md (tables pasted into MODEL.md).
 """
 import json
-from datetime import date
+import re
 
 import numpy as np
 
-from common_train import (KM_PER_DEG, MODEL_DIR, OUT, PUBLIC, NAMES, features, load_model,
+from common_train import (CACHE, KM_PER_DEG, MODEL_DIR, OUT, PUBLIC, NAMES, features, load_model,
                           load_pairs, masks, predict, read_tile, sample, save_json)
 
 ROOT_CONST = OUT.parents[2] / "src" / "sim" / "constants.js"
-COAST_DEG = 2  # "near coast": start within ~2 deg (Chebyshev, 1 deg cells) of a land cell
+COAST_KM = 200.0  # "coastal": start within 200 km (great circle) of a land pixel of landmask.png
+R_EARTH_KM = 6371.0
 
 
 def gyres():
-    txt = ROOT_CONST.read_text()
-    s = txt[txt.index("{"):txt.rindex("}") + 1]
-    return json.loads(s)["gyres"]
+    """The gyre boxes: just the "gyres" JSON array of src/sim/constants.js."""
+    m = re.search(r'"gyres"\s*:\s*(\[[^\[\]]*\])', ROOT_CONST.read_text())
+    if not m:
+        raise RuntimeError("gyres array not found in src/sim/constants.js")
+    g = json.loads(m.group(1))
+    assert len(g) == 5 and all({"name", "lonMin", "lonMax", "latMin", "latMax"} <= set(x) for x in g)
+    return g
 
 
 def box(lat, lon, la0, la1, lo0, lo1):
     return (lat >= la0) & (lat <= la1) & (lon >= lo0) & (lon <= lo1)
 
 
-def near_coast(lat, lon, month):
-    out = np.zeros(len(lat), bool)
-    for m in range(1, 13):
-        sel = month == m
-        if not sel.any():
-            continue
-        t = read_tile(PUBLIC / "currents" / f"clim-{m:02d}.bin")
-        land = np.isnan(t["u"][0])
-        r = int(round(COAST_DEG / t["dlon"]))
-        dil = np.zeros_like(land)
-        ny = land.shape[0]
-        for dy in range(-r, r + 1):
-            for dx in range(-r, r + 1):
-                s = np.roll(land, dx, axis=1)
-                if dy > 0:
-                    s = np.concatenate([np.zeros((dy, s.shape[1]), bool), s[:-dy]])
-                elif dy < 0:
-                    s = np.concatenate([s[-dy:], np.zeros((-dy, s.shape[1]), bool)])
-                dil |= s
-        ix = np.mod(np.rint((lon[sel] - t["lon0"]) / t["dlon"]).astype(int), t["nx"])
-        iy = np.clip(np.rint((lat[sel] - t["lat0"]) / t["dlat"]).astype(int), 0, ny - 1)
-        out[sel] = dil[iy, ix]
-    return out
+def _unit(lat, lon):
+    la, lo = np.radians(lat), np.radians(lon)
+    return np.stack([np.cos(la) * np.cos(lo), np.cos(la) * np.sin(lo), np.sin(la)], -1)
+
+
+def coast_distance_field():
+    """Great-circle km from each landmask.png pixel centre to the nearest land pixel
+    centre (0 on land). Computed once (KD-tree on unit vectors over land pixels that
+    touch water), cached in scripts/data/cache/coastdist-2048x1024.npy."""
+    cache = CACHE / "coastdist-2048x1024.npy"
+    if cache.exists():
+        return np.load(cache)
+    from PIL import Image
+    from scipy.spatial import cKDTree
+    land = np.asarray(Image.open(PUBLIC / "landmask.png").convert("L")) > 127
+    H, W = land.shape
+    lat = 90 - (np.arange(H) + 0.5) * 180 / H
+    lon = -180 + (np.arange(W) + 0.5) * 360 / W
+    water = ~land
+    edge = np.zeros_like(land)  # land pixels with a water 4-neighbour (lon wraps)
+    edge |= np.roll(water, 1, 1) | np.roll(water, -1, 1)
+    edge[1:] |= water[:-1]
+    edge[:-1] |= water[1:]
+    edge &= land
+    jj, ii = np.nonzero(edge)
+    tree = cKDTree(_unit(lat[jj], lon[ii]))
+    LA, LO = np.meshgrid(lat, lon, indexing="ij")
+    wj, wi = np.nonzero(water)
+    chord, _ = tree.query(_unit(LA[wj, wi], LO[wj, wi]))
+    dist = np.zeros(land.shape, np.float32)
+    dist[wj, wi] = 2 * R_EARTH_KM * np.arcsin(np.clip(chord / 2, 0, 1))
+    np.save(cache, dist)
+    return dist
+
+
+def coast_km(lat, lon):
+    """Distance to land (km) at the landmask pixel containing each point."""
+    dist = coast_distance_field()
+    H, W = dist.shape
+    j = np.clip(np.floor((90 - lat) / 180 * H).astype(int), 0, H - 1)
+    i = np.mod(np.floor((lon + 180) / 360 * W).astype(int), W)
+    return dist[j, i]
 
 
 def regions(d):
@@ -62,7 +86,7 @@ def regions(d):
         ("Kuroshio", box(lat, lon, 25, 40, 120, 160)),
         ("Agulhas", box(lat, lon, -45, -25, 10, 40)),
         ("Southern Ocean (south of 45S)", lat < -45),
-        ("Near coast (within ~2 deg of land)", near_coast(lat, lon, d["month"])),
+        ("Coastal (start < 200 km from land)", coast_km(lat, lon) < COAST_KM),
         ("Drogued (windage 0)", d["windage"] == 0),
         ("Undrogued (windage 1)", d["windage"] == 1),
     ]
@@ -184,7 +208,7 @@ def main():
     )
     save_json(OUT / "eval.json", ev)
     meta = dict(
-        version=f"drift-mlp-{date.today().isoformat()}",
+        version=ck["version"],
         features=NAMES,
         outputs={"mu": "next-day displacement east, north (km)",
                  "log_sigma": "log of 1-sigma east, north (km)"},

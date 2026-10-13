@@ -1,5 +1,5 @@
 {
-  "version": "drift-mlp-2026-10-13",
+  "version": "drift-mlp-2026-10-13-e27",
   "features": [
     "lat/90",
     "sin(lon)",
@@ -37,7 +37,7 @@
       "test": 88794
     }
   },
-  "bestEpoch": 31,
+  "bestEpoch": 27,
   "units": "km/day",
   "rmse": {
     "model": 21.05,
@@ -169,16 +169,16 @@
       "within2sigma": 0.862
     },
     {
-      "name": "Near coast (within ~2 deg of land)",
-      "n": 4926,
-      "drifters": 139,
-      "model": 23.91,
-      "advection": 25.92,
-      "medianModel": 14.04,
-      "medianAdvection": 14.7,
-      "modelCloserFraction": 0.565,
-      "within1sigma": 0.511,
-      "within2sigma": 0.867
+      "name": "Coastal (start < 200 km from land)",
+      "n": 13168,
+      "drifters": 229,
+      "model": 21.06,
+      "advection": 22.2,
+      "medianModel": 13.23,
+      "medianAdvection": 13.37,
+      "modelCloserFraction": 0.536,
+      "within1sigma": 0.49,
+      "within2sigma": 0.866
     },
     {
       "name": "Drogued (windage 0)",

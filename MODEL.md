@@ -28,10 +28,19 @@ are mirrored in `public/model/drift.meta.json`, which the About scene renders.
 - **Split**: by drifter, 80/10/10 with a fixed seed (20261013): 3,263 / 408 /
   408 drifters, 700,519 / 88,773 / 88,794 pairs. No drifter appears in two sets,
   so test scores are on tracks the model never saw.
-- **Training**: early stopping on validation NLL (patience 8); best epoch 31 of
-  35. Validation NLL (per pair, km units, log 2pi dropped) went 6.276 (epoch 1)
-  -> 6.204 (10) -> 6.189 (20) -> 6.185 (31, best); training NLL ended at 6.151,
+- **Training**: early stopping on validation NLL (patience 8; an epoch counts
+  as an improvement only if it lowers validation NLL by more than 1e-4). The
+  shipped weights are from epoch 27; training stopped at epoch 35. Validation
+  NLL (per pair, km units, log 2pi dropped) went 6.276 (epoch 1) -> 6.204 (10)
+  -> 6.189 (20) -> 6.185 (27, shipped); epoch 31 was 5e-5 lower, below the
+  1e-4 threshold, so it did not replace epoch 27. Training NLL ended at 6.151,
   so the train/validation gap is small.
+- **No test-set tuning.** The architecture and hyper-parameters (MLP size,
+  learning rate, batch, patience, seed) were fixed before training and never
+  changed. The only change between runs was the CPU thread count (speed only;
+  the run is deterministic and produced identical weights). Test metrics were
+  computed once per run and were not used for any choice; early stopping
+  looked only at the validation drifters.
 
 ## Baseline
 
@@ -48,8 +57,9 @@ mean lands nearer the truth than advection. "In 1/2 sigma" is the share of
 observed displacements inside the model's 1-sigma / 2-sigma ellipse (ideal for
 a 2-D Gaussian: 39 % / 86 %). Regions overlap; boxes: the five gyre boxes from
 `src/sim/constants.js`, Gulf Stream 30-45N 80-50W, Kuroshio 25-40N 120-160E,
-Agulhas 45-25S 10-40E; "near coast" = start within about 2 degrees (two 1-degree
-cells) of a land cell of that month's current tile.
+Agulhas 45-25S 10-40E; "coastal" = start within 200 km (great-circle) of land,
+measured on a distance field from `public/data/landmask.png` (each 2048x1024
+pixel's distance to the nearest land pixel centre, computed once).
 
 | Region | test drifters | test pairs | RMSE model | RMSE advection | median model | median advection | model closer | in 1 sigma | in 2 sigma |
 |---|---|---|---|---|---|---|---|---|---|
@@ -64,7 +74,7 @@ cells) of a land cell of that month's current tile.
 | Kuroshio | 12 | 816 | 30.57 | 30.64 | 22.32 | 22.02 | 48% | 41% | 84% |
 | Agulhas | 10 | 1298 | 35.35 | 36.02 | 24.08 | 24.86 | 52% | 45% | 85% |
 | Southern Ocean (south of 45S) | 55 | 9832 | 23.52 | 24.79 | 16.69 | 17.51 | 54% | 47% | 86% |
-| Near coast (within ~2 deg of land) | 139 | 4926 | 23.91 | 25.92 | 14.04 | 14.70 | 56% | 51% | 87% |
+| Coastal (start < 200 km from land) | 229 | 13168 | 21.06 | 22.20 | 13.23 | 13.37 | 54% | 49% | 87% |
 | Drogued (windage 0) | 333 | 51361 | 20.27 | 20.52 | 11.93 | 11.92 | 51% | 46% | 86% |
 | Undrogued (windage 1) | 208 | 37433 | 22.08 | 23.39 | 15.40 | 16.76 | 59% | 44% | 87% |
 
@@ -97,8 +107,10 @@ The model ends closer than advection in 55 % of windows.
 - **Wins most for undrogued drifters** (RMSE 22.08 vs 23.39, median 15.40 vs
   16.76, model closer 59 %): the model learns the wind-driven slip that plain
   advection ignores. That is exactly the case that matters for floating
-  plastic. It also helps near coasts (23.91 vs 25.92), in the equatorial band,
-  the Southern Ocean and the South Pacific and Indian Ocean gyres.
+  plastic. It also helps in the equatorial band, the Southern Ocean and the South
+  Pacific and Indian Ocean gyres. Within 200 km of land the RMSE gain is 5 %
+  (21.06 vs 22.20) but the median barely moves (13.23 vs 13.37): the gain
+  there comes from fewer large misses, not from typical days.
 - **No real gain for drogued drifters** (median 11.93 vs 11.92, closer in 51 %):
   a drogued drifter follows the current, which advection already does.
 - **Boundary currents are a draw.** Gulf Stream median is identical (18.05),
@@ -133,6 +145,7 @@ The model ends closer than advection in 55 % of windows.
 
 ```
 scripts/train/.venv/Scripts/python.exe scripts/data/fetch_wind.py
+scripts/train/.venv/Scripts/python.exe scripts/data/make_credits.py
 scripts/train/.venv/Scripts/python.exe scripts/data/build_pairs.py
 cd scripts/train
 .venv/Scripts/python.exe train.py      # out/drift.pt, split.json, history.json

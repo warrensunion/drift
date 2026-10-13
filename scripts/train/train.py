@@ -7,6 +7,7 @@ Writes scripts/train/out/drift.pt, split.json, history.json.
 """
 import math
 import time
+from datetime import date
 
 import numpy as np
 import torch
@@ -43,7 +44,7 @@ def main():
     Xva, Yva = zx(X[mk["val"]]), zy(Y[mk["val"]])
     opt = torch.optim.Adam(core.parameters(), lr=LR)
     sched = torch.optim.lr_scheduler.ReduceLROnPlateau(opt, factor=0.5, patience=3)
-    best, best_state, bad, hist = math.inf, None, 0, []
+    best, best_state, best_ep, bad, hist = math.inf, None, 0, 0, []
     g = torch.Generator().manual_seed(SEED)
     log_det = float(np.log(ys).sum())  # standardised NLL + this = NLL in km units
     for ep in range(1, MAX_EPOCHS + 1):
@@ -69,7 +70,7 @@ def main():
                          lr=opt.param_groups[0]["lr"], sec=round(time.time() - t0, 1)))
         print(hist[-1], flush=True)
         if v < best - 1e-4:
-            best, bad = v, 0
+            best, best_ep, bad = v, ep, 0  # an epoch counts as best only if it beat the last by 1e-4
             best_state = {k: t.clone() for k, t in model.state_dict().items()}
         else:
             bad += 1
@@ -77,11 +78,12 @@ def main():
                 print("early stop at epoch", ep)
                 break
     model.load_state_dict(best_state)
-    best_ep = min(hist, key=lambda h: h["val_nll"])["epoch"]
+    version = f"drift-mlp-{date.today().isoformat()}-e{best_ep}"
     torch.save(dict(state=model.state_dict(), x_mean=xm, x_std=xs, y_mean=ym, y_std=ys,
-                    hidden=128, best_epoch=best_ep, seed=SEED), OUT / "drift.pt")
+                    hidden=128, best_epoch=best_ep, seed=SEED, version=version), OUT / "drift.pt")
     save_json(OUT / "split.json", {k: v.tolist() for k, v in split.items()})
-    save_json(OUT / "history.json", dict(best_epoch=best_ep, best_val_nll=best + log_det,
+    save_json(OUT / "history.json", dict(version=version, best_epoch=best_ep, best_val_nll=best + log_det,
+                                         best_rule="saved weights = last epoch improving val NLL by > 1e-4",
                                          nll_units="per row, km, log(2pi) dropped",
                                          epochs=hist))
     print("best epoch", best_ep, "val NLL", best + log_det)

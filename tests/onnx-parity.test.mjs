@@ -8,10 +8,11 @@ import { features } from '../src/sim/features.js';
 
 const ref = JSON.parse(readFileSync(new URL('./fixtures/onnx-ref.json', import.meta.url), 'utf8'));
 ort.env.wasm.numThreads = 1;
+// One session shared by every test.
+const session = await ort.InferenceSession.create(
+  new Uint8Array(readFileSync(new URL('../public/model/drift.onnx', import.meta.url))), { executionProviders: ['wasm'] });
 
 async function run(x, n) {
-  const model = readFileSync(new URL('../public/model/drift.onnx', import.meta.url));
-  const session = await ort.InferenceSession.create(new Uint8Array(model), { executionProviders: ['wasm'] });
   const r = await session.run({ x: new ort.Tensor('float32', x, [n, 10]) });
   return { mu: r.mu.data, logSigma: r.log_sigma.data, dims: [r.mu.dims, r.log_sigma.dims] };
 }
