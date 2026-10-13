@@ -1,0 +1,224 @@
+{
+  "version": "drift-mlp-2026-10-13",
+  "features": [
+    "lat/90",
+    "sin(lon)",
+    "cos(lon)",
+    "u_cur",
+    "v_cur",
+    "u_wind/10",
+    "v_wind/10",
+    "sin(2pi doy/365.25)",
+    "cos(2pi doy/365.25)",
+    "windage"
+  ],
+  "outputs": {
+    "mu": "next-day displacement east, north (km)",
+    "log_sigma": "log of 1-sigma east, north (km)"
+  },
+  "architecture": "MLP 10-128-128-4 SiLU, Gaussian NLL, standardisation baked in",
+  "trainedOn": "NOAA GDP 6-hourly QC drifters 2012-01-01..2014-09-25, daily pairs; OSCAR monthly-climatology currents, QuikSCAT monthly-climatology winds",
+  "split": {
+    "by": "drifter ID",
+    "fractions": [
+      0.8,
+      0.1,
+      0.1
+    ],
+    "seed": 20261013,
+    "drifters": {
+      "train": 3263,
+      "val": 408,
+      "test": 408
+    },
+    "pairs": {
+      "train": 700519,
+      "val": 88773,
+      "test": 88794
+    }
+  },
+  "bestEpoch": 31,
+  "units": "km/day",
+  "rmse": {
+    "model": 21.05,
+    "advection": 21.78
+  },
+  "medianError": {
+    "model": 13.34,
+    "advection": 13.9
+  },
+  "regions": [
+    {
+      "name": "North Pacific gyre",
+      "n": 642,
+      "drifters": 6,
+      "model": 14.66,
+      "advection": 14.95,
+      "medianModel": 12.21,
+      "medianAdvection": 12.43,
+      "modelCloserFraction": 0.569,
+      "within1sigma": 0.466,
+      "within2sigma": 0.917
+    },
+    {
+      "name": "South Pacific gyre",
+      "n": 1484,
+      "drifters": 7,
+      "model": 16.01,
+      "advection": 17.0,
+      "medianModel": 12.37,
+      "medianAdvection": 14.11,
+      "modelCloserFraction": 0.564,
+      "within1sigma": 0.395,
+      "within2sigma": 0.886
+    },
+    {
+      "name": "North Atlantic gyre",
+      "n": 8064,
+      "drifters": 43,
+      "model": 19.27,
+      "advection": 19.56,
+      "medianModel": 11.24,
+      "medianAdvection": 11.46,
+      "modelCloserFraction": 0.528,
+      "within1sigma": 0.449,
+      "within2sigma": 0.861
+    },
+    {
+      "name": "South Atlantic gyre",
+      "n": 1207,
+      "drifters": 6,
+      "model": 14.39,
+      "advection": 14.64,
+      "medianModel": 10.39,
+      "medianAdvection": 10.49,
+      "modelCloserFraction": 0.513,
+      "within1sigma": 0.487,
+      "within2sigma": 0.891
+    },
+    {
+      "name": "Indian Ocean gyre",
+      "n": 838,
+      "drifters": 7,
+      "model": 22.31,
+      "advection": 23.31,
+      "medianModel": 17.85,
+      "medianAdvection": 19.2,
+      "modelCloserFraction": 0.549,
+      "within1sigma": 0.407,
+      "within2sigma": 0.864
+    },
+    {
+      "name": "Equatorial band 10S-10N",
+      "n": 10870,
+      "drifters": 100,
+      "model": 24.07,
+      "advection": 25.11,
+      "medianModel": 15.69,
+      "medianAdvection": 16.74,
+      "modelCloserFraction": 0.559,
+      "within1sigma": 0.445,
+      "within2sigma": 0.866
+    },
+    {
+      "name": "Gulf Stream",
+      "n": 3658,
+      "drifters": 29,
+      "model": 30.88,
+      "advection": 31.24,
+      "medianModel": 18.05,
+      "medianAdvection": 18.05,
+      "modelCloserFraction": 0.514,
+      "within1sigma": 0.509,
+      "within2sigma": 0.866
+    },
+    {
+      "name": "Kuroshio",
+      "n": 816,
+      "drifters": 12,
+      "model": 30.57,
+      "advection": 30.64,
+      "medianModel": 22.32,
+      "medianAdvection": 22.02,
+      "modelCloserFraction": 0.482,
+      "within1sigma": 0.409,
+      "within2sigma": 0.841
+    },
+    {
+      "name": "Agulhas",
+      "n": 1298,
+      "drifters": 10,
+      "model": 35.35,
+      "advection": 36.02,
+      "medianModel": 24.08,
+      "medianAdvection": 24.86,
+      "modelCloserFraction": 0.521,
+      "within1sigma": 0.451,
+      "within2sigma": 0.853
+    },
+    {
+      "name": "Southern Ocean (south of 45S)",
+      "n": 9832,
+      "drifters": 55,
+      "model": 23.52,
+      "advection": 24.79,
+      "medianModel": 16.69,
+      "medianAdvection": 17.51,
+      "modelCloserFraction": 0.537,
+      "within1sigma": 0.469,
+      "within2sigma": 0.862
+    },
+    {
+      "name": "Near coast (within ~2 deg of land)",
+      "n": 4926,
+      "drifters": 139,
+      "model": 23.91,
+      "advection": 25.92,
+      "medianModel": 14.04,
+      "medianAdvection": 14.7,
+      "modelCloserFraction": 0.565,
+      "within1sigma": 0.511,
+      "within2sigma": 0.867
+    },
+    {
+      "name": "Drogued (windage 0)",
+      "n": 51361,
+      "drifters": 333,
+      "model": 20.27,
+      "advection": 20.52,
+      "medianModel": 11.93,
+      "medianAdvection": 11.92,
+      "modelCloserFraction": 0.51,
+      "within1sigma": 0.464,
+      "within2sigma": 0.859
+    },
+    {
+      "name": "Undrogued (windage 1)",
+      "n": 37433,
+      "drifters": 208,
+      "model": 22.08,
+      "advection": 23.39,
+      "medianModel": 15.4,
+      "medianAdvection": 16.76,
+      "modelCloserFraction": 0.588,
+      "within1sigma": 0.438,
+      "within2sigma": 0.868
+    }
+  ],
+  "calibration": {
+    "within1sigma": 0.453,
+    "within2sigma": 0.862,
+    "ideal1sigma": 0.393,
+    "ideal2sigma": 0.865
+  },
+  "tenDay": {
+    "model": 89.5,
+    "advection": 94.9,
+    "stationary": 114.4,
+    "meanModel": 109.4,
+    "meanAdvection": 116.6,
+    "windows": 8670,
+    "drifters": 399,
+    "statistic": "median separation after 10 days, km"
+  }
+}
