@@ -21,6 +21,17 @@ export const TRAIL = 12; // trail segments (previous snapshots)
 const BLOCK = 8; // columns per allocation block (one bottle drop = 24 members = 3 blocks)
 const MAX_DROPS = 1024;
 const INVALID = -1;
+// Additive light that leaves the canvas alpha alone: the canvas is transparent over the page, and
+// plain additive blending would also add alpha, turning each glow quad at the limb into an opaque
+// square. Colours are premultiplied (rgb * intensity) in the shaders.
+const GLOW = {
+  blending: THREE.CustomBlending,
+  blendEquation: THREE.AddEquation,
+  blendSrc: THREE.OneFactor,
+  blendDst: THREE.OneFactor,
+  blendSrcAlpha: THREE.ZeroFactor,
+  blendDstAlpha: THREE.OneFactor,
+};
 
 // ---- colour ramp in OKLab -------------------------------------------------------------------
 const srgbToLinear = (c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
@@ -135,7 +146,7 @@ export function createParticles() {
   };
   const headCol = varying(buildHead().col, 'vHeadCol');
 
-  const headMat = new THREE.SpriteNodeMaterial({ transparent: true, depthTest: false, depthWrite: false, blending: THREE.AdditiveBlending });
+  const headMat = new THREE.SpriteNodeMaterial({ transparent: true, depthTest: false, depthWrite: false, ...GLOW });
   headMat.sizeAttenuation = true;
   headMat.positionNode = buildHead().pos;
   const hs = buildHead().scale;
@@ -178,7 +189,8 @@ export function createParticles() {
     const p0 = select(isHeadSeg, headLL, toWorld(e0raw.xy));
     const p1 = toWorld(e1.xy);
     const code0 = select(isHeadSeg, h0.z, e0raw.z);
-    const tValid = tSlot.greaterThanEqual(0).and(tAlive.greaterThan(0.5)).and(i1.greaterThanEqual(0))
+    // tAlive = 1 + segments whose layers are current (see update()).
+    const tValid = tSlot.greaterThanEqual(0).and(tAlive.greaterThan(0.5)).and(segF.lessThan(tAlive.sub(1))).and(i1.greaterThanEqual(0))
       .and(code0.greaterThanEqual(0)).and(e1.z.greaterThanEqual(0));
     const end = positionGeometry.x.greaterThan(0); // true -> end 1
     const side = positionGeometry.y.mul(2); // -1..1
@@ -204,7 +216,7 @@ export function createParticles() {
     return { clip: select(tValid, clipPos, vec4(2, 2, 2, 1)), col: vec4(ageColor(select(end, day1, day0)), tAlpha) };
   };
   const trailCol = varying(buildTrail().col, 'vTrailCol');
-  const trailMat = new THREE.MeshBasicNodeMaterial({ transparent: true, depthTest: false, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide });
+  const trailMat = new THREE.MeshBasicNodeMaterial({ transparent: true, depthTest: false, depthWrite: false, ...GLOW, side: THREE.DoubleSide });
   // Cull per instance (never per vertex: one culled end would stretch the quad off screen).
   trailMat.vertexNode = buildTrail().clip;
   trailMat.colorNode = vec4(trailCol.xyz.mul(trailCol.w), 1);
@@ -298,33 +310,61 @@ export function createParticles() {
 
   const frames = new Map(); // dropId -> {index, frac, day}
 
+  // Identity writes per frame for trail layers. Head layers (index, index+1) are always written;
+  // trail layers catch up over a few frames during a fast scrub, and the shader draws only the
+  // segments whose layers are current (dropData.w = 1 + current segments).
+  let trailWriteBudget = 48000;
+  let rr = 0; // round-robin start so no drop starves
+  let lastT = 0;
+
+  const stale = (d, s) => d.loaded[s % LAYERS] !== s || d.ver[s % LAYERS] !== d.track.version;
+
   /** Write the snapshots age t needs and the per-drop frame data. Returns members drawn. */
   function update(t) {
     let members = 0;
-    for (const d of drops.values()) {
+    const list = [...drops.values()];
+    // Pass 1: frames and head layers.
+    for (const d of list) {
       const tr = d.track;
       const fr = frameFor(tr, t);
+      d.fr = fr;
       if (!fr) { dropData[4 * d.slot + 3] = 0; continue; }
       if (tr.ancestor.length > d.blocks.length * BLOCK) ensureColumns(d);
-      const lo = Math.max(0, fr.index - TRAIL), hi = Math.min(tr.lastIndex, fr.index + 1);
-      for (let s = lo; s <= hi; s++) {
-        const layer = s % LAYERS;
-        if (d.loaded[layer] !== s || d.ver[layer] !== tr.version) writeLayer(d, s);
-      }
+      for (let s = fr.index; s <= Math.min(tr.lastIndex, fr.index + 1); s++) if (stale(d, s)) writeLayer(d, s);
       frames.set(tr.dropId, fr);
       const o = 4 * d.slot;
-      dropData[o] = fr.index; dropData[o + 1] = fr.frac; dropData[o + 2] = fr.day; dropData[o + 3] = 1;
+      dropData[o] = fr.index; dropData[o + 1] = fr.frac; dropData[o + 2] = fr.day;
       const snap = tr.snaps[fr.index];
       if (snap) members += snap.members;
     }
+    // Pass 2: trail layers, newest first, within the budget. While the age jumps by more than
+    // 20 days a frame (a fast scrub), only the heads are drawn; the trails catch up when it settles.
+    const jumping = Math.abs(t - lastT) > 20;
+    lastT = t;
+    let budget = jumping ? 0 : trailWriteBudget;
+    const n = list.length;
+    for (let k = 0; k < n; k++) {
+      const d = list[(rr + k) % n];
+      const fr = d.fr;
+      if (!fr) continue;
+      let segs = 1; // seg 0 (head -> index) needs only the head layers
+      for (let j = 1; j <= TRAIL - 1 && fr.index - j >= 0; j++) {
+        const s = fr.index - j;
+        if (stale(d, s)) {
+          if (budget <= 0) break;
+          writeLayer(d, s);
+          budget -= d.track.ancestor.length;
+        }
+        segs++;
+      }
+      dropData[4 * d.slot + 3] = 1 + segs;
+    }
+    if (n) rr = (rr + 1) % n;
     dropTex.needsUpdate = true;
     if (colDirty) { colTex.needsUpdate = true; colDirty = false; }
     if (dirtyLayers.size) {
-      if (dirtyLayers.size >= LAYERS / 2 || !layers.addLayerUpdate) {
-        layers.clearLayerUpdates?.();
-      } else {
-        for (const l of dirtyLayers) layers.addLayerUpdate(l);
-      }
+      // Always per-layer uploads (a whole-texture upload is 6.3 MB).
+      if (layers.addLayerUpdate) for (const l of dirtyLayers) layers.addLayerUpdate(l);
       layers.needsUpdate = true;
       dirtyLayers.clear();
     }
@@ -377,6 +417,7 @@ export function createParticles() {
       selTex.needsUpdate = true;
     },
     setPxWorld(v) { uPxWorld.value = v; },
+    setTrailWriteBudget(n) { trailWriteBudget = n; },
     clear() { for (const id of [...drops.keys()]) removeDrop(id); },
     dispose() {
       layers.dispose(); colTex.dispose(); selTex.dispose(); dropTex.dispose(); dayTex.dispose();

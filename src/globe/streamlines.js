@@ -159,7 +159,17 @@ export function createStreamlines(renderer, { fieldTex, reducedMotion = false, s
 
   return {
     get texture() { return rtA.texture; },
-    setField(tex) { fieldNode.value = tex; },
+    setField(tex) {
+      if (fieldNode.value === tex) return;
+      fieldNode.value = tex;
+      // Reduced motion: the strokes are static, so re-bake them on the new month's field.
+      if (frozen) {
+        for (const rt of [rtA, rtB]) { renderer.setRenderTarget(rt); renderer.clear(); }
+        renderer.setRenderTarget(null);
+        initialised = false;
+        frozen = false;
+      }
+    },
     /** Advance and draw one frame. Reduced motion: bake once into static short strokes. */
     update(dt) {
       if (!initialised) {
@@ -176,6 +186,9 @@ export function createStreamlines(renderer, { fieldTex, reducedMotion = false, s
     },
     dispose() {
       rtA.dispose(); rtB.dispose(); fadeMat.dispose(); dotMat.dispose();
+      // Free the seed storage buffer. three has no public BufferAttribute.dispose() yet, so this
+      // reaches the renderer's attribute cache (guarded; renderer.dispose() frees it otherwise).
+      try { if (renderer._attributes) renderer._attributes.delete(state.value); } catch { /* already gone */ }
     },
   };
 }

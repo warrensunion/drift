@@ -19,7 +19,7 @@
   <script type="module">
     // Dev harness: the globe is a lazy chunk; the site (Task 11) mounts it the same way.
     const { mountGlobe } = await import('./src/globe/index.js');
-    window.__globe = mountGlobe(document.getElementById('globe'), { mode: 'global' });
+    window.__globe = mountGlobe(document.getElementById('globe'), { mode: 'global', embedded: false });
   </script>
 </body>
 </html>

@@ -102,8 +102,9 @@ if (!only || only === 'static') {
 }
 
 if (doFps) {
+  // ~20,000 members: 833 bottle drops x 24 copies, computed to day 120.
   const { ctx, page } = await open(1440, 900);
-  const r = await page.evaluate(async () => {
+  const setup = await page.evaluate(async () => {
     const D = window.__drift;
     D.view(-160, 20);
     let s = 7; const rnd = () => ((s = (s * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff);
@@ -114,27 +115,63 @@ if (doFps) {
     }
     await Promise.all(ps);
     const t1 = performance.now();
-    while (performance.now() - t1 < 900000) {
-      if (Math.min(...D.computed().map((x) => x.day)) >= 60) break;
-      await new Promise((r) => setTimeout(r, 1000));
+    while (performance.now() - t1 < 1500000) {
+      if (Math.min(...D.computed().map((x) => x.day)) >= 120) break;
+      await new Promise((r) => setTimeout(r, 2000));
     }
-    const simMs = performance.now() - t1;
-    D.setDay(45);
-    await new Promise((r) => setTimeout(r, 1500));
-    D.resetFrames();
-    await new Promise((r) => setTimeout(r, 5000));
-    const paused = D.frameStats(), cpuPaused = D.cpu(), members = D.members;
-    D.setDay(0); D.speed(30); D.play(true);
-    await new Promise((r) => setTimeout(r, 500));
-    D.resetFrames();
-    await new Promise((r) => setTimeout(r, 5000));
-    const playing = D.frameStats(), cpuPlaying = D.cpu();
-    D.play(false); D.setDay(45);
-    return { members, simMs, paused, cpuPaused, playing, cpuPlaying, backend: D.backend };
+    const res = { simMs: performance.now() - t1, minDay: Math.min(...D.computed().map((x) => x.day)) };
+    // Stop the simulation worker so it does not compete for the CPU while we time frames
+    // (the snapshots already received stay on the main thread).
+    D.stopSim();
+    return res;
   });
+  const measure = () => page.evaluate(async () => {
+    const D = window.__drift;
+    const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+    const cap = Math.min(...D.computed().map((x) => x.day));
+    const out = {};
+    // Paused at 45 days.
+    D.play(false); D.setDay(45); await wait(1500); D.resetFrames(); await wait(5000);
+    out.paused = { ...D.frameStats(), members: D.members, cpu: D.cpu() };
+    // 30x from day 0.
+    D.setDay(0); D.speed(30); D.play(true); await wait(300); D.resetFrames(); await wait(5000);
+    out.play30 = { ...D.frameStats(), cpu: D.cpu() };
+    // 365x from day 0, restarting at day 0 whenever it reaches the computed edge.
+    D.setDay(0); D.speed(365); D.play(true); D.resetFrames();
+    const t0 = performance.now();
+    while (performance.now() - t0 < 5000) { if (D.t >= cap - 1) { D.setDay(0); D.play(true); } await wait(50); }
+    out.play365 = { ...D.frameStats(), cpu: D.cpu() };
+    D.play(false);
+    // Fast scrub: a new random age every frame across the computed range (worst case: every
+    // drop needs fresh layers every frame).
+    const scrub = async () => {
+      D.resetFrames();
+      await new Promise((resolve) => {
+        const end = performance.now() + 5000;
+        const tick = () => { D.setDay(Math.random() * cap); if (performance.now() < end) requestAnimationFrame(tick); else resolve(); };
+        requestAnimationFrame(tick);
+      });
+      return { ...D.frameStats(), cpu: D.cpu() };
+    };
+    out.scrub = await scrub(); // default trail-write budget (48k identity writes per frame)
+    D.trailBudget(Infinity); out.scrubNoBudget = await scrub();
+    D.trailBudget(8000); out.scrubBudget8k = await scrub();
+    D.trailBudget(48000);
+    D.setDay(45);
+    return out;
+  });
+  const cdp = await ctx.newCDPSession(page);
+  const normal = await measure();
+  // Approximate a laptop: 2x CPU throttle and 2x device pixels (4x the fragments).
+  await cdp.send('Emulation.setCPUThrottlingRate', { rate: 2 });
+  await cdp.send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 900, deviceScaleFactor: 2, mobile: false });
+  await page.waitForTimeout(2000);
+  const laptop = await measure();
+  await cdp.send('Emulation.setCPUThrottlingRate', { rate: 1 });
+  await cdp.send('Emulation.clearDeviceMetricsOverride');
   await page.waitForTimeout(1500);
   await shot(page, `1440x900${gl ? `-${gl}` : ''}-20k-members`);
-  report.fps = r;
+  report.fps = { setup, backend: await page.evaluate(() => window.__drift.backend), normal, laptopApprox: laptop };
   await ctx.close();
 }
 

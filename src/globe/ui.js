@@ -159,6 +159,22 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
     ticks.append(t);
   }
   scrub.append(track, range, ticks);
+  // Hide any label that would touch its neighbour (keeps 0, 1 y and 10 y first; 5 y and 1 mo give way).
+  const tickEls = [...ticks.children];
+  const fitTicks = () => {
+    for (const t of tickEls) t.classList.remove('is-hidden');
+    const order = [0, 4, 2, 1, 3]; // priority: 0, 10 y, 1 y, 1 mo, 5 y
+    const kept = [];
+    for (const i of order) {
+      const r = tickEls[i].getBoundingClientRect();
+      if (!r.width) continue;
+      if (kept.some((k) => r.left < k.right + 10 && r.right > k.left - 10)) tickEls[i].classList.add('is-hidden');
+      else kept.push(r);
+    }
+  };
+  const tickRO = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(fitTicks) : null;
+  if (tickRO) tickRO.observe(scrub);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTicks);
   let scrubbing = false;
   range.addEventListener('input', () => { scrubbing = true; emit('scrub', posToDay(+range.value / 1000)); });
   range.addEventListener('change', () => { scrubbing = false; });
@@ -254,7 +270,7 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
       fateRows[k].fill.style.width = `${Math.round(f * 100)}%`;
     }
     const when = stats.fatesDay >= MAX_DAY ? 'after 10 years' : `after ${formatAge(stats.fatesDay).toLowerCase()} (still computing)`;
-    endNote.textContent = `Probability across ${stats.members || 'its'} simulated copies, ${when}.`;
+    endNote.textContent = `Probability across ${stats.endMembers || 'its'} simulated copies, ${when}.`;
   }
 
   return {
@@ -271,6 +287,6 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
       if (!ok && why) hint.textContent = why;
     },
     contains: (node) => side.contains(node) || tl.contains(node),
-    dispose() { clearTimeout(toastTimer); if (phoneQuery) phoneQuery.removeEventListener('change', placeTimeline); side.remove(); tl.remove(); disclaimer.remove(); toast.remove(); },
+    dispose() { clearTimeout(toastTimer); if (tickRO) tickRO.disconnect(); if (phoneQuery) phoneQuery.removeEventListener('change', placeTimeline); side.remove(); tl.remove(); disclaimer.remove(); toast.remove(); },
   };
 }

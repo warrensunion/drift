@@ -143,22 +143,53 @@ export function frameFor(tr, t) {
   return { index: Math.min(index, tr.lastIndex), frac: index >= tr.lastIndex ? 0 : frac, day: Math.max(0, Math.min(t, tr.lastDay)) };
 }
 
-const isDescendant = (tr, fragId, rootId) => {
-  let f = tr.frags.get(fragId), guard = 0;
-  while (f && guard++ < 64) {
-    if (f.id === rootId) return true;
-    f = tr.frags.get(f.parentId);
-  }
+const hasLocal = (snap, local) => {
+  if (!snap) return false;
+  for (let i = 0; i < snap.n; i++) if (snap.code[i] !== ABSENT && ((snap.code[i] >> 4) & 255) === local) return true;
   return false;
 };
 
-/** Fragments of `snap` that are `fragId`, its descendants, or (before it was born) its ancestor. */
-export function lineageAt(tr, snap, fragId) {
+/**
+ * Fragment locals at snapshot `index` that hold the selected fragment's copies: the fragment
+ * itself, every fragment its members broke into, or (before it existed) the fragment it came
+ * from. Traced through member identities, so it holds even when several splits happened between
+ * two snapshots and the intermediate fragments were never seen.
+ */
+export function lineageLocalsAt(tr, fragId, index) {
+  const out = new Set();
+  const snap = tr.snaps[index];
+  if (!snap) return out;
+  const local = fragId & 255;
+  let sF = -1;
+  for (let s = Math.min(index, tr.lastIndex); s >= 0 && sF < 0; s--) if (hasLocal(tr.snaps[s], local)) sF = s;
+  if (sF < 0) for (let s = index + 1; s <= tr.lastIndex && sF < 0; s++) if (hasLocal(tr.snaps[s], local)) sF = s;
+  if (sF < 0) return out;
+  const src = tr.snaps[sF];
+  const members = new Set();
+  for (let i = 0; i < src.n; i++) if (src.code[i] !== ABSENT && ((src.code[i] >> 4) & 255) === local) members.add(i);
+  if (sF > index) {
+    // Not born yet at this age: report what its copies were then.
+    for (const id of members) {
+      const st = stateAt(tr, id, index);
+      if (st) out.add((st.code >> 4) & 255);
+    }
+    return out;
+  }
+  for (let id = 0; id < snap.n; id++) {
+    if (snap.code[id] === ABSENT) continue;
+    let i = id, guard = 0;
+    while (i >= 0 && !members.has(i) && guard++ < 4096) i = tr.ancestor[i];
+    if (i >= 0 && members.has(i)) out.add((snap.code[id] >> 4) & 255);
+  }
+  return out;
+}
+
+/** Fragments of snapshot `index` in the selected fragment's lineage (see lineageLocalsAt). */
+export function lineageAt(tr, index, fragId) {
+  const snap = tr.snaps[index];
   if (!snap) return [];
-  const own = snap.fragments.filter((f) => isDescendant(tr, f.id, fragId));
-  if (own.length) return own;
-  const anc = snap.fragments.filter((f) => isDescendant(tr, fragId, f.id));
-  return anc;
+  const locals = lineageLocalsAt(tr, fragId, index);
+  return snap.fragments.filter((f) => locals.has(f.local & 255));
 }
 
 /**
@@ -169,7 +200,7 @@ export function fragmentStats(tr, fragId, t) {
   const fr = frameFor(tr, t);
   if (!fr) return null;
   const snap = tr.snaps[fr.index];
-  const now = lineageAt(tr, snap, fragId);
+  const now = lineageAt(tr, fr.index, fragId);
   let members = 0, dist = 0;
   const classes = new Map();
   for (const f of now) {
@@ -178,7 +209,7 @@ export function fragmentStats(tr, fragId, t) {
     classes.set(f.sizeClass, (classes.get(f.sizeClass) || 0) + 1);
   }
   const last = tr.snaps[tr.lastIndex];
-  const end = lineageAt(tr, last, fragId);
+  const end = lineageAt(tr, tr.lastIndex, fragId);
   const fates = { gyre: 0, coast: 0, seafloor: 0, floating: 0 };
   let endMembers = 0;
   for (const f of end) {
@@ -195,7 +226,8 @@ export function fragmentStats(tr, fragId, t) {
     originalSize: root ? root.sizeClass : null,
     members,
     distanceKm: members ? dist / members : 0,
-    fates,
+    fates, // fractions over endMembers
+    endMembers,
     fatesDay: last ? last.day : 0,
     computedDay: tr.lastDay,
     done: tr.done,

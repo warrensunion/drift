@@ -41,6 +41,30 @@
   outline: none;
 }
 .drift-globe__canvas:active { cursor: grabbing; }
+/* Embedded in a scrolling page: one-finger vertical swipes scroll the page; horizontal drags
+   rotate and two-finger pinches zoom (the globe's own handlers). */
+.drift-globe.is-embedded .drift-globe__canvas { touch-action: pan-y; }
+.drift-globe:focus { outline: none; }
+
+.globe-zoomhint {
+  position: absolute;
+  z-index: 3;
+  left: 64%;
+  top: 50%;
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(9, 32, 38, .82);
+  color: var(--g-foam);
+  font-family: var(--g-label);
+  font-size: 13px;
+  font-weight: 600;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s var(--g-reveal);
+}
+.globe-zoomhint.is-on { opacity: 1; }
 
 .drift-globe__grain {
   position: absolute;
@@ -258,7 +282,7 @@
   border-left: 4px solid var(--g-foam);
   border-right: 4px solid var(--g-foam);
 }
-.globe-scrub { position: relative; flex: 1; min-width: 0; height: 44px; }
+.globe-scrub { position: relative; flex: 1; min-width: 0; height: 50px; }
 .globe-scrub__track {
   position: absolute;
   left: 0;
@@ -305,7 +329,9 @@
 }
 .globe-scrub__input:focus-visible { outline: none; }
 .globe-scrub__input:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--g-foam), 0 0 0 6px var(--g-fresh); }
-.globe-scrub__ticks { position: absolute; left: 0; right: 0; top: 26px; height: 16px; pointer-events: none; }
+/* Labels sit below the thumb's reach (thumb + glow end ~26 px), so they never meet it. */
+.globe-scrub__ticks { position: absolute; left: 0; right: 0; top: 31px; height: 16px; pointer-events: none; }
+.globe-tick.is-hidden { visibility: hidden; }
 .globe-tick {
   position: absolute;
   transform: translateX(-50%);
@@ -318,7 +344,7 @@
   content: '';
   position: absolute;
   left: 50%;
-  top: -10px;
+  top: -14px;
   width: 1px;
   height: 6px;
   background: rgba(127, 183, 174, .55);
@@ -436,7 +462,6 @@
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     overflow-y: auto;
-    overscroll-behavior: contain;
     pointer-events: auto;
   }
   .globe-ui__head { display: none; }
@@ -457,7 +482,6 @@
   .globe-scrub { grid-area: scrub; }
   .globe-speeds { grid-area: speeds; justify-self: start; }
   .globe-readout { grid-area: readout; justify-self: end; min-width: 0; text-align: right; }
-  .globe-tick--5y { display: none; }
   .globe-disclaimer { top: 14px; left: var(--g-margin); right: var(--g-margin); max-width: none; font-size: 13px; text-align: left; }
 }
 

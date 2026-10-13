@@ -7,7 +7,7 @@ import { loadLandmask, loadTile, createOcean } from './ocean.js';
 import { fieldTextures, createStreamlines } from './streamlines.js';
 import { createParticles } from './particles.js';
 import { createUI, MAX_DAY } from './ui.js';
-import { createDropTrack, addSnapshot, fragmentStats } from './tracks.js';
+import { createDropTrack, addSnapshot, fragmentStats, frameFor, lineageLocalsAt } from './tracks.js';
 import { isTap, dropTarget, isLandAt, lonLatToVec3 } from './pick.js';
 import { decodeTile, sample } from '../sim/field.js';
 import { monthOfDoy } from '../sim/ensemble.js';
@@ -34,14 +34,19 @@ function starfield(w = 900, h = 900) {
     g.arc(rnd() * w, rnd() * h, r, 0, Math.PI * 2);
     g.fill();
   }
-  return c.toDataURL('image/png');
+  // A blob URL (revoked on dispose) rather than a long data URL in a CSS variable.
+  return new Promise((resolve) => c.toBlob((b) => resolve(b ? URL.createObjectURL(b) : null), 'image/png'));
 }
 
 /**
  * Mount the globe into `el`. mode: 'global' (the Salish Sea view is Task 9 and currently shows
- * the global globe). Returns {dispose()} at once; loading continues in the background.
+ * the global globe). embedded (default true): the globe sits inside a scrolling page, so a
+ * one-finger vertical swipe scrolls the page (horizontal drags rotate, pinch zooms), the wheel
+ * zooms only with Ctrl/Cmd held or while the globe has focus, and keys are scoped to the globe.
+ * embedded:false is the full-screen harness: every drag rotates, the wheel always zooms.
+ * Returns {dispose()} at once; loading continues in the background.
  */
-export function mountGlobe(el, { mode = 'global' } = {}) {
+export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
   const base = (import.meta.env && import.meta.env.BASE_URL) || '/';
   const params = new URLSearchParams(location.search);
   const reducedMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -51,15 +56,28 @@ export function mountGlobe(el, { mode = 'global' } = {}) {
   root.className = 'drift-globe';
   root.dataset.mode = mode;
   if (reducedMotion) root.classList.add('is-reduced');
-  root.style.setProperty('--globe-stars', `url(${starfield()})`);
+  if (embedded) root.classList.add('is-embedded');
+  root.tabIndex = -1; // focusable by script (a click on the globe), not a tab stop
+  let starsUrl = null;
+  starfield().then((u) => {
+    if (disposed) { if (u) URL.revokeObjectURL(u); return; }
+    starsUrl = u;
+    if (u) root.style.setProperty('--globe-stars', `url(${u})`);
+  });
   const canvas = document.createElement('canvas');
   canvas.className = 'drift-globe__canvas';
-  canvas.setAttribute('aria-label', 'Ocean globe. Drag to turn it, scroll or pinch to zoom, click or tap the ocean to drop the selected item.');
+  canvas.setAttribute('aria-label', embedded
+    ? 'Ocean globe. Drag sideways to turn it, pinch or hold Ctrl and scroll to zoom, click or tap the ocean to drop the selected item.'
+    : 'Ocean globe. Drag to turn it, scroll or pinch to zoom, click or tap the ocean to drop the selected item.');
   canvas.setAttribute('role', 'img');
   const grain = document.createElement('div');
   grain.className = 'drift-globe__grain';
   grain.style.setProperty('--globe-paper', `url(${base}art/ui-paper.webp)`);
-  root.append(canvas, grain);
+  const zoomHint = document.createElement('p');
+  zoomHint.className = 'globe-zoomhint';
+  zoomHint.setAttribute('aria-hidden', 'true');
+  zoomHint.textContent = 'Hold Ctrl to zoom';
+  root.append(canvas, grain, zoomHint);
   el.append(root);
 
   const ui = createUI(root, { base, touch, reducedMotion });
@@ -80,7 +98,7 @@ export function mountGlobe(el, { mode = 'global' } = {}) {
     ready: false, modelFallback: false, simOk: true,
     cpu: { particles: 0, streamlines: 0, render: 0 },
   };
-  let renderer = null, worker = null, landMask = null, tiles = null, fieldTex = null;
+  let renderer = null, worker = null, landMask = null, tiles = null, fieldTex = null, landTex = null, waterTex = null, paperTex = null;
   let camera, scene, ocean, lines, parts;
   const pendingDrops = [];
   const dropWaiters = [];
@@ -114,6 +132,7 @@ export function mountGlobe(el, { mode = 'global' } = {}) {
     }
     size = { w, h, cx, cy, phone };
     if (renderer && camera) {
+      renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       camera.setViewOffset(w, h, w / 2 - cx, h / 2 - cy, w, h);
@@ -162,6 +181,9 @@ export function mountGlobe(el, { mode = 'global' } = {}) {
     ]);
     if (disposed) return;
     landMask = land && land.mask;
+    landTex = land && land.texture;
+    waterTex = water;
+    paperTex = paper;
     tiles = fields && fields.tiles;
 
     scene = new THREE.Scene();
@@ -273,7 +295,11 @@ export function mountGlobe(el, { mode = 'global' } = {}) {
       case 'error':
         console.warn(`[drift] simulation ${msg.stage}: ${msg.reason}`);
         if (msg.stage === 'init') simFailed(msg.reason);
-        else if (msg.stage === 'drop') ui.showToast('That drop did not work. Try another spot.');
+        else if (msg.stage === 'drop') {
+          ui.showToast('That drop did not work. Try another spot.');
+          const w = dropWaiters.shift();
+          if (w) w(null);
+        }
         break;
       default:
     }
@@ -296,27 +322,13 @@ export function mountGlobe(el, { mode = 'global' } = {}) {
     refreshPanel();
   }
 
-  /** Local ids of the selected fragment's whole lineage (ancestors and descendants). */
-  function lineageLocals(tr, fragId) {
-    const out = [];
-    for (const f of tr.frags.values()) {
-      let g = f, n = 0, hit = false;
-      while (g && n++ < 64) { if (g.id === fragId) { hit = true; break; } g = tr.frags.get(g.parentId); }
-      if (!hit) {
-        g = tr.frags.get(fragId); n = 0;
-        while (g && n++ < 64) { if (g.id === f.id) { hit = true; break; } g = tr.frags.get(g.parentId); }
-      }
-      if (hit) out.push(f.local);
-    }
-    return out;
-  }
-
   function refreshPanel() {
     if (!S.selected) return;
     const tr = S.tracks.get(S.selected.dropId);
     if (!tr) { select(null); return; }
     ui.setPanel(fragmentStats(tr, S.selected.fragId, S.t));
-    parts.setSelection(S.selected.dropId, lineageLocals(tr, S.selected.fragId));
+    const fr = frameFor(tr, S.t);
+    parts.setSelection(S.selected.dropId, fr ? [...lineageLocalsAt(tr, S.selected.fragId, fr.index)] : []);
   }
 
   // ---- input ----
@@ -367,9 +379,20 @@ export function mountGlobe(el, { mode = 'global' } = {}) {
     drop(ui.item, target.lon, target.lat);
   }
 
+  let hintTimer = 0;
+  function showZoomHint() {
+    if (zoomHint.classList.contains('is-on')) return;
+    zoomHint.classList.add('is-on');
+    clearTimeout(hintTimer);
+    hintTimer = setTimeout(() => zoomHint.classList.remove('is-on'), 1500);
+  }
+  cleanups.push(() => clearTimeout(hintTimer));
+  const globeHasFocus = () => root.contains(document.activeElement);
+
   function bindInput() {
     listen(canvas, 'pointerdown', (e) => {
       canvas.setPointerCapture(e.pointerId);
+      if (document.activeElement !== root) root.focus({ preventScroll: true });
       pointers.set(e.pointerId, { x: e.offsetX, y: e.offsetY });
       interacted = true;
       if (pointers.size === 1) down = { x: e.offsetX, y: e.offsetY, t: performance.now(), lon: view.tLon, lat: view.tLat };
@@ -403,15 +426,21 @@ export function mountGlobe(el, { mode = 'global' } = {}) {
     listen(canvas, 'pointerup', up);
     listen(canvas, 'pointercancel', up);
     listen(canvas, 'wheel', (e) => {
+      // Embedded in a page, a plain wheel scrolls the page; Ctrl/Cmd (or a focused globe) zooms.
+      if (embedded && !(e.ctrlKey || e.metaKey) && !globeHasFocus()) { showZoomHint(); return; }
       e.preventDefault();
       interacted = true;
       view.tDist = Math.min(view.maxDist, Math.max(view.minDist, view.tDist * Math.exp(e.deltaY * 0.0012)));
     }, { passive: false });
-    listen(window, 'keydown', (e) => {
-      if (e.target && /input|textarea|select/i.test(e.target.tagName) && e.target.type !== 'range') return;
-      if (e.key === ' ' && e.target === document.body) { e.preventDefault(); togglePlay(); }
+    // Keys only act while focus is inside the globe (or, full screen, on the bare page).
+    const onKey = (e) => {
+      const t = e.target;
+      if (t && /^(input|textarea|select|button)$/i.test(t.tagName)) return;
+      if (e.key === ' ') { e.preventDefault(); togglePlay(); }
       if (e.key === 'Escape') select(null);
-    });
+    };
+    listen(root, 'keydown', onKey);
+    if (!embedded) listen(window, 'keydown', (e) => { if (e.target === document.body) onKey(e); });
 
     ui.on('item', () => {});
     ui.on('play', togglePlay);
@@ -439,6 +468,7 @@ export function mountGlobe(el, { mode = 'global' } = {}) {
   // ---- frame ----
   let last = performance.now();
   let frameNo = 0;
+  let lastDpr = window.devicePixelRatio || 1;
   let month = -1;
   const frameTimes = [];
 
@@ -448,6 +478,7 @@ export function mountGlobe(el, { mode = 'global' } = {}) {
     last = now;
     const dt = dtMs / 1000;
     frameNo++;
+    if ((window.devicePixelRatio || 1) !== lastDpr) { lastDpr = window.devicePixelRatio || 1; layout(); }
     S.frameMs = S.frameMs ? S.frameMs * 0.95 + dtMs * 0.05 : dtMs;
     S.fps = 1000 / S.frameMs;
     frameTimes.push(dtMs);
@@ -510,8 +541,9 @@ export function mountGlobe(el, { mode = 'global' } = {}) {
   });
 
   // ---- dev hook ----
+  let hook = null;
   if (import.meta.env && (import.meta.env.DEV || import.meta.env.MODE === 'development')) {
-    window.__drift = {
+    hook = window.__drift = {
       get fps() { return S.fps; },
       get members() { return S.members; },
       get backend() { return S.backend; },
@@ -530,6 +562,8 @@ export function mountGlobe(el, { mode = 'global' } = {}) {
       tap(x, y) { tap(x, y); },
       isLand(lon, lat) { return isLand(lon, lat); },
       clear() { if (worker) worker.postMessage({ type: 'clear' }); },
+      stopSim() { if (worker) worker.terminate(); worker = null; }, // measurement only: frees the CPU
+      trailBudget(n) { parts.setTrailWriteBudget(n); },
       computed() { return [...S.tracks.values()].map((t) => ({ dropId: t.dropId, day: t.lastDay, done: t.done })); },
       select(dropId, fragId = dropId * 256) { select({ dropId, fragId }); },
       cpu() { return { ...S.cpu }; },
@@ -553,10 +587,12 @@ export function mountGlobe(el, { mode = 'global' } = {}) {
       if (parts) parts.dispose();
       if (ocean) ocean.dispose();
       if (fieldTex) fieldTex.forEach((t) => t.dispose());
+      for (const t of [landTex, waterTex, paperTex]) if (t) t.dispose();
       if (renderer) renderer.dispose();
       ui.dispose();
       root.remove();
-      if (window.__drift) delete window.__drift;
+      if (starsUrl) URL.revokeObjectURL(starsUrl);
+      if (hook && window.__drift === hook) delete window.__drift;
     },
   };
 }
