@@ -1,6 +1,6 @@
 {
- "totalBytes": 8143875,
- "count": 86,
+ "totalBytes": 7915695,
+ "count": 87,
  "files": [
   {
    "file": "asset-bottle.webp",
@@ -10,51 +10,51 @@
   },
   {
    "file": "frag/fibres-1.webp",
-   "w": 416,
-   "h": 499,
-   "bytes": 49062
+   "w": 429,
+   "h": 460,
+   "bytes": 59532
   },
   {
    "file": "frag/fibres-2.webp",
-   "w": 440,
-   "h": 568,
-   "bytes": 69712
+   "w": 320,
+   "h": 478,
+   "bytes": 36252
   },
   {
    "file": "frag/fibres-3.webp",
    "w": 376,
-   "h": 410,
-   "bytes": 64118
+   "h": 512,
+   "bytes": 58202
   },
   {
    "file": "frag/fibres-4.webp",
-   "w": 385,
-   "h": 457,
-   "bytes": 63468
+   "w": 370,
+   "h": 472,
+   "bytes": 37602
   },
   {
    "file": "frag/fibres-5.webp",
-   "w": 365,
-   "h": 496,
-   "bytes": 59896
+   "w": 389,
+   "h": 472,
+   "bytes": 65084
   },
   {
    "file": "frag/fibres-6.webp",
-   "w": 456,
-   "h": 445,
-   "bytes": 62290
+   "w": 356,
+   "h": 440,
+   "bytes": 50000
   },
   {
    "file": "frag/fibres-7.webp",
-   "w": 378,
-   "h": 518,
-   "bytes": 68044
+   "w": 383,
+   "h": 453,
+   "bytes": 51288
   },
   {
    "file": "frag/fibres-8.webp",
-   "w": 386,
-   "h": 452,
-   "bytes": 51822
+   "w": 372,
+   "h": 438,
+   "bytes": 56738
   },
   {
    "file": "frag/fibres-atlas.json",
@@ -64,7 +64,7 @@
    "file": "frag/fibres-atlas.webp",
    "w": 768,
    "h": 768,
-   "bytes": 216192
+   "bytes": 210368
   },
   {
    "file": "frag/film-1.webp",
@@ -126,75 +126,75 @@
   },
   {
    "file": "frag/nurdles-1.webp",
-   "w": 246,
-   "h": 198,
-   "bytes": 10380
+   "w": 74,
+   "h": 72,
+   "bytes": 2170
   },
   {
    "file": "frag/nurdles-10.webp",
-   "w": 262,
-   "h": 209,
-   "bytes": 17076
+   "w": 79,
+   "h": 69,
+   "bytes": 1724
   },
   {
    "file": "frag/nurdles-11.webp",
-   "w": 254,
-   "h": 208,
-   "bytes": 12244
+   "w": 77,
+   "h": 68,
+   "bytes": 2004
   },
   {
    "file": "frag/nurdles-12.webp",
-   "w": 265,
-   "h": 222,
-   "bytes": 17886
+   "w": 72,
+   "h": 70,
+   "bytes": 1726
   },
   {
    "file": "frag/nurdles-2.webp",
-   "w": 255,
-   "h": 197,
-   "bytes": 15766
+   "w": 75,
+   "h": 71,
+   "bytes": 1934
   },
   {
    "file": "frag/nurdles-3.webp",
-   "w": 244,
-   "h": 198,
-   "bytes": 15572
+   "w": 76,
+   "h": 70,
+   "bytes": 2076
   },
   {
    "file": "frag/nurdles-4.webp",
-   "w": 229,
-   "h": 209,
-   "bytes": 9830
+   "w": 74,
+   "h": 70,
+   "bytes": 1780
   },
   {
    "file": "frag/nurdles-5.webp",
-   "w": 253,
-   "h": 212,
-   "bytes": 11658
+   "w": 82,
+   "h": 74,
+   "bytes": 2264
   },
   {
    "file": "frag/nurdles-6.webp",
-   "w": 263,
-   "h": 209,
-   "bytes": 17104
+   "w": 72,
+   "h": 74,
+   "bytes": 1876
   },
   {
    "file": "frag/nurdles-7.webp",
-   "w": 256,
-   "h": 195,
-   "bytes": 12600
+   "w": 73,
+   "h": 74,
+   "bytes": 1892
   },
   {
    "file": "frag/nurdles-8.webp",
-   "w": 264,
-   "h": 202,
-   "bytes": 16674
+   "w": 78,
+   "h": 71,
+   "bytes": 2202
   },
   {
    "file": "frag/nurdles-9.webp",
-   "w": 245,
-   "h": 202,
-   "bytes": 11286
+   "w": 79,
+   "h": 70,
+   "bytes": 2136
   },
   {
    "file": "frag/nurdles-atlas.json",
@@ -204,7 +204,7 @@
    "file": "frag/nurdles-atlas.webp",
    "w": 1024,
    "h": 768,
-   "bytes": 190084
+   "bytes": 86624
   },
   {
    "file": "frag/shard-1.webp",
@@ -266,63 +266,63 @@
   },
   {
    "file": "frag/tyre-1.webp",
-   "w": 257,
-   "h": 206,
-   "bytes": 12834
+   "w": 400,
+   "h": 243,
+   "bytes": 15632
   },
   {
    "file": "frag/tyre-10.webp",
-   "w": 313,
-   "h": 232,
-   "bytes": 17918
+   "w": 340,
+   "h": 227,
+   "bytes": 13842
   },
   {
    "file": "frag/tyre-2.webp",
-   "w": 286,
-   "h": 267,
-   "bytes": 16392
+   "w": 415,
+   "h": 163,
+   "bytes": 14200
   },
   {
    "file": "frag/tyre-3.webp",
-   "w": 310,
-   "h": 201,
-   "bytes": 12932
+   "w": 433,
+   "h": 233,
+   "bytes": 19068
   },
   {
    "file": "frag/tyre-4.webp",
-   "w": 172,
-   "h": 264,
-   "bytes": 12220
+   "w": 181,
+   "h": 364,
+   "bytes": 14984
   },
   {
    "file": "frag/tyre-5.webp",
-   "w": 188,
-   "h": 268,
-   "bytes": 12668
+   "w": 397,
+   "h": 187,
+   "bytes": 15770
   },
   {
    "file": "frag/tyre-6.webp",
-   "w": 314,
-   "h": 152,
-   "bytes": 14252
+   "w": 184,
+   "h": 384,
+   "bytes": 13922
   },
   {
    "file": "frag/tyre-7.webp",
-   "w": 167,
-   "h": 266,
-   "bytes": 12256
+   "w": 416,
+   "h": 183,
+   "bytes": 16240
   },
   {
    "file": "frag/tyre-8.webp",
-   "w": 357,
-   "h": 158,
-   "bytes": 15398
+   "w": 467,
+   "h": 182,
+   "bytes": 19284
   },
   {
    "file": "frag/tyre-9.webp",
-   "w": 267,
-   "h": 184,
-   "bytes": 12638
+   "w": 403,
+   "h": 264,
+   "bytes": 17508
   },
   {
    "file": "frag/tyre-atlas.json",
@@ -332,7 +332,13 @@
    "file": "frag/tyre-atlas.webp",
    "w": 1024,
    "h": 768,
-   "bytes": 125416
+   "bytes": 94710
+  },
+  {
+   "file": "globe-fallback.webp",
+   "w": 1600,
+   "h": 1000,
+   "bytes": 59886
   },
   {
    "file": "item-bag.webp",
@@ -354,9 +360,9 @@
   },
   {
    "file": "item-tyre.webp",
-   "w": 892,
-   "h": 1136,
-   "bytes": 273370
+   "w": 1064,
+   "h": 1160,
+   "bytes": 322358
   },
   {
    "file": "life-albatross.webp",
