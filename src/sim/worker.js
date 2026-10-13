@@ -27,6 +27,7 @@ import { features } from './features.js';
 import { decodeTile } from './field.js';
 import { createSim, MAX_DAYS } from './ensemble.js';
 import { snapshotDays, packSnapshot } from './snapshots.js';
+import { createSalishSim, packSalish, salishSnapshotHours, SALISH } from './salish.js';
 
 const now = () => (typeof performance !== 'undefined' ? performance.now() : Date.now());
 const errText = (e) => String((e && e.message) || e);
@@ -48,7 +49,10 @@ function yieldToEvents() {
  */
 export function createWorkerCore(post, { fetchFn = (u) => fetch(u), ortLib = ort, featuresFn = features } = {}) {
   const days = snapshotDays();
-  const snapIndex = new Map(days.map((d, i) => [d, i]));
+  let snapIndex = new Map(days.map((d, i) => [d, i]));
+  // Swapped by the Salish mode: its sim counts hours, packs Float32 positions, runs 720 steps.
+  let maxDays = MAX_DAYS;
+  let pack = packSnapshot;
   let fields = null, predict = null, sim = null, mode = 'global';
   const ops = []; // queued 'drop' / 'clear' messages, applied between steps
   let looping = false;
@@ -98,7 +102,7 @@ export function createWorkerCore(post, { fetchFn = (u) => fetch(u), ortLib = ort
   function postSnapshot(dropId) {
     const day = sim.ageOf(dropId);
     if (!snapIndex.has(day)) return;
-    const snap = packSnapshot(sim, dropId);
+    const snap = pack(sim, dropId);
     post({
       type: 'snapshot', dropId, index: snapIndex.get(day), day,
       positions: snap.positions, meta: snap.meta, fragments: snap.fragments, usingFallback: sim.usingFallback,
@@ -136,7 +140,7 @@ export function createWorkerCore(post, { fetchFn = (u) => fetch(u), ortLib = ort
         if (!turn.length) break;
         for (const dropId of turn) {
           applyOps(); // a 'clear' or a budget retirement may have removed this drop
-          if (!sim.drops.has(dropId) || sim.ageOf(dropId) >= MAX_DAYS) continue;
+          if (!sim.drops.has(dropId) || sim.ageOf(dropId) >= maxDays) continue;
           try {
             await sim.stepDrop(dropId);
           } catch (e) {
@@ -147,7 +151,7 @@ export function createWorkerCore(post, { fetchFn = (u) => fetch(u), ortLib = ort
           if (!sim.drops.has(dropId)) continue;
           const day = sim.ageOf(dropId);
           postSnapshot(dropId);
-          if (day >= MAX_DAYS) post({ type: 'done', dropId });
+          if (day >= maxDays) post({ type: 'done', dropId });
           const t = now();
           if (t - (lastProgress.get(dropId) ?? -Infinity) >= 100) { post({ type: 'progress', dropId, day }); lastProgress.set(dropId, t); }
           if (t - lastYield >= 16) { await yieldToEvents(); lastYield = now(); }
@@ -162,6 +166,25 @@ export function createWorkerCore(post, { fetchFn = (u) => fetch(u), ortLib = ort
     if (ops.length) kick();
   }
 
+  /**
+   * Salish Sea mode (Task 9): {type:'mode', mode:'salish', tideUrl, landMask:{width,height,data}}.
+   * Replaces the sim with the tidal particle tracker (src/sim/salish.js): ages in hours, hourly
+   * snapshots to 72 h then 6-hourly to 720 h, Float32 positions. No model, no wind.
+   */
+  async function initSalish({ tideUrl, landMask }) {
+    try {
+      const tile = decodeTile(await fetchBuf(tideUrl));
+      sim = createSalishSim({ tile, landMask, onRetire: (dropId) => post({ type: 'retired', dropId }) });
+      snapIndex = new Map(salishSnapshotHours().map((h, i) => [h, i]));
+      maxDays = SALISH.maxHours;
+      pack = packSalish;
+      post({ type: 'ready', fallback: false, mode: 'salish' });
+      kick();
+    } catch (e) {
+      post({ type: 'error', stage: 'init', reason: errText(e) });
+    }
+  }
+
   function handle(msg) {
     switch (msg && msg.type) {
       case 'init': return init(msg);
@@ -174,6 +197,7 @@ export function createWorkerCore(post, { fetchFn = (u) => fetch(u), ortLib = ort
       case 'mode':
         mode = msg.mode === 'salish' ? 'salish' : 'global';
         post({ type: 'status', mode });
+        if (mode === 'salish' && msg.tideUrl && msg.landMask) return initSalish(msg);
         return;
       default:
         post({ type: 'error', stage: 'message', reason: `unknown message type ${msg && msg.type}` });
