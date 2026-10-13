@@ -385,6 +385,25 @@ export const CONSTANTS = {
       "assumption": true
     }
   ],
+  "salish": {
+    "diffusivityM2s": {
+      "value": 0.6,
+      "range": [0.26, 0.85],
+      "src": "Okubo1971",
+      "assumption": true,
+      "why": "Okubo apparent diffusivity K = 0.0103 l^1.15 (cm2/s, l in cm) at l = 1 km, the smallest scale just above one ~700 m SalishSeaCast cell; range = l of 0.5-1.4 km. Salish Sea drifter diffusivities (Pawlowicz2019/2021) exist but could not be retrieved."
+    },
+    "randomWalk": {
+      "value": "dx = sqrt(2*K*dt) * N(0,1) per axis",
+      "src": "Duran2021"
+    },
+    "groundingTimescaleDays": {
+      "value": 3,
+      "src": "Pawlowicz2019",
+      "assumption": true,
+      "why": "drifters ground with ~exponential time-to-grounding, mean 'a few days' (Pawlowicz2019 abstract); 'generally within 3 days' (Blanken2020 summary). E-folding time for particles in coastal cells in Salish mode."
+    }
+  },
   "childrenPerSplit": {
     "value": 4,
     "assumption": true,

@@ -507,7 +507,91 @@ leakage from the South Atlantic and Indian Ocean patches flows towards the South
 
 ---
 
-## 8. Main uncertainties (summary)
+## 8. Salish Sea particle tracking
+
+In Salish Sea mode, floating particles move with SalishSeaCast's hourly near-surface currents on a
+~0.01° × 0.005° grid (~700 × 550 m). A random walk with horizontal eddy diffusivity K is added to
+stand in for motion the grid cannot resolve, so each fragment spreads as a cloud of possible
+positions rather than following one line.
+
+### 8.1 Horizontal eddy diffusivity K
+
+**[Okubo1971]** Okubo, A. (1971). Oceanic diffusion diagrams. *Deep-Sea Research* 18(8), 789-802.
+https://doi.org/10.1016/0011-7471(71)90046-5 *(DOI from memory and not verified; the volume, issue
+and pages are confirmed in Blanken 2020's reference list)*
+- *What it did:* compiled dye-release experiments covering roughly 100 m to 100 km and hours to a
+  month. It fitted the growth of patch variance with time, σ_rc² = 0.0108 t^2.34 (cm², s), and
+  apparent diffusivity against patch scale.
+- *Verification:* I could not open the original paper. The variance law is reproduced as Eq. A.7 in
+  `[Duran2021]`, citing Okubo's Eq. 3. Apparent diffusivity is defined as K_a = σ_rc²/(4t), and
+  Okubo takes the patch scale as l = 3σ_rc. Substituting the variance law gives
+  **K_a = 0.0103 l^1.15 (cm²/s, with l in cm)**, which reproduces the commonly quoted form; the
+  coefficient comes out at 0.01026 and the exponent at 1.145. A lecture slide and `[Duran2021]`
+  both independently report the ~l^1.1-1.15 scaling.
+- *Values at Drift's scales:* l = 500 m gives 0.26 m²/s, 700 m gives 0.38 m²/s, **1 km gives
+  0.58 m²/s** and 1.4 km gives 0.85 m²/s.
+- *Certainty:* medium. The relation is an empirical envelope with about an order of magnitude of
+  scatter. It comes from open-sea and coastal dye studies, not from the Salish Sea itself.
+
+**[Duran2021]** Duran, R., Nordam, T., Serra, M., Barker, C. (2021). Horizontal transport in
+oil-spill modeling. In *Marine Hydrocarbon Spill Assessments* (Elsevier), chapter 3. Preprint:
+arXiv:2009.12954 (preprint read). *(The book chapter details are not verified; the preprint is.)* It
+recommends a random walk whose diffusivity is chosen by scale or by particle age, following Okubo.
+
+**Salish Sea-specific values:**
+- `[Pawlowicz2019]` measured a dispersion coefficient from Salish Sea drifters. Their abstract says
+  dispersion is often much more important than mean advection in parts of the Salish Sea. **I could
+  not get the numeric value:** the full text and PDF both returned HTTP 403 and no open copy was
+  found. Do not quote a number from it.
+- `[Pawlowicz2021]` modelled 800 drifter groundings with a classical eddy-diffusivity formulation.
+  The best-matching diffusivity was similar to the one found in open water away from the coast
+  (abstract; numeric value not retrieved).
+- I found no published horizontal diffusivity used in SalishSeaCast/OceanParcels runs.
+- `[Blanken2020]` (Kitimat fjords, northern BC; full text read) derived a single-particle apparent
+  diffusivity of 7.9 × 10⁶ cm²/s (790 m²/s) at 48 hours. That figure describes total drifter
+  spreading over ~100 km, including motion the model *does* resolve, so it is **not** a value for
+  sub-grid diffusion. The authors placed it near the upper limit of Okubo's 100 km range.
+
+**Chosen value: K = 0.6 m²/s** (assumption). This is Okubo's K_a at l = 1 km. One kilometre is
+roughly the smallest scale just above one 700 m model cell, below which SalishSeaCast cannot
+represent eddies. **Range 0.26-0.85 m²/s** (l = 0.5-1.4 km, about one to two grid cells). Random-walk
+step per axis: Δx = sqrt(2 K Δt) × N(0,1). With Δt = 3600 s this is about 66 m per hour.
+
+### 8.2 Where floating things from the Fraser go (story copy)
+
+1. **The Salish Sea traps floating objects. Surface drifters usually run aground within days, long
+   before they could reach the open ocean.** More than 400 tracked drifters (2,200 drifter-days)
+   and nearly 6,000 driftcards were released. Time to grounding was roughly exponentially
+   distributed with a mean of only a few days, much shorter than the time to reach the ocean.
+   `[Pawlowicz2019]` Pawlowicz, R., Hannah, C., Rosenberger, A. (2019). Lagrangian observations of
+   estuarine residence times, dispersion, and trapping in the Salish Sea. *Estuarine, Coastal and
+   Shelf Science* 225, 106246. https://doi.org/10.1016/j.ecss.2019.106246 (abstract read).
+   Certainty: high.
+2. **They typically ground within about 3 days, though some drifted for more than 30 days.**
+   This is how `[Blanken2020]` summarises Pawlowicz et al. 2019. Blanken, H., Hannah, C.,
+   Klymak, J.M., Juhász, T. (2020). Surface Drift and Dispersion in a Multiply Connected Fjord
+   System. *J. Geophys. Res. Oceans* 125(2), e2019JC015425. https://doi.org/10.1029/2019JC015425.
+   Certainty: medium, because this is a secondary summary.
+3. **Grounding is chaotic one object at a time but predictable on average.** In 800 analysed
+   groundings, grounding was only slightly more likely at high tide. The current ad hoc beaching
+   rules in models are qualitatively reasonable but probably not accurate enough for mass budgets.
+   `[Pawlowicz2021]` Pawlowicz, R. (2021). The Grounding of Floating Objects in a Marginal Sea.
+   *J. Phys. Oceanogr.* 51(2), 537-551. https://doi.org/10.1175/JPO-D-20-0183.1 (abstract read).
+
+The UBC Drifter Project says it expects Fraser outflow to pass Victoria and continue down Juan de
+Fuca Strait. It presents this as a hypothesis to test, not a result, so **do not state the exit
+route as fact.** The same page gives Fraser discharge as ~2,000 m³/s at winter low flow and more than
+10,000 m³/s in June-July (UBC Drifter Project, https://drifters.eoas.ubc.ca/about; project page,
+not peer reviewed).
+
+**Salish grounding timescale (assumption):** the global beaching value λB = 10 d (section 4) does not
+fit this basin. For Salish mode we use **3 days** as the e-folding time to ground, for particles in
+coastal cells (`groundingTimescaleDays`, from "a few days" in `[Pawlowicz2019]` and "within 3 days"
+in `[Blanken2020]`).
+
+---
+
+## 9. Main uncertainties (summary)
 
 1. **Fragmentation timescales are the weakest link.** No study measures time to fragment by size
    class at the ocean surface. PET has no marine rate except a seafloor "robust for ~15 yr". All
@@ -521,6 +605,9 @@ leakage from the South Atlantic and Indian Ocean patches flows towards the South
    gyres. Mm-scale particles can also resurface.
 5. **The gyre boxes are hand-drawn** around documented features. Only the North Pacific box is
    anchored to a published survey extent.
+6. **The Salish Sea K is not from the Salish Sea.** It comes from Okubo's general relation at an
+   assumed 1 km scale. The Salish Sea drifter diffusivities in Pawlowicz 2019/2021 exist but could
+   not be retrieved, so swap them in once someone has access.
 
 ---
 
@@ -620,7 +707,12 @@ leakage from the South Atlantic and Indian Ocean patches flows towards the South
       { "name": "North Atlantic", "lonMin": -70, "lonMax": -40, "latMin": 22, "latMax": 38, "src": "Law2010", "assumption": true },
       { "name": "South Atlantic", "lonMin": -25, "lonMax": 5, "latMin": -38, "latMax": -22, "src": "vanSebille2012", "assumption": true },
       { "name": "Indian Ocean", "lonMin": 70, "lonMax": 100, "latMin": -35, "latMax": -22, "src": "vanSebille2012", "assumption": true }
-    ]
+    ],
+    "salish": {
+      "diffusivityM2s": { "value": 0.6, "range": [0.26, 0.85], "src": "Okubo1971", "assumption": true, "why": "Okubo apparent diffusivity K = 0.0103 l^1.15 (cm2/s, l in cm) at l = 1 km, the smallest scale just above one ~700 m SalishSeaCast cell; range = l of 0.5-1.4 km. Salish Sea drifter diffusivities (Pawlowicz2019/2021) exist but could not be retrieved." },
+      "randomWalk": { "value": "dx = sqrt(2*K*dt) * N(0,1) per axis", "src": "Duran2021" },
+      "groundingTimescaleDays": { "value": 3, "src": "Pawlowicz2019", "assumption": true, "why": "drifters ground with ~exponential time-to-grounding, mean 'a few days' (Pawlowicz2019 abstract); 'generally within 3 days' (Blanken2020 summary). E-folding time for particles in coastal cells in Salish mode." }
+    }
   }
 }
 ```
