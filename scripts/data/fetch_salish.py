@@ -32,14 +32,18 @@ DS_CUR = "ubcSSfDepthAvgdCurrents1h"
 DS_GRID = "ubcSSnBathymetryV21-08"
 DS_MASK = "ubcSSn3DMeshMaskV21-08"
 
-LON0, DLON, NX = -124.20, 0.01, 131
-LAT0, DLAT, NY = 48.90, 0.005, 141
+LON0, DLON, NX = -125.20, 0.01, 251
+LAT0, DLAT, NY = 48.20, 0.006, 284
 NFRAMES = 25
 SCALE = 0.001
 SS = 4  # land.png supersampling
 COSLAT = np.cos(np.radians(49.25))
 # Fraser mouth reference used to pick the most energetic 25 h window
 REF = (49.10, -123.30)
+# Fixed 25 h window (first frame, hour-centred UTC). If the rolling forecast
+# archive no longer holds it, the script falls back to the strongest 25 h
+# window currently available near REF and records that in meta.json.
+START_FRAME = "2026-10-09T08:30:00"
 
 
 def get_nc(name, dataset, query):
@@ -53,8 +57,7 @@ def get_nc(name, dataset, query):
 
 
 def main():
-    ny_m, nx_m = 898, 398
-    full = f"[(0):(897)][(0):(397)]"
+    full = "[(0):(897)][(0):(397)]"
     g = get_nc("grid.nc", DS_GRID, f"latitude{full},longitude{full}")
     lat_m, lon_m = g["latitude"].values, g["longitude"].values
     m = get_nc("tmask.nc", DS_MASK, "tmask[0][0][(0):(897)][(0):(397)]")
@@ -68,31 +71,59 @@ def main():
     y0, y1, x0, x1 = ys.min(), ys.max(), xs.min(), xs.max()
     print(f"model box gridY {y0}..{y1} gridX {x0}..{x1}")
 
-    box = f"[0:last][({y0}):({y1})][({x0}):({x1})]"
-    c = get_nc("cur_box.nc", DS_CUR, f"VelEast5{box},VelNorth5{box}")
-    times = c["time"].values
-    ue = np.nan_to_num(c["VelEast5"].values)
-    vn = np.nan_to_num(c["VelNorth5"].values)
-    nt = len(times)
-    print(f"{nt} hourly frames {times[0]} .. {times[-1]}")
-
-    # Pick the 25 h window with the greatest mean speed near the Fraser mouth,
-    # starting no earlier than the first frame (strong, clean spring-ish cycle).
     sub_lat, sub_lon = lat_m[y0:y1 + 1, x0:x1 + 1], lon_m[y0:y1 + 1, x0:x1 + 1]
     sub_mask = tmask[y0:y1 + 1, x0:x1 + 1]
-    near = (np.abs(sub_lat - REF[0]) < 0.12) & (np.abs(sub_lon - REF[1]) < 0.2) & sub_mask
-    spd = np.hypot(ue, vn)[:, near].mean(axis=1)
-    best = max(range(nt - NFRAMES + 1), key=lambda i: spd[i:i + NFRAMES].mean())
-    print(f"window start index {best}, mean near-Fraser speed {spd[best:best+NFRAMES].mean():.3f} m/s")
-    ue, vn = ue[best:best + NFRAMES], vn[best:best + NFRAMES]
+    sp = f"[({y0}):({y1})][({x0}):({x1})]"
+
+    def fetch_cur(tag, trange):
+        q = f"VelEast5{trange}{sp},VelNorth5{trange}{sp}"
+        return get_nc(f"cur_{tag}_{y0}_{y1}_{x0}_{x1}.nc", DS_CUR, q)
+
+    t0 = np.datetime64(START_FRAME)
+    t1 = t0 + np.timedelta64(NFRAMES - 1, "h")
+    pinned = f"cur_{START_FRAME.replace(':', '')}_{y0}_{y1}_{x0}_{x1}.nc"
+    c = None
+    try:
+        c = fetch_cur(START_FRAME.replace(":", ""), f"[({START_FRAME}Z):1:({np.datetime_as_string(t1, unit='s')}Z)]")
+        if c.sizes["time"] != NFRAMES:
+            c = None
+    except requests.HTTPError:
+        c = None
+    if c is not None:
+        best, t_note = 0, "fixed START_FRAME"
+    else:
+        (CACHE / pinned).unlink(missing_ok=True)
+        print("START_FRAME not in archive; picking strongest 25 h window available")
+        c = fetch_cur("all", "[0:last]")
+        times_all = c["time"].values
+        near = (np.abs(sub_lat - REF[0]) < 0.12) & (np.abs(sub_lon - REF[1]) < 0.2) & sub_mask
+        spd = np.nan_to_num(np.hypot(c["VelEast5"].values, c["VelNorth5"].values))[:, near].mean(axis=1)
+        best = max(range(len(times_all) - NFRAMES + 1), key=lambda i: spd[i:i + NFRAMES].mean())
+        t_note = "strongest 25 h near Fraser mouth in the archive at fetch time"
+    times = c["time"].values
+    ue = c["VelEast5"].values[best:best + NFRAMES]
+    vn = c["VelNorth5"].values[best:best + NFRAMES]
+    # tmask water cells: NaN is acceptable only where the source has no current
+    # at ALL frames (destaggered u/v undefined, mostly one-cell coastal/shallow
+    # points); those are dropped from the lookup. Partial NaN is a hard error.
+    nanw = np.isnan(ue[:, sub_mask])
+    if (nanw.any(0) != nanw.all(0)).any() or (nanw != np.isnan(vn[:, sub_mask])).any():
+        raise SystemExit("NaN current at a tmask water cell in some but not all frames / u,v mismatch")
+    nodata_frac = nanw.all(0).mean()
+    if nodata_frac > 0.15:
+        raise SystemExit(f"{nodata_frac:.1%} of tmask water cells have no current: source incomplete")
+    print(f"{int(nanw.all(0).sum())} of {nanw.shape[1]} tmask water cells ({nodata_frac:.1%}) have no source current; excluded")
+    valid = sub_mask & ~np.isnan(ue[0])
+    ue, vn = np.nan_to_num(ue), np.nan_to_num(vn)
     t_first = np.datetime_as_string(times[best], unit="s") + "Z"
+    print(f"window {t_first} ({t_note}), {len(times)} frames fetched")
 
     # --- regrid: nearest model water cell within 1.5 model cells ---
     def proj(lon, lat):
         return np.column_stack([np.ravel(lon) * COSLAT, np.ravel(lat)])
 
-    wlat, wlon = sub_lat[sub_mask], sub_lon[sub_mask]
-    wue, wvn = ue[:, sub_mask], vn[:, sub_mask]
+    wlat, wlon = sub_lat[valid], sub_lon[valid]
+    wue, wvn = ue[:, valid], vn[:, valid]
     # typical model spacing (deg, in projected units) for the distance cut-off
     dx = np.median(np.abs(np.diff(sub_lon, axis=1))) * COSLAT
     dy = np.median(np.abs(np.diff(sub_lat, axis=0)))
@@ -139,8 +170,7 @@ def main():
         "frames": NFRAMES,
         "grid": {"lon0": LON0, "lat0": LAT0, "dlon": DLON, "dlat": DLAT, "nx": NX, "ny": NY,
                  "scale": SCALE, "landPng": {"width": sx, "height": sy, "northUp": True}},
-        "notes": ("Frame times are hour-centred (:30 UTC) means. Window chosen as the 25 h span with the "
-                  "strongest mean current near the Fraser mouth from the ~7-day forecast archive. "
+        "notes": (f"Frame times are hour-centred (:30 UTC) means. Window: {t_note}. "
                   "Regridded by nearest model water cell within 1.5 model cells; land.png from tmask. "
                   "Licence: Apache-2.0, (c) SalishSeaCast Project Contributors and UBC."),
     }
