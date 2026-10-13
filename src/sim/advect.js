@@ -1,5 +1,7 @@
 // Midpoint RK2 advection on a spherical Earth. Pure module.
-const R = 6371000;
+/** Mean Earth radius, m. */
+export const EARTH_RADIUS_M = 6371000;
+const R = EARTH_RADIUS_M;
 const DEG = 180 / Math.PI;
 
 export function metersToDeg(dxM, dyM, lat) {

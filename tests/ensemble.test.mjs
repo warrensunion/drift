@@ -45,12 +45,12 @@ test('members move by mu exactly when sigma is ~0', async () => {
     near(sim.members.lat[i], 1 + dLat, 1e-6, 'lat');
     near(sim.members.distanceKm[i], Math.hypot(10, 5), 1e-4, 'distance');
   }
-  assert.equal(sim.day, 1);
+  assert.equal(sim.ageOf(0), 1);
 });
 
 test('members move by mu + sigma*z (Box-Muller from the injected rng)', async () => {
   const sigma = 2;
-  const sim = createSim({ fields: fields(), predict: fakePredict(10, 5, Math.log(sigma)), rng: constRng(0.3), featuresFn: fakeFeatures });
+  const sim = createSim({ fields: fields(), predict: fakePredict(10, 5, Math.log(sigma)), rngFactory: () => constRng(0.3), featuresFn: fakeFeatures });
   sim.drop('bag', 0, 0, 100);
   await sim.step();
   const [z1, z2] = gaussianPair(constRng(0.3));
@@ -69,7 +69,7 @@ test('gaussianPair is standard normal-ish', () => {
 
 test('a landward move beaches with p=0.095 at the current position, else stays put', async () => {
   // rng 0.01 < 0.095 -> beaches.
-  let sim = createSim({ fields: fields({ landEast: true }), predict: fakePredict(100, 0, Math.log(1e-9)), rng: constRng(0.01), featuresFn: fakeFeatures });
+  let sim = createSim({ fields: fields({ landEast: true }), predict: fakePredict(100, 0, Math.log(1e-9)), rngFactory: () => constRng(0.01), featuresFn: fakeFeatures });
   sim.drop('bag', 8.5, 0, 100);
   await sim.step();
   for (let i = 0; i < 24; i++) {
@@ -77,7 +77,7 @@ test('a landward move beaches with p=0.095 at the current position, else stays p
     near(sim.members.lon[i], 8.5, 1e-9); near(sim.members.lat[i], 0, 1e-9);
   }
   // rng 0.5 >= 0.095 -> stays where it is, still floating.
-  sim = createSim({ fields: fields({ landEast: true }), predict: fakePredict(100, 0, Math.log(1e-9)), rng: constRng(0.5), featuresFn: fakeFeatures });
+  sim = createSim({ fields: fields({ landEast: true }), predict: fakePredict(100, 0, Math.log(1e-9)), rngFactory: () => constRng(0.5), featuresFn: fakeFeatures });
   sim.drop('bag', 8.5, 0, 100);
   await sim.step();
   for (let i = 0; i < 24; i++) {
@@ -87,7 +87,7 @@ test('a landward move beaches with p=0.095 at the current position, else stays p
 });
 
 test('beached and sunk members stop moving', async () => {
-  const sim = createSim({ fields: fields(), predict: fakePredict(10, 5, Math.log(1e-9)), rng: constRng(0.5), featuresFn: fakeFeatures });
+  const sim = createSim({ fields: fields(), predict: fakePredict(10, 5, Math.log(1e-9)), rngFactory: () => constRng(0.5), featuresFn: fakeFeatures });
   sim.drop('bag', 0, 0, 100);
   const m = sim.members;
   for (let i = 0; i < 8; i++) m.state[i] = STATE.beached;
@@ -100,7 +100,7 @@ test('beached and sunk members stop moving', async () => {
 });
 
 test('a fragmentation event clones parent positions into each child', async () => {
-  const sim = createSim({ fields: fields(), predict: fakePredict(0, 0, Math.log(1e-9)), rng: constRng(0.5), featuresFn: fakeFeatures });
+  const sim = createSim({ fields: fields(), predict: fakePredict(0, 0, Math.log(1e-9)), rngFactory: () => constRng(0.5), featuresFn: fakeFeatures });
   const dropId = sim.drop('bag', 0, 0, 100);
   const m = sim.members;
   const parentId = m.fragmentId[0];
@@ -128,7 +128,8 @@ test('a fragmentation event clones parent positions into each child', async () =
 
 test('budget retires oldest drop at 20,000', () => {
   assert.equal(BUDGET, 20000);
-  const sim = createSim({ fields: fields(), predict: fakePredict(0, 0, 0), rng: makeRng(3), featuresFn: fakeFeatures });
+  const retired = [];
+  const sim = createSim({ fields: fields(), predict: fakePredict(0, 0, 0), rng: makeRng(3), featuresFn: fakeFeatures, onRetire: (id) => retired.push(id) });
   const perDrop = 24, fit = Math.floor(BUDGET / perDrop);
   const ids = [];
   for (let i = 0; i < fit; i++) ids.push(sim.drop('bottle', 0, 0, 1));
@@ -137,6 +138,7 @@ test('budget retires oldest drop at 20,000', () => {
   const last = sim.drop('bottle', 1, 1, 1);
   assert.ok(sim.members.count <= BUDGET);
   assert.ok(!sim.drops.has(ids[0]), 'oldest drop retired');
+  assert.deepEqual(retired, [ids[0]]);
   assert.ok(sim.drops.has(ids[1]) && sim.drops.has(last));
   assert.equal(membersOf(sim, (i) => sim.members.dropId[i] === ids[0]).length, 0);
   assert.equal(membersOf(sim, (i) => sim.members.dropId[i] === last).length, perDrop);
@@ -206,7 +208,7 @@ test('snapshot index clamps to computed', () => {
 });
 
 test('packSnapshot quantises positions and packs meta', async () => {
-  const sim = createSim({ fields: fields(), predict: fakePredict(0, 0, Math.log(1e-9)), rng: constRng(0.5), featuresFn: fakeFeatures });
+  const sim = createSim({ fields: fields(), predict: fakePredict(0, 0, Math.log(1e-9)), rngFactory: () => constRng(0.5), featuresFn: fakeFeatures });
   const id = sim.drop('bag', -12.345, 6.789, 100);
   sim.members.state[1] = STATE.sunk;
   sim.members.state[2] = STATE.beached;
@@ -254,7 +256,7 @@ test('worker core: imports without DOM, falls back to advection, posts every sna
 });
 
 test('the split clock is the mean over surface (non-sunk) members; sunk ones do not hold it back', async () => {
-  const sim = createSim({ fields: fields(), predict: fakePredict(0, 0, Math.log(1e-9)), rng: constRng(0.5), featuresFn: fakeFeatures });
+  const sim = createSim({ fields: fields(), predict: fakePredict(0, 0, Math.log(1e-9)), rngFactory: () => constRng(0.5), featuresFn: fakeFeatures });
   const dropId = sim.drop('bag', 0, 0, 100);
   const m = sim.members, parentId = m.fragmentId[0];
   const ev = sim.drops.get(dropId).schedule[0];
@@ -263,4 +265,161 @@ test('the split clock is the mean over surface (non-sunk) members; sunk ones do 
   await sim.step();
   assert.ok(!sim.fragments.has(parentId), 'split happened');
   assert.equal(m.count, 24 * ev.children.length, 'children clone all members, sunk ones included');
+});
+
+// --- Fix round 1: independent timelines, per-drop rng, deferred mutation, split budget ---
+const tick = () => new Promise((r) => setTimeout(r, 1));
+// Predict resolving on a macrotask (like a real ONNX session.run); `during` runs while it is pending.
+const slowPredict = (mx, my, logSigma, during) => {
+  let calls = 0;
+  return (x, n) => new Promise((resolve) => {
+    calls++;
+    if (during) during(calls);
+    setTimeout(() => resolve(fakePredict(mx, my, logSigma)(x, n)), 1);
+  }).then((r) => r);
+};
+
+test('each drop runs on its own timeline (day 0 = when it was dropped)', async () => {
+  const sim = createSim({ fields: fields(), predict: fakePredict(10, 0, Math.log(1e-9)), featuresFn: fakeFeatures });
+  const a = sim.drop('bag', 0, 0, 100, 1);
+  for (let d = 0; d < 5; d++) await sim.stepDrop(a);
+  const b = sim.drop('bag', 0, 0, 200, 2);
+  assert.equal(sim.ageOf(a), 5); assert.equal(sim.ageOf(b), 0);
+  assert.deepEqual(sim.activeDrops(), [b, a]); // newest first
+  await sim.step();
+  assert.equal(sim.ageOf(a), 6); assert.equal(sim.ageOf(b), 1);
+  assert.equal(sim.doyOf(b), 201);
+  const [dl] = metersToDeg(10000, 0, 0);
+  const bm = membersOf(sim, (i) => sim.members.dropId[i] === b && sim.members.state[i] === STATE.floating);
+  for (const i of bm) near(sim.members.lon[i], dl, 1e-9, 'b moved exactly one day');
+});
+
+test('each drop has its own rng stream: another drop does not perturb it', async () => {
+  const run = async (withOther) => {
+    const sim = createSim({ fields: fields(), predict: fakePredict(3, 2, Math.log(5)), featuresFn: fakeFeatures });
+    if (withOther) sim.drop('bag', -3, -3, 50, 99);
+    const a = sim.drop('bag', 0, 0, 100, 7);
+    for (let d = 0; d < 4; d++) await sim.step();
+    return membersOf(sim, (i) => sim.members.dropId[i] === a).map((i) => [sim.members.lon[i], sim.members.lat[i]]);
+  };
+  assert.deepEqual(await run(true), await run(false));
+});
+
+test('a drop issued while predict is pending is applied after the step (no stale indices)', async () => {
+  let sim, c;
+  const during = (calls) => { if (calls === 1) c = sim.drop('bag', 5, 5, 100, 3); }; // forces budget retirement of A
+  sim = createSim({ fields: fields(), predict: slowPredict(10, 0, Math.log(1e-9), during), featuresFn: fakeFeatures, budget: 48 });
+  const a = sim.drop('bag', 0, 0, 100, 1);
+  const b = sim.drop('bag', -10, 0, 100, 2);
+  const p = sim.step(); // steps b first (newest), then a
+  await tick();
+  assert.equal(sim.drops.has(c), false, 'not applied mid-step');
+  await p;
+  const [dl] = metersToDeg(10000, 0, 0);
+  assert.ok(!sim.drops.has(a), 'oldest retired after the step');
+  assert.equal(sim.ageOf(b), 1);
+  for (const i of membersOf(sim, (i) => sim.members.dropId[i] === b && sim.members.state[i] === STATE.floating)) near(sim.members.lon[i], -10 + dl, 1e-9, 'b displaced by its own mu');
+  assert.equal(sim.ageOf(c), 0);
+  for (const i of membersOf(sim, (i) => sim.members.dropId[i] === c)) { assert.equal(sim.members.lon[i], 5); assert.equal(sim.members.lat[i], 5); }
+  await sim.stepDrop(c);
+  assert.equal(sim.ageOf(c), 1);
+  for (const i of membersOf(sim, (i) => sim.members.dropId[i] === c && sim.members.state[i] === STATE.floating)) near(sim.members.lon[i], 5 + metersToDeg(10000, 0, 5)[0], 1e-9, 'c one real step');
+});
+
+const forceSplit = (sim, dropId) => {
+  const ev = sim.drops.get(dropId).schedule[0];
+  for (const i of membersOf(sim, (i) => sim.members.dropId[i] === dropId)) sim.members.daysAtSea[i] = ev.day;
+  return ev;
+};
+
+test('split budget: capped children when the drop alone exceeds the budget', async () => {
+  const sim = createSim({ fields: fields(), predict: fakePredict(0, 0, Math.log(1e-9)), featuresFn: fakeFeatures, rngFactory: () => constRng(0.5), budget: 30 });
+  const a = sim.drop('bag', 0, 0, 100);
+  const ev = forceSplit(sim, a);
+  await sim.step();
+  const kids = [...sim.fragments.values()];
+  assert.equal(kids.length, ev.children.length);
+  const per = Math.floor(30 / ev.children.length); // 7
+  for (const k of kids) assert.equal(membersOf(sim, (i) => sim.members.fragmentId[i] === k.id).length, per);
+  assert.ok(sim.members.count <= 30);
+});
+
+test('split budget: no room for one member per child -> the split is skipped for good', async () => {
+  const sim = createSim({ fields: fields(), predict: fakePredict(0, 0, Math.log(1e-9)), featuresFn: fakeFeatures, rngFactory: () => constRng(0.5), ensemble: 2, budget: 3 });
+  const a = sim.drop('bag', 0, 0, 100);
+  const parent = sim.members.fragmentId[0];
+  forceSplit(sim, a);
+  await sim.step();
+  assert.ok(sim.fragments.has(parent));
+  assert.equal(sim.fragments.get(parent).noSplit, true);
+  assert.equal(sim.members.count, 2);
+});
+
+test('split budget: a split retires only OLDER drops, never a newer one', async () => {
+  const retired = [];
+  const sim = createSim({ fields: fields(), predict: fakePredict(0, 0, Math.log(1e-9)), featuresFn: fakeFeatures, rngFactory: () => constRng(0.5), budget: 60, onRetire: (id) => retired.push(id) });
+  const a = sim.drop('bag', 0, 0, 100);
+  const b = sim.drop('bag', 1, 1, 100);
+  forceSplit(sim, a); // oldest drop splits: nothing older to retire -> capped
+  await sim.stepDrop(a);
+  assert.ok(sim.drops.has(b), 'newer drop kept');
+  assert.deepEqual(retired, []);
+  assert.equal(membersOf(sim, (i) => sim.members.dropId[i] === a).length, 4 * Math.floor((60 - 24) / 4));
+  forceSplit(sim, b); // newer drop splits: may retire the older one
+  await sim.stepDrop(b);
+  assert.deepEqual(retired, [a]);
+  assert.ok(!sim.drops.has(a));
+  assert.equal(membersOf(sim, (i) => sim.members.dropId[i] === b).length, 4 * Math.floor(60 / 4));
+});
+
+test('worker: a drop arriving while session.run is pending is queued; both timelines stay exact', { skip: !hasFeatures && 'src/sim/features.js not present yet' }, async () => {
+  const { createWorkerCore } = await import('../src/sim/worker.js');
+  const tileBuf = (nframes) => buildTile({ nx: 41, ny: 41, nframes, lon0: -20, lat0: -20, dlon: 1, dlat: 1, scale: 0.01, cell: () => [0, 0] });
+  const cur = tileBuf(1), wind = tileBuf(12);
+  const fetchFn = async (url) => ({ ok: true, arrayBuffer: async () => (url.endsWith('.onnx') ? new ArrayBuffer(8) : (url.includes('wind') ? wind : cur).slice(0)) });
+  let core, calls = 0;
+  const ortLib = {
+    env: { wasm: {} },
+    Tensor: class { constructor(type, data, dims) { this.data = data; this.dims = dims; } },
+    InferenceSession: { create: async () => ({
+      run: ({ x }) => {
+        const n = x.dims[0];
+        const mu = new Float32Array(2 * n), ls = new Float32Array(2 * n).fill(Math.log(1e-9));
+        for (let i = 0; i < n; i++) mu[2 * i] = 10;
+        const res = { mu: { data: mu }, log_sigma: { data: ls } };
+        if (++calls === 3) { // drop B while A's day-3 inference is in flight
+          core.handle({ type: 'drop', item: 'bag', lon: 5, lat: 5, startDoy: 10, seed: 2 });
+          return new Promise((r) => setTimeout(() => r(res), 2));
+        }
+        return Promise.resolve(res);
+      },
+    }) },
+  };
+  const msgs = [];
+  const doneIds = new Set();
+  let finish;
+  const done = new Promise((r) => { finish = r; });
+  core = createWorkerCore((msg) => {
+    msgs.push(msg);
+    if (msg.type === 'done') doneIds.add(msg.dropId);
+    if (doneIds.size === 2 || msg.type === 'error') finish();
+  }, { fetchFn, ortLib, featuresFn: () => new Float32Array(10) });
+  await core.handle({ type: 'init', currentUrls: Array.from({ length: 12 }, (_, i) => `cur${i}.bin`), windUrl: 'wind.bin', modelUrl: 'drift.onnx' });
+  assert.ok(msgs.some((m) => m.type === 'ready' && m.fallback === false));
+  core.handle({ type: 'drop', item: 'bag', lon: 0, lat: 0, startDoy: 100, seed: 1 });
+  await done;
+  assert.ok(!msgs.some((m) => m.type === 'error'), JSON.stringify(msgs.find((m) => m.type === 'error')));
+  const snaps = (id) => msgs.filter((m) => m.type === 'snapshot' && m.dropId === id);
+  const floatingLons = (s) => { const out = []; for (let k = 0; k < s.meta.length / 2; k++) if (((s.meta[2 * k + 1] >> 2) & 3) === 0) out.push(s.positions[2 * k]); return out; };
+  // A: every snapshot to day 60 sits at day * one-day displacement.
+  const [dl0] = metersToDeg(10000, 0, 0);
+  for (const s of snaps(0).filter((s) => s.day <= 60)) for (const q of floatingLons(s)) assert.equal(q, Math.round(s.day * dl0 * 90), `A day ${s.day}`);
+  // B: day 0 at the drop point, day 1 after exactly one real step.
+  const b = snaps(1);
+  assert.equal(b[0].day, 0); assert.equal(b[1].day, 1);
+  for (const q of floatingLons(b[0])) assert.equal(q, 450);
+  const [dl5] = metersToDeg(10000, 0, 5);
+  for (const q of floatingLons(b[1])) assert.equal(q, Math.round((5 + dl5) * 90));
+  assert.equal(snaps(0).length, snapshotDays().length);
+  assert.equal(snaps(1).length, snapshotDays().length);
 });

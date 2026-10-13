@@ -1,6 +1,6 @@
 // Drift simulation worker (module worker). Integration glue around ensemble.js: loads tiles and
-// the ONNX model, steps drops to 3650 days as fast as possible, and posts snapshots.
-// No DOM APIs: only fetch, MessageChannel/setTimeout, performance/Date and postMessage.
+// the ONNX model, steps every drop on its own timeline to 3650 days as fast as possible, and
+// posts snapshots. No DOM APIs: only fetch, MessageChannel/setTimeout, performance/Date and postMessage.
 //
 // In:  {type:'init', currentUrls: string[12], windUrl, modelUrl, wasmPaths?}
 //      {type:'drop', item, lon, lat, startDoy, seed}
@@ -8,22 +8,28 @@
 //      {type:'mode', mode:'global'|'salish'}            (salish stepping is Task 9)
 // Out: {type:'status', fallback:true, reason}           model fetch/load or inference failed -> advection
 //      {type:'ready', fallback:boolean}                 after init
-//      {type:'error', stage:'init'|'drop'|'step', reason}
+//      {type:'error', stage:'init'|'drop'|'clear'|'step'|'message', reason}
 //      {type:'dropped', dropId, item, lon, lat, startDoy, seed}
 //      {type:'snapshot', dropId, index, day, positions:Int16Array, meta:Uint8Array, fragments, usingFallback}
-//                                                       buffers transferred; packing in snapshots.js
-//      {type:'progress', dropId, day}                   newest drop's computed day, <= ~10/s, and at the end
-//      {type:'done', dropId}                            a drop reached 3650 days
+//          day = days since THAT drop (its own clock), index = snapshotDays().indexOf(day);
+//          buffers transferred; packing in snapshots.js
+//      {type:'progress', dropId, day}                   per stepped drop, <= ~10/s each, and when the loop idles
+//      {type:'done', dropId}                            the drop reached 3650 days
+//      {type:'retired', dropId}                         the member budget retired the drop
 //      {type:'cleared'}
 //      {type:'status', mode}
+//
+// Scheduling: 'drop' and 'clear' are queued and applied only between steps (never while a step
+// awaits the model). Drops are stepped round-robin, newest first, one day per drop per turn;
+// the loop yields a macrotask every ~16 ms so new messages are handled.
 import * as ort from 'onnxruntime-web';
 import { features } from './features.js';
 import { decodeTile } from './field.js';
-import { makeRng } from './fragment.js';
 import { createSim, MAX_DAYS } from './ensemble.js';
 import { snapshotDays, packSnapshot } from './snapshots.js';
 
 const now = () => (typeof performance !== 'undefined' ? performance.now() : Date.now());
+const errText = (e) => String((e && e.message) || e);
 
 /** Yield to the event loop (a macrotask) so queued messages such as 'clear' are handled. */
 function yieldToEvents() {
@@ -44,17 +50,14 @@ export function createWorkerCore(post, { fetchFn = (u) => fetch(u), ortLib = ort
   const days = snapshotDays();
   const snapIndex = new Map(days.map((d, i) => [d, i]));
   let fields = null, predict = null, sim = null, mode = 'global';
-  let inner = makeRng(0);
-  const rng = () => inner(); // re-seeded on every drop
-  let gen = 0, loopGen = -1;
+  const ops = []; // queued 'drop' / 'clear' messages, applied between steps
+  let looping = false;
 
   const fetchBuf = async (url) => {
     const r = await fetchFn(url);
     if (!r.ok) throw new Error(`fetch ${url}: HTTP ${r.status}`);
     return r.arrayBuffer();
   };
-
-  const newSim = () => createSim({ fields, predict, rng, featuresFn });
 
   function fallBack(reason) {
     predict = null;
@@ -79,90 +82,95 @@ export function createWorkerCore(post, { fetchFn = (u) => fetch(u), ortLib = ort
       const [cur, wind] = await Promise.all([Promise.all(currentUrls.map(fetchBuf)), fetchBuf(windUrl)]);
       fields = { current: cur.map(decodeTile), wind: decodeTile(wind) };
     } catch (e) {
-      post({ type: 'error', stage: 'init', reason: String(e && e.message || e) });
+      post({ type: 'error', stage: 'init', reason: errText(e) });
       return;
     }
     try {
       predict = await loadModel(modelUrl, wasmPaths);
     } catch (e) {
-      fallBack(`model unavailable: ${e && e.message || e}`);
+      fallBack(`model unavailable: ${errText(e)}`);
     }
-    gen++;
-    sim = newSim();
+    sim = createSim({ fields, predict, featuresFn, onRetire: (dropId) => post({ type: 'retired', dropId }) });
     post({ type: 'ready', fallback: !predict });
+    kick();
   }
 
-  function postSnapshot(s, dropId, day) {
-    const snap = packSnapshot(s, dropId);
+  function postSnapshot(dropId) {
+    const day = sim.ageOf(dropId);
+    if (!snapIndex.has(day)) return;
+    const snap = packSnapshot(sim, dropId);
     post({
       type: 'snapshot', dropId, index: snapIndex.get(day), day,
-      positions: snap.positions, meta: snap.meta, fragments: snap.fragments, usingFallback: s.usingFallback,
+      positions: snap.positions, meta: snap.meta, fragments: snap.fragments, usingFallback: sim.usingFallback,
     }, [snap.positions.buffer, snap.meta.buffer]);
   }
 
-  async function run() {
-    if (loopGen === gen) return; // a loop for this generation is already running
-    const g = gen, s = sim;
-    loopGen = g;
-    let lastYield = now(), lastProgress = 0;
+  /** Apply queued 'drop' / 'clear' messages. Only called between steps. */
+  function applyOps() {
+    while (ops.length) {
+      const msg = ops.shift();
+      if (msg.type === 'clear') { sim.clear(); post({ type: 'cleared' }); continue; }
+      try {
+        const { item, lon, lat, startDoy = 1, seed = 1 } = msg;
+        const dropId = sim.drop(item, lon, lat, startDoy, seed >>> 0);
+        post({ type: 'dropped', dropId, item, lon, lat, startDoy, seed });
+        postSnapshot(dropId); // day 0
+      } catch (e) {
+        post({ type: 'error', stage: 'drop', reason: errText(e) });
+      }
+    }
+  }
+
+  function kick() {
+    if (sim && !looping) loop();
+  }
+
+  async function loop() {
+    looping = true;
+    const lastProgress = new Map();
+    let lastYield = now();
     try {
-      while (g === gen && s.isActive()) {
-        try {
-          await s.step();
-        } catch (e) {
-          if (s.usingFallback) throw e;
-          fallBack(`inference failed: ${e && e.message || e}`); // retry the day with advection
-          continue;
+      for (;;) {
+        applyOps();
+        const turn = sim.activeDrops(); // newest first
+        if (!turn.length) break;
+        for (const dropId of turn) {
+          applyOps(); // a 'clear' or a budget retirement may have removed this drop
+          if (!sim.drops.has(dropId) || sim.ageOf(dropId) >= MAX_DAYS) continue;
+          try {
+            await sim.stepDrop(dropId);
+          } catch (e) {
+            if (sim.usingFallback) throw e;
+            fallBack(`inference failed: ${errText(e)}`); // predict runs before any mutation: retry with advection
+            continue;
+          }
+          if (!sim.drops.has(dropId)) continue;
+          const day = sim.ageOf(dropId);
+          postSnapshot(dropId);
+          if (day >= MAX_DAYS) post({ type: 'done', dropId });
+          const t = now();
+          if (t - (lastProgress.get(dropId) ?? -Infinity) >= 100) { post({ type: 'progress', dropId, day }); lastProgress.set(dropId, t); }
+          if (t - lastYield >= 16) { await yieldToEvents(); lastYield = now(); }
         }
-        if (g !== gen) break;
-        let newest = -1;
-        for (const d of s.drops.values()) {
-          newest = d.id;
-          const age = s.day - d.bornDay;
-          if (age > MAX_DAYS) continue;
-          if (snapIndex.has(age)) postSnapshot(s, d.id, age);
-          if (age === MAX_DAYS) post({ type: 'done', dropId: d.id });
-        }
-        const t = now();
-        if (t - lastProgress >= 100 && newest >= 0) { post({ type: 'progress', dropId: newest, day: s.ageOf(newest) }); lastProgress = t; }
-        if (t - lastYield >= 16) { await yieldToEvents(); lastYield = now(); }
       }
-      if (g === gen) {
-        let newest = -1;
-        for (const d of s.drops.values()) newest = d.id;
-        if (newest >= 0) post({ type: 'progress', dropId: newest, day: s.ageOf(newest) });
-      }
+      for (const d of sim.drops.values()) post({ type: 'progress', dropId: d.id, day: d.day });
     } catch (e) {
-      if (g === gen) post({ type: 'error', stage: 'step', reason: String(e && e.message || e) });
+      post({ type: 'error', stage: 'step', reason: errText(e) });
     } finally {
-      if (loopGen === g) loopGen = -1;
+      looping = false;
     }
-  }
-
-  function drop({ item, lon, lat, startDoy = 1, seed = 1 }) {
-    if (!sim) { post({ type: 'error', stage: 'drop', reason: 'not initialised' }); return; }
-    try {
-      inner = makeRng(seed >>> 0);
-      const dropId = sim.drop(item, lon, lat, startDoy);
-      post({ type: 'dropped', dropId, item, lon, lat, startDoy, seed });
-      postSnapshot(sim, dropId, 0);
-      run();
-    } catch (e) {
-      post({ type: 'error', stage: 'drop', reason: String(e && e.message || e) });
-    }
-  }
-
-  function clear() {
-    gen++;
-    if (fields) sim = newSim();
-    post({ type: 'cleared' });
+    if (ops.length) kick();
   }
 
   function handle(msg) {
     switch (msg && msg.type) {
       case 'init': return init(msg);
-      case 'drop': return drop(msg);
-      case 'clear': return clear();
+      case 'drop':
+      case 'clear':
+        if (!sim) { post({ type: 'error', stage: msg.type, reason: 'not initialised' }); return; }
+        ops.push(msg);
+        kick();
+        return;
       case 'mode':
         mode = msg.mode === 'salish' ? 'salish' : 'global';
         post({ type: 'status', mode });
@@ -172,7 +180,7 @@ export function createWorkerCore(post, { fetchFn = (u) => fetch(u), ortLib = ort
     }
   }
 
-  return { handle, get sim() { return sim; }, get mode() { return mode; } };
+  return { handle, get sim() { return sim; }, get mode() { return mode; }, get busy() { return looping; } };
 }
 
 // Bind only inside a real worker (WorkerGlobalScope exists); importing in Node does nothing.
