@@ -4,14 +4,10 @@
 // turn and fade, and the whole line narrows on Anybody's width axis (125 -> 60).
 
 import { clamp01, smoothstep } from './ease.js';
+import { rng } from './particles.js';
 
 const WDTH_WHOLE = 125;
 const WDTH_BROKEN = 60;
-
-function rng(seed) {
-  let s = seed >>> 0 || 1;
-  return () => ((s = (Math.imul(s, 1664525) + 1013904223) >>> 0) / 4294967296);
-}
 
 /** Two cut lines across a letter -> three clip polygons (top, middle, bottom shard). */
 function shardPolys(r) {

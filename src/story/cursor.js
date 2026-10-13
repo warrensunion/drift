@@ -55,7 +55,8 @@ export function createCursor({ reduced = false } = {}) {
     dot.style.transform = `translate(-50%, -50%) scale(${(size / SIZE.label).toFixed(4)})`;
   }
 
-  window.addEventListener('pointermove', onMove, { passive: true });
+  const opts = { passive: true };
+  window.addEventListener('pointermove', onMove, opts);
   document.addEventListener('pointerleave', onLeave);
   document.documentElement.addEventListener('mouseleave', onLeave);
   raf = requestAnimationFrame(frame);
@@ -64,7 +65,9 @@ export function createCursor({ reduced = false } = {}) {
     el,
     destroy() {
       cancelAnimationFrame(raf);
-      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointermove', onMove, opts);
+      document.removeEventListener('pointerleave', onLeave);
+      document.documentElement.removeEventListener('mouseleave', onLeave);
       el.remove();
       document.documentElement.classList.remove('has-cursor');
     },

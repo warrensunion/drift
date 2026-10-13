@@ -75,7 +75,7 @@ export function renderModel(meta) {
 }
 
 function renderSources() {
-  return SOURCES.map((s, i) => `<li id="src-${i + 1}"><span class="src-n">${i + 1}</span> ${esc(s.ref)} <a href="${esc(s.url)}" rel="noopener" target="_blank">${esc(s.url.replace('https://', ''))}</a></li>`).join('');
+  return SOURCES.map((s, i) => `<li id="src-${i + 1}"><span class="src-n">${i + 1}</span> ${esc(s.ref)}${s.url ? ` <a href="${esc(s.url)}" rel="noopener" target="_blank">${esc(s.url.replace('https://', ''))}</a>` : ''}</li>`).join('');
 }
 
 function renderCredits(credits) {

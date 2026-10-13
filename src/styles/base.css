@@ -61,12 +61,22 @@ p { margin: 0; }
   padding: var(--margin) var(--margin) 0;
   pointer-events: none;
   opacity: 0;
-  transition: opacity .8s var(--ease-reveal), transform .8s var(--ease-reveal);
+  visibility: hidden; /* hidden controls are never focusable */
+  transition: opacity .8s var(--ease-reveal), transform .8s var(--ease-reveal), visibility 0s linear .8s;
 }
-.is-started .chrome { opacity: 1; }
-.in-globe .chrome, .past-story .chrome { opacity: 0; transform: translateY(-12px); }
-.in-globe .chrome *, .past-story .chrome * { pointer-events: none !important; }
-.chrome > * { pointer-events: auto; }
+/* A soft top wash so the chrome reads over bright skies. */
+.chrome::before {
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: calc(var(--margin) + 90px); z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(7, 28, 33, .5), rgba(7, 28, 33, .22) 55%, rgba(7, 28, 33, 0));
+}
+.is-started .chrome { opacity: 1; visibility: visible; transition-delay: 0s; }
+.is-started.in-globe .chrome, .is-started.past-story .chrome { opacity: 0; visibility: hidden; transform: translateY(-12px); transition-delay: 0s, 0s, .8s; }
+.chrome > * { pointer-events: auto; position: relative; }
+/* Soft local washes behind the mark and the links, for bright skies and pale creatures. */
+.chrome__mark::before, .chrome__links::before {
+  content: ''; position: absolute; z-index: -1; pointer-events: none; left: -50px; right: -50px; top: -26px; bottom: -26px;
+  background: radial-gradient(ellipse closest-side, rgba(7, 28, 33, .86), rgba(7, 28, 33, .6) 60%, rgba(7, 28, 33, 0));
+}
 .chrome__mark {
   font: 400 1.375rem/1 var(--font-display);
   font-variation-settings: 'wdth' 125;
@@ -120,7 +130,6 @@ p { margin: 0; }
 .has-cursor.is-started .stage,
 .has-cursor [data-cursor] { cursor: none; }
 .has-cursor .stage a:not([data-cursor]), .has-cursor .stage button { cursor: pointer; }
-.has-cursor .stage .copy p { cursor: text; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01s !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }

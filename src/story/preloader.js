@@ -92,6 +92,8 @@ export async function runPreloader({ files, reduced = false, onReveal, onBegin }
   }
   await wait(reduced ? 0 : 1000);
   intro.classList.add('is-ready');
+  const status = document.getElementById('pre-status');
+  if (status) status.textContent = 'Drift is ready. Scroll, or press the button, to begin.';
 
   // Wait for the visitor: scroll, wheel, swipe, a key, or the button.
   await new Promise((resolve) => {

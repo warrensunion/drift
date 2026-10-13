@@ -42,7 +42,7 @@ export function progressFor(scrollY, sceneStarts) {
  *  scenes: from buildScene()
  *  sweeps: sweeps[i] carries you from scene i to i+1 (or null)
  */
-export function createStory({ root, stage, scenes, sweeps, reduced, chapterVh = 2, onScene, onFrame }) {
+export function createStory({ root, stage, scenes, sweeps, reduced, chapterVh = 2, debug = false, onScene, onFrame }) {
   const N = scenes.length;
   let edges = sceneEdges(N, 1000, 0);
   let W = window.innerWidth, H = window.innerHeight;
@@ -152,7 +152,7 @@ export function createStory({ root, stage, scenes, sweeps, reduced, chapterVh = 
     if (trans) {
       const dur = reduced ? REDUCED_FADE_MS : TRANSITION_MS;
       // Verification hook: window.__driftHold = p freezes a running transition at progress p.
-      if (typeof window.__driftHold === 'number') trans.start = now - window.__driftHold * dur;
+      if (debug && typeof window.__driftHold === 'number') trans.start = now - window.__driftHold * dur;
       const raw = clamp01((now - trans.start) / dur);
       const { from, to, dir, sweep } = trans;
       if (reduced) {

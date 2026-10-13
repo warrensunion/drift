@@ -48,10 +48,16 @@ export const CHAPTERS = [
       { cls: 'weed', src: 's1-reeds.webp', depth: 'near' },
       { cls: 'bubbles', depth: 'near', particles: { mode: 'rise', count: 26, size: [0.25, 0.9], speed: 0.07, box: [0.5, 0.66, 0.14, 0.3], cls: 'pt--bubble', opacity: [0.35, 0.8] } },
       { cls: 'bank', src: 's1-bank.webp', depth: 'near' },
+      // The bottle tips off the bank's lip, cap first, and slides into the current as you scroll.
       {
         cls: 'bottle', src: 'asset-bottle.webp', depth: 'near',
-        move: (t, time) => ({ x: -t * 2.5, y: smoothstep(0.1, 0.9, t) * 9 + Math.sin(time * 0.9) * 0.4, r: -58 - smoothstep(0.1, 0.9, t) * 30 + Math.sin(time * 0.7) * 2, unit: 'vh' }),
+        move: (t, time) => {
+          const k = smoothstep(0.08, 0.95, t);
+          return { x: -k * 16, y: k * 4.5 + Math.sin(time * 0.9) * 0.25 * k, r: -150 + k * 38 + Math.sin(time * 0.7) * 1.5 * k, unit: 'vh' };
+        },
       },
+      { cls: 'veil', depth: 'mid' },
+      { cls: 'ripples', depth: 'near', html: '<i></i><i></i><i></i>', move: (t) => ({ x: -smoothstep(0.08, 0.95, t) * 16, y: 0, unit: 'vh' }) },
       { cls: 'reeds-l', src: 's1-reeds.webp', depth: 'fg' },
       { cls: 'reeds-r', src: 's1-reeds.webp', depth: 'edge' },
     ],
@@ -62,7 +68,7 @@ export const CHAPTERS = [
     sweep: 'wave',
     copy: [
       `Floating at sea, a bottle changes slowly. Bottles recovered from the seafloor stayed chemically sound for about 15 years.${cite('Ioakeimidis2016')}`,
-      `The breaking happens mostly on shore, where sunlight, heat and sand work together. In a lab, a polypropylene pellet given a year of strong UV, roughly four years of real sun, and then two months of tumbling in sand split into about 6,000 pieces.${cite('Song2017')}`,
+      `The breaking happens mostly on shore, where sunlight, heat and sand work together. In a lab, a polypropylene pellet given a year of strong UV, roughly four years of real sun,${cite('Kaandorp2021')} and then two months of tumbling in sand split into about 6,000 pieces.${cite('Song2017')}`,
       'No one has timed this for a bottle on a real beach, so the timing here is uncertain, and the simulation says so.',
     ],
     layers: [
@@ -73,13 +79,13 @@ export const CHAPTERS = [
       { cls: 'underwater', src: 's2-surface.webp', small: 's2-surface-1280.webp', depth: 'mid', plate: true },
       { cls: 'rays2', src: 's3-rays.webp', depth: 'mid' },
       { cls: 'sand', src: 's5-deep.webp', small: 's5-deep-1280.webp', depth: 'near', plate: true },
-      { cls: 'specks', depth: 'near', particles: { mode: 'cascade', count: 110, size: [0.25, 0.8], speed: 0.05, from: [0.24, 0.3], to: [0.9, 0.98], spreadAt: 0.3, cls: 'pt--speck', reveal: (t) => 0.3 + 0.7 * smoothstep(0.05, 0.65, t) } },
+      { cls: 'specks', depth: 'near', particles: { mode: 'cascade', count: 110, size: [0.25, 0.8], speed: 0.05, from: [0.66, 0.3], to: [0.95, 0.98], spreadAt: 0.3, cls: 'pt--speck', reveal: (t) => 0.3 + 0.7 * smoothstep(0.05, 0.65, t) } },
       { cls: 'wave', src: 's2-wave.webp', depth: 'near' },
       {
         cls: 'bottle2', src: 'asset-bottle.webp', depth: 'near',
         move: (t, time) => ({ x: Math.sin(time * 0.6) * 0.4, y: Math.sin(time * 0.8) * 0.6, r: -104 + Math.sin(time * 0.5) * 3, o: 1 - 0.55 * smoothstep(0.2, 0.9, t), unit: 'vh' }),
       },
-      { cls: 'shards', depth: 'fg', particles: { mode: 'cascade', count: 44, size: [1.4, 7.5], speed: 0.035, spin: 90, from: [0.24, 0.3], to: [0.84, 0.96], spreadAt: 0.26, srcs: [...SHARD, ...SHARD, ...FILM.slice(0, 3), ...NURDLE.slice(0, 4)], reveal: (t) => 0.35 + 0.65 * smoothstep(0.05, 0.7, t) } },
+      { cls: 'shards', depth: 'fg', particles: { mode: 'cascade', count: 44, size: [1.4, 7.5], speed: 0.035, spin: 90, from: [0.66, 0.3], to: [0.9, 0.97], spreadAt: 0.26, srcs: [...SHARD, ...SHARD, ...FILM.slice(0, 3), ...NURDLE.slice(0, 4)], reveal: (t) => 0.35 + 0.65 * smoothstep(0.05, 0.7, t) } },
       { cls: 'edge-shard', src: 'frag/shard-1.webp', depth: 'edge' },
       { cls: 'edge-film', src: 'frag/film-5.webp', depth: 'edge' },
     ],
@@ -261,6 +267,7 @@ export function buildScene(ch, index, { reduced = false, phone = false } = {}) {
   const hl = document.createElement('h2');
   hl.className = 'hl';
   hl.id = `hl-${ch.id}`;
+  hl.tabIndex = -1;
   copy.append(hl);
   const body = document.createElement('div');
   body.className = 'copy__body';

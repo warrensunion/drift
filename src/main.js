@@ -20,6 +20,8 @@ const phone = window.matchMedia('(max-width: 700px)').matches;
 if (reduced) html.classList.add('is-reduced');
 html.style.setProperty('--paper', `url("${artUrl('ui-paper.webp')}")`);
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+// Verification hooks (window.__drift, window.__driftHold) only in dev or with ?debug.
+const debug = !!(import.meta.env && import.meta.env.DEV) || new URLSearchParams(location.search).has('debug');
 
 // Inline citations written in the HTML as <span data-cite="Key,Key">.
 document.querySelectorAll('[data-cite]').forEach((el) => { el.outerHTML = cite(...el.dataset.cite.split(',')); });
@@ -69,6 +71,7 @@ const story = createStory({
   sweeps,
   reduced,
   chapterVh: phone ? 1.8 : 2,
+  debug,
   onScene: setScene,
   onFrame: ({ shown, scrollScene, t }) => {
     const bar = navButtons[shown] && navButtons[shown].querySelector('.chapters__bar > i');
@@ -91,6 +94,14 @@ document.addEventListener('click', (e) => {
   globeEl.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
 });
 
+// Every chapter's copy stays in the reading order for assistive tech. When keyboard focus lands
+// in a chapter that is not on screen (a citation, the drop button), scroll that chapter into view.
+scenes.forEach((s, i) => s.copy.addEventListener('focusin', () => {
+  const e = story.edges;
+  const p = window.scrollY;
+  if (p < e[i] || p >= e[i + 1]) window.scrollTo({ top: e[i] + (e[i + 1] - e[i]) * 0.5, behavior: 'auto' });
+}));
+
 createCursor({ reduced });
 initGlobeSection(globeEl);
 initAbout(document.getElementById('about'));
@@ -106,6 +117,9 @@ runPreloader({
   },
   onBegin: () => {
     html.classList.add('is-started');
+    // The begin button is about to disappear: hand focus to the first chapter's heading.
+    const pre = document.getElementById('preloader');
+    if (pre && pre.contains(document.activeElement)) scenes[0].el.querySelector('.hl').focus({ preventScroll: true });
     story.start();
     // Warm the next chapter and its sweep while the visitor reads.
     const idle = window.requestIdleCallback || ((f) => setTimeout(f, 300));
@@ -118,5 +132,5 @@ runPreloader({
   story.start();
 });
 
-// Debug/verification hook (used by scripts/dev/shoot-story.mjs).
-window.__drift = { story, scenes, CHAPTERS };
+// Debug/verification hook (used by scripts/dev/shoot-story.mjs with ?debug).
+if (debug) window.__drift = { story, scenes, CHAPTERS };

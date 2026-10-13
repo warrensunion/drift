@@ -58,7 +58,8 @@
 <body>
   <a class="skip" href="#about">Skip to About the science</a>
 
-  <div id="preloader" class="pre" role="status" aria-label="Loading Drift">
+  <div id="preloader" class="pre">
+    <p id="pre-status" class="visually-hidden" role="status">Loading Drift…</p>
     <div class="pre__water"></div>
     <div class="pre__rays"></div>
     <div class="pre__ripples" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -74,7 +75,7 @@
     <div class="pre__ring" aria-hidden="true"></div>
     <div class="pre__intro">
       <div class="pre__intro-inner">
-        <h1 class="pre__title">Drift</h1>
+        <p class="pre__title" aria-hidden="true">Drift</p>
         <p class="pre__lede">One plastic bottle, ten years, and a cloud of possible paths.</p>
         <button class="pre__hint" type="button" data-cursor="Begin"><span>Scroll to begin</span><i aria-hidden="true"></i></button>
       </div>
@@ -111,7 +112,8 @@
     </nav>
   </header>
 
-  <main id="top">
+  <main id="top" tabindex="-1">
+    <h1 class="visually-hidden">Drift: one plastic bottle, ten years, and a cloud of possible paths</h1>
     <div id="story" class="story">
       <div class="stage" id="stage"></div>
       <noscript><p class="noscript">Drift tells its story with JavaScript. The sources and the science are below.</p></noscript>
@@ -159,8 +161,8 @@
           <h3>Its limits</h3>
           <ul class="limits">
             <li><strong>Climatology, not live.</strong> Currents and winds are monthly averages over a few years. No particular storm or eddy is in them.</li>
-            <li><strong>A coarse grid.</strong> Cells are 1° across, about 111 km at the equator, so coasts, straits and anything smaller are blurred.</li>
-            <li><strong>Windage is a proxy.</strong> The drifter record only covers objects that slip downwind at about 0.1 % to 1 % of the wind speed,<span data-cite="Poulain2009"></span> so a bottle riding high and a flat bag look the same to the model.</li>
+            <li><strong>A coarse grid.</strong> Currents sit on 1° cells, about 111 km at the equator, and winds on 2° cells, so coasts, straits and anything smaller are blurred.</li>
+            <li><strong>Windage is a proxy.</strong> The drifter record only covers objects that slip downwind at about 0.1 % to 1 % of the wind speed,<span data-cite="PazanNiiler2001,Poulain2009"></span> so a bottle riding high and a flat bag look the same to the model.</li>
             <li><strong>Fragmentation timing is uncertain.</strong> No study has timed how long a floating item takes to break into smaller pieces. Drift’s rates are assumptions built from lab, beach and seafloor measurements.<span data-cite="Chamas2020,Song2017,Ioakeimidis2016"></span></li>
             <li><strong>Flat water.</strong> Sinking, beaching and gathering in gyres follow simple rules with cited rates; nothing moves in depth.</li>
           </ul>

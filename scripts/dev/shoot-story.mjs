@@ -8,13 +8,17 @@
 import { chromium } from 'playwright';
 import { mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
+import { writeFile } from 'node:fs/promises';
+import { wordsAA } from './aa.mjs';
+const aaRows = [];
 
 const args = process.argv.slice(2);
 const flags = Object.fromEntries(args.filter((a) => a.startsWith('--')).map((a) => a.slice(2).split('=')));
-const [base = 'http://127.0.0.1:5181/', out = 'design-reference/compare/story/_shots'] = args.filter((a) => !a.startsWith('--'));
+const [baseArg = 'http://127.0.0.1:5181/', out = 'design-reference/compare/story/_shots'] = args.filter((a) => !a.startsWith('--'));
 const SIZES = (flags.sizes || '1440x900,1920x1080,390x844').split(',').map((s) => s.split('x').map(Number));
 const REDUCED = flags.reduced !== 'no';
 await mkdir(out, { recursive: true });
+const base = baseArg.includes('?') ? baseArg : `${baseArg}?debug`;
 
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 const problems = [];
@@ -72,6 +76,20 @@ async function run([w, h], { reduced = false } = {}) {
     await wait(2600); // entrance: headline settles (0.3 + 1.4 s), copy reveals (~1.85 s)
     if (!reduced && w > 600) { await page.mouse.move(w * 0.85, h * 0.8, { steps: 4 }); await wait(1400); }
     await shoot(page, `${tag}-${i + 1}-mid`);
+    if (!reduced) {
+      const aa = await wordsAA(page, {
+        headline: '.scene.is-active .hl .hl-word',
+        body: w < 700 ? '.scene.is-active .copy__body p.is-step' : '.scene.is-active .copy__body p',
+        cite: '.scene.is-active .cite a',
+        chrome: '.chrome a',
+        chapter: '.chapters__title',
+      });
+      for (const [k, v] of Object.entries(aa)) {
+        aaRows.push({ size: tag, chapter: i + 1, group: k, ...v });
+        if (!v.pass) problems.push(`[${tag}] AA ch${i + 1} ${k}: ${v.ratio} < ${v.need} ("${v.text}")`);
+      }
+      console.log(`  AA ch${i + 1}: ${Object.entries(aa).map(([k, v]) => `${k} ${v.ratio}${v.pass ? '' : '!'}`).join(', ')}`);
+    }
     if (!reduced && w > 600) await page.mouse.move(w * 0.5, h * 0.5, { steps: 2 });
     if (i < N - 1 && (i < 2 || w >= 1400 || reduced)) {
       // Freeze the transition into the next chapter just after its swap.
@@ -110,6 +128,7 @@ async function run([w, h], { reduced = false } = {}) {
 for (const size of SIZES) await run(size);
 if (REDUCED) await run(SIZES[0], { reduced: true });
 
+await writeFile(join(out, 'aa.json'), JSON.stringify(aaRows, null, 1));
 if (problems.length) {
   console.log('\nPROBLEMS');
   for (const p of problems) console.log(' ', p);
