@@ -62,3 +62,15 @@ nothing else in the frame. Largest size available."*
 | asset-bottle.png | Hero bottle (scene 1, preloader, UI) | A single clear PET plastic drinks bottle, empty, slightly crumpled, with a dye-magenta screw cap, lying at a gentle diagonal, seen from the side. Transparent background PNG (alpha). One subject only, centred, nothing else in the frame, no shadow, no ground. Largest size available. |
 
 Note: every prompt above was prefixed with the art direction header (art-src/header.txt) joined by " --- " (see art-src/tools/gen.sh). asset-bottle.png was generated separately with the prompt shown. The source of truth for the sizes is art-src/jobs.tsv.
+
+## Second versions (2026-10-13)
+
+The first `frag-nurdles`, `frag-tyre`, `frag-fibres` and `item-tyre` came back
+photographic, which clashed with the gouache set. They were regenerated with
+this sentence appended to their prompts (the current text is in
+`art-src/jobs.tsv`): *"Painted in flat matte gouache exactly like a
+natural-history plate: simplified painterly shapes, soft brush texture, limited
+palette, NOT photographic, no photographic detail, no realistic texture."*
+The nurdle prompt was also changed to ask for pellets "only a few millimetres,
+small lentil-shaped dots spread widely across the frame". The first versions
+are kept locally in `art-src/gen/_v1/` (gitignored).
