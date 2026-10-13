@@ -299,10 +299,11 @@ export const CONSTANTS = {
       "src": "FazeyRyan2016"
     },
     "macro": {
-      "value": 365,
-      "pPerDay": 0.0027,
-      "src": "Onink2021",
-      "assumption": true
+      "value": 11984,
+      "pPerDay": 0.0000834,
+      "src": "Lebreton2019",
+      "assumption": true,
+      "why": "No direct sinking data for buoyant macro items. Lebreton2019 best-fit total removal of offshore buoyant macroplastic = 3%/yr (fit to production dates of GPGP debris, Lebreton2018; >90%/yr sinks cannot reproduce it). Sinking alone can be no faster, so tau = -1/ln(0.97) yr = 32.8 yr. Macro items leave the surface mainly by beaching or fragmentation. Consistent with Maximenko2018 tsunami boats (e-folding 2-8 yr, mostly beaching) and Onink2021 (items afloat up to 50 yr after production)."
     },
     "gyreMultiplier": {
       "value": 3,

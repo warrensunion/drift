@@ -314,7 +314,39 @@ polyolefin outside gyres:
 | smallMicro | 30 | 0.0328 | `[Lobelle2021]` median 33-43 d; `[FazeyRyan2016]` smallest 17 d; assumption at the low end, because smaller sinks faster |
 | micro | 40 | 0.0247 | `[Lobelle2021]` median; `[Kooi2017]` 24-26 d onset |
 | meso | 66 | 0.0150 | `[FazeyRyan2016]` largest size, 66 d |
-| macro | 365 | 0.0027 | assumption: larger than any fouling experiment; `[Onink2021]` argues >66 d for the open ocean |
+| macro | 11,984 (≈32.8 yr) | 0.0000834 | assumption, set to the upper bound on removal from `[Lebreton2019]` (3 %/yr); see below |
+
+**Why macro is ~33 years and not 365 days (revised).** No study measures how quickly a buoyant
+*macro* item (a capped bottle, a bag) sinks from biofouling in the open ocean. The fouling
+experiments stop at cm-sized sheets after 12 weeks. The age of floating debris does constrain it,
+though:
+- `[Lebreton2018]`: 50 debris items from the Great Pacific Garbage Patch, collected in 2015, had a
+  readable production date: **1 from 1977, 7 from the 1980s, 17 from the 1990s, 24 from the 2000s
+  and 1 from 2010** (full text read).
+- `[Lebreton2019]` fitted a box model to that age distribution. **Best fit: d = 3 % of the mass of
+  buoyant macroplastic removed per year** (by degradation into microplastic, the model's only
+  permanent sink). The authors state that a rapid sink of more than 90 % per year cannot reproduce
+  the age distribution. They also note that 3 %/yr agrees with field immersion tests showing
+  0.65-1.9 % mass loss in 12 months. They estimate that objects take 5-10 years to travel from
+  source to the gyre (full text read).
+- `[Maximenko2018]`: of ~1,000 boats set adrift by the 2011 tsunami, about 100 were projected to
+  still float in 2018. That is an **e-folding decay of 2-8 years**, mostly from beaching, since the
+  model ignores sinks other than shorelines. This is an upper bound on removal for very buoyant
+  objects.
+- `[Onink2021]` (above): items are found afloat up to 50 years after production.
+
+Taken together, offshore removal of buoyant macro items is slow, on the order of **a few % per year
+in total**. Lebreton puts all of it into fragmentation and has no separate sinking term, so
+**sinking alone can be no faster than that**. We use the 3 %/yr total as an upper bound for
+sinking: τ = −1/ln(0.97) yr = 32.8 yr = **11,984 days**. The gyre ×3 multiplier then gives about
+98 yr inside gyres, which is consistent with decades-old objects in the North Pacific patch. In
+Drift, a macro item therefore leaves the surface mainly by **beaching** (section 4) or by
+**fragmenting** into meso pieces (section 1), and very rarely by sinking whole.
+
+*Inconsistency left in place:* Lebreton's 3 %/yr whole-ocean macro degradation rate is slower than
+the LDPE-bag half-life in section 1 (3.4 yr, about 18 %/yr). That half-life is specific to thin
+film, while Lebreton's rate is an average over mostly thick, rigid objects, so the two values were
+not reconciled.
 
 - **Gyre multiplier: ×3** inside the five gyre boxes (assumption). `[Lobelle2021]` found no sinking
   within 90 days in subtropical gyres, so τ_gyre > 90 d for small classes (3×30 = 90).
@@ -345,7 +377,11 @@ Res. Lett.* 16, 064053. https://doi.org/10.1088/1748-9326/abecbd (full text read
 
 **[Lebreton2019]** Lebreton, L., Egger, M., Slat, B. (2019). A global mass budget for positively
 buoyant macroplastic debris in the ocean. *Scientific Reports* 9, 12922.
-https://doi.org/10.1038/s41598-019-49413-5 *(cited via Onink 2021; not opened directly)*
+https://doi.org/10.1038/s41598-019-49413-5 (full text read). Its stranding probability is
+s = 96-98 % within a year: the share of particles spending ≥ 2 consecutive days within 1/16° of
+shore, rising with windage from 0 to 2 %. It estimates that **66.8 %** of buoyant macroplastic
+released since the 1950s is held on shorelines. Its best-fit macro degradation rate is **3 %/yr**
+(see section 3).
 
 **Chosen values:**
 - `beachProbabilityPerContactDay = 1 - exp(-1/10) = 0.095` (λB = 10 d) `[Onink2021]`. **Caveat:**
@@ -572,7 +608,7 @@ leakage from the South Atlantic and Indian Ocean patches flows towards the South
       "smallMicro": { "value": 30, "pPerDay": 0.0328, "src": "Lobelle2021", "assumption": true },
       "micro": { "value": 40, "pPerDay": 0.0247, "src": "Lobelle2021" },
       "meso": { "value": 66, "pPerDay": 0.0150, "src": "FazeyRyan2016" },
-      "macro": { "value": 365, "pPerDay": 0.0027, "src": "Onink2021", "assumption": true },
+      "macro": { "value": 11984, "pPerDay": 0.0000834, "src": "Lebreton2019", "assumption": true, "why": "No direct sinking data for buoyant macro items. Lebreton2019 best-fit total removal of offshore buoyant macroplastic = 3%/yr (fit to production dates of GPGP debris, Lebreton2018; >90%/yr sinks cannot reproduce it). Sinking alone can be no faster, so tau = -1/ln(0.97) yr = 32.8 yr. Macro items leave the surface mainly by beaching or fragmentation. Consistent with Maximenko2018 tsunami boats (e-folding 2-8 yr, mostly beaching) and Onink2021 (items afloat up to 50 yr after production)." },
       "gyreMultiplier": { "value": 3, "src": "Lobelle2021", "assumption": true, "why": "no sinking within 90 d in subtropical gyres" },
       "denserThanSeawater": { "value": 1, "pPerDay": 0.632, "src": "Andrady2011", "assumption": true, "why": "PET fragments, nylon, TRWP leave surface without fouling" }
     },
