@@ -1,0 +1,23 @@
+{
+  "source": "SalishSeaCast ERDDAP ubcSSfDepthAvgdCurrents1h (VelEast5/VelNorth5, upper-5 m mean currents, NEMO v21-11 forecast); grid ubcSSnBathymetryV21-08; land mask tmask from ubcSSn3DMeshMaskV21-08",
+  "erddap": "https://salishsea.eos.ubc.ca/erddap/",
+  "datasetId": "ubcSSfDepthAvgdCurrents1h",
+  "firstFrame": "2026-10-09T08:30:00Z",
+  "frameStepSeconds": 3600,
+  "frames": 25,
+  "grid": {
+    "lon0": -124.2,
+    "lat0": 48.9,
+    "dlon": 0.01,
+    "dlat": 0.005,
+    "nx": 131,
+    "ny": 141,
+    "scale": 0.001,
+    "landPng": {
+      "width": 524,
+      "height": 564,
+      "northUp": true
+    }
+  },
+  "notes": "Frame times are hour-centred (:30 UTC) means. Window chosen as the 25 h span with the strongest mean current near the Fraser mouth from the ~7-day forecast archive. Regridded by nearest model water cell within 1.5 model cells; land.png from tmask. Licence: Apache-2.0, (c) SalishSeaCast Project Contributors and UBC."
+}
