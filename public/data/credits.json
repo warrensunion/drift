@@ -11,7 +11,7 @@
     "url": "https://coastwatch.pfeg.noaa.gov/erddap/griddap/erdQSwindmday",
     "licence": "Free to use and redistribute, no warranty (ERDDAP dataset licence)",
     "fetched": "2026-10-13",
-    "processing": "Every 16th point (2 deg, 75S..75N), averaged by calendar month, monthly means over 25 m/s masked (sea-ice contamination), packed as int16 at 0.01 m/s in one 12-frame DRFT tile. Replaces the planned ICOADS climatology, which the ERDDAP server stopped serving"
+    "processing": "Every 16th point (2 deg, 75S..75N), averaged by calendar month, monthly-mean speeds over 20 m/s masked (sea-ice contamination), then every remaining no-data cell (coast, sea ice, land; 36% of cells) filled per month by iterative nearest-valid-neighbour extrapolation (repeated NaN-aware 3x3 mean, lon wrapping) so the tile has no gaps, packed as int16 at 0.01 m/s in one 12-frame DRFT tile. Replaces the planned ICOADS climatology, which the ERDDAP server stopped serving"
   },
   {
     "name": "NOAA Global Drifter Program 6-hourly QC drifters, 2012-01-01..2014-09-26",

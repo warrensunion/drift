@@ -56,6 +56,9 @@ def main():
     n_final = int(fin.sum())
     out = dict(
         id=a.ID.values.astype(np.int64)[fin],
+        day=((a.day.values.astype("datetime64[D]") - np.datetime64("1970-01-01", "D"))
+             .astype(np.int64))[fin],
+        month=month[fin].astype(np.int64),
         lat=lat0[fin], lon=lon0[fin], doy=doy[fin].astype(np.float64),
         windage=wind_flag[fin], dx_km=dx[fin], dy_km=dy[fin],
         u_cur=uc[fin], v_cur=vc[fin], u_wind=uw[fin], v_wind=vw[fin],
