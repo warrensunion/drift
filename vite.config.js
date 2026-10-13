@@ -1,0 +1,19 @@
+import { defineConfig } from 'vite';
+import { resolve } from 'node:path';
+import { existsSync } from 'node:fs';
+
+// Multi-page build: the site (index.html, Task 11) and the globe dev harness (globe.html).
+// DRIFT_PAGES=globe.html builds a subset.
+const root = import.meta.dirname;
+const pages = (process.env.DRIFT_PAGES ? process.env.DRIFT_PAGES.split(',') : ['index.html', 'globe.html'])
+  .filter((f) => existsSync(resolve(root, f)));
+
+export default defineConfig({
+  build: {
+    target: 'es2022',
+    rollupOptions: { input: Object.fromEntries(pages.map((f) => [f.replace('.html', ''), resolve(root, f)])) },
+  },
+  // The simulation worker is an ES module worker (it imports onnxruntime-web).
+  worker: { format: 'es' },
+  optimizeDeps: { exclude: ['onnxruntime-web'] },
+});

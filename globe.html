@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="icon" href="data:," />
+  <title>Drift: drop your own</title>
+  <meta name="description" content="Drop a bottle, bag, fishing line or tyre dust into the ocean and watch a cloud of possible paths unfold over ten years." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" />
+  <style>
+    html, body { margin: 0; height: 100%; background: #071c21; overflow: hidden; }
+    #globe { position: fixed; inset: 0; }
+  </style>
+</head>
+<body>
+  <main id="globe" aria-label="Ocean globe"></main>
+  <script type="module">
+    // Dev harness: the globe is a lazy chunk; the site (Task 11) mounts it the same way.
+    const { mountGlobe } = await import('./src/globe/index.js');
+    window.__globe = mountGlobe(document.getElementById('globe'), { mode: 'global' });
+  </script>
+</body>
+</html>
