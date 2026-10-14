@@ -177,7 +177,7 @@
 .l-rays { right: 6%; top: -14%; width: 30vw; opacity: .3; mix-blend-mode: screen; }
 .l-hills { left: -8%; right: -8%; top: 21%; height: 30%; opacity: .92; }
 .l-hills .art { height: 100%; object-fit: cover; object-position: 50% 54%; filter: saturate(.85); }
-.l-river { left: -6%; right: -6%; top: 41%; height: 27%; }
+.l-river { left: -6%; right: -6%; top: 39%; height: 29%; -webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .6) 9%, #000 20%); mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .6) 9%, #000 20%); }
 .l-river .art--plate { object-position: 50% 56%; }
 .l-under {
   left: -6%; right: -6%; top: 63.5%; bottom: -10%;
@@ -214,11 +214,10 @@
 .l-isle { right: -18%; top: 17%; width: 76vw; height: 16%; opacity: .8; -webkit-mask-image: linear-gradient(90deg, transparent, #000 30%); mask-image: linear-gradient(90deg, transparent, #000 30%); }
 .l-isle .art { height: 100%; object-fit: cover; object-position: 50% 56%; filter: hue-rotate(8deg) saturate(.6) brightness(1.05); }
 /* The sea melts into a hazy horizon instead of ending on a hard line behind the headline. */
-.l-sea { left: -5%; right: -5%; top: 24.6%; height: 19%; -webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .55) 9%, #000 24%); mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .55) 9%, #000 24%); }
+.l-sea { left: -5%; right: -5%; top: 24.6%; height: 19%; -webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .25) 22%, rgba(0, 0, 0, .7) 45%, #000 70%); mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .25) 22%, rgba(0, 0, 0, .7) 45%, #000 70%); }
 .l-sea .art--plate { object-position: 50% 62%; }
-.l-underwater { left: -5%; right: -5%; top: 41%; bottom: -8%; }
+.l-underwater { left: -5%; right: -5%; top: 38%; bottom: -8%; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 12%); mask-image: linear-gradient(180deg, transparent 0, #000 12%); }
 .l-underwater .art--plate { object-position: 50% 14%; }
-.l-underwater::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 2px; z-index: 1; background: rgba(230, 238, 233, .7); box-shadow: 0 0 20px 6px rgba(230, 238, 233, .3); }
 .l-rays2 { left: 48%; top: 38%; width: 26vw; opacity: .35; mix-blend-mode: screen; }
 .l-sand {
   left: -6%; right: -6%; bottom: -8%; height: 36%;

@@ -1,0 +1,85 @@
+[   0s] drift shoot "polish3" sizes 1440x900, 1920x1080, 390x844 with system Chrome 155.0.8059.79
+[   3s] built (development) in 2.5 s -> C:\Users\Warren\AppData\Local\Temp\drift-shoot-dev-5739
+[   3s] lazy files (manifest): assets/globe-Dlgn1VvN.js + assets/worker-*.js, *.wasm, *.onnx
+[   3s] serving C:\Users\Warren\AppData\Local\Temp\drift-shoot-dev-5739 at http://127.0.0.1:5739
+[   3s] == 1440x900
+[   5s]   1440x900/0-preloader-midfill.jpg
+[  11s]   1440x900/0-handoff.jpg
+[  13s]   1440x900/0-intro.jpg
+[  13s]   1440x900/0-begin.jpg
+[  18s]   1440x900/1-mid.jpg
+[  20s]   1440x900/1to2-transition.jpg
+[  25s]   1440x900/2-mid.jpg
+[  29s]   1440x900/2to3-transition.jpg
+[  35s]   1440x900/3-mid.jpg
+[  39s]   1440x900/3to4-transition.jpg
+[  44s]   1440x900/4-mid.jpg
+[  47s]   1440x900/4to5-transition.jpg
+[  52s]   1440x900/5-mid.jpg
+[  54s]   1440x900/5to6-transition.jpg
+1440x900 story console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
+1440x900 story console.info: [drift] renderer: webgpu
+1440x900 story worker started: worker-7Iho_Cnk.js
+[  60s]   1440x900/6-mid.jpg
+[  66s]   1440x900/3-late.jpg
+[  67s]   1440x900/8-about.jpg
+[  68s]   1440x900/8-about-model.jpg
+[  69s]   1440x900/8-about-sources.jpg
+[  69s] == 1920x1080
+[  73s]   1920x1080/0-preloader-midfill.jpg
+[  78s]   1920x1080/0-handoff.jpg
+[  80s]   1920x1080/0-intro.jpg
+[  80s]   1920x1080/0-begin.jpg
+[  85s]   1920x1080/1-mid.jpg
+[  87s]   1920x1080/1to2-transition.jpg
+[  92s]   1920x1080/2-mid.jpg
+[  95s]   1920x1080/2to3-transition.jpg
+[ 100s]   1920x1080/3-mid.jpg
+[ 102s]   1920x1080/3to4-transition.jpg
+[ 107s]   1920x1080/4-mid.jpg
+[ 110s]   1920x1080/4to5-transition.jpg
+[ 115s]   1920x1080/5-mid.jpg
+[ 118s]   1920x1080/5to6-transition.jpg
+1920x1080 story console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
+1920x1080 story console.info: [drift] renderer: webgpu
+1920x1080 story worker started: worker-7Iho_Cnk.js
+[ 123s]   1920x1080/6-mid.jpg
+[ 129s]   1920x1080/3-late.jpg
+[ 131s]   1920x1080/8-about.jpg
+[ 132s]   1920x1080/8-about-model.jpg
+[ 133s]   1920x1080/8-about-sources.jpg
+[ 133s] == 390x844
+[ 136s]   390x844/0-preloader-midfill.jpg
+[ 141s]   390x844/0-handoff.jpg
+[ 143s]   390x844/0-intro.jpg
+[ 144s]   390x844/0-begin.jpg
+[ 147s]   390x844/1-mid.jpg
+[ 148s]   390x844/1to2-transition.jpg
+[ 152s]   390x844/2-mid.jpg
+[ 153s]   390x844/2to3-transition.jpg
+[ 156s]   390x844/3-mid.jpg
+[ 157s]   390x844/3to4-transition.jpg
+[ 161s]   390x844/4-mid.jpg
+[ 162s]   390x844/4to5-transition.jpg
+[ 165s]   390x844/5-mid.jpg
+[ 166s]   390x844/5to6-transition.jpg
+390x844 story console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
+390x844 story console.info: [drift] renderer: webgpu
+390x844 story worker started: worker-7Iho_Cnk.js
+[ 171s]   390x844/6-mid.jpg
+[ 175s]   390x844/3-late.jpg
+[ 177s]   390x844/8-about.jpg
+[ 178s]   390x844/8-about-model.jpg
+[ 179s]   390x844/8-about-sources.jpg
+[ 179s] == compare
+[ 179s]   design-reference/compare/three-up-0-preloader.jpg
+[ 179s]   design-reference/compare/three-up-0-handoff.jpg
+[ 179s]   design-reference/compare/three-up-1-bottle.jpg
+[ 179s]   design-reference/compare/three-up-2-breaks.jpg
+[ 180s]   design-reference/compare/three-up-3-currents.jpg
+[ 180s]   design-reference/compare/three-up-4-gyre.jpg
+[ 180s]   design-reference/compare/three-up-5-deep.jpg
+[ 180s]   design-reference/compare/three-up-6-yours.jpg
+[ 180s]   compare globe: no shot globe-pacific-bottle-10y
+[ 180s]   compare salish: no shot salish-fraser-end
+[ 180s]   design-reference/compare/three-up-about.jpg
