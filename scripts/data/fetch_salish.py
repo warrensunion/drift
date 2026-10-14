@@ -22,6 +22,7 @@ import numpy as np
 import requests
 import xarray as xr
 from PIL import Image
+from scipy import ndimage
 from scipy.spatial import cKDTree
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -94,7 +95,8 @@ def main():
     else:
         (CACHE / pinned).unlink(missing_ok=True)
         print("START_FRAME not in archive; picking strongest 25 h window available")
-        c = fetch_cur("all", "[0:last]")
+        # Keyed by fetch date so a later fallback never reuses an older archive's window.
+        c = fetch_cur(f"all_{np.datetime_as_string(np.datetime64('today'), unit='D')}", "[0:last]")
         times_all = c["time"].values
         near = (np.abs(sub_lat - REF[0]) < 0.12) & (np.abs(sub_lon - REF[1]) < 0.2) & sub_mask
         spd = np.nan_to_num(np.hypot(c["VelEast5"].values, c["VelNorth5"].values))[:, near].mean(axis=1)
@@ -149,15 +151,38 @@ def main():
     assert len(header) == 32
     (OUT / "tide.bin").write_bytes(header + out.astype("<i2").tobytes())
 
-    # --- land.png: 4x, north up; pixel -> nearest model cell (any), water iff tmask ---
+    # --- land.png: 4x, north up; pixel -> nearest model cell (any) ---
+    # 0 = water (tmask wet), 255 = land inside the model domain (tmask dry),
+    # 128 = outside the model domain: farther than 1.5 model cells from every model point,
+    # or nearest to the model's outermost row/column, which NEMO masks along its open
+    # boundaries (Juan de Fuca west, the northern edge) although the sea continues there.
     sx, sy = NX * SS, NY * SS
     plon = LON0 - DLON / 2 + (np.arange(sx) + 0.5) * DLON / SS
     plat = (LAT0 + (NY - 1) * DLAT + DLAT / 2) - (np.arange(sy) + 0.5) * DLAT / SS
     PG, QG = np.meshgrid(plon, plat)
     alltree = cKDTree(proj(sub_lon, sub_lat))
     d2, i2 = alltree.query(proj(PG, QG))
-    water = sub_mask.ravel()[i2].reshape(sy, sx) & (d2 < 1.5 * cell).reshape(sy, sx)
-    img = np.where(water, 0, 255).astype(np.uint8)
+    d2, i2 = d2.reshape(sy, sx), i2.reshape(sy, sx)
+    jy, ix = np.unravel_index(i2, sub_lon.shape)
+    jy, ix = jy + y0, ix + x0
+    ny_m, nx_m = lat_m.shape
+    frame = (jy == 0) | (jy == ny_m - 1) | (ix == 0) | (ix == nx_m - 1)
+    outside = (d2 >= 1.5 * cell) | frame
+    # Only regions that reach the chart edge are "outside": small interior gaps in the
+    # curvilinear grid's coverage (two lenses over the Fraser delta) are land.
+    lab, _ = ndimage.label(outside)
+    edge = np.unique(np.concatenate([lab[0], lab[-1], lab[:, 0], lab[:, -1]]))
+    outside = np.isin(lab, edge[edge > 0])
+    # The model's Fraser River continues as an artificial straight channel, one cell wide,
+    # along its eastern boundary (gridX 394, north of the real river). It is not a place:
+    # draw it as land.
+    chan = np.zeros_like(tmask)
+    chan[:, 1:-1] = tmask[:, 1:-1] & ~tmask[:, :-2] & ~tmask[:, 2:]
+    chan[:, :390] = False
+    wet_full = tmask & ~chan
+    wet = wet_full[jy, ix]
+    img = np.where(outside, 128, np.where(wet, 0, 255)).astype(np.uint8)
+    print(f"land.png: water {np.mean(img == 0):.1%}, land {np.mean(img == 255):.1%}, outside the model {np.mean(img == 128):.1%}")
     Image.fromarray(img, "L").save(OUT / "land.png", optimize=True)
 
     meta = {
@@ -169,9 +194,12 @@ def main():
         "frameStepSeconds": 3600,
         "frames": NFRAMES,
         "grid": {"lon0": LON0, "lat0": LAT0, "dlon": DLON, "dlat": DLAT, "nx": NX, "ny": NY,
-                 "scale": SCALE, "landPng": {"width": sx, "height": sy, "northUp": True}},
+                 "scale": SCALE, "landPng": {"width": sx, "height": sy, "northUp": True,
+                                              "values": {"water": 0, "land": 255, "outsideModel": 128}}},
         "notes": (f"Frame times are hour-centred (:30 UTC) means. Window: {t_note}. "
-                  "Regridded by nearest model water cell within 1.5 model cells; land.png from tmask. "
+                  "Regridded by nearest model water cell within 1.5 model cells; land.png from tmask: "
+                  "0 water, 255 land, 128 outside the model domain (no model point within 1.5 cells, "
+                  "or the model's masked outer boundary row/column). "
                   "Licence: Apache-2.0, (c) SalishSeaCast Project Contributors and UBC."),
     }
     (OUT / "meta.json").write_text(json.dumps(meta, indent=2))

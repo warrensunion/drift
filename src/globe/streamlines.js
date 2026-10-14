@@ -45,7 +45,11 @@ export function fieldTextures(tiles) {
  * it and the trail texture spans it; gain is degrees per frame at 1 m/s; dotScale the stamp size
  * in degrees; trailSize the trail texture size. Without region: the whole globe.
  */
-export function createStreamlines(renderer, { fieldTex, reducedMotion = false, seeds = SEEDS, region = null, gain = 0.17, dotScale = 0.5, trailSize = [TRAIL_W, TRAIL_H] }) {
+export function createStreamlines(renderer, { fieldTex, reducedMotion = false, seeds = SEEDS, region = null, gain = 0.17, dotScale = 0.5, trailSize = [TRAIL_W, TRAIL_H], renormalize = false }) {
+  // renormalize: divide the filtered (u, v) by the filtered water flag, i.e. bilinear over the
+  // water corners only (no slow band along the coast); seeds respawn only where no corner is wet.
+  const vel = (f) => (renormalize ? f.xy.div(max(f.z, 0.001)) : f.xy);
+  const dryBelow = renormalize ? 0.02 : 0.5;
   const grid = fieldTex.userData.grid;
   // Texture coordinates of (lon, lat) in the field: cell centres at lon0 + i*dlon.
   const lonSpan = grid.nx * grid.dlon, latSpan = grid.ny * grid.dlat;
@@ -84,18 +88,19 @@ export function createStreamlines(renderer, { fieldTex, reducedMotion = false, s
     const lon = s.x.toVar(), lat = s.y.toVar(), age = s.z.toVar(), life = s.w.toVar();
     const st = vec2(lon.sub(lonStart).div(lonSpan), lat.sub(latStart).div(latSpan));
     const f = fieldNode.sample(st).level(0);
-    const speed = length(f.xy);
+    const fv = vel(f);
+    const speed = length(fv);
     // A gentle speed curve so slow basins still draw: displayed speed ~ speed^0.55.
     const gain = pow(max(speed, 0.002), -0.45).mul(uGain).mul(uDt.mul(60));
-    lon.addAssign(f.x.mul(gain).div(max(cos(radians(lat)), 0.2)));
-    lat.addAssign(f.y.mul(gain));
+    lon.addAssign(fv.x.mul(gain).div(max(cos(radians(lat)), 0.2)));
+    lat.addAssign(fv.y.mul(gain));
     age.addAssign(uDt.mul(uLife));
     If(lon.greaterThan(180), () => { lon.subAssign(360); });
     If(lon.lessThan(-180), () => { lon.addAssign(360); });
     const out = region
       ? lon.lessThan(region.west).or(lon.greaterThan(region.east)).or(lat.lessThan(region.south)).or(lat.greaterThan(region.north))
       : abs(lat).greaterThan(latLimit);
-    If(f.z.lessThan(0.5).or(age.greaterThan(life)).or(out), () => {
+    If(f.z.lessThan(dryBelow).or(age.greaterThan(life)).or(out), () => {
       respawn(s);
     }).Else(() => {
       s.assign(vec4(lon, lat, age, life));
@@ -129,7 +134,7 @@ export function createStreamlines(renderer, { fieldTex, reducedMotion = false, s
     const t = clamp(age.div(life), 0, 1);
     const env = sin(t.mul(PI)).mul(smoothstep(0.0, 0.02, age));
     // Fast currents draw brighter than slow basins, so the structure reads.
-    const sp = length(fieldNode.sample(vec2(sAttr.x.sub(lonStart).div(lonSpan), sAttr.y.sub(latStart).div(latSpan))).level(0).xy);
+    const sp = length(vel(fieldNode.sample(vec2(sAttr.x.sub(lonStart).div(lonSpan), sAttr.y.sub(latStart).div(latSpan))).level(0)));
     const bright = mix(float(0.22), float(1), smoothstep(0.03, 0.35, sp));
     const d = length(uv().sub(0.5)).mul(2);
     const a = clamp(float(1).sub(d), 0, 1);

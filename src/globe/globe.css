@@ -481,14 +481,16 @@
   will-change: transform;
 }
 .salish-label--sea { font-size: calc(22px * var(--salish-zoom)); letter-spacing: .02em; color: rgba(230, 238, 233, .62); }
-.salish-label--water, .salish-label--river { color: rgba(230, 238, 233, .72); }
+.salish-label--water { color: rgba(230, 238, 233, .72); }
+.salish-label--river { color: rgba(14, 47, 54, .82); }
+.salish-label--outside { font-size: calc(11.5px * var(--salish-zoom)); color: rgba(230, 238, 233, .58); }
 .salish-label--river { font-size: calc(14px * var(--salish-zoom)); }
 .salish-label--land { color: rgba(14, 47, 54, .74); font-size: calc(13.5px * var(--salish-zoom)); }
 .salish-marker {
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 2;
+  z-index: 1; /* under the controls and the phone sheet */
   width: 0;
   height: 0;
   padding: 0;
@@ -617,9 +619,7 @@
   .drift-salish .globe-disclaimer { top: 10px; left: 10px; right: 10px; padding: 8px 12px; }
   .drift-salish .globe-primary { align-self: stretch; }
 }
-.drift-salish .salish-marker { z-index: 1; }
 .drift-salish.has-panel .globe-ui__lede { display: none; }
-.salish-label--river { color: rgba(14, 47, 54, .82); }
 /* Chart-style halos so a name reads where it straddles the coast. */
 .salish-label--land, .salish-label--river { text-shadow: 0 0 2px rgba(230, 238, 233, .95), 0 0 6px rgba(230, 238, 233, .85); }
-.salish-label--sea, .salish-label--water { text-shadow: 0 0 3px rgba(10, 41, 48, .9), 0 0 8px rgba(10, 41, 48, .7); }
+.salish-label--sea, .salish-label--water, .salish-label--outside { text-shadow: 0 0 3px rgba(10, 41, 48, .9), 0 0 8px rgba(10, 41, 48, .7); }

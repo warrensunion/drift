@@ -50,6 +50,28 @@ for (const [w, h] of [[1440, 900], [390, 844]]) {
     report[`${tag} panel at ${label}`] = await page.evaluate(() => document.querySelector('.globe-panel').innerText.replace(/\s+/g, ' ').slice(0, 260));
   }
   report[`${tag} fates at 10 d (Sand Heads, seed 7)`] = await page.evaluate((id) => { const tr = window.__drift.debug().S.tracks.get(id); const i = tr.snaps.findIndex((s) => s && s.day >= 240); return tr.snaps[i].fragments[0].fates; }, id);
+  if (!phone) {
+    // Juan de Fuca, mid-channel: the outflow carries copies past the model's open boundary.
+    await page.evaluate(() => window.__drift.clear());
+    await page.waitForFunction(() => window.__drift.computed().length === 0, null, { timeout: 60000 });
+    await page.evaluate(() => window.__drift.centerOn(-124.25, 48.4));
+    const jdf = await page.evaluate(() => window.__drift.drop('bottle', -124.0, 48.33, 11));
+    await page.evaluate((id) => window.__drift.select(id), jdf);
+    await page.waitForFunction((id) => { const c = window.__drift.computed().find((x) => x.dropId === id); return c && c.day >= 240; }, jdf, { timeout: 600000, polling: 1000 });
+    report[`${tag} Juan de Fuca drop (-124.0, 48.33, seed 11) fates at 10 d`] = await page.evaluate((id) => { const tr = window.__drift.debug().S.tracks.get(id); const i = tr.snaps.findIndex((s) => s && s.day >= 240); return tr.snaps[i].fragments[0].fates; }, jdf);
+    await page.evaluate((id) => { window.__drift.setDay(30); window.__drift.select(id); }, jdf);
+    await page.waitForTimeout(1500);
+    await shot(page, `${tag}-juan-de-fuca-30h`);
+    // A tap outside the model domain is refused with its own message.
+    report[`${tag} (-124.85, 48.42) is outside the model`] = await page.evaluate(() => window.__drift.isOutside(-124.85, 48.42));
+    await page.evaluate(() => window.__drift.centerOn(-124.85, 48.42));
+    await page.waitForTimeout(400);
+    const outPt = await page.evaluate(() => window.__drift.toScreen(-124.85, 48.42));
+    await page.mouse.click(outPt[0], outPt[1]);
+    await page.waitForTimeout(300);
+    report[`${tag} outside-model tap toast`] = await page.evaluate(() => document.querySelector('.globe-toast').textContent);
+    report[`${tag} drops after outside tap`] = await page.evaluate(() => window.__drift.computed().length);
+  }
   report[`${tag} no horizontal scroll`] = await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   // fps while playing at 30 h/s from hour 0 with the drops on screen.
   await page.evaluate(() => { const D = window.__drift; D.setDay(0); D.speed(30); D.play(true); D.resetFrames(); });

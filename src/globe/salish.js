@@ -18,6 +18,7 @@ import { decodeTile } from '../sim/field.js';
 import { salishSnapshotHours, SALISH } from '../sim/salish.js';
 
 const MAX_H = SALISH.maxHours;
+export const OUTSIDE_MESSAGE = 'Outside the current model';
 /** Main arm of the Fraser at Sand Heads, off Steveston (water in land.png). */
 export const RIVER_MOUTH = Object.freeze({ lon: -123.30, lat: 49.10 });
 
@@ -75,6 +76,8 @@ const PLACES = [
   { name: 'San Juan Islands', lon: -123.08, lat: 48.53, kind: 'land' },
   { name: 'Saturna Island', lon: -123.20, lat: 48.79, kind: 'land' },
   { name: 'Salt Spring Island', lon: -123.50, lat: 48.80, kind: 'land' },
+  { name: 'Outside the current model', lon: -124.97, lat: 48.5, kind: 'outside' },
+  { name: 'Outside the current model', lon: -122.86, lat: 49.76, kind: 'outside' },
 ];
 
 function loadImage(url) {
@@ -87,9 +90,10 @@ function loadImage(url) {
 }
 
 /**
- * land.png -> {mask (north-first bytes, for the worker and taps), texture}. The texture is 2x the
- * mask, rows south-first: R = mask (smoothed), G = 3 px blur (coast line), B = 16 px blur (inland
- * shading), A = 48 px blur (water depth feel: near the coast is shallow).
+ * land.png (0 water, 255 land, 128 outside the model domain) -> {mask (north-first bytes, for the
+ * worker and taps), texture}. The texture is 2x the mask, rows south-first: R = outside the
+ * model (1.2 px blur), G = land, 3 px blur (coast line), B = land, 16 px blur (inland shading),
+ * A = land, 48 px blur (water depth feel: near the coast is shallow).
  */
 async function loadSalishLand(url) {
   const img = await loadImage(url);
@@ -101,19 +105,30 @@ async function loadSalishLand(url) {
   const rd = rc.getImageData(0, 0, w, h).data;
   const mask = new Uint8Array(w * h);
   for (let i = 0; i < w * h; i++) mask[i] = rd[i * 4];
+  // Two binary layers: land, and outside the model.
+  const layer = (test) => {
+    const lc = document.createElement('canvas');
+    lc.width = w; lc.height = h;
+    const lx = lc.getContext('2d');
+    const id = lx.createImageData(w, h);
+    for (let i = 0; i < w * h; i++) { const v = test(mask[i]) ? 255 : 0; id.data[i * 4] = id.data[i * 4 + 1] = id.data[i * 4 + 2] = v; id.data[i * 4 + 3] = 255; }
+    lx.putImageData(id, 0, 0);
+    return lc;
+  };
+  const landLayer = layer((v) => v >= 192), outLayer = layer((v) => v >= 64 && v < 192);
   const W = w * 2, H = h * 2;
   const c = document.createElement('canvas');
   c.width = W; c.height = H;
   const ctx = c.getContext('2d', { willReadFrequently: true });
   ctx.imageSmoothingEnabled = true;
-  const draw = (blur) => {
+  const draw = (src, blur) => {
     ctx.filter = blur ? `blur(${blur}px)` : 'none';
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, W, H);
-    ctx.drawImage(img, 0, 0, W, H);
+    ctx.drawImage(src, 0, 0, W, H);
     return ctx.getImageData(0, 0, W, H).data;
   };
-  const r = draw(1.2), g = draw(3), b = draw(16), a = draw(48);
+  const r = draw(outLayer, 1.2), g = draw(landLayer, 3), b = draw(landLayer, 16), a = draw(landLayer, 48);
   const rgba = new Uint8Array(W * H * 4);
   for (let y = 0; y < H; y++) {
     const dst = (H - 1 - y) * W;
@@ -139,7 +154,7 @@ function createMap({ extent, cosC, landTex, trailTex, waterTex, paperTex }) {
   const trailNode = texture(trailTex);
   const uTrail = uniform(1);
   const cPetrol = color(PALETTE.petrol), cDeep = color(PALETTE.deep), cGlass = color(PALETTE.glass), cFoam = color(PALETTE.foam);
-  const cAbyss = color('#0A2930'), cShallow = color('#3D8681');
+  const cAbyss = color('#0A2930'), cShallow = color('#3D8681'), cOutside = color('#284448');
   const mat = new THREE.MeshBasicNodeMaterial();
   mat.colorNode = Fn(() => {
     const st = uv();
@@ -173,6 +188,15 @@ function createMap({ extent, cosC, landTex, trailTex, waterTex, paperTex }) {
     }
     let col = mix(water, paper, land);
     col = mix(col, cGlass, coast.mul(0.8));
+    // Outside the model domain (beyond SalishSeaCast's open boundaries): neither sea nor land on
+    // this chart, a muted fill with fine diagonal hatching and a soft edge.
+    const out = smoothstep(0.3, 0.7, lm.r);
+    const hv = lon.mul(cosC).add(lat).mul(45);
+    const hatch = float(1).sub(smoothstep(0.0, fwidth(hv).mul(1.2), abs(fract(hv).sub(0.5))));
+    const outCol = mix(cOutside, cGlass, hatch.mul(0.2));
+    col = mix(col, outCol, out);
+    const outEdge = float(1).sub(smoothstep(0, fwidth(lm.r).mul(1.5), abs(lm.r.sub(0.5))));
+    col = mix(col, cGlass, outEdge.mul(0.35));
     const g = hash(screenCoordinate.x.add(screenCoordinate.y.mul(4099.0))).sub(0.5).mul(0.014);
     return col.add(g);
   })();
@@ -289,13 +313,16 @@ export function mountSalish(el, { embedded = true } = {}) {
   ro.observe(root);
   cleanups.push(() => ro.disconnect());
 
-  const isLand = (lon, lat) => {
-    if (!landMask || !extent) return true;
-    if (lon < extent.west || lon >= extent.east || lat < extent.south || lat >= extent.north) return true;
+  // land.png: 0 water, 255 land, 128 outside the model domain (null off the chart).
+  const maskAt = (lon, lat) => {
+    if (!landMask || !extent) return null;
+    if (lon < extent.west || lon >= extent.east || lat < extent.south || lat >= extent.north) return null;
     const x = Math.floor((lon - extent.west) / (extent.east - extent.west) * landMask.width);
     const y = Math.floor((extent.north - lat) / (extent.north - extent.south) * landMask.height);
-    return landMask.data[y * landMask.width + x] >= 128;
+    return landMask.data[y * landMask.width + x];
   };
+  const isLand = (lon, lat) => { const v = maskAt(lon, lat); return v === null || v >= 192; };
+  const isOutside = (lon, lat) => { const v = maskAt(lon, lat); return v !== null && v >= 64 && v < 192; };
 
   // ---- loading ----
   async function start() {
@@ -338,7 +365,7 @@ export function mountSalish(el, { embedded = true } = {}) {
     const n = tile.nx * tile.ny * 2;
     fieldTex = fieldTextures(Array.from({ length: tile.nframes }, (_, f) => ({ ...tile, nframes: 1, data: tile.data.subarray(f * n, (f + 1) * n) })));
     lines = createStreamlines(renderer, {
-      fieldTex: fieldTex[0], reducedMotion, seeds: 14000, region: extent,
+      fieldTex: fieldTex[0], reducedMotion, seeds: 14000, region: extent, renormalize: true,
       gain: 0.0007, dotScale: 0.0017, trailSize: [2048, 1400],
     });
     scene = new THREE.Scene();
@@ -380,7 +407,8 @@ export function mountSalish(el, { embedded = true } = {}) {
 
   function placeLabels() {
     // Zoom-dependent label sizes: chart labels grow a little as you zoom in.
-    labels.style.setProperty('--salish-zoom', String(Math.min(1.5, Math.max(0.85, Math.sqrt(view.cover / view.s) * 0.9))));
+    const zoomKey = (Math.round(Math.min(1.5, Math.max(0.85, Math.sqrt(view.cover / view.s) * 0.9)) * 50) / 50).toFixed(2);
+    if (labels.style.getPropertyValue('--salish-zoom') !== zoomKey) labels.style.setProperty('--salish-zoom', zoomKey);
     // Labels in list order (sea and water names first); one that would touch a label already
     // placed, or the river-mouth marker, is hidden at this zoom.
     const kept = [];
@@ -392,7 +420,9 @@ export function mountSalish(el, { embedded = true } = {}) {
     for (const { e, p } of labelEls) {
       const [x, y] = toScreen(p.lon, p.lat);
       e.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) translate(-50%, -50%)`;
-      const w = e.offsetWidth, h = e.offsetHeight;
+      // Sizes depend only on the zoom-scaled font: measure once per zoom step.
+      if (e._zoom !== zoomKey) { e._w = e.offsetWidth; e._h = e.offsetHeight; e._zoom = zoomKey; }
+      const w = e._w, h = e._h;
       const box = { l: x - w / 2 - 6, r: x + w / 2 + 6, t: y - h / 2 - 3, b: y + h / 2 + 3 };
       const clash = kept.some((k) => box.l < k.r && box.r > k.l && box.t < k.b && box.b > k.t);
       e.style.visibility = clash ? 'hidden' : '';
@@ -503,6 +533,7 @@ export function mountSalish(el, { embedded = true } = {}) {
     const hit = pickMember(x, y);
     if (hit) { select(hit); return; }
     const [lon, lat] = fromScreen(x, y);
+    if (isOutside(lon, lat)) { ui.showToast(OUTSIDE_MESSAGE, x, y); return; }
     if (isLand(lon, lat)) { ui.showToast(LAND_MESSAGE, x, y); return; }
     if (!S.simOk) { ui.showToast('Drops are off: the simulation could not start.', x, y); return; }
     drop(ui.item, lon, lat);
@@ -683,7 +714,9 @@ export function mountSalish(el, { embedded = true } = {}) {
       tap(x, y) { tap(x, y); },
       clear() { if (worker) worker.postMessage({ type: 'clear' }); },
       isLand(lon, lat) { return isLand(lon, lat); },
+      isOutside(lon, lat) { return isOutside(lon, lat); },
       toScreen(lon, lat) { return toScreen(lon, lat); },
+      centerOn(lon, lat) { const [x, y] = toWorld(lon, lat); view.tcx = view.cx = x; view.tcy = view.cy = y; clampView(); view.cx = view.tcx; view.cy = view.tcy; viewDirty = true; },
       computed() { return [...S.tracks.values()].map((t) => ({ dropId: t.dropId, day: t.lastDay, done: t.done })); },
       select(dropId, fragId = dropId * 256) { select({ dropId, fragId }); },
       cpu() { return { ...S.cpu }; },

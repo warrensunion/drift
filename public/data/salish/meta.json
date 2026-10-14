@@ -16,8 +16,13 @@
     "landPng": {
       "width": 1004,
       "height": 1136,
-      "northUp": true
+      "northUp": true,
+      "values": {
+        "water": 0,
+        "land": 255,
+        "outsideModel": 128
+      }
     }
   },
-  "notes": "Frame times are hour-centred (:30 UTC) means. Window: fixed START_FRAME. Regridded by nearest model water cell within 1.5 model cells; land.png from tmask. Licence: Apache-2.0, (c) SalishSeaCast Project Contributors and UBC."
+  "notes": "Frame times are hour-centred (:30 UTC) means. Window: fixed START_FRAME. Regridded by nearest model water cell within 1.5 model cells; land.png from tmask: 0 water, 255 land, 128 outside the model domain (no model point within 1.5 cells, or the model's masked outer boundary row/column). Licence: Apache-2.0, (c) SalishSeaCast Project Contributors and UBC."
 }

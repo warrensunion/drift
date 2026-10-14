@@ -5,17 +5,21 @@ import { decodeTile } from '../src/sim/field.js';
 import { makeRng } from '../src/sim/fragment.js';
 import { CONSTANTS } from '../src/sim/constants.js';
 import {
-  createSalishEnv, stepMember, salishSnapshotHours, createSalishSim, packSalish, SALISH, MEMBER,
+  createSalishEnv, stepMember, salishSnapshotHours, createSalishSim, packSalish, SALISH, MEMBER, sampleWater, MASK,
 } from '../src/sim/salish.js';
 
-// A 21 x 21 regional grid like the real one (0.01 x 0.005 degrees), centred on 49.2 N.
-const GRID = { nx: 21, ny: 21, lon0: -123.5, lat0: 49.15, dlon: 0.01, dlat: 0.005 };
+// A 21 x 21 regional grid with the real tile's spacing (0.01 x 0.006 degrees), around 49.2 N.
+const GRID = { nx: 21, ny: 21, lon0: -123.5, lat0: 49.14, dlon: 0.01, dlat: 0.006 };
 const tile = (cell, nframes = 1) => decodeTile(buildTile({ ...GRID, nframes, scale: 0.001, cell }));
-// land.png convention: 4 px per cell, row 0 = north. landCols: grid columns that are land.
-function mask(landCols = []) {
+// land.png convention: 4 px per cell, row 0 = north; 0 water, 255 land, 128 outside the model.
+// landCols / outsideCols: grid columns with that value.
+function mask(landCols = [], outsideCols = []) {
   const width = GRID.nx * 4, height = GRID.ny * 4;
   const data = new Uint8Array(width * height);
-  for (let y = 0; y < height; y++) for (const c of landCols) for (let k = 0; k < 4; k++) data[y * width + c * 4 + k] = 255;
+  for (let y = 0; y < height; y++) {
+    for (const c of landCols) for (let k = 0; k < 4; k++) data[y * width + c * 4 + k] = 255;
+    for (const c of outsideCols) for (let k = 0; k < 4; k++) data[y * width + c * 4 + k] = 128;
+  }
   return { width, height, data };
 }
 const LAND = -32768;
@@ -181,4 +185,45 @@ test('worker: mode salish loads the tide and posts hourly-then-6-hourly Float32 
   assert.deepEqual(snaps.map((s) => s.index), salishSnapshotHours().map((_, i) => i));
   assert.ok(snaps[0].positions instanceof Float32Array);
   assert.equal(snaps[0].positions.length, 128);
+});
+
+test('land-aware sampling: corners on land drop out and the water corners are renormalised', () => {
+  // Water cells carry u = 1000 + 100 * x (m/s * 1000); columns >= 11 are land.
+  const t = tile((f, y, x) => (x >= 11 ? [LAND, LAND] : [1000 + 100 * x, 0]));
+  // All four corners water: plain bilinear (x = 9.25 -> 1.925 m/s).
+  const lon = (x) => GRID.lon0 + x * GRID.dlon;
+  let v = sampleWater(t, lon(9.25), 49.2, 0);
+  assert.ok(Math.abs(v[0] - 1.925) < 1e-6, `${v[0]}`);
+  // Two corners on land (x = 10.4 between water column 10 and land column 11): the land corners
+  // drop out, so it is column 10's value, not a blend with zero.
+  v = sampleWater(t, lon(10.4), 49.2, 0);
+  assert.ok(Math.abs(v[0] - 2.0) < 1e-6, `${v[0]}`);
+  // One land corner (a corner cell on land): weights renormalise over the three water corners.
+  const t1 = tile((f, y, x) => (x === 11 && y === 11 ? [LAND, LAND] : [1000, 500]));
+  v = sampleWater(t1, lon(10.5), GRID.lat0 + 10.5 * GRID.dlat, 0);
+  assert.ok(Math.abs(v[0] - 1) < 1e-6 && Math.abs(v[1] - 0.5) < 1e-6, `${v}`);
+  // All corners on land: null.
+  assert.equal(sampleWater(t, lon(15.5), 49.2, 0), null);
+  // Outside the grid: null.
+  assert.equal(sampleWater(t, lon(-3), 49.2, 0), null);
+});
+
+test('a member next to the coast still moves with the current (no zero-current band)', () => {
+  const t = tile((f, y, x) => (x >= 11 ? [LAND, LAND] : [0, 1000])); // 1 m/s north, land east
+  const env = createSalishEnv({ tile: t, landMask: mask([11, 12, 13, 14, 15, 16, 17, 18, 19, 20]), K: 0, tauSeconds: Infinity });
+  const m = { lon: GRID.lon0 + 10.3 * GRID.dlon, lat: 49.2, state: MEMBER.floating, distanceKm: 0 };
+  stepMember(m, env, 0, makeRng(1));
+  const north = (m.lat - 49.2) * M_PER_DEG_LAT;
+  assert.ok(Math.abs(north - 3600) < 36, `moved ${north} m`);
+});
+
+test('a step into the area outside the model domain leaves the strait (it is not a beach)', () => {
+  assert.equal(MASK.outside, 128);
+  const t = tile(() => [2000, 0]); // 2 m/s east, toward the outside band (no land)
+  const env = createSalishEnv({ tile: t, landMask: mask([], [15, 16, 17, 18, 19, 20]), K: 0, tauSeconds: Infinity });
+  assert.equal(env.isOutside(GRID.lon0 + 16 * GRID.dlon, 49.2), true);
+  assert.equal(env.isLand(GRID.lon0 + 16 * GRID.dlon, 49.2), false);
+  const m = { lon: GRID.lon0 + 9.6 * GRID.dlon, lat: 49.2, state: MEMBER.floating, distanceKm: 0 };
+  stepMember(m, env, 0, makeRng(3));
+  assert.equal(m.state, MEMBER.left);
 });
