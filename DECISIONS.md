@@ -36,3 +36,6 @@ One line each: the decision and why. Newest at the bottom.
 - Web interface audit (docs/audit/AUDIT.md, against Vercel's Web Interface Guidelines): the globe and Salish canvases are tab stops with key equivalents for every gesture (arrows turn / pan, + and - zoom, Enter drops at a ring shown on focus) — dragging and tapping were the only way to drop on the globe.
 - Sunk markers: one member column in 24 keeps a ghost ring, drawn at half gain — copies of a fragment sink together and the glow is additive, so a ring per copy piled into white dots after a split.
 - The custom cursor dot steps aside over the whole globe section (it sat on the switch's labels); scroll restoration stays manual because every visit starts at the preloader.
+- The model runs on onnxruntime-web's wasm-only build, not the default WebGPU-capable one — an 18k-parameter MLP gains nothing from the GPU and the default build adds a 28 MB download.
+- The globe pauses rendering when its section is off screen, and a plain mouse wheel always scrolls the page; zoom is Ctrl/Cmd + wheel, pinch or the +/- keys.
+- Drops start immediately on plain advection (labelled on screen) while the model loads, then switch to the model; loading gives up after 20 s — slow phones should not wait on a model download before anything moves.
