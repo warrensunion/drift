@@ -39,3 +39,4 @@ One line each: the decision and why. Newest at the bottom.
 - The model runs on onnxruntime-web's wasm-only build, not the default WebGPU-capable one — an 18k-parameter MLP gains nothing from the GPU and the default build adds a 28 MB download.
 - The globe pauses rendering when its section is off screen, and a plain mouse wheel always scrolls the page; zoom is Ctrl/Cmd + wheel, pinch or the +/- keys.
 - Drops start immediately on plain advection (labelled on screen) while the model loads, then switch to the model; loading gives up after 20 s — slow phones should not wait on a model download before anything moves.
+- Merged build/drift into main locally with --no-ff once every check passed on HEAD — there is no remote to push to, and nothing else uses main.
