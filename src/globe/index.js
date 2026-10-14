@@ -17,6 +17,7 @@ import { mountSalish } from './salish.js';
 export const MODES = Object.freeze(['global', 'salish']);
 
 const FOV = 32;
+const MODEL_LOADING = 'Model loading: drops use plain advection until it is ready.';
 const PICK_PX = 16;
 const AUTO_ROTATE_DEG_S = 2.2;
 const KEY_HELP = 'With the keyboard: arrow keys turn it, plus and minus zoom, Enter drops at the ring in the middle.';
@@ -261,7 +262,7 @@ export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
       case 'ready':
         S.ready = true;
         S.modelFallback = !!msg.fallback;
-        if (msg.modelPending) ui.setStatus('Model loading: drops use plain advection until it is ready.', 'warn');
+        if (msg.modelPending) ui.setStatus(MODEL_LOADING, 'warn');
         else ui.setStatus(msg.fallback ? 'Model unavailable, showing plain advection.' : '', msg.fallback ? 'warn' : '');
         if (msg.fallback && !msg.modelPending) console.info('[drift] model unavailable, showing plain advection');
         while (pendingDrops.length) worker.postMessage(pendingDrops.shift());
@@ -269,7 +270,9 @@ export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
       case 'status':
         if (msg.model === 'ready') {
           S.modelFallback = false;
-          ui.setStatus('');
+          // Clear only the loading line; never overwrite an error. Drops made meanwhile say in
+          // their panel how many days used plain advection.
+          if (ui.statusText === MODEL_LOADING) ui.setStatus('');
           console.info('[drift] model ready');
         }
         if (msg.fallback) {

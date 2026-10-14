@@ -142,3 +142,11 @@ test('sankFirstWeek counts copies that reached the seafloor within 7 days', () =
   addSnapshot(tr, snap(1, 5, [[0, 0, 0, 0, 3], [0, 0, 0, 0, 3], [0, 0, 0, 0, 3], [0, 0, 0]], [frag(0, { members: 4 })]));
   assert.equal(fragmentStats(tr, 0, 5).sankFirstWeek, 0.75);
 });
+
+test('fragmentStats reports the days the drop was moved by plain advection', () => {
+  const tr = createDropTrack({ dropId: 0, item: 'bottle', lon: 0, lat: 0 });
+  addSnapshot(tr, { ...snap(0, 0, [[0, 0, 0]], [frag(0, { members: 1 })]), advectionDays: 0 });
+  addSnapshot(tr, { ...snap(1, 1, [[1, 0, 0]], [frag(0, { members: 1 })]), advectionDays: 1 });
+  assert.equal(fragmentStats(tr, 0, 1).advectionDays, 1);
+  assert.equal(fragmentStats(tr, 0, 1).computedDay, 1);
+});

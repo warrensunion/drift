@@ -692,3 +692,4 @@
 .globe-ui__status:empty { display: none; }
 /* The marker button is a point; its ring carries the focus ring. */
 .salish-marker:focus-visible { outline: none; box-shadow: none; }
+.globe-panel__method { margin: 8px 0 0; font-size: 13px; line-height: 1.5; font-style: italic; color: rgba(230, 238, 233, .72); }

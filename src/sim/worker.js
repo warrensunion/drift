@@ -115,6 +115,8 @@ export function createWorkerCore(post, { fetchFn = (u) => fetch(u), ortLib = ort
     post({
       type: 'snapshot', dropId, index: snapIndex.get(day), day,
       positions: snap.positions, meta: snap.meta, fragments: snap.fragments, usingFallback: sim.usingFallback,
+      // Days of this drop so far stepped with plain advection (the Salish tracker is all advection).
+      advectionDays: sim.advectionDaysOf ? sim.advectionDaysOf(dropId) : day,
     }, [snap.positions.buffer, snap.meta.buffer]);
   }
 

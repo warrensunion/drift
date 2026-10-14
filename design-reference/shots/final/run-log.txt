@@ -1,213 +1,24 @@
-[   0s] drift shoot "final" sizes 1440x900, 1920x1080, 390x844 with system Chrome 155.0.8059.79
-[   2s] built (production) in 1.4 s -> C:\Users\Warren\AppData\Local\Temp\drift-shoot-prod-5540
-[   2s] entry chunk: assets/index-DsAdN9ky.js, assets/preload-helper-CFijIu3R.js (46 KB)
-[   3s] built (development) in 1.1 s -> C:\Users\Warren\AppData\Local\Temp\drift-shoot-dev-5540
-[   3s] lazy files (manifest): assets/globe-Df4rqhUM.js + assets/worker-*.js, *.wasm, *.onnx
-[   3s] serving C:\Users\Warren\AppData\Local\Temp\drift-shoot-dev-5540 at http://127.0.0.1:5540
-[   3s] == 1440x900
-[   5s]   1440x900/0-preloader-midfill.jpg
-[  10s]   1440x900/0-handoff.jpg
-[  12s]   1440x900/0-intro.jpg
-[  13s]   1440x900/0-begin.jpg
-[  18s]   1440x900/1-mid.jpg
-[  21s]   1440x900/1to2-transition.jpg
-[  26s]   1440x900/2-mid.jpg
-[  29s]   1440x900/2to3-transition.jpg
-[  53s]   1440x900/3-mid.jpg
-[  63s]   1440x900/3to4-transition.jpg
-[  74s]   1440x900/4-mid.jpg
-[  87s]   1440x900/4to5-transition.jpg
-[  95s]   1440x900/5-mid.jpg
-[ 100s]   1440x900/5to6-transition.jpg
-1440x900 story console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
-1440x900 story console.info: [drift] renderer: webgpu
-1440x900 story worker started: worker-DQzV8iS2.js
-[ 108s]   1440x900/6-mid.jpg
-1440x900 story console.info: [drift] model ready
-[ 133s]   1440x900/3-late.jpg
-[ 137s]   1440x900/8-about.jpg
-[ 139s]   1440x900/8-about-model.jpg
-[ 142s]   1440x900/8-about-sources.jpg
-[ 152s]   1440x900/reduced-0-intro.jpg
-[ 156s]   1440x900/reduced-1-mid.jpg
-[ 159s]   1440x900/reduced-2-mid.jpg
-[ 163s]   1440x900/reduced-3-mid.jpg
-[ 166s]   1440x900/reduced-4-mid.jpg
-[ 169s]   1440x900/reduced-5-mid.jpg
-1440x900 story-reduced console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
-1440x900 story-reduced console.info: [drift] renderer: webgpu
-1440x900 story-reduced worker started: worker-DQzV8iS2.js
-[ 173s]   1440x900/reduced-6-mid.jpg
-1440x900 story-reduced console.info: [drift] model ready
-[ 175s]   1440x900/reduced-8-about.jpg
+[   1s] drift shoot "final" sizes 1440x900 with system Chrome 155.0.8059.79
+[   4s] built (development) in 3.0 s -> C:\Users\Warren\AppData\Local\Temp\drift-shoot-dev-5685
+[   4s] lazy files (manifest): assets/globe-TAEb4ef9.js + assets/worker-*.js, *.wasm, *.onnx
+[   4s] serving C:\Users\Warren\AppData\Local\Temp\drift-shoot-dev-5685 at http://127.0.0.1:5685
+[   4s] == 1440x900
 1440x900 globe console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
 1440x900 globe console.info: [drift] renderer: webgpu
-1440x900 globe worker started: worker-DQzV8iS2.js
-[ 207s]   1440x900 globe backend: webgpu
+1440x900 globe worker started: worker-BSgrCFBr.js
 1440x900 globe console.info: [drift] model ready
-[ 211s]   1440x900/globe-idle.jpg
-[ 223s]   1440x900 three drops computed to 10 y in 12 s
-[ 225s]   1440x900/globe-pacific-bottle-1y.jpg
-[ 229s]   1440x900/globe-pacific-bottle-10y.jpg
-[ 231s]   1440x900/globe-atlantic-bag-1y.jpg
-[ 233s]   1440x900/globe-atlantic-bag-10y.jpg
-[ 235s]   1440x900/globe-indian-line-1y.jpg
-[ 237s]   1440x900/globe-indian-line-10y.jpg
+[  16s]   1440x900 globe backend: webgpu
+[  19s]   1440x900/globe-idle.jpg
+[  23s]   1440x900 three drops computed to 10 y in 4 s
+[  25s]   1440x900/globe-pacific-bottle-1y.jpg
+[  27s]   1440x900/globe-pacific-bottle-10y.jpg
+[  29s]   1440x900/globe-atlantic-bag-1y.jpg
+[  31s]   1440x900/globe-atlantic-bag-10y.jpg
+[  33s]   1440x900/globe-indian-line-1y.jpg
+[  35s]   1440x900/globe-indian-line-10y.jpg
 1440x900 globe console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
 1440x900 globe console.info: [drift] renderer: webgpu
-1440x900 globe worker started: worker-DQzV8iS2.js
-[ 242s]   1440x900/salish-idle.jpg
-[ 245s]   1440x900/salish-fraser-1d.jpg
-[ 247s]   1440x900/salish-fraser-end.jpg
-1440x900 globe-reduced console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
-1440x900 globe-reduced console.info: [drift] renderer: webgpu
-1440x900 globe-reduced worker started: worker-DQzV8iS2.js
-1440x900 globe-reduced console.info: [drift] model ready
-[ 258s]   1440x900/reduced-globe-idle.jpg
-1440x900 static console.info: [drift] static fallback: forced by ?gl=none
-[ 267s]   1440x900/static-fallback.jpg
-[ 267s] == 1920x1080
-[ 270s]   1920x1080/0-preloader-midfill.jpg
-[ 275s]   1920x1080/0-handoff.jpg
-[ 277s]   1920x1080/0-intro.jpg
-[ 278s]   1920x1080/0-begin.jpg
-[ 283s]   1920x1080/1-mid.jpg
-[ 286s]   1920x1080/1to2-transition.jpg
-[ 291s]   1920x1080/2-mid.jpg
-[ 294s]   1920x1080/2to3-transition.jpg
-[ 299s]   1920x1080/3-mid.jpg
-[ 303s]   1920x1080/3to4-transition.jpg
-[ 308s]   1920x1080/4-mid.jpg
-[ 310s]   1920x1080/4to5-transition.jpg
-[ 315s]   1920x1080/5-mid.jpg
-[ 318s]   1920x1080/5to6-transition.jpg
-1920x1080 story console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
-1920x1080 story console.info: [drift] renderer: webgpu
-1920x1080 story worker started: worker-DQzV8iS2.js
-1920x1080 story console.info: [drift] model ready
-[ 323s]   1920x1080/6-mid.jpg
-[ 329s]   1920x1080/3-late.jpg
-[ 331s]   1920x1080/8-about.jpg
-[ 332s]   1920x1080/8-about-model.jpg
-[ 333s]   1920x1080/8-about-sources.jpg
-[ 338s]   1920x1080/reduced-0-intro.jpg
-[ 341s]   1920x1080/reduced-1-mid.jpg
-[ 344s]   1920x1080/reduced-2-mid.jpg
-[ 349s]   1920x1080/reduced-3-mid.jpg
-[ 353s]   1920x1080/reduced-4-mid.jpg
-[ 356s]   1920x1080/reduced-5-mid.jpg
-1920x1080 story-reduced console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
-1920x1080 story-reduced console.info: [drift] renderer: webgpu
-1920x1080 story-reduced worker started: worker-DQzV8iS2.js
-[ 362s]   1920x1080/reduced-6-mid.jpg
-[ 364s]   1920x1080/reduced-8-about.jpg
-1920x1080 globe console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
-1920x1080 globe console.info: [drift] renderer: webgpu
-1920x1080 globe worker started: worker-DQzV8iS2.js
-[ 387s]   1920x1080 globe backend: webgpu
-[ 392s]   1920x1080/globe-idle.jpg
-1920x1080 globe console.info: [drift] model ready
-[ 405s]   1920x1080 three drops computed to 10 y in 13 s
-[ 407s]   1920x1080/globe-pacific-bottle-1y.jpg
-[ 412s]   1920x1080/globe-pacific-bottle-10y.jpg
-[ 414s]   1920x1080/globe-atlantic-bag-1y.jpg
-[ 416s]   1920x1080/globe-atlantic-bag-10y.jpg
-[ 419s]   1920x1080/globe-indian-line-1y.jpg
-[ 421s]   1920x1080/globe-indian-line-10y.jpg
-1920x1080 globe console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
-1920x1080 globe console.info: [drift] renderer: webgpu
-1920x1080 globe worker started: worker-DQzV8iS2.js
-[ 431s]   1920x1080/salish-idle.jpg
-[ 433s]   1920x1080/salish-fraser-1d.jpg
-[ 437s]   1920x1080/salish-fraser-end.jpg
-1920x1080 globe-reduced console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
-1920x1080 globe-reduced console.info: [drift] renderer: webgpu
-1920x1080 globe-reduced worker started: worker-DQzV8iS2.js
-1920x1080 globe-reduced console.info: [drift] model ready
-[ 452s]   1920x1080/reduced-globe-idle.jpg
-1920x1080 static console.info: [drift] static fallback: forced by ?gl=none
-[ 464s]   1920x1080/static-fallback.jpg
-[ 464s] == 390x844
-[ 467s]   390x844/0-preloader-midfill.jpg
-[ 473s]   390x844/0-handoff.jpg
-[ 475s]   390x844/0-intro.jpg
-[ 479s]   390x844/0-begin.jpg
-[ 484s]   390x844/1-mid.jpg
-[ 487s]   390x844/1to2-transition.jpg
-[ 491s]   390x844/2-mid.jpg
-[ 495s]   390x844/2to3-transition.jpg
-[ 500s]   390x844/3-mid.jpg
-[ 503s]   390x844/3to4-transition.jpg
-[ 508s]   390x844/4-mid.jpg
-[ 511s]   390x844/4to5-transition.jpg
-[ 515s]   390x844/5-mid.jpg
-[ 518s]   390x844/5to6-transition.jpg
-390x844 story console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
-390x844 story console.info: [drift] renderer: webgpu
-390x844 story worker started: worker-DQzV8iS2.js
-[ 522s]   390x844/6-mid.jpg
-390x844 story console.info: [drift] model ready
-[ 530s]   390x844/3-late.jpg
-[ 537s]   390x844/8-about.jpg
-[ 539s]   390x844/8-about-model.jpg
-[ 540s]   390x844/8-about-sources.jpg
-[ 551s]   390x844/reduced-0-intro.jpg
-[ 555s]   390x844/reduced-1-mid.jpg
-[ 560s]   390x844/reduced-2-mid.jpg
-[ 564s]   390x844/reduced-3-mid.jpg
-[ 567s]   390x844/reduced-4-mid.jpg
-[ 572s]   390x844/reduced-5-mid.jpg
-390x844 story-reduced console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
-390x844 story-reduced console.info: [drift] renderer: webgpu
-390x844 story-reduced worker started: worker-DQzV8iS2.js
-[ 580s]   390x844/reduced-6-mid.jpg
-390x844 story-reduced console.info: [drift] model ready
-[ 587s]   390x844/reduced-8-about.jpg
-390x844 globe console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
-390x844 globe console.info: [drift] renderer: webgpu
-390x844 globe worker started: worker-DQzV8iS2.js
-[ 602s]   390x844 globe backend: webgpu
-390x844 globe console.info: [drift] model ready
-[ 605s]   390x844/globe-idle.jpg
-[ 612s]   390x844 three drops computed to 10 y in 7 s
-[ 614s]   390x844/globe-pacific-bottle-1y.jpg
-[ 616s]   390x844/globe-pacific-bottle-10y.jpg
-[ 618s]   390x844/globe-atlantic-bag-1y.jpg
-[ 621s]   390x844/globe-atlantic-bag-10y.jpg
-[ 622s]   390x844/globe-indian-line-1y.jpg
-[ 625s]   390x844/globe-indian-line-10y.jpg
-390x844 globe console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
-390x844 globe console.info: [drift] renderer: webgpu
-390x844 globe worker started: worker-DQzV8iS2.js
-[ 634s]   390x844/salish-idle.jpg
-[ 638s]   390x844/salish-fraser-1d.jpg
-[ 641s]   390x844/salish-fraser-end.jpg
-390x844 globe-reduced console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
-390x844 globe-reduced console.info: [drift] renderer: webgpu
-390x844 globe-reduced worker started: worker-DQzV8iS2.js
-390x844 globe-reduced console.info: [drift] model ready
-[ 656s]   390x844/reduced-globe-idle.jpg
-390x844 static console.info: [drift] static fallback: forced by ?gl=none
-[ 669s]   390x844/static-fallback.jpg
-[ 669s] == fps
-1440x900 fps console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
-1440x900 fps console.info: [drift] renderer: webgpu
-1440x900 fps worker started: worker-DQzV8iS2.js
-1440x900 fps console.info: [drift] model ready
-[ 947s]   fps setup: 833 drops to day 120 in 255 s (257 s total)
-[ 947s]   fps backend: webgpu, adapter {"fallback":false,"vendor":"nvidia","architecture":"ampere","description":""}, GL ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 (0x00002503) Direct3D11 vs_5_0 ps_5_0, D3D11)
-[ 964s]   1440x900/globe-20k-members.jpg
-[ 981s]   fps dpr1 (DPR 1, canvas 1440x900; target 60, fail < 30): playing 30x median 142.9 fps / p95 7.2 ms, drew 835/835; paused median 142.9 fps / p95 7.2 ms, drew 848/848; 19992 members
-[ 981s]   fps dpr2 (DPR 2, canvas 2880x1800; target 60, fail < 30): playing 30x median 142.9 fps / p95 13.8 ms, drew 813/813; paused median 142.9 fps / p95 7.1 ms, drew 856/856; 19992 members
-[ 981s] == compare
-[ 981s]   design-reference/compare/three-up-0-preloader.jpg
-[ 981s]   design-reference/compare/three-up-0-handoff.jpg
-[ 981s]   design-reference/compare/three-up-1-bottle.jpg
-[ 982s]   design-reference/compare/three-up-2-breaks.jpg
-[ 982s]   design-reference/compare/three-up-3-currents.jpg
-[ 982s]   design-reference/compare/three-up-4-gyre.jpg
-[ 982s]   design-reference/compare/three-up-5-deep.jpg
-[ 982s]   design-reference/compare/three-up-6-yours.jpg
-[ 982s]   design-reference/compare/three-up-globe.jpg
-[ 983s]   design-reference/compare/three-up-salish.jpg
-[ 983s]   design-reference/compare/three-up-about.jpg
+1440x900 globe worker started: worker-BSgrCFBr.js
+[  40s]   1440x900/salish-idle.jpg
+[  43s]   1440x900/salish-fraser-1d.jpg
+[  45s]   1440x900/salish-fraser-end.jpg

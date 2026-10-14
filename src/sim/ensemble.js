@@ -118,6 +118,8 @@ export function createSim({ fields, wind, predict = null, rng = makeRng(1), rngF
     maxDays,
     /** Days computed for that drop (its own clock), or -1 if unknown/retired. */
     ageOf: (dropId) => { const d = drops.get(dropId); return d ? d.day : -1; },
+    /** Days of this drop stepped with plain advection (no model loaded yet, or the fallback). */
+    advectionDaysOf: (dropId) => { const d = drops.get(dropId); return d ? d.advectionDays || 0 : 0; },
     doyOf: (dropId) => { const d = drops.get(dropId); return d ? d.startDoy + d.day : NaN; },
     isActive: () => { for (const d of drops.values()) if (d.day < maxDays) return true; return false; },
     /** Ids of drops still below maxDays, newest first. */
@@ -238,6 +240,7 @@ export function createSim({ fields, wind, predict = null, rng = makeRng(1), rngF
   }
 
   async function stepOne(d) {
+    const byModel = !!predict; // which method this day uses (fixed for the whole step)
     const rng = d.rng, doy = d.startDoy + d.day, month = monthOfDoy(doy);
     const tile = curTile(month);
     // 1. Floating members of this drop, and (before any mutation) the model's prediction, so a
@@ -296,6 +299,7 @@ export function createSim({ fields, wind, predict = null, rng = makeRng(1), rngF
         if (rng() < p) m.state[i] = STATE.sunk;
       }
     }
+    if (!byModel) d.advectionDays = (d.advectionDays || 0) + 1;
     d.day += 1;
     // 4. Fragmentation of this drop.
     fragmentDrop(d);

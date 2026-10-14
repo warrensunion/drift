@@ -425,3 +425,22 @@ test('worker: a drop arriving while session.run is pending is queued; both timel
   assert.equal(snaps(0).length, snapshotDays().length);
   assert.equal(snaps(1).length, snapshotDays().length);
 });
+
+test('advection days are counted per drop across a mid-run switch to the model', async () => {
+  // Plain advection while the model loads (predict null), then the model from day 3 on.
+  const sim = createSim({ fields: fields(), predict: null, rng: makeRng(4), featuresFn: fakeFeatures });
+  const a = sim.drop('bottle', 0, 0, 100, 1);
+  for (let i = 0; i < 3; i++) await sim.step();
+  const b = sim.drop('bottle', 2, 2, 100, 2); // dropped after the switch below: no advection days
+  sim.setPredict(fakePredict(5, 0, Math.log(1e-9)));
+  for (let i = 0; i < 4; i++) await sim.step();
+  assert.equal(sim.ageOf(a), 7);
+  assert.equal(sim.advectionDaysOf(a), 3);
+  assert.equal(sim.ageOf(b), 4);
+  assert.equal(sim.advectionDaysOf(b), 0);
+  // A fallback after a failure counts again.
+  sim.setPredict(null);
+  await sim.step();
+  assert.equal(sim.advectionDaysOf(a), 4);
+  assert.equal(sim.advectionDaysOf(b), 1);
+});

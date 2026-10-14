@@ -81,6 +81,13 @@ export const GLOBAL_PROFILE = {
   when: (t) => (t >= MAX_DAY ? 'after 10 years' : `after ${formatAge(t).toLowerCase()} (still computing)`),
   primary: null,
   notes: [],
+  // Which method moved this drop: plain advection while the model loaded (or if it failed).
+  methodNote: (s) => {
+    const n = s.advectionDays || 0;
+    if (n <= 0) return '';
+    if (n >= s.computedDay) return s.done ? 'This drop used plain advection, not the model.' : 'So far this drop has used plain advection, not the model.';
+    return `Its first ${n} ${n === 1 ? 'day' : 'days'} used plain advection while the model loaded.`;
+  },
   // A plain line when most copies sank within the first week (docs/science.md section 1).
   whyNote: (s) => {
     if (!(s.sankFirstWeek >= 0.5)) return '';
@@ -180,6 +187,8 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
   const fSize = fact('Size'), fAge = fact('Age'), fDist = fact('Distance from where you dropped it');
   const why = el('p', 'globe-panel__why');
   why.hidden = true;
+  const method = el('p', 'globe-panel__method');
+  method.hidden = true;
   const endTitle = el('h4', 'globe-panel__sub', 'Where it likely ends up');
   const endNote = el('p', 'globe-panel__note');
   const bars = el('ul', 'globe-fates');
@@ -196,7 +205,7 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
     bars.append(li);
     fateRows[k] = { val, fill };
   }
-  panel.append(pTop, dl, why, endTitle, bars, endNote);
+  panel.append(pTop, dl, why, endTitle, bars, endNote, method);
   side.append(panel);
 
   const status = el('p', 'globe-ui__status');
@@ -377,6 +386,9 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
     const note = P.whyNote(stats);
     why.textContent = note || '';
     why.hidden = !note;
+    const m = P.methodNote(stats);
+    method.textContent = m || '';
+    method.hidden = !m;
     let top = null;
     for (const [k, label] of FATES) if (!top || (stats.fates[k] || 0) > top[1]) top = [label, stats.fates[k] || 0];
     summaryText.textContent = `${copy.short ? copy.short[0].toUpperCase() + copy.short.slice(1) : copy.name} · ${P.formatAge(stats.day)} · ${pct(top[1])} ${top[0].toLowerCase()}`;
@@ -398,6 +410,7 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
     setTime,
     setPanel,
     setStatus(text, kind = '') { status.textContent = text || ''; status.dataset.kind = kind; },
+    get statusText() { return status.textContent; },
     setHint(text) { hint.textContent = text; },
     showToast,
     setDropEnabled(ok, why = '') {

@@ -65,7 +65,7 @@ const newIdentity = (tr, ancestor, index) => {
 };
 
 /** Add a worker snapshot to a drop track. */
-export function addSnapshot(tr, { index, day, positions, meta, fragments }) {
+export function addSnapshot(tr, { index, day, positions, meta, fragments, advectionDays = null }) {
   const n = positions.length >> 1;
   if (positions instanceof Float32Array || positions instanceof Float64Array) { tr.sx = 1; tr.sy = 1; }
   for (const f of fragments || []) tr.frags.set(f.id, { id: f.id, local: f.local, sizeClass: f.sizeClass, parentId: f.parentId, bornDay: f.bornDay });
@@ -123,6 +123,7 @@ export function addSnapshot(tr, { index, day, positions, meta, fragments }) {
   tr.snaps[index] = { day, n: total, pos, code, fragments: fragments || [], members: n };
   tr.lastIndex = Math.max(tr.lastIndex, index);
   tr.lastDay = Math.max(tr.lastDay, day);
+  if (advectionDays != null) tr.advectionDays = Math.max(tr.advectionDays || 0, advectionDays);
   tr.computedDay = Math.max(tr.computedDay, day);
   if (total !== before) tr.version++;
   return tr;
@@ -273,6 +274,7 @@ export function fragmentStats(tr, fragId, t) {
   return {
     item: tr.item,
     fromDropKm: fromDrop,
+    advectionDays: tr.advectionDays || 0,
     sankFirstWeek: ids ? early / ids : 0,
     day: fr.day,
     pieces: now.length,

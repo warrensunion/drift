@@ -50,6 +50,7 @@ export const SALISH_PROFILE = {
   fates: [['coast', 'On a beach'], ['left', 'Left the strait'], ['floating', 'Still floating']],
   when: (t) => (t >= MAX_H ? 'after 30 days' : `after ${formatHours(t).toLowerCase()} (still computing)`),
   primary: 'Drop at the river mouth',
+  methodNote: () => '', // the Salish tracker is advection by design (said in the notes)
   notes: ['Tidal currents from SalishSeaCast, one 25-hour cycle repeated.', 'No wind or breaking up at this scale.'],
 };
 
