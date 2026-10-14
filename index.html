@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en" class="is-loading">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Drift</title>
+  <meta name="description" content="Follow one plastic bottle from a riverbank into the deep, then drop your own anywhere in the ocean and watch ten simulated years of possible paths." />
+  <meta name="theme-color" content="#0E2F36" />
+  <meta name="color-scheme" content="dark" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Drift" />
+  <meta property="og:description" content="Follow one plastic bottle from a riverbank into the deep, then drop your own anywhere in the ocean and watch ten simulated years of possible paths." />
+  <meta name="twitter:card" content="summary" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link id="fonts" rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" />
+  <link rel="preload" as="image" href="/art/s2-surface-1280.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/art/ui-paper.webp" />
+  <style>
+    /* Critical: the preloader paints before any script or stylesheet arrives. */
+    html, body { margin: 0; background: #0E2F36; }
+    html { color-scheme: dark; }
+    html.is-loading, html.is-loading body { overflow: hidden; }
+    .pre { position: fixed; inset: 0; z-index: 50; color: #E6EEE9; pointer-events: none; overflow: hidden; }
+    .pre { --cap-y: 24vh; }
+    .pre__scene { position: absolute; inset: 0; overflow: hidden; }
+    .pre__water { position: absolute; inset: 0; background:
+      radial-gradient(ellipse 46% 30% at 50% 24vh, rgba(214, 236, 226, .42), rgba(127, 183, 174, .1) 60%, transparent 80%),
+      radial-gradient(ellipse 120% 90% at 50% 0%, #2a6d6d 0%, #1A5157 30%, #10393F 62%, #0A262C 85%, #071C21 100%); }
+    /* The lit sea surface seen from below: one small image, masked to the top, drifting gently. */
+    .pre__surface { position: absolute; left: -6%; right: -6%; top: 0; height: 48%; background: url(/art/s2-surface-1280.webp) 50% 0 / cover no-repeat;
+      -webkit-mask-image: linear-gradient(#000 30%, rgba(0,0,0,.5) 62%, transparent); mask-image: linear-gradient(#000 30%, rgba(0,0,0,.5) 62%, transparent);
+      animation: pre-drift 26s ease-in-out infinite alternate; }
+    @keyframes pre-drift { from { transform: translate3d(-1.6%, 0, 0) scale(1.05); } to { transform: translate3d(1.6%, .6%, 0) scale(1.05); } }
+    /* Soft god-rays fanning down from the cap. */
+    .pre__rays { position: absolute; left: 50%; top: var(--cap-y); width: 240vmax; height: 130vh; margin-left: -120vmax; pointer-events: none;
+      background: conic-gradient(from 130deg at 50% 0, transparent 0deg, transparent 0.0deg, rgba(226,242,234,0.100) 0.8deg, transparent 1.5deg, transparent 3.5deg, rgba(226,242,234,0.200) 5.0deg, transparent 6.4deg, transparent 9.3deg, rgba(226,242,234,0.125) 11.5deg, transparent 13.6deg, transparent 17.4deg, rgba(226,242,234,0.225) 18.5deg, transparent 19.6deg, transparent 24.3deg, rgba(226,242,234,0.150) 26.1deg, transparent 27.9deg, transparent 29.9deg, rgba(226,242,234,0.250) 30.6deg, transparent 31.4deg, transparent 34.3deg, rgba(226,242,234,0.175) 35.8deg, transparent 37.2deg, transparent 41.0deg, rgba(226,242,234,0.100) 43.1deg, transparent 45.3deg, transparent 50.0deg, rgba(226,242,234,0.200) 51.1deg, transparent 52.2deg, transparent 54.2deg, rgba(226,242,234,0.125) 56.0deg, transparent 57.8deg, transparent 60.7deg, rgba(226,242,234,0.225) 61.5deg, transparent 62.2deg, transparent 66.0deg, rgba(226,242,234,0.150) 67.5deg, transparent 68.9deg, transparent 73.6deg, rgba(226,242,234,0.250) 75.8deg, transparent 77.9deg, transparent 79.9deg, rgba(226,242,234,0.175) 81.0deg, transparent 82.1deg, transparent 85.0deg, rgba(226,242,234,0.100) 86.8deg, transparent 88.6deg, transparent 92.4deg, rgba(226,242,234,0.200) 93.1deg, transparent 93.9deg, transparent 100deg, transparent 360deg);
+      -webkit-mask-image: radial-gradient(ellipse 34% 100% at 50% 0, #000 20%, rgba(0,0,0,.6) 50%, transparent 85%); mask-image: radial-gradient(ellipse 34% 100% at 50% 0, #000 20%, rgba(0,0,0,.6) 50%, transparent 85%);
+      filter: blur(6px); opacity: 1; mix-blend-mode: screen; transform-origin: 50% 0; animation: pre-rays 11s ease-in-out infinite alternate; }
+    @keyframes pre-rays { from { transform: rotate(-2.5deg); opacity: .8; } to { transform: rotate(2.5deg); opacity: 1; } }
+    .pre__bar { position: absolute; left: 50%; top: calc(var(--cap-y) + 12px); width: 36px; height: min(330px, 48vh); margin-left: -18px; overflow: hidden; transform: translate3d(0, 100%, 0); }
+    .pre__bar-inner { position: absolute; inset: 0; transform: translate3d(0, -100%, 0); }
+    .pre__bar, .pre__bar-inner { transition: transform .8s cubic-bezier(.215, .61, .355, 1); }
+    .pre.is-in .pre__bar, .pre.is-in .pre__bar-inner { transform: translate3d(0, 0, 0); }
+    .pre.is-out .pre__bar { transform: translate3d(0, -100%, 0); }
+    .pre.is-out .pre__bar-inner { transform: translate3d(0, 100%, 0); }
+    .pre__stroke { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    .pre__track { opacity: .2; }
+    .pre__fill { position: absolute; inset: 0; overflow: hidden; transform: translate3d(0, 100%, 0); transition: transform .5s ease; }
+    .pre__fill-inner { position: absolute; inset: 0; transform: translate3d(0, -100%, 0); transition: transform .5s ease; }
+    .pre__cap { position: absolute; left: 50%; top: var(--cap-y); width: 84px; height: 55px; margin: -34px 0 0 -42px; filter: drop-shadow(0 0 16px rgba(255, 77, 141, .35)) drop-shadow(0 6px 10px rgba(7, 28, 33, .35));
+      transition: opacity .6s ease, transform .8s cubic-bezier(.215, .61, .355, 1); animation: pre-bob 4.8s ease-in-out infinite; }
+    @keyframes pre-bob { 0%, 100% { translate: 0 0; rotate: -3deg; } 50% { translate: 0 3px; rotate: 2deg; } }
+    .pre.is-out .pre__cap { transform: translate3d(0, -40vh, 0); opacity: 0; }
+    .pre__ripples { position: absolute; left: 50%; top: calc(var(--cap-y) - 6px); width: 0; height: 0; }
+    .pre__ripples i { position: absolute; left: 0; top: 0; width: 220px; height: 44px; margin: -22px 0 0 -110px; border-radius: 50%; border: 2px solid rgba(240, 246, 242, .7); box-shadow: 0 0 14px rgba(230, 238, 233, .3), inset 0 0 10px rgba(230, 238, 233, .2); animation: pre-ripple 3.6s cubic-bezier(.215, .61, .355, 1) infinite; opacity: 0; }
+    .pre__ripples i:nth-child(1) { animation-delay: -.6s; } .pre__ripples i:nth-child(2) { animation-delay: .6s; } .pre__ripples i:nth-child(3) { animation-delay: 1.8s; }
+    @keyframes pre-ripple { 0% { transform: scale(.15); opacity: 0; } 15% { opacity: 1; } 100% { transform: scale(2.6); opacity: 0; } }
+    .pre.is-out .pre__ripples { opacity: 0; transition: opacity .6s; }
+    .pre__ring { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform: translate(-50%, -50%); border-radius: 50%; box-shadow: 0 0 0 1px rgba(230, 238, 233, .35), 0 0 60px rgba(7, 28, 33, .5); opacity: 0; }
+    .pre__intro { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; }
+    .pre__title { margin: 0; font: 300 clamp(4.5rem, 15vw, 13rem)/.9 'Anybody', 'Arial Narrow', system-ui, sans-serif; font-variation-settings: 'wdth' 125; letter-spacing: -.01em; opacity: 0; color: #E6EEE9; text-shadow: 0 2px 40px rgba(7, 28, 33, .45); }
+    .pre__lede, .pre__hint { opacity: 0; transition: opacity .5s ease; }
+    @media (prefers-reduced-motion: reduce) {
+      .pre__bar, .pre__bar-inner, .pre__fill, .pre__fill-inner { transition-duration: .01s; }
+      .pre__ripples i { animation: none; opacity: .5; transform: scale(.7); }
+      .pre__surface, .pre__rays, .pre__cap { animation: none; }
+    }
+  </style>
+  <script>
+    // Never leave the page locked if a script fails to arrive.
+    setTimeout(function () {
+      document.documentElement.classList.remove('is-loading');
+      if (!document.querySelector('.pre.is-js')) document.querySelectorAll('[inert]').forEach(function (el) { el.inert = false; });
+    }, 20000);
+  </script>
+</head>
+<body>
+  <a class="skip" href="#about">Skip to About the science</a>
+
+  <div id="preloader" class="pre">
+    <p id="pre-status" class="visually-hidden" role="status">Loading Drift…</p>
+    <div class="pre__scene" aria-hidden="true">
+      <div class="pre__water"></div>
+      <div class="pre__surface"></div>
+      <div class="pre__rays"></div>
+    </div>
+    <div class="pre__ripples" aria-hidden="true"><i></i><i></i><i></i></div>
+    <!-- The drop of plastic: a magenta bottle cap seen from just below the surface. -->
+    <svg class="pre__cap" viewBox="0 0 58 38" aria-hidden="true">
+      <defs>
+        <linearGradient id="cap-side" x1="0" x2="1"><stop offset="0" stop-color="#8f1747" /><stop offset=".3" stop-color="#ff6aa2" /><stop offset=".55" stop-color="#f04585" /><stop offset="1" stop-color="#7c123d" /></linearGradient>
+        <radialGradient id="cap-top" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#ffb3cf" /><stop offset=".6" stop-color="#ff5d98" /><stop offset="1" stop-color="#c92766" /></radialGradient>
+      </defs>
+      <path d="M4 11 L4 27 A25 7.5 0 0 0 54 27 L54 11 Z" fill="url(#cap-side)" />
+      <g stroke="#7a0f3a" stroke-opacity=".5" stroke-width="1.1">
+        <path d="M8 13v16M12 14v16.5M16 14.5v17M20 15v17M24 15v17.4M28 15v17.5M32 15v17.4M36 15v17M40 14.5v17M44 14v16.5M48 13v16M51 12v15" />
+      </g>
+      <ellipse cx="29" cy="11" rx="25" ry="7.5" fill="url(#cap-top)" />
+      <ellipse cx="25" cy="9.4" rx="12" ry="2.6" fill="#fff" opacity=".35" />
+      <path d="M4 27 A25 7.5 0 0 0 54 27" fill="none" stroke="#5c0c2d" stroke-width="1.6" stroke-opacity=".8" />
+    </svg>
+    <div class="pre__bar" aria-hidden="true">
+      <div class="pre__bar-inner">
+        <svg class="pre__stroke pre__track" viewBox="0 0 36 300" preserveAspectRatio="none"><use href="#stroke" /></svg>
+        <div class="pre__fill"><div class="pre__fill-inner">
+          <svg class="pre__stroke" viewBox="0 0 36 300" preserveAspectRatio="none"><use href="#stroke" /></svg>
+        </div></div>
+      </div>
+    </div>
+    <div class="pre__ring" aria-hidden="true"></div>
+    <div class="pre__intro">
+      <div class="pre__intro-inner">
+        <p class="pre__title" aria-hidden="true" translate="no">Drift</p>
+        <p class="pre__lede">One plastic bottle, ten years, and a cloud of possible paths.</p>
+        <button class="pre__hint" type="button" data-cursor="Begin" inert><span>Scroll to begin</span><i aria-hidden="true"></i></button>
+      </div>
+    </div>
+    <!-- One hand-painted stroke: a wobbly, tapered wake, rough-edged and dry-brushed through a turbulence mask. -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <filter id="rough" x="-30%" y="-5%" width="160%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.09 0.012" numOctaves="3" seed="7" result="n" />
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+        <filter id="bristle" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency="1.1 0.018" numOctaves="2" seed="3" />
+          <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 -2.4 2.15" />
+        </filter>
+        <mask id="dry" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="300">
+          <rect width="36" height="300" fill="#fff" filter="url(#bristle)" />
+        </mask>
+        <g id="stroke">
+          <g mask="url(#dry)" filter="url(#rough)">
+            <path fill="#E6EEE9" d="M18.4 4 C23 20 25.6 46 24.2 78 C23 110 26.8 142 25 176 C23.6 206 26 236 23.4 262 C22.2 278 20.6 290 18.2 297 C15.6 290 13.4 278 12.6 262 C10.6 236 12.8 206 11.6 176 C10 142 13.2 110 12 78 C10.8 46 13.4 20 18.4 4 Z" />
+            <path fill="#E6EEE9" opacity=".55" d="M22.4 36 C25.4 70 24.4 100 26.6 130 C27.6 150 26 170 27 196 L24.6 196 C24 168 25 150 24.2 130 C22.8 100 23.8 70 22.4 36 Z" />
+          </g>
+        </g>
+      </defs>
+    </svg>
+  </div>
+
+  <header class="chrome" aria-label="Site">
+    <a class="chrome__mark" href="#top" aria-label="Drift, back to the start" translate="no">Drift</a>
+    <nav class="chrome__links" aria-label="Sections">
+      <a href="#globe">The globe</a>
+      <a href="#about">About the science</a>
+    </nav>
+  </header>
+
+  <nav class="chapters" aria-label="Chapters">
+    <ol class="chapters__list"></ol>
+    <p class="chapters__title" aria-hidden="true"></p>
+  </nav>
+
+  <main id="top" tabindex="-1">
+    <h1 class="visually-hidden">Drift: one plastic bottle, ten years, and a cloud of possible paths</h1>
+    <div id="story" class="story">
+      <div class="stage" id="stage"></div>
+      <noscript><p class="noscript">Drift tells its story with JavaScript. The sources and the science are below.</p></noscript>
+    </div>
+
+    <section id="globe" class="globe" aria-labelledby="globe-title">
+      <h2 id="globe-title" class="visually-hidden">Drop your own: the ocean globe</h2>
+      <div class="globe__bar">
+        <div class="globe__switch" role="group" aria-label="Choose a map">
+          <button type="button" data-mode="global" aria-pressed="true">Global ocean</button>
+          <button type="button" data-mode="salish" aria-pressed="false">Salish Sea</button>
+        </div>
+        <p class="globe__note" role="status" hidden></p>
+      </div>
+      <div class="globe__mount"></div>
+    </section>
+
+    <section id="about" class="about" aria-labelledby="about-title">
+      <div class="about__hero">
+        <div class="about__sky"><img class="about__clouds" src="/art/s3-clouds.webp" alt="" loading="lazy" decoding="async" /><img class="about__hills" src="/art/s1-hills.webp" alt="" loading="lazy" decoding="async" /></div>
+        <img class="about__rays" src="/art/s3-rays.webp" alt="" loading="lazy" decoding="async" />
+        <div class="about__sea"><i class="about__swell"></i></div>
+        <div class="about__glow" aria-hidden="true"></div>
+        <div class="about__haze" aria-hidden="true"></div>
+        <img class="about__buoy" src="/art/item-buoy.webp" alt="" width="272" height="1498" loading="lazy" decoding="async" />
+        <div class="about__intro">
+          <h2 id="about-title" class="about__title">About the science</h2>
+          <p class="about__lede">Simulation with uncertainty, not a forecast.</p>
+          <p>Everything on the globe is built from real measurements: satellite-derived currents, satellite winds, and thousands of drifting buoys like the one on the right, a float at the surface tied to a drogue 15&nbsp;m down. Here is what went in, what came out, and where it falls short.</p>
+        </div>
+      </div>
+
+      <div class="about__body">
+        <article class="about__col">
+          <h3>The data</h3>
+          <dl class="facts">
+            <dt>Currents</dt><dd>Monthly averages of the OSCAR surface currents, which are derived from satellites, over 2011 to 2014, on a grid of 1° cells.</dd>
+            <dt>Wind</dt><dd>Monthly averages of QuikSCAT satellite winds at 10&nbsp;m, 1999 to 2009, with gaps near coasts and sea ice filled from the nearest open water.</dd>
+            <dt>Drifters</dt><dd>The Global Drifter Program’s buoys, 2012 to 2014, one position a day. Some lost their drogue and rode at the surface, catching more wind; the model uses that difference.</dd>
+            <dt>Land</dt><dd>Natural Earth coastlines.</dd>
+          </dl>
+
+          <h3>The model</h3>
+          <p>A small neural network reads ten numbers about a spot in the ocean: where it is, that month’s average current and wind, the time of year, and how much the object catches the wind. It predicts how far a drifter moves over the next day, east and north, together with how unsure it is. On the globe, every fragment is a cloud of copies, each moved by that guess plus its own share of the uncertainty.</p>
+          <div class="about__model" data-about="model"><p class="pending">Loading the model’s numbers…</p></div>
+
+          <h3>Its limits</h3>
+          <ul class="limits">
+            <li><strong>Climatology, not live.</strong> Currents and winds are monthly averages over a few years. No particular storm or eddy is in them.</li>
+            <li><strong>A coarse grid.</strong> Currents sit on 1° cells, about 111&nbsp;km at the equator, and winds on 2° cells, so coasts, straits and anything smaller are blurred.</li>
+            <li><strong>Windage is a proxy.</strong> The drifter record only covers objects that slip downwind at about 0.1&nbsp;% to 1&nbsp;% of the wind speed,<span data-cite="PazanNiiler2001,Poulain2009"></span> so a bottle riding high and a flat bag look the same to the model.</li>
+            <li><strong>Fragmentation timing is uncertain.</strong> No study has timed how long a floating item takes to break into smaller pieces. Drift’s rates are assumptions built from lab, beach and seafloor measurements.<span data-cite="Chamas2020,Song2017,Ioakeimidis2016"></span></li>
+            <li><strong>Flat water.</strong> Sinking, beaching and gathering in gyres follow simple rules with cited rates; nothing moves in depth.</li>
+          </ul>
+
+          <h3 id="sources">Sources</h3>
+          <ol class="sources" data-about="sources"></ol>
+
+          <h3>Credits</h3>
+          <ul class="credits" data-about="credits"></ul>
+        </article>
+      </div>
+      <footer class="about__foot"><p>Drift. A simulation with uncertainty, not a forecast.</p></footer>
+    </section>
+  </main>
+
+  <div class="grain" aria-hidden="true"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

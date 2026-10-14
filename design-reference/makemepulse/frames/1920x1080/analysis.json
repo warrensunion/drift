@@ -1,0 +1,6975 @@
+{
+ "size": "1920x1080",
+ "fps": 60.325057334269964,
+ "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 (0x00002503) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+ "marks": [
+  {
+   "label": "goto",
+   "t": -3154
+  },
+  {
+   "label": "landing logo fully visible",
+   "t": 26974
+  },
+  {
+   "label": "click reveal",
+   "t": 102986
+  },
+  {
+   "label": "start button visible",
+   "t": 125459
+  },
+  {
+   "label": "click start",
+   "t": 197992
+  },
+  {
+   "label": "08_s1_eclosion enter",
+   "t": 204279
+  },
+  {
+   "label": "08_s1_eclosion: next button visible",
+   "t": 287830
+  },
+  {
+   "label": "08_s1_eclosion: next clicked (natural)",
+   "t": null
+  },
+  {
+   "label": "09_s2_adieu enter",
+   "t": 294670
+  },
+  {
+   "label": "09_s2_adieu: next button visible",
+   "t": 371989
+  },
+  {
+   "label": "09_s2_adieu: next clicked (natural)",
+   "t": null
+  },
+  {
+   "label": "10_s3_voyage enter",
+   "t": 377928
+  },
+  {
+   "label": "10_s3_voyage: next button visible",
+   "t": 452143
+  },
+  {
+   "label": "10_s3_voyage: next clicked (natural)",
+   "t": null
+  },
+  {
+   "label": "11_s4_premiere enter",
+   "t": 458590
+  },
+  {
+   "label": "11_s4_premiere: next button visible",
+   "t": 544750
+  },
+  {
+   "label": "11_s4_premiere: next clicked (natural)",
+   "t": null
+  },
+  {
+   "label": "ending",
+   "t": 550964
+  },
+  {
+   "label": "done",
+   "t": 601008
+  }
+ ],
+ "preloader": [
+  {
+   "t": 12255,
+   "loader": "loader",
+   "fgY": 100,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 17427,
+   "loader": "loader",
+   "fgY": 29.2683,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 19545,
+   "loader": "loader",
+   "fgY": 3.25203,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 19922,
+   "loader": "loader",
+   "fgY": 1.62602,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 22265,
+   "loader": "loader",
+   "fgY": 0.813008,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 23089,
+   "loader": "loader",
+   "fgY": 0,
+   "bar": "0px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 25028,
+   "loader": "loader is-hidden",
+   "fgY": 0,
+   "bar": "-159.5px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 25142,
+   "loader": "loader is-hidden",
+   "fgY": 0,
+   "bar": "-217.9px",
+   "logo": "hidden op=1.00 none",
+   "audioText": "1.00",
+   "canvas": "0"
+  },
+  {
+   "t": 26158,
+   "loader": "loader is-hidden hide",
+   "fgY": 0,
+   "bar": "none",
+   "logo": "shown op=0.89 translate3d(0px, 0px, 0px) scale(1.03203, 1.03203)",
+   "audioText": "0.00",
+   "canvas": "0"
+  },
+  {
+   "t": 26973,
+   "loader": "loader is-hidden hide",
+   "fgY": 0,
+   "bar": "none",
+   "logo": "shown op=1.00 translate3d(0px, 0px, 0px) scale(1.00025, 1.00025)",
+   "audioText": "0.00",
+   "canvas": "0"
+  },
+  {
+   "t": 27087,
+   "loader": "loader is-hidden hide",
+   "fgY": 0,
+   "bar": "none",
+   "logo": "shown op=1.00 translate3d(0px, 0px, 0px) scale(1.00004, 1.00004)",
+   "audioText": "0.00",
+   "canvas": "0"
+  },
+  {
+   "t": 27221,
+   "loader": "loader is-hidden hide",
+   "fgY": 0,
+   "bar": "none",
+   "logo": "shown op=1.00 matrix(1, 0, 0, 1, 0, 0)",
+   "audioText": "0.00",
+   "canvas": "0"
+  }
+ ],
+ "preloaderFrames": 35,
+ "preloaderMotion": [
+  {
+   "off": 9845,
+   "mad": 17.83
+  },
+  {
+   "off": 9962,
+   "mad": 134.55
+  },
+  {
+   "off": 11662,
+   "mad": 0.06
+  },
+  {
+   "off": 11895,
+   "mad": 0
+  },
+  {
+   "off": 18411,
+   "mad": 0.03
+  },
+  {
+   "off": 19145,
+   "mad": 0
+  },
+  {
+   "off": 19545,
+   "mad": 0
+  },
+  {
+   "off": 19811,
+   "mad": 0
+  },
+  {
+   "off": 19911,
+   "mad": 0
+  },
+  {
+   "off": 20045,
+   "mad": 0
+  },
+  {
+   "off": 20178,
+   "mad": 0
+  },
+  {
+   "off": 20295,
+   "mad": 0
+  },
+  {
+   "off": 20395,
+   "mad": 0
+  },
+  {
+   "off": 20995,
+   "mad": 0
+  },
+  {
+   "off": 21911,
+   "mad": 0
+  },
+  {
+   "off": 22011,
+   "mad": 0
+  },
+  {
+   "off": 22128,
+   "mad": 0
+  },
+  {
+   "off": 23028,
+   "mad": 0
+  },
+  {
+   "off": 23661,
+   "mad": 0
+  },
+  {
+   "off": 23778,
+   "mad": 0
+  },
+  {
+   "off": 23961,
+   "mad": 0
+  },
+  {
+   "off": 24561,
+   "mad": 0
+  },
+  {
+   "off": 25028,
+   "mad": 0.03
+  },
+  {
+   "off": 25511,
+   "mad": 1.25
+  },
+  {
+   "off": 26028,
+   "mad": 44.96
+  },
+  {
+   "off": 26128,
+   "mad": 3.49
+  },
+  {
+   "off": 26878,
+   "mad": 1.99
+  },
+  {
+   "off": 26994,
+   "mad": 0.01
+  },
+  {
+   "off": 27511,
+   "mad": 0.01
+  },
+  {
+   "off": 27678,
+   "mad": 0
+  },
+  {
+   "off": 28178,
+   "mad": 0
+  },
+  {
+   "off": 28711,
+   "mad": 0
+  },
+  {
+   "off": 28861,
+   "mad": 0
+  },
+  {
+   "off": 28994,
+   "mad": 0
+  }
+ ],
+ "resources": {
+  "count": 169,
+  "bytes": 24564631,
+  "lastEnd": 19077
+ },
+ "lag": {
+  "02_landing_mouse_tl": {
+   "x": 2,
+   "y": 2,
+   "samples": 218,
+   "camX": {
+    "span": 0.7982,
+    "framesMedianMs": 16.8,
+    "firstMotionMs": 12.5,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 280,
+    "t90ms": 947,
+    "t99ms": 1897
+   },
+   "camY": {
+    "span": 0.4482,
+    "framesMedianMs": 16.8,
+    "firstMotionMs": 12.5,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 280,
+    "t90ms": 947,
+    "t99ms": 1897
+   },
+   "cursorLatencyMs": 30.5
+  },
+  "02_landing_mouse_tl_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 192,
+   "camX": {
+    "span": -0.7928,
+    "framesMedianMs": 16.9,
+    "firstMotionMs": 17,
+    "perFrameFactor": 0.041,
+    "timeConstantMs": 399.1,
+    "t50ms": 284,
+    "t90ms": 920,
+    "t99ms": 1682
+   },
+   "camY": {
+    "span": -0.4452,
+    "framesMedianMs": 16.9,
+    "firstMotionMs": 17,
+    "perFrameFactor": 0.041,
+    "timeConstantMs": 399,
+    "t50ms": 284,
+    "t90ms": 920,
+    "t99ms": 1682
+   },
+   "cursorLatencyMs": 17
+  },
+  "02_landing_mouse_tr": {
+   "x": 1918,
+   "y": 2,
+   "samples": 79,
+   "camX": {
+    "span": -0.7687,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 6,
+    "perFrameFactor": 0.0461,
+    "timeConstantMs": 411.7,
+    "t50ms": 382,
+    "t90ms": 937,
+    "t99ms": 1336
+   },
+   "camY": {
+    "span": 0.4263,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 6,
+    "perFrameFactor": 0.0461,
+    "timeConstantMs": 411.7,
+    "t50ms": 382,
+    "t90ms": 937,
+    "t99ms": 1336
+   },
+   "cursorLatencyMs": 41.9
+  },
+  "02_landing_mouse_tr_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 212,
+   "camX": {
+    "span": 0.7956,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 13.3,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 418.6,
+    "t50ms": 280,
+    "t90ms": 965,
+    "t99ms": 1898
+   },
+   "camY": {
+    "span": -0.4468,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 13.3,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 418.6,
+    "t50ms": 280,
+    "t90ms": 965,
+    "t99ms": 1898
+   },
+   "cursorLatencyMs": 13.3
+  },
+  "02_landing_mouse_br": {
+   "x": 1918,
+   "y": 1078,
+   "samples": 254,
+   "camX": {
+    "span": -0.7982,
+    "framesMedianMs": 16.5,
+    "firstMotionMs": 15.9,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 415,
+    "t50ms": 301,
+    "t90ms": 966,
+    "t99ms": 1914
+   },
+   "camY": {
+    "span": -0.4483,
+    "framesMedianMs": 16.5,
+    "firstMotionMs": 15.9,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 415.1,
+    "t50ms": 301,
+    "t90ms": 966,
+    "t99ms": 1914
+   },
+   "cursorLatencyMs": 15.9
+  },
+  "02_landing_mouse_br_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 223,
+   "camX": {
+    "span": 0.7982,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.3,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.3,
+    "t50ms": 284,
+    "t90ms": 951,
+    "t99ms": 1884
+   },
+   "camY": {
+    "span": 0.4482,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.3,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.3,
+    "t50ms": 284,
+    "t90ms": 951,
+    "t99ms": 1884
+   },
+   "cursorLatencyMs": 17.3
+  },
+  "02_landing_mouse_bl": {
+   "x": 2,
+   "y": 1078,
+   "samples": 210,
+   "camX": {
+    "span": 0.7979,
+    "framesMedianMs": 16.8,
+    "firstMotionMs": 17.1,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 406.4,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1866
+   },
+   "camY": {
+    "span": -0.4481,
+    "framesMedianMs": 16.8,
+    "firstMotionMs": 17.1,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 406.4,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1866
+   },
+   "cursorLatencyMs": 32.7
+  },
+  "02_landing_mouse_bl_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 268,
+   "camX": {
+    "span": -0.7983,
+    "framesMedianMs": 16.3,
+    "firstMotionMs": 12.4,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 278,
+    "t90ms": 946,
+    "t99ms": 1878
+   },
+   "camY": {
+    "span": 0.4483,
+    "framesMedianMs": 16.3,
+    "firstMotionMs": 12.4,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 278,
+    "t90ms": 946,
+    "t99ms": 1878
+   },
+   "cursorLatencyMs": 12.4
+  },
+  "06_revealed_mouse_tl": {
+   "x": 2,
+   "y": 2,
+   "samples": 198,
+   "camX": {
+    "span": 0.7981,
+    "framesMedianMs": 16.2,
+    "firstMotionMs": 17.9,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 416.4,
+    "t50ms": 289,
+    "t90ms": 966,
+    "t99ms": 1901
+   },
+   "camY": {
+    "span": 0.4482,
+    "framesMedianMs": 16.2,
+    "firstMotionMs": 17.9,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 416.4,
+    "t50ms": 289,
+    "t90ms": 966,
+    "t99ms": 1901
+   },
+   "cursorLatencyMs": 34.1
+  },
+  "06_revealed_mouse_tl_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 229,
+   "camX": {
+    "span": -0.7982,
+    "framesMedianMs": 16.5,
+    "firstMotionMs": 17.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.6,
+    "t50ms": 277,
+    "t90ms": 945,
+    "t99ms": 1878
+   },
+   "camY": {
+    "span": -0.4483,
+    "framesMedianMs": 16.5,
+    "firstMotionMs": 17.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.6,
+    "t50ms": 277,
+    "t90ms": 945,
+    "t99ms": 1878
+   },
+   "cursorLatencyMs": 17.1
+  },
+  "06_revealed_mouse_tr": {
+   "x": 1918,
+   "y": 2,
+   "samples": 426,
+   "camX": {
+    "span": -0.7983,
+    "framesMedianMs": 16.5,
+    "firstMotionMs": 17.2,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.4,
+    "t50ms": 284,
+    "t90ms": 949,
+    "t99ms": 1883
+   },
+   "camY": {
+    "span": 0.4483,
+    "framesMedianMs": 16.5,
+    "firstMotionMs": 17.2,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.4,
+    "t50ms": 284,
+    "t90ms": 949,
+    "t99ms": 1883
+   },
+   "cursorLatencyMs": 17.2
+  },
+  "06_revealed_mouse_tr_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 222,
+   "camX": {
+    "span": 0.7978,
+    "framesMedianMs": 16,
+    "firstMotionMs": 13.1,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 420.8,
+    "t50ms": 277,
+    "t90ms": 984,
+    "t99ms": 1896
+   },
+   "camY": {
+    "span": -0.448,
+    "framesMedianMs": 16,
+    "firstMotionMs": 13.1,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 420.8,
+    "t50ms": 277,
+    "t90ms": 984,
+    "t99ms": 1896
+   },
+   "cursorLatencyMs": 13.1
+  },
+  "06_revealed_mouse_br": {
+   "x": 1918,
+   "y": 1078,
+   "samples": 258,
+   "camX": {
+    "span": -0.798,
+    "framesMedianMs": 16.4,
+    "firstMotionMs": 11.4,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 409.2,
+    "t50ms": 282,
+    "t90ms": 944,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": -0.4485,
+    "framesMedianMs": 16.4,
+    "firstMotionMs": 11.4,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 409.2,
+    "t50ms": 282,
+    "t90ms": 944,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 11.4
+  },
+  "06_revealed_mouse_br_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 267,
+   "camX": {
+    "span": 0.7983,
+    "framesMedianMs": 16.5,
+    "firstMotionMs": 5.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 406.4,
+    "t50ms": 266,
+    "t90ms": 931,
+    "t99ms": 1896
+   },
+   "camY": {
+    "span": 0.4483,
+    "framesMedianMs": 16.5,
+    "firstMotionMs": 5.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 406.4,
+    "t50ms": 266,
+    "t90ms": 931,
+    "t99ms": 1896
+   },
+   "cursorLatencyMs": 5.7
+  },
+  "06_revealed_mouse_bl": {
+   "x": 2,
+   "y": 1078,
+   "samples": 252,
+   "camX": {
+    "span": 0.7984,
+    "framesMedianMs": 16.4,
+    "firstMotionMs": 11.9,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408,
+    "t50ms": 279,
+    "t90ms": 953,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": -0.4483,
+    "framesMedianMs": 16.4,
+    "firstMotionMs": 11.9,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 279,
+    "t90ms": 953,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 11.9
+  },
+  "06_revealed_mouse_bl_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 214,
+   "camX": {
+    "span": -0.7982,
+    "framesMedianMs": 16.4,
+    "firstMotionMs": 14.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 419.2,
+    "t50ms": 280,
+    "t90ms": 967,
+    "t99ms": 1898
+   },
+   "camY": {
+    "span": 0.4482,
+    "framesMedianMs": 16.4,
+    "firstMotionMs": 14.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 419.2,
+    "t50ms": 280,
+    "t90ms": 967,
+    "t99ms": 1898
+   },
+   "cursorLatencyMs": 14.6
+  },
+  "08_s1_eclosion_mouse_tl": {
+   "x": 2,
+   "y": 2,
+   "samples": 182,
+   "camX": {
+    "span": -0.7978,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.4,
+    "t50ms": 283,
+    "t90ms": 951,
+    "t99ms": 1865
+   },
+   "camY": {
+    "span": 0.4481,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.4,
+    "t50ms": 283,
+    "t90ms": 951,
+    "t99ms": 1865
+   },
+   "cursorLatencyMs": 16
+  },
+  "08_s1_eclosion_mouse_tl_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 229,
+   "camX": {
+    "span": 0.7982,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 8.8,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408,
+    "t50ms": 277,
+    "t90ms": 944,
+    "t99ms": 1877
+   },
+   "camY": {
+    "span": -0.4483,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 8.8,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408,
+    "t50ms": 277,
+    "t90ms": 944,
+    "t99ms": 1877
+   },
+   "cursorLatencyMs": 8.8
+  },
+  "08_s1_eclosion_mouse_tr": {
+   "x": 1918,
+   "y": 2,
+   "samples": 205,
+   "camX": {
+    "span": 0.7982,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 15.3,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.1,
+    "t50ms": 285,
+    "t90ms": 949,
+    "t99ms": 1883
+   },
+   "camY": {
+    "span": 0.4482,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 15.3,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.1,
+    "t50ms": 285,
+    "t90ms": 949,
+    "t99ms": 1883
+   },
+   "cursorLatencyMs": 15.3
+  },
+  "08_s1_eclosion_mouse_tr_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 277,
+   "camX": {
+    "span": -0.7983,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 10.8,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.5,
+    "t50ms": 278,
+    "t90ms": 946,
+    "t99ms": 1878
+   },
+   "camY": {
+    "span": -0.4483,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 10.8,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.4,
+    "t50ms": 278,
+    "t90ms": 946,
+    "t99ms": 1878
+   },
+   "cursorLatencyMs": 10.8
+  },
+  "08_s1_eclosion_mouse_br": {
+   "x": 1918,
+   "y": 1078,
+   "samples": 252,
+   "camX": {
+    "span": 0.7983,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 18,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.3,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": -0.4483,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 18,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.3,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 18
+  },
+  "08_s1_eclosion_mouse_br_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 200,
+   "camX": {
+    "span": -0.7981,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 18.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.3,
+    "t50ms": 283,
+    "t90ms": 949,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": 0.4482,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 18.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.3,
+    "t50ms": 283,
+    "t90ms": 949,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 18.1
+  },
+  "08_s1_eclosion_mouse_bl": {
+   "x": 2,
+   "y": 1078,
+   "samples": 182,
+   "camX": {
+    "span": -0.798,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 14.4,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.4,
+    "t50ms": 281,
+    "t90ms": 947,
+    "t99ms": 1863
+   },
+   "camY": {
+    "span": -0.448,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 14.4,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.4,
+    "t50ms": 281,
+    "t90ms": 947,
+    "t99ms": 1863
+   },
+   "cursorLatencyMs": 14.4
+  },
+  "08_s1_eclosion_mouse_bl_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 244,
+   "camX": {
+    "span": 0.7983,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.2,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 284,
+    "t90ms": 949,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": 0.4483,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.2,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 284,
+    "t90ms": 949,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 16.2
+  },
+  "09_s2_adieu_mouse_tl": {
+   "x": 2,
+   "y": 2,
+   "samples": 201,
+   "camX": {
+    "span": 0.7981,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.8,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.4,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1883
+   },
+   "camY": {
+    "span": 0.4482,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.8,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.4,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1883
+   },
+   "cursorLatencyMs": 17.8
+  },
+  "09_s2_adieu_mouse_tl_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 254,
+   "camX": {
+    "span": -0.7983,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 15.9,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.1,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1883
+   },
+   "camY": {
+    "span": -0.4483,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 15.9,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1883
+   },
+   "cursorLatencyMs": 15.9
+  },
+  "09_s2_adieu_mouse_tr": {
+   "x": 1918,
+   "y": 2,
+   "samples": 194,
+   "camX": {
+    "span": -0.7975,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 7.2,
+    "perFrameFactor": 0.0402,
+    "timeConstantMs": 417.4,
+    "t50ms": 270,
+    "t90ms": 972,
+    "t99ms": 1870
+   },
+   "camY": {
+    "span": 0.4478,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 7.2,
+    "perFrameFactor": 0.0402,
+    "timeConstantMs": 417.4,
+    "t50ms": 270,
+    "t90ms": 972,
+    "t99ms": 1870
+   },
+   "cursorLatencyMs": 7.2
+  },
+  "09_s2_adieu_mouse_tr_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 194,
+   "camX": {
+    "span": 0.798,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.2,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.6,
+    "t50ms": 284,
+    "t90ms": 952,
+    "t99ms": 1867
+   },
+   "camY": {
+    "span": -0.4481,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.2,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.6,
+    "t50ms": 284,
+    "t90ms": 952,
+    "t99ms": 1867
+   },
+   "cursorLatencyMs": 17.2
+  },
+  "09_s2_adieu_mouse_br": {
+   "x": 1918,
+   "y": 1078,
+   "samples": 209,
+   "camX": {
+    "span": -0.7981,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 405.9,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1883
+   },
+   "camY": {
+    "span": -0.4483,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 405.9,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1883
+   },
+   "cursorLatencyMs": 17
+  },
+  "09_s2_adieu_mouse_br_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 214,
+   "camX": {
+    "span": 0.7982,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 15.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408,
+    "t50ms": 282,
+    "t90ms": 950,
+    "t99ms": 1883
+   },
+   "camY": {
+    "span": 0.4482,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 15.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408,
+    "t50ms": 282,
+    "t90ms": 950,
+    "t99ms": 1883
+   },
+   "cursorLatencyMs": 15.6
+  },
+  "09_s2_adieu_mouse_bl": {
+   "x": 2,
+   "y": 1078,
+   "samples": 277,
+   "camX": {
+    "span": 0.7984,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 15.8,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.1,
+    "t50ms": 281,
+    "t90ms": 948,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": -0.4483,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 15.8,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408,
+    "t50ms": 281,
+    "t90ms": 948,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 15.8
+  },
+  "09_s2_adieu_mouse_bl_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 298,
+   "camX": {
+    "span": -0.7983,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 14,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.5,
+    "t50ms": 280,
+    "t90ms": 948,
+    "t99ms": 1880
+   },
+   "camY": {
+    "span": 0.4483,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 14,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.5,
+    "t50ms": 280,
+    "t90ms": 948,
+    "t99ms": 1880
+   },
+   "cursorLatencyMs": 14
+  },
+  "10_s3_voyage_mouse_tl": {
+   "x": 2,
+   "y": 2,
+   "samples": 215,
+   "camX": {
+    "span": -1.9955,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 15.5,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 280,
+    "t90ms": 946,
+    "t99ms": 1880
+   },
+   "camY": {
+    "span": 0.9961,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 15.5,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 280,
+    "t90ms": 946,
+    "t99ms": 1880
+   },
+   "cursorLatencyMs": 15.5
+  },
+  "10_s3_voyage_mouse_tl_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 185,
+   "camX": {
+    "span": 1.9946,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 17.5,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 412.8,
+    "t50ms": 302,
+    "t90ms": 966,
+    "t99ms": 1884
+   },
+   "camY": {
+    "span": -0.9957,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 17.5,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 412.8,
+    "t50ms": 302,
+    "t90ms": 966,
+    "t99ms": 1884
+   },
+   "cursorLatencyMs": 33.9
+  },
+  "10_s3_voyage_mouse_tr": {
+   "x": 1918,
+   "y": 2,
+   "samples": 182,
+   "camX": {
+    "span": 1.9956,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.9,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.3,
+    "t50ms": 282,
+    "t90ms": 948,
+    "t99ms": 1865
+   },
+   "camY": {
+    "span": 0.9952,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.9,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.3,
+    "t50ms": 282,
+    "t90ms": 948,
+    "t99ms": 1865
+   },
+   "cursorLatencyMs": 16.9
+  },
+  "10_s3_voyage_mouse_tr_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 215,
+   "camX": {
+    "span": -1.9955,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.8,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 411.2,
+    "t50ms": 284,
+    "t90ms": 966,
+    "t99ms": 1899
+   },
+   "camY": {
+    "span": -0.9961,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.8,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 411.2,
+    "t50ms": 284,
+    "t90ms": 966,
+    "t99ms": 1899
+   },
+   "cursorLatencyMs": 34.2
+  },
+  "10_s3_voyage_mouse_br": {
+   "x": 1918,
+   "y": 1078,
+   "samples": 277,
+   "camX": {
+    "span": 1.9956,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 15,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.7,
+    "t50ms": 282,
+    "t90ms": 948,
+    "t99ms": 1883
+   },
+   "camY": {
+    "span": -0.9962,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 15,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.7,
+    "t50ms": 282,
+    "t90ms": 948,
+    "t99ms": 1883
+   },
+   "cursorLatencyMs": 15
+  },
+  "10_s3_voyage_mouse_br_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 195,
+   "camX": {
+    "span": -1.9951,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 14.8,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.5,
+    "t50ms": 282,
+    "t90ms": 948,
+    "t99ms": 1865
+   },
+   "camY": {
+    "span": 0.9959,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 14.8,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.5,
+    "t50ms": 282,
+    "t90ms": 948,
+    "t99ms": 1865
+   },
+   "cursorLatencyMs": 14.8
+  },
+  "10_s3_voyage_mouse_bl": {
+   "x": 2,
+   "y": 1078,
+   "samples": 204,
+   "camX": {
+    "span": -1.9954,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.5,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1884
+   },
+   "camY": {
+    "span": -0.996,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.5,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1884
+   },
+   "cursorLatencyMs": 16.5
+  },
+  "10_s3_voyage_mouse_bl_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 280,
+   "camX": {
+    "span": 1.9958,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 18.2,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.1,
+    "t50ms": 269,
+    "t90ms": 936,
+    "t99ms": 1869
+   },
+   "camY": {
+    "span": 0.9962,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 18.2,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.1,
+    "t50ms": 269,
+    "t90ms": 936,
+    "t99ms": 1869
+   },
+   "cursorLatencyMs": 18.2
+  },
+  "11_s4_premiere_mouse_tl": {
+   "x": 2,
+   "y": 2,
+   "samples": 212,
+   "camX": {
+    "span": -0.7979,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 18.2,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.4,
+    "t50ms": 284,
+    "t90ms": 951,
+    "t99ms": 1868
+   },
+   "camY": {
+    "span": 0.4481,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 18.2,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.4,
+    "t50ms": 284,
+    "t90ms": 951,
+    "t99ms": 1868
+   },
+   "cursorLatencyMs": 18.2
+  },
+  "11_s4_premiere_mouse_tl_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 219,
+   "camX": {
+    "span": 0.7982,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.7,
+    "t50ms": 282,
+    "t90ms": 949,
+    "t99ms": 1885
+   },
+   "camY": {
+    "span": -0.4483,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.7,
+    "t50ms": 282,
+    "t90ms": 949,
+    "t99ms": 1885
+   },
+   "cursorLatencyMs": 16.6
+  },
+  "11_s4_premiere_mouse_tr": {
+   "x": 1918,
+   "y": 2,
+   "samples": 209,
+   "camX": {
+    "span": 0.7982,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.4,
+    "t50ms": 283,
+    "t90ms": 953,
+    "t99ms": 1884
+   },
+   "camY": {
+    "span": 0.4482,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.4,
+    "t50ms": 283,
+    "t90ms": 953,
+    "t99ms": 1884
+   },
+   "cursorLatencyMs": 16.1
+  },
+  "11_s4_premiere_mouse_tr_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 201,
+   "camX": {
+    "span": -0.7976,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.5,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.1,
+    "t50ms": 285,
+    "t90ms": 953,
+    "t99ms": 1852
+   },
+   "camY": {
+    "span": -0.4479,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.5,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.1,
+    "t50ms": 285,
+    "t90ms": 953,
+    "t99ms": 1852
+   },
+   "cursorLatencyMs": 16.5
+  },
+  "11_s4_premiere_mouse_br": {
+   "x": 1918,
+   "y": 1078,
+   "samples": 240,
+   "camX": {
+    "span": 0.7977,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 17.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.2,
+    "t50ms": 283,
+    "t90ms": 951,
+    "t99ms": 1883
+   },
+   "camY": {
+    "span": -0.4486,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 17.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.2,
+    "t50ms": 283,
+    "t90ms": 951,
+    "t99ms": 1883
+   },
+   "cursorLatencyMs": 33.4
+  },
+  "11_s4_premiere_mouse_br_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 199,
+   "camX": {
+    "span": -0.7981,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 21.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.4,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1884
+   },
+   "camY": {
+    "span": 0.4482,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 21.1,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408.4,
+    "t50ms": 283,
+    "t90ms": 950,
+    "t99ms": 1884
+   },
+   "cursorLatencyMs": 21.1
+  },
+  "11_s4_premiere_mouse_bl": {
+   "x": 2,
+   "y": 1078,
+   "samples": 177,
+   "camX": {
+    "span": -0.7979,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.9,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 416,
+    "t50ms": 401,
+    "t90ms": 1083,
+    "t99ms": 2000
+   },
+   "camY": {
+    "span": -0.4479,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 17.9,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 416,
+    "t50ms": 401,
+    "t90ms": 1083,
+    "t99ms": 2000
+   },
+   "cursorLatencyMs": 17.9
+  },
+  "11_s4_premiere_mouse_bl_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 198,
+   "camX": {
+    "span": 0.7981,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.9,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 284,
+    "t90ms": 952,
+    "t99ms": 1884
+   },
+   "camY": {
+    "span": 0.4482,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.9,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 284,
+    "t90ms": 952,
+    "t99ms": 1884
+   },
+   "cursorLatencyMs": 16.9
+  },
+  "12_ending_mouse_tl": {
+   "x": 2,
+   "y": 2,
+   "samples": 189,
+   "camX": {
+    "span": 0.798,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.5,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.2,
+    "t50ms": 284,
+    "t90ms": 951,
+    "t99ms": 1866
+   },
+   "camY": {
+    "span": 0.4481,
+    "framesMedianMs": 16.7,
+    "firstMotionMs": 16.5,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.2,
+    "t50ms": 284,
+    "t90ms": 951,
+    "t99ms": 1866
+   },
+   "cursorLatencyMs": 16.5
+  },
+  "12_ending_mouse_tl_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 210,
+   "camX": {
+    "span": -0.7981,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.7,
+    "t50ms": 283,
+    "t90ms": 949,
+    "t99ms": 1883
+   },
+   "camY": {
+    "span": -0.4482,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 16.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.7,
+    "t50ms": 283,
+    "t90ms": 949,
+    "t99ms": 1883
+   },
+   "cursorLatencyMs": 16.7
+  },
+  "12_ending_mouse_tr": {
+   "x": 1918,
+   "y": 2,
+   "samples": 206,
+   "camX": {
+    "span": -0.7982,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 17.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 284,
+    "t90ms": 952,
+    "t99ms": 1884
+   },
+   "camY": {
+    "span": 0.4482,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 17.7,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.9,
+    "t50ms": 284,
+    "t90ms": 952,
+    "t99ms": 1884
+   },
+   "cursorLatencyMs": 17.7
+  },
+  "12_ending_mouse_tr_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 217,
+   "camX": {
+    "span": 0.7982,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 15.2,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": -0.4482,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 15.2,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 407.8,
+    "t50ms": 284,
+    "t90ms": 950,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 32.6
+  },
+  "12_ending_mouse_br": {
+   "x": 1918,
+   "y": 1078,
+   "samples": 235,
+   "camX": {
+    "span": -0.798,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 13.9,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.6,
+    "t50ms": 281,
+    "t90ms": 947,
+    "t99ms": 1864
+   },
+   "camY": {
+    "span": -0.4482,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 13.9,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.5,
+    "t50ms": 281,
+    "t90ms": 947,
+    "t99ms": 1864
+   },
+   "cursorLatencyMs": 13.9
+  },
+  "12_ending_mouse_br_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 222,
+   "camX": {
+    "span": 0.7982,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 15.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408,
+    "t50ms": 281,
+    "t90ms": 949,
+    "t99ms": 1882
+   },
+   "camY": {
+    "span": 0.4482,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 15.6,
+    "perFrameFactor": 0.04,
+    "timeConstantMs": 408,
+    "t50ms": 281,
+    "t90ms": 949,
+    "t99ms": 1882
+   },
+   "cursorLatencyMs": 15.6
+  },
+  "12_ending_mouse_bl": {
+   "x": 2,
+   "y": 1078,
+   "samples": 191,
+   "camX": {
+    "span": 0.7981,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 14.9,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.6,
+    "t50ms": 282,
+    "t90ms": 950,
+    "t99ms": 1865
+   },
+   "camY": {
+    "span": -0.4481,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 14.9,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 407.6,
+    "t50ms": 282,
+    "t90ms": 950,
+    "t99ms": 1865
+   },
+   "cursorLatencyMs": 31.8
+  },
+  "12_ending_mouse_bl_back": {
+   "x": 960,
+   "y": 540,
+   "samples": 194,
+   "camX": {
+    "span": -0.798,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 17.7,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 408.3,
+    "t50ms": 285,
+    "t90ms": 951,
+    "t99ms": 1867
+   },
+   "camY": {
+    "span": 0.4481,
+    "framesMedianMs": 16.6,
+    "firstMotionMs": 17.7,
+    "perFrameFactor": 0.0401,
+    "timeConstantMs": 408.3,
+    "t50ms": 285,
+    "t90ms": 951,
+    "t99ms": 1867
+   },
+   "cursorLatencyMs": 17.7
+  }
+ },
+ "parallax": {
+  "02_landing_mouse": {
+   "tl": {
+    "mouseDx": -958,
+    "mouseDy": -538,
+    "global": 15.29,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": -4,
+      "dy": 92,
+      "sad": 4.1,
+      "sad0": 24.45,
+      "ratioX": 0.0042,
+      "ratioY": -0.171
+     },
+     {
+      "band": "20-40%",
+      "dx": -24,
+      "dy": 92,
+      "sad": 9.14,
+      "sad0": 13.38,
+      "ratioX": 0.0251,
+      "ratioY": -0.171
+     },
+     {
+      "band": "40-60%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 15.61,
+      "sad0": 15.61,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "60-80%",
+      "dx": 4,
+      "dy": -88,
+      "sad": 9.48,
+      "sad0": 13.33,
+      "ratioX": -0.0042,
+      "ratioY": 0.1636
+     },
+     {
+      "band": "80-100%",
+      "dx": 0,
+      "dy": -92,
+      "sad": 4.07,
+      "sad0": 24.09,
+      "ratioX": 0,
+      "ratioY": 0.171
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": -2,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 364,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 414,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1131,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1164,
+      "dx": 0,
+      "dy": 0
+     }
+    ]
+   },
+   "br": {
+    "mouseDx": 958,
+    "mouseDy": 538,
+    "global": 15.29,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": -4,
+      "dy": 92,
+      "sad": 4.1,
+      "sad0": 24.45,
+      "ratioX": -0.0042,
+      "ratioY": 0.171
+     },
+     {
+      "band": "20-40%",
+      "dx": -24,
+      "dy": 92,
+      "sad": 9.14,
+      "sad0": 13.38,
+      "ratioX": -0.0251,
+      "ratioY": 0.171
+     },
+     {
+      "band": "40-60%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 15.61,
+      "sad0": 15.61,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "60-80%",
+      "dx": 4,
+      "dy": -88,
+      "sad": 9.48,
+      "sad0": 13.33,
+      "ratioX": 0.0042,
+      "ratioY": -0.1636
+     },
+     {
+      "band": "80-100%",
+      "dx": 0,
+      "dy": -92,
+      "sad": 4.07,
+      "sad0": 24.09,
+      "ratioX": 0,
+      "ratioY": -0.171
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 12,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 46,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 79,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 712,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 912,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1729,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 2046,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 2362,
+      "dx": 0,
+      "dy": 0
+     }
+    ]
+   }
+  },
+  "06_revealed_mouse": {
+   "tl": {
+    "mouseDx": -958,
+    "mouseDy": -538,
+    "global": 1.09,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 0,
+      "sad0": 0,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "20-40%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 2.19,
+      "sad0": 2.19,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "40-60%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 3.46,
+      "sad0": 3.46,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "60-80%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 0.59,
+      "sad0": 0.59,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "80-100%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 0,
+      "sad0": 0,
+      "ratioX": 0,
+      "ratioY": 0
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": -15,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 135,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 268,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1585,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1801,
+      "dx": 0,
+      "dy": 0
+     }
+    ]
+   },
+   "br": {
+    "mouseDx": 958,
+    "mouseDy": 538,
+    "global": 0.99,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 0,
+      "sad0": 0,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "20-40%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 1.75,
+      "sad0": 1.75,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "40-60%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 3.12,
+      "sad0": 3.12,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "60-80%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 0.65,
+      "sad0": 0.65,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "80-100%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 0,
+      "sad0": 0,
+      "ratioX": 0,
+      "ratioY": 0
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 12,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1095,
+      "dx": 0,
+      "dy": 0
+     }
+    ]
+   }
+  },
+  "08_s1_eclosion_mouse": {
+   "tl": {
+    "mouseDx": -958,
+    "mouseDy": -538,
+    "global": 23.45,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 24,
+      "dy": 8,
+      "sad": 22.14,
+      "sad0": 24.74,
+      "ratioX": -0.0251,
+      "ratioY": -0.0149
+     },
+     {
+      "band": "20-40%",
+      "dx": -16,
+      "dy": -8,
+      "sad": 10.89,
+      "sad0": 16.74,
+      "ratioX": 0.0167,
+      "ratioY": 0.0149
+     },
+     {
+      "band": "40-60%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 17.19,
+      "sad0": 17.19,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "60-80%",
+      "dx": 24,
+      "dy": 12,
+      "sad": 13.1,
+      "sad0": 16.29,
+      "ratioX": -0.0251,
+      "ratioY": -0.0223
+     },
+     {
+      "band": "80-100%",
+      "dx": 40,
+      "dy": 20,
+      "sad": 31,
+      "sad0": 38.95,
+      "ratioX": -0.0418,
+      "ratioY": -0.0372
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": -49,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 2001,
+      "dx": 8,
+      "dy": 4
+     },
+     {
+      "off": 2901,
+      "dx": 0,
+      "dy": 0
+     }
+    ]
+   },
+   "br": {
+    "mouseDx": 958,
+    "mouseDy": 538,
+    "global": 23.1,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": -44,
+      "dy": -24,
+      "sad": 19.34,
+      "sad0": 24.07,
+      "ratioX": -0.0459,
+      "ratioY": -0.0446
+     },
+     {
+      "band": "20-40%",
+      "dx": 24,
+      "dy": 12,
+      "sad": 11.16,
+      "sad0": 17.24,
+      "ratioX": 0.0251,
+      "ratioY": 0.0223
+     },
+     {
+      "band": "40-60%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 8.81,
+      "sad0": 8.81,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "60-80%",
+      "dx": -28,
+      "dy": -12,
+      "sad": 13.78,
+      "sad0": 17.69,
+      "ratioX": -0.0292,
+      "ratioY": -0.0223
+     },
+     {
+      "band": "80-100%",
+      "dx": -112,
+      "dy": -80,
+      "sad": 33.9,
+      "sad0": 45.68,
+      "ratioX": -0.1169,
+      "ratioY": -0.1487
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 8,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 425,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 675,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 875,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 1491,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 2008,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 2141,
+      "dx": 0,
+      "dy": 0
+     }
+    ]
+   }
+  },
+  "09_s2_adieu_mouse": {
+   "tl": {
+    "mouseDx": -958,
+    "mouseDy": -538,
+    "global": 19.44,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 16,
+      "dy": -4,
+      "sad": 12.78,
+      "sad0": 12.81,
+      "ratioX": -0.0167,
+      "ratioY": 0.0074
+     },
+     {
+      "band": "20-40%",
+      "dx": 16,
+      "dy": 0,
+      "sad": 20.32,
+      "sad0": 21.01,
+      "ratioX": -0.0167,
+      "ratioY": 0
+     },
+     {
+      "band": "40-60%",
+      "dx": 24,
+      "dy": -12,
+      "sad": 14.08,
+      "sad0": 19.9,
+      "ratioX": -0.0251,
+      "ratioY": 0.0223
+     },
+     {
+      "band": "60-80%",
+      "dx": 8,
+      "dy": -4,
+      "sad": 15.92,
+      "sad0": 17.06,
+      "ratioX": -0.0084,
+      "ratioY": 0.0074
+     },
+     {
+      "band": "80-100%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 23.19,
+      "sad0": 23.19,
+      "ratioX": 0,
+      "ratioY": 0
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 18,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 84,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 168,
+      "dx": 4,
+      "dy": -4
+     },
+     {
+      "off": 201,
+      "dx": 8,
+      "dy": -4
+     },
+     {
+      "off": 318,
+      "dx": 8,
+      "dy": -4
+     },
+     {
+      "off": 368,
+      "dx": 12,
+      "dy": -8
+     },
+     {
+      "off": 584,
+      "dx": 16,
+      "dy": -8
+     },
+     {
+      "off": 984,
+      "dx": 20,
+      "dy": -12
+     },
+     {
+      "off": 1451,
+      "dx": 20,
+      "dy": -12
+     },
+     {
+      "off": 1734,
+      "dx": 20,
+      "dy": -12
+     }
+    ]
+   },
+   "br": {
+    "mouseDx": 958,
+    "mouseDy": 538,
+    "global": 20.07,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": -12,
+      "dy": 16,
+      "sad": 13.68,
+      "sad0": 14.32,
+      "ratioX": -0.0125,
+      "ratioY": 0.0297
+     },
+     {
+      "band": "20-40%",
+      "dx": -16,
+      "dy": -16,
+      "sad": 17.79,
+      "sad0": 20.59,
+      "ratioX": -0.0167,
+      "ratioY": -0.0297
+     },
+     {
+      "band": "40-60%",
+      "dx": -24,
+      "dy": 12,
+      "sad": 12.85,
+      "sad0": 19.16,
+      "ratioX": -0.0251,
+      "ratioY": 0.0223
+     },
+     {
+      "band": "60-80%",
+      "dx": -4,
+      "dy": 4,
+      "sad": 17.44,
+      "sad0": 17.45,
+      "ratioX": -0.0042,
+      "ratioY": 0.0074
+     },
+     {
+      "band": "80-100%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 24.97,
+      "sad0": 24.97,
+      "ratioX": 0,
+      "ratioY": 0
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 5,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 788,
+      "dx": -16,
+      "dy": 8
+     },
+     {
+      "off": 1405,
+      "dx": -16,
+      "dy": 12
+     }
+    ]
+   }
+  },
+  "10_s3_voyage_mouse": {
+   "tl": {
+    "mouseDx": -958,
+    "mouseDy": -538,
+    "global": 17.48,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": -32,
+      "dy": 24,
+      "sad": 16.18,
+      "sad0": 16.77,
+      "ratioX": 0.0334,
+      "ratioY": -0.0446
+     },
+     {
+      "band": "20-40%",
+      "dx": 20,
+      "dy": -20,
+      "sad": 18.07,
+      "sad0": 19.88,
+      "ratioX": -0.0209,
+      "ratioY": 0.0372
+     },
+     {
+      "band": "40-60%",
+      "dx": -12,
+      "dy": -68,
+      "sad": 21.77,
+      "sad0": 24.1,
+      "ratioX": 0.0125,
+      "ratioY": 0.1264
+     },
+     {
+      "band": "60-80%",
+      "dx": 44,
+      "dy": 8,
+      "sad": 14.93,
+      "sad0": 17.06,
+      "ratioX": -0.0459,
+      "ratioY": -0.0149
+     },
+     {
+      "band": "80-100%",
+      "dx": -44,
+      "dy": 132,
+      "sad": 13.78,
+      "sad0": 16.02,
+      "ratioX": 0.0459,
+      "ratioY": -0.2454
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": -59,
+      "dx": 4,
+      "dy": 0
+     },
+     {
+      "off": 691,
+      "dx": -8,
+      "dy": -40
+     },
+     {
+      "off": 891,
+      "dx": -4,
+      "dy": -48
+     },
+     {
+      "off": 1991,
+      "dx": 4,
+      "dy": -88
+     },
+     {
+      "off": 2674,
+      "dx": -20,
+      "dy": -44
+     }
+    ]
+   },
+   "br": {
+    "mouseDx": 958,
+    "mouseDy": 538,
+    "global": 19.9,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": -152,
+      "dy": 60,
+      "sad": 19.8,
+      "sad0": 21.85,
+      "ratioX": -0.1587,
+      "ratioY": 0.1115
+     },
+     {
+      "band": "20-40%",
+      "dx": 136,
+      "dy": -160,
+      "sad": 16.57,
+      "sad0": 26.5,
+      "ratioX": 0.142,
+      "ratioY": -0.2974
+     },
+     {
+      "band": "40-60%",
+      "dx": -120,
+      "dy": 56,
+      "sad": 21.06,
+      "sad0": 28.44,
+      "ratioX": -0.1253,
+      "ratioY": 0.1041
+     },
+     {
+      "band": "60-80%",
+      "dx": -80,
+      "dy": 140,
+      "sad": 11.54,
+      "sad0": 14.77,
+      "ratioX": -0.0835,
+      "ratioY": 0.2602
+     },
+     {
+      "band": "80-100%",
+      "dx": -40,
+      "dy": 56,
+      "sad": 10.21,
+      "sad0": 11.88,
+      "ratioX": -0.0418,
+      "ratioY": 0.1041
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 0,
+      "dx": 0,
+      "dy": 8
+     },
+     {
+      "off": 316,
+      "dx": 4,
+      "dy": 8
+     },
+     {
+      "off": 383,
+      "dx": 0,
+      "dy": 8
+     },
+     {
+      "off": 516,
+      "dx": 4,
+      "dy": 8
+     },
+     {
+      "off": 966,
+      "dx": -32,
+      "dy": 28
+     },
+     {
+      "off": 2050,
+      "dx": -104,
+      "dy": 40
+     },
+     {
+      "off": 2566,
+      "dx": -80,
+      "dy": 56
+     }
+    ]
+   }
+  },
+  "11_s4_premiere_mouse": {
+   "tl": {
+    "mouseDx": -958,
+    "mouseDy": -538,
+    "global": 13.26,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": -24,
+      "dy": -8,
+      "sad": 6.59,
+      "sad0": 9.41,
+      "ratioX": 0.0251,
+      "ratioY": 0.0149
+     },
+     {
+      "band": "20-40%",
+      "dx": -20,
+      "dy": -12,
+      "sad": 7.64,
+      "sad0": 21.91,
+      "ratioX": 0.0209,
+      "ratioY": 0.0223
+     },
+     {
+      "band": "40-60%",
+      "dx": -16,
+      "dy": -8,
+      "sad": 8.22,
+      "sad0": 12.63,
+      "ratioX": 0.0167,
+      "ratioY": 0.0149
+     },
+     {
+      "band": "60-80%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 4.99,
+      "sad0": 4.99,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "80-100%",
+      "dx": 20,
+      "dy": 12,
+      "sad": 7.37,
+      "sad0": 12.41,
+      "ratioX": -0.0209,
+      "ratioY": -0.0223
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 372,
+      "dx": -8,
+      "dy": -4
+     },
+     {
+      "off": 405,
+      "dx": -8,
+      "dy": -4
+     },
+     {
+      "off": 455,
+      "dx": -8,
+      "dy": -4
+     },
+     {
+      "off": 1188,
+      "dx": -8,
+      "dy": -4
+     },
+     {
+      "off": 1288,
+      "dx": -8,
+      "dy": -4
+     }
+    ]
+   },
+   "br": {
+    "mouseDx": 958,
+    "mouseDy": 538,
+    "global": 13.59,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 24,
+      "dy": 12,
+      "sad": 6.12,
+      "sad0": 9.1,
+      "ratioX": 0.0251,
+      "ratioY": 0.0223
+     },
+     {
+      "band": "20-40%",
+      "dx": 20,
+      "dy": 12,
+      "sad": 8.12,
+      "sad0": 20.6,
+      "ratioX": 0.0209,
+      "ratioY": 0.0223
+     },
+     {
+      "band": "40-60%",
+      "dx": 16,
+      "dy": 8,
+      "sad": 8.47,
+      "sad0": 14,
+      "ratioX": 0.0167,
+      "ratioY": 0.0149
+     },
+     {
+      "band": "60-80%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 5.3,
+      "sad0": 5.3,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "80-100%",
+      "dx": -20,
+      "dy": -12,
+      "sad": 7.59,
+      "sad0": 12.58,
+      "ratioX": -0.0209,
+      "ratioY": -0.0223
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": -18,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 32,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 116,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 232,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 316,
+      "dx": 8,
+      "dy": 4
+     },
+     {
+      "off": 399,
+      "dx": 8,
+      "dy": 4
+     },
+     {
+      "off": 499,
+      "dx": 8,
+      "dy": 4
+     },
+     {
+      "off": 649,
+      "dx": 8,
+      "dy": 4
+     },
+     {
+      "off": 966,
+      "dx": 8,
+      "dy": 4
+     },
+     {
+      "off": 1549,
+      "dx": 8,
+      "dy": 4
+     },
+     {
+      "off": 1682,
+      "dx": 8,
+      "dy": 4
+     },
+     {
+      "off": 2632,
+      "dx": 8,
+      "dy": 4
+     }
+    ]
+   }
+  },
+  "12_ending_mouse": {
+   "tl": {
+    "mouseDx": -958,
+    "mouseDy": -538,
+    "global": 2.62,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 1.21,
+      "sad0": 1.21,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "20-40%",
+      "dx": -8,
+      "dy": 8,
+      "sad": 2.74,
+      "sad0": 3.05,
+      "ratioX": 0.0084,
+      "ratioY": -0.0149
+     },
+     {
+      "band": "40-60%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 3.97,
+      "sad0": 3.97,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "60-80%",
+      "dx": -8,
+      "dy": 4,
+      "sad": 2.85,
+      "sad0": 5.21,
+      "ratioX": 0.0084,
+      "ratioY": -0.0074
+     },
+     {
+      "band": "80-100%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 1.71,
+      "sad0": 1.71,
+      "ratioX": 0,
+      "ratioY": 0
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 5,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 105,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 971,
+      "dx": -8,
+      "dy": 4
+     },
+     {
+      "off": 1005,
+      "dx": -8,
+      "dy": 4
+     },
+     {
+      "off": 1621,
+      "dx": -8,
+      "dy": 4
+     }
+    ]
+   },
+   "br": {
+    "mouseDx": 958,
+    "mouseDy": 538,
+    "global": 2.58,
+    "bands": [
+     {
+      "band": "0-20%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 1.33,
+      "sad0": 1.33,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "20-40%",
+      "dx": 12,
+      "dy": -4,
+      "sad": 2.71,
+      "sad0": 2.93,
+      "ratioX": 0.0125,
+      "ratioY": -0.0074
+     },
+     {
+      "band": "40-60%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 3.95,
+      "sad0": 3.95,
+      "ratioX": 0,
+      "ratioY": 0
+     },
+     {
+      "band": "60-80%",
+      "dx": 12,
+      "dy": -4,
+      "sad": 3.11,
+      "sad0": 5.44,
+      "ratioX": 0.0125,
+      "ratioY": -0.0074
+     },
+     {
+      "band": "80-100%",
+      "dx": 0,
+      "dy": 0,
+      "sad": 1.62,
+      "sad0": 1.62,
+      "ratioX": 0,
+      "ratioY": 0
+     }
+    ],
+    "shotSeries": [
+     {
+      "off": 2,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 35,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 102,
+      "dx": 0,
+      "dy": 0
+     },
+     {
+      "off": 385,
+      "dx": 4,
+      "dy": 0
+     },
+     {
+      "off": 418,
+      "dx": 4,
+      "dy": 0
+     },
+     {
+      "off": 1252,
+      "dx": 8,
+      "dy": -4
+     },
+     {
+      "off": 1285,
+      "dx": 8,
+      "dy": -4
+     },
+     {
+      "off": 1935,
+      "dx": 8,
+      "dy": -4
+     }
+    ]
+   }
+  }
+ },
+ "wheel": {
+  "04_landing_wheel": {
+   "wheelEvents": 4,
+   "madBeforeAfter": 0.42,
+   "scrollY": [
+    0
+   ],
+   "chapter": [
+    4
+   ],
+   "camRange": [
+    0.0917,
+    0.0498,
+    0
+   ]
+  },
+  "08_s1_eclosion_wheel": {
+   "wheelEvents": 5,
+   "madBeforeAfter": 1.32,
+   "scrollY": [
+    0
+   ],
+   "chapter": [
+    0
+   ],
+   "camRange": [
+    0,
+    0,
+    0
+   ]
+  },
+  "09_s2_adieu_wheel": {
+   "wheelEvents": 4,
+   "madBeforeAfter": 4.12,
+   "scrollY": [
+    0
+   ],
+   "chapter": [
+    1
+   ],
+   "camRange": [
+    0,
+    0,
+    0
+   ]
+  },
+  "10_s3_voyage_wheel": {
+   "wheelEvents": 4,
+   "madBeforeAfter": 12.95,
+   "scrollY": [
+    0
+   ],
+   "chapter": [
+    2
+   ],
+   "camRange": [
+    0,
+    0,
+    0
+   ]
+  },
+  "11_s4_premiere_wheel": {
+   "wheelEvents": 6,
+   "madBeforeAfter": 0.31,
+   "scrollY": [
+    0
+   ],
+   "chapter": [
+    3
+   ],
+   "camRange": [
+    0,
+    0,
+    0
+   ]
+  }
+ },
+ "ambient": {
+  "02_landing_mouse": 0.5,
+  "06_revealed_mouse": 1.17,
+  "08_s1_eclosion_mouse": 4.78,
+  "09_s2_adieu_mouse": 16.5,
+  "10_s3_voyage_mouse": 13.17,
+  "11_s4_premiere_mouse": 1.16,
+  "12_ending_mouse": 0.64
+ },
+ "transitions": {
+  "05_reveal": {
+   "framesCaptured": 6,
+   "motionStartMs": null,
+   "motionEndMs": null,
+   "energy": [
+    {
+     "off": -2275,
+     "mad": 0
+    },
+    {
+     "off": 541,
+     "mad": 0.03
+    }
+   ],
+   "dom": [
+    {
+     "t": 0,
+     "ch": 4,
+     "trans": -1,
+     "canvas": "none",
+     "landing": "none",
+     "logo": "1.00 translate3d(0px, 1.32092px, 0px) scale(1.10592, 1.10592)"
+    }
+   ]
+  },
+  "07_enter_scene1": {
+   "framesCaptured": 16,
+   "motionStartMs": 1102,
+   "motionEndMs": 2319,
+   "energy": [
+    {
+     "off": -31,
+     "mad": 0.01
+    },
+    {
+     "off": 1069,
+     "mad": 0.78
+    },
+    {
+     "off": 1752,
+     "mad": 2.07
+    },
+    {
+     "off": 2735,
+     "mad": 0.05
+    },
+    {
+     "off": 3119,
+     "mad": 0.09
+    }
+   ],
+   "camWorldY": [
+    {
+     "t": 0,
+     "ch": 4,
+     "y": 18.64
+    },
+    {
+     "t": 162,
+     "ch": 4,
+     "y": 18.64
+    },
+    {
+     "t": 329,
+     "ch": 4,
+     "y": 18.64
+    },
+    {
+     "t": 495,
+     "ch": 4,
+     "y": 18.64
+    },
+    {
+     "t": 666,
+     "ch": 4,
+     "y": 18.64
+    },
+    {
+     "t": 829,
+     "ch": 0,
+     "y": 17.62
+    },
+    {
+     "t": 996,
+     "ch": 0,
+     "y": 17.51
+    },
+    {
+     "t": 1162,
+     "ch": 0,
+     "y": 17.45
+    },
+    {
+     "t": 1328,
+     "ch": 0,
+     "y": 17.4
+    },
+    {
+     "t": 1496,
+     "ch": 0,
+     "y": 17.34
+    },
+    {
+     "t": 1662,
+     "ch": 0,
+     "y": 17.2
+    },
+    {
+     "t": 1864,
+     "ch": 0,
+     "y": 16.85
+    },
+    {
+     "t": 2029,
+     "ch": 0,
+     "y": 16.7
+    },
+    {
+     "t": 2196,
+     "ch": 0,
+     "y": 16.65
+    },
+    {
+     "t": 2363,
+     "ch": 0,
+     "y": 16.65
+    },
+    {
+     "t": 2529,
+     "ch": 0,
+     "y": 16.64
+    },
+    {
+     "t": 2696,
+     "ch": 0,
+     "y": 16.64
+    },
+    {
+     "t": 2863,
+     "ch": 0,
+     "y": 16.64
+    },
+    {
+     "t": 3028,
+     "ch": 0,
+     "y": 16.64
+    },
+    {
+     "t": 3197,
+     "ch": 0,
+     "y": 16.64
+    },
+    {
+     "t": 3363,
+     "ch": 0,
+     "y": 16.64
+    },
+    {
+     "t": 3530,
+     "ch": 0,
+     "y": 16.64
+    },
+    {
+     "t": 3697,
+     "ch": 0,
+     "y": 16.64
+    },
+    {
+     "t": 3866,
+     "ch": 0,
+     "y": 16.64
+    },
+    {
+     "t": 4030,
+     "ch": 0,
+     "y": 16.64
+    },
+    {
+     "t": 4197,
+     "ch": 0,
+     "y": 16.64
+    },
+    {
+     "t": 4366,
+     "ch": 0,
+     "y": 16.64
+    },
+    {
+     "t": 4528,
+     "ch": 0,
+     "y": 16.64
+    },
+    {
+     "t": 4697,
+     "ch": 0,
+     "y": 16.64
+    },
+    {
+     "t": 4863,
+     "ch": 0,
+     "y": 16.64
+    },
+    {
+     "t": 5029,
+     "ch": 0,
+     "y": 16.64
+    },
+    {
+     "t": 5195,
+     "ch": 0,
+     "y": 16.64
+    },
+    {
+     "t": 5367,
+     "ch": 0,
+     "y": 16.64
+    }
+   ],
+   "dom": [
+    {
+     "t": 0,
+     "ch": 4,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54607, 0, 0, 2.54607, 0, 322.664)"
+    },
+    {
+     "t": 1716,
+     "ch": 0,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54607, 0, 0, 2.54607, 0, 322.664)"
+    },
+    {
+     "t": 2726,
+     "ch": 0,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54607, 0, 0, 2.54607, 0, 322.664)"
+    },
+    {
+     "t": 3318,
+     "ch": 0,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54607, 0, 0, 2.54607, 0, 322.664)"
+    },
+    {
+     "t": 4392,
+     "ch": 0,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54607, 0, 0, 2.54607, 0, 322.664)"
+    }
+   ]
+  },
+  "08_s1_eclosion_transition": {
+   "framesCaptured": 11,
+   "motionStartMs": 1885,
+   "motionEndMs": 1885,
+   "energy": [
+    {
+     "off": 19,
+     "mad": 0.11
+    },
+    {
+     "off": 1818,
+     "mad": 0.67
+    },
+    {
+     "off": 2768,
+     "mad": 0.2
+    },
+    {
+     "off": 2985,
+     "mad": 0.37
+    }
+   ],
+   "offsetProgress": {
+    "activeForMs": 2459,
+    "maxErrVsInOutQuart1750": 0.892,
+    "curve": [
+     {
+      "t": 0,
+      "p": 0
+     },
+     {
+      "t": 876,
+      "p": 0
+     },
+     {
+      "t": 1042,
+      "p": 0.007
+     },
+     {
+      "t": 1210,
+      "p": 0.04
+     },
+     {
+      "t": 1377,
+      "p": 0.135
+     },
+     {
+      "t": 1541,
+      "p": 0.36
+     },
+     {
+      "t": 1707,
+      "p": 0.676
+     },
+     {
+      "t": 1877,
+      "p": 0.872
+     },
+     {
+      "t": 2041,
+      "p": 0.966
+     },
+     {
+      "t": 2208,
+      "p": 0.995
+     },
+     {
+      "t": 2374,
+      "p": 1
+     }
+    ]
+   },
+   "camWorldY": [
+    {
+     "t": 0,
+     "ch": 1,
+     "y": 19
+    },
+    {
+     "t": 876,
+     "ch": 1,
+     "y": -0.78
+    },
+    {
+     "t": 1042,
+     "ch": 1,
+     "y": -0.56
+    },
+    {
+     "t": 1210,
+     "ch": 1,
+     "y": 0.15
+    },
+    {
+     "t": 1377,
+     "ch": 1,
+     "y": 2.1
+    },
+    {
+     "t": 1541,
+     "ch": 1,
+     "y": 6.6
+    },
+    {
+     "t": 1707,
+     "ch": 1,
+     "y": 12.91
+    },
+    {
+     "t": 1877,
+     "ch": 1,
+     "y": 16.8
+    },
+    {
+     "t": 2041,
+     "ch": 1,
+     "y": 18.69
+    },
+    {
+     "t": 2208,
+     "ch": 1,
+     "y": 19.27
+    },
+    {
+     "t": 2374,
+     "ch": 1,
+     "y": 19.37
+    },
+    {
+     "t": 2542,
+     "ch": 1,
+     "y": 19.38
+    },
+    {
+     "t": 2708,
+     "ch": 1,
+     "y": 19.38
+    },
+    {
+     "t": 2876,
+     "ch": 1,
+     "y": 19.38
+    },
+    {
+     "t": 3041,
+     "ch": 1,
+     "y": 19.38
+    },
+    {
+     "t": 3209,
+     "ch": 1,
+     "y": 19.38
+    },
+    {
+     "t": 3374,
+     "ch": 1,
+     "y": 19.38
+    },
+    {
+     "t": 3541,
+     "ch": 1,
+     "y": 19.38
+    },
+    {
+     "t": 3707,
+     "ch": 1,
+     "y": 19.38
+    },
+    {
+     "t": 3874,
+     "ch": 1,
+     "y": 19.38
+    },
+    {
+     "t": 4041,
+     "ch": 1,
+     "y": 19.38
+    },
+    {
+     "t": 4208,
+     "ch": 1,
+     "y": 19.38
+    },
+    {
+     "t": 4375,
+     "ch": 1,
+     "y": 19.38
+    },
+    {
+     "t": 4541,
+     "ch": 1,
+     "y": 19.38
+    },
+    {
+     "t": 4708,
+     "ch": 1,
+     "y": 19.38
+    }
+   ],
+   "dom": [
+    {
+     "t": 0,
+     "ch": 1,
+     "trans": 0,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54607, 0, 0, 2.54607, 0, 322.664)"
+    },
+    {
+     "t": 2127,
+     "ch": 1,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54607, 0, 0, 2.54607, 0, 322.664)"
+    }
+   ]
+  },
+  "09_s2_adieu_transition": {
+   "framesCaptured": 7,
+   "motionStartMs": 1845,
+   "motionEndMs": 1845,
+   "energy": [
+    {
+     "off": 12,
+     "mad": 0.12
+    },
+    {
+     "off": 1811,
+     "mad": 0.94
+    }
+   ],
+   "offsetProgress": {
+    "activeForMs": 2400,
+    "maxErrVsInOutQuart1750": 0.859,
+    "curve": [
+     {
+      "t": 0,
+      "p": 0
+     },
+     {
+      "t": 835,
+      "p": 0
+     },
+     {
+      "t": 1001,
+      "p": 0.009
+     },
+     {
+      "t": 1168,
+      "p": 0.048
+     },
+     {
+      "t": 1334,
+      "p": 0.159
+     },
+     {
+      "t": 1503,
+      "p": 0.391
+     },
+     {
+      "t": 1667,
+      "p": 0.714
+     },
+     {
+      "t": 1834,
+      "p": 0.893
+     },
+     {
+      "t": 2000,
+      "p": 0.971
+     },
+     {
+      "t": 2168,
+      "p": 0.996
+     },
+     {
+      "t": 2334,
+      "p": 1
+     }
+    ]
+   },
+   "camWorldY": [
+    {
+     "t": 0,
+     "ch": 2,
+     "y": 58.87
+    },
+    {
+     "t": 835,
+     "ch": 2,
+     "y": 47.85
+    },
+    {
+     "t": 1001,
+     "ch": 2,
+     "y": 48.18
+    },
+    {
+     "t": 1168,
+     "ch": 2,
+     "y": 48.78
+    },
+    {
+     "t": 1334,
+     "ch": 2,
+     "y": 50.14
+    },
+    {
+     "t": 1503,
+     "ch": 2,
+     "y": 52.81
+    },
+    {
+     "t": 1667,
+     "ch": 2,
+     "y": 56.45
+    },
+    {
+     "t": 1834,
+     "ch": 2,
+     "y": 58.48
+    },
+    {
+     "t": 2000,
+     "ch": 2,
+     "y": 59.37
+    },
+    {
+     "t": 2168,
+     "ch": 2,
+     "y": 59.65
+    },
+    {
+     "t": 2334,
+     "ch": 2,
+     "y": 59.7
+    },
+    {
+     "t": 2501,
+     "ch": 2,
+     "y": 59.71
+    },
+    {
+     "t": 2668,
+     "ch": 2,
+     "y": 59.71
+    },
+    {
+     "t": 2836,
+     "ch": 2,
+     "y": 59.72
+    },
+    {
+     "t": 3001,
+     "ch": 2,
+     "y": 59.72
+    },
+    {
+     "t": 3168,
+     "ch": 2,
+     "y": 59.72
+    },
+    {
+     "t": 3335,
+     "ch": 2,
+     "y": 59.72
+    },
+    {
+     "t": 3503,
+     "ch": 2,
+     "y": 59.72
+    },
+    {
+     "t": 3667,
+     "ch": 2,
+     "y": 59.72
+    },
+    {
+     "t": 3835,
+     "ch": 2,
+     "y": 59.72
+    }
+   ],
+   "dom": [
+    {
+     "t": 0,
+     "ch": 2,
+     "trans": 1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54607, 0, 0, 2.54607, 0, 322.664)"
+    },
+    {
+     "t": 2805,
+     "ch": 2,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54607, 0, 0, 2.54607, 0, 322.664)"
+    }
+   ]
+  },
+  "10_s3_voyage_transition": {
+   "framesCaptured": 17,
+   "motionStartMs": 1,
+   "motionEndMs": 1484,
+   "energy": [
+    {
+     "off": 1,
+     "mad": 4.47
+    },
+    {
+     "off": 134,
+     "mad": 5.27
+    },
+    {
+     "off": 301,
+     "mad": 2.51
+    },
+    {
+     "off": 2268,
+     "mad": 0.12
+    },
+    {
+     "off": 2818,
+     "mad": 0.02
+    },
+    {
+     "off": 3934,
+     "mad": 0.02
+    }
+   ],
+   "offsetProgress": {
+    "activeForMs": 1733,
+    "maxErrVsInOutQuart1750": 0.039,
+    "curve": [
+     {
+      "t": 0,
+      "p": 0
+     },
+     {
+      "t": 216,
+      "p": 0.001
+     },
+     {
+      "t": 382,
+      "p": 0.015
+     },
+     {
+      "t": 550,
+      "p": 0.07
+     },
+     {
+      "t": 718,
+      "p": 0.206
+     },
+     {
+      "t": 886,
+      "p": 0.486
+     },
+     {
+      "t": 1050,
+      "p": 0.776
+     },
+     {
+      "t": 1217,
+      "p": 0.923
+     },
+     {
+      "t": 1384,
+      "p": 0.982
+     },
+     {
+      "t": 1550,
+      "p": 0.998
+     },
+     {
+      "t": 1717,
+      "p": 1
+     }
+    ]
+   },
+   "camWorldY": [
+    {
+     "t": 0,
+     "ch": 2,
+     "y": 59.7
+    },
+    {
+     "t": 216,
+     "ch": 3,
+     "y": -8.71
+    },
+    {
+     "t": 383,
+     "ch": 3,
+     "y": -8.36
+    },
+    {
+     "t": 550,
+     "ch": 3,
+     "y": -7.35
+    },
+    {
+     "t": 717,
+     "ch": 3,
+     "y": -4.8
+    },
+    {
+     "t": 883,
+     "ch": 3,
+     "y": 0.46
+    },
+    {
+     "t": 1050,
+     "ch": 3,
+     "y": 6.52
+    },
+    {
+     "t": 1216,
+     "ch": 3,
+     "y": 9.64
+    },
+    {
+     "t": 1383,
+     "ch": 3,
+     "y": 10.94
+    },
+    {
+     "t": 1550,
+     "ch": 3,
+     "y": 11.32
+    },
+    {
+     "t": 1716,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 1884,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 2050,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 2216,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 2384,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 2552,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 2717,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 2884,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 3051,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 3217,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 3382,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 3550,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 3718,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 3882,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 4049,
+     "ch": 3,
+     "y": 11.38
+    }
+   ],
+   "dom": [
+    {
+     "t": 0,
+     "ch": 3,
+     "trans": 2,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54607, 0, 0, 2.54607, 0, 322.664)"
+    },
+    {
+     "t": 1347,
+     "ch": 3,
+     "trans": 2,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54607, 0, 0, 2.54607, 0, 322.664)"
+    },
+    {
+     "t": 2822,
+     "ch": 3,
+     "trans": -1,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54607, 0, 0, 2.54607, 0, 322.664)"
+    }
+   ]
+  },
+  "11_s4_premiere_transition": {
+   "framesCaptured": 9,
+   "motionStartMs": null,
+   "motionEndMs": null,
+   "energy": [
+    {
+     "off": -16,
+     "mad": 0.04
+    },
+    {
+     "off": 1584,
+     "mad": 0.72
+    },
+    {
+     "off": 1901,
+     "mad": 0.47
+    }
+   ],
+   "offsetProgress": {
+    "activeForMs": 2748,
+    "maxErrVsInOutQuart1750": 0.969,
+    "curve": [
+     {
+      "t": 0,
+      "p": 0
+     },
+     {
+      "t": 169,
+      "p": 0
+     },
+     {
+      "t": 335,
+      "p": 0
+     },
+     {
+      "t": 499,
+      "p": 0
+     },
+     {
+      "t": 668,
+      "p": 0
+     },
+     {
+      "t": 834,
+      "p": 0
+     },
+     {
+      "t": 1000,
+      "p": 0
+     },
+     {
+      "t": 1165,
+      "p": 0
+     },
+     {
+      "t": 1333,
+      "p": 0.009
+     },
+     {
+      "t": 1502,
+      "p": 0.046
+     },
+     {
+      "t": 1699,
+      "p": 0.179
+     },
+     {
+      "t": 1866,
+      "p": 0.433
+     },
+     {
+      "t": 2032,
+      "p": 0.744
+     },
+     {
+      "t": 2198,
+      "p": 0.909
+     },
+     {
+      "t": 2365,
+      "p": 0.977
+     },
+     {
+      "t": 2533,
+      "p": 0.997
+     },
+     {
+      "t": 2698,
+      "p": 1
+     }
+    ]
+   },
+   "camWorldY": [
+    {
+     "t": 0,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 168,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 334,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 502,
+     "ch": 3,
+     "y": 11.38
+    },
+    {
+     "t": 667,
+     "ch": 4,
+     "y": -50.22
+    },
+    {
+     "t": 835,
+     "ch": 4,
+     "y": -50.09
+    },
+    {
+     "t": 1002,
+     "ch": 4,
+     "y": -50.01
+    },
+    {
+     "t": 1168,
+     "ch": 4,
+     "y": -49.95
+    },
+    {
+     "t": 1335,
+     "ch": 4,
+     "y": -49.91
+    },
+    {
+     "t": 1502,
+     "ch": 4,
+     "y": -49.88
+    },
+    {
+     "t": 1666,
+     "ch": 4,
+     "y": -49.87
+    },
+    {
+     "t": 1835,
+     "ch": 4,
+     "y": -49.72
+    },
+    {
+     "t": 2003,
+     "ch": 4,
+     "y": -48.32
+    },
+    {
+     "t": 2200,
+     "ch": 4,
+     "y": -40.83
+    },
+    {
+     "t": 2367,
+     "ch": 4,
+     "y": -26.33
+    },
+    {
+     "t": 2534,
+     "ch": 4,
+     "y": 3.64
+    },
+    {
+     "t": 2700,
+     "ch": 4,
+     "y": 29.86
+    },
+    {
+     "t": 2866,
+     "ch": 4,
+     "y": 42.58
+    },
+    {
+     "t": 3033,
+     "ch": 4,
+     "y": 47.5
+    },
+    {
+     "t": 3201,
+     "ch": 4,
+     "y": 48.73
+    },
+    {
+     "t": 3366,
+     "ch": 4,
+     "y": 48.83
+    },
+    {
+     "t": 3533,
+     "ch": 4,
+     "y": 48.83
+    },
+    {
+     "t": 3699,
+     "ch": 4,
+     "y": 48.83
+    }
+   ],
+   "dom": [
+    {
+     "t": 0,
+     "ch": 4,
+     "trans": 3,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54607, 0, 0, 2.54607, 0, 322.664)"
+    },
+    {
+     "t": 900,
+     "ch": 4,
+     "trans": 3,
+     "canvas": "matrix(1, 0, 0, 1, 0, 0)",
+     "landing": "translate(0%, 100%) matrix(1, 0, 0, 1, 0, 0)",
+     "logo": "1.00 matrix(2.54607, 0, 0, 2.54607, 0, 322.664)"
+    }
+   ]
+  }
+ },
+ "look": {
+  "loader": {
+   "file": "01_preloader/p_+020045ms.jpg",
+   "palette": [
+    {
+     "hex": "#61667c",
+     "pct": 95
+    },
+    {
+     "hex": "#5f647a",
+     "pct": 3.7
+    },
+    {
+     "hex": "#626680",
+     "pct": 1
+    },
+    {
+     "hex": "#838899",
+     "pct": 0.1
+    },
+    {
+     "hex": "#6c7186",
+     "pct": 0.1
+    },
+    {
+     "hex": "#73788d",
+     "pct": 0
+    }
+   ],
+   "cornerLum": 103.2,
+   "centreLum": 106.3,
+   "hfStd": 1.96
+  },
+  "landing": {
+   "file": "02_landing_mouse/center_settled.jpg",
+   "palette": [
+    {
+     "hex": "#61657e",
+     "pct": 44.9
+    },
+    {
+     "hex": "#f1ece6",
+     "pct": 36.1
+    },
+    {
+     "hex": "#efeae3",
+     "pct": 10.7
+    },
+    {
+     "hex": "#5f647c",
+     "pct": 4.8
+    },
+    {
+     "hex": "#f9f3eb",
+     "pct": 0.8
+    },
+    {
+     "hex": "#575c75",
+     "pct": 0.6
+    }
+   ],
+   "cornerLum": 101.9,
+   "centreLum": 216.7,
+   "hfStd": 6.18
+  },
+  "landing_hover": {
+   "file": "03_landing_hover/enter_settled.jpg",
+   "palette": [
+    {
+     "hex": "#61657e",
+     "pct": 44.9
+    },
+    {
+     "hex": "#f1ece6",
+     "pct": 36.1
+    },
+    {
+     "hex": "#efeae3",
+     "pct": 10.7
+    },
+    {
+     "hex": "#5f647c",
+     "pct": 4.8
+    },
+    {
+     "hex": "#f9f3eb",
+     "pct": 0.8
+    },
+    {
+     "hex": "#575c75",
+     "pct": 0.6
+    }
+   ],
+   "cornerLum": 101.9,
+   "centreLum": 216.7,
+   "hfStd": 6.17
+  },
+  "revealed": {
+   "file": "05_reveal/revealed_settled.jpg",
+   "palette": [
+    {
+     "hex": "#f1ece6",
+     "pct": 35.7
+    },
+    {
+     "hex": "#eeeae3",
+     "pct": 10.5
+    },
+    {
+     "hex": "#777d96",
+     "pct": 6.2
+    },
+    {
+     "hex": "#f3e1dd",
+     "pct": 3.7
+    },
+    {
+     "hex": "#f9f2ec",
+     "pct": 2.8
+    },
+    {
+     "hex": "#f1dedb",
+     "pct": 2.7
+    }
+   ],
+   "cornerLum": 234.9,
+   "centreLum": 193.2,
+   "hfStd": 11.12
+  },
+  "s1": {
+   "file": "08_s1_eclosion/title.jpg",
+   "palette": [
+    {
+     "hex": "#c2e6ca",
+     "pct": 17.4
+    },
+    {
+     "hex": "#556969",
+     "pct": 7.3
+    },
+    {
+     "hex": "#e3d7c9",
+     "pct": 6.8
+    },
+    {
+     "hex": "#ddd8ca",
+     "pct": 5.2
+    },
+    {
+     "hex": "#bee3c6",
+     "pct": 4.4
+    },
+    {
+     "hex": "#986868",
+     "pct": 3.7
+    }
+   ],
+   "cornerLum": 131.7,
+   "centreLum": 214,
+   "hfStd": 14.18
+  },
+  "s2": {
+   "file": "09_s2_adieu/title.jpg",
+   "palette": [
+    {
+     "hex": "#ebcccb",
+     "pct": 12.4
+    },
+    {
+     "hex": "#a9b3c6",
+     "pct": 11.1
+    },
+    {
+     "hex": "#6b728b",
+     "pct": 8.4
+    },
+    {
+     "hex": "#eed1cc",
+     "pct": 3.1
+    },
+    {
+     "hex": "#98a8a9",
+     "pct": 3.1
+    },
+    {
+     "hex": "#f1d4cd",
+     "pct": 3
+    }
+   ],
+   "cornerLum": 127.4,
+   "centreLum": 147.1,
+   "hfStd": 14.85
+  },
+  "s3": {
+   "file": "10_s3_voyage/title.jpg",
+   "palette": [
+    {
+     "hex": "#456282",
+     "pct": 53.3
+    },
+    {
+     "hex": "#b7bbd8",
+     "pct": 8.7
+    },
+    {
+     "hex": "#354b63",
+     "pct": 5
+    },
+    {
+     "hex": "#435d7c",
+     "pct": 3.9
+    },
+    {
+     "hex": "#3b597b",
+     "pct": 3
+    },
+    {
+     "hex": "#32445a",
+     "pct": 2
+    }
+   ],
+   "cornerLum": 149.6,
+   "centreLum": 109.4,
+   "hfStd": 9.37
+  },
+  "s4": {
+   "file": "11_s4_premiere/title.jpg",
+   "palette": [
+    {
+     "hex": "#e4dcd1",
+     "pct": 34.8
+    },
+    {
+     "hex": "#d7e7ea",
+     "pct": 12.9
+    },
+    {
+     "hex": "#e4ecea",
+     "pct": 5.7
+    },
+    {
+     "hex": "#e1dace",
+     "pct": 5.1
+    },
+    {
+     "hex": "#dcd5c9",
+     "pct": 4.6
+    },
+    {
+     "hex": "#765a57",
+     "pct": 3.3
+    }
+   ],
+   "cornerLum": 189.1,
+   "centreLum": 220,
+   "hfStd": 12.79
+  },
+  "ending": {
+   "file": "12_ending/end_settled.jpg",
+   "palette": [
+    {
+     "hex": "#f1ede4",
+     "pct": 78.9
+    },
+    {
+     "hex": "#efebe2",
+     "pct": 12.4
+    },
+    {
+     "hex": "#f7f2e9",
+     "pct": 0.7
+    },
+    {
+     "hex": "#656a85",
+     "pct": 0.6
+    },
+    {
+     "hex": "#e9e4dc",
+     "pct": 0.4
+    },
+    {
+     "hex": "#77aa94",
+     "pct": 0.3
+    }
+   ],
+   "cornerLum": 232.9,
+   "centreLum": 150.2,
+   "hfStd": 9.61
+  }
+ },
+ "type": [
+  {
+   "at": "landing",
+   "items": [
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      932,
+      966,
+      54,
+      16
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      943,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      960,
+      540,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1708,
+      1031,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "landing hover",
+   "items": [
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      932,
+      966,
+      54,
+      16
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      943,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Enter",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      943,
+      534,
+      35,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1708,
+      1031,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "start hover",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "1",
+     "rect": [
+      1043,
+      648,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      932,
+      966,
+      54,
+      16
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      943,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Enter",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      941,
+      968,
+      35,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1708,
+      1031,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "08_s1_eclosion",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1273,
+      864,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      943,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Drag",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      942,
+      983,
+      31,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1708,
+      1031,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "08_s1_eclosion next hover",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1273,
+      864,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A year has gone since we set f",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1267,
+      864,
+      461,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "We witnessed the birth of ever",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "As the last flowers bloom, our",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      130,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      943,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Drag",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      944,
+      73,
+      31,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1708,
+      1031,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "09_s2_adieu",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1273,
+      864,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A year has gone since we set f",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1267,
+      864,
+      461,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "We witnessed the birth of ever",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "As the last flowers bloom, our",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      130,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Let us hear one last time the ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0.166539",
+     "rect": [
+      1148,
+      864,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      943,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Drag",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      944,
+      73,
+      31,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1708,
+      1031,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "09_s2_adieu next hover",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1273,
+      864,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A year has gone since we set f",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1267,
+      864,
+      461,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "We witnessed the birth of ever",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "As the last flowers bloom, our",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      130,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Let us hear one last time the ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      864,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "The rest of the tribe is alrea",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      420,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "soon ready to fly away towards",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      130,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      943,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Drag",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      944,
+      73,
+      31,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1708,
+      1031,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "10_s3_voyage",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1273,
+      864,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A year has gone since we set f",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1267,
+      864,
+      461,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "We witnessed the birth of ever",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "As the last flowers bloom, our",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      130,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Let us hear one last time the ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      864,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "The rest of the tribe is alrea",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      420,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "soon ready to fly away towards",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      130,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "At night time, the majestic bi",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1178,
+      864,
+      550,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Like every year, as the sun br",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      425,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "they will leave us on the new ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0.371202",
+     "rect": [
+      1366,
+      130,
+      362,
+      84
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      943,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Hold",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      945,
+      73,
+      30,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1708,
+      1031,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "10_s3_voyage next hover",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1273,
+      864,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A year has gone since we set f",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1267,
+      864,
+      461,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "We witnessed the birth of ever",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "As the last flowers bloom, our",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      130,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Let us hear one last time the ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      864,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "The rest of the tribe is alrea",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      420,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "soon ready to fly away towards",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      130,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "At night time, the majestic bi",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1178,
+      864,
+      550,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Like every year, as the sun br",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      425,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "they will leave us on the new ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1366,
+      130,
+      362,
+      84
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      943,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Hold",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      945,
+      73,
+      30,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1708,
+      1031,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "11_s4_premiere",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1273,
+      864,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A year has gone since we set f",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1267,
+      864,
+      461,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "We witnessed the birth of ever",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "As the last flowers bloom, our",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      130,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Let us hear one last time the ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      864,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "The rest of the tribe is alrea",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      420,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "soon ready to fly away towards",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      130,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "At night time, the majestic bi",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1178,
+      864,
+      550,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Like every year, as the sun br",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      425,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "they will leave us on the new ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1366,
+      130,
+      362,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "With the rising of the sun, th",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      864,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Everything is still to be done",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Quietly, the first flower bloo",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      130,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      943,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Drag",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      944,
+      88,
+      31,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1708,
+      1031,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "11_s4_premiere next hover",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1273,
+      864,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A year has gone since we set f",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1267,
+      864,
+      461,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "We witnessed the birth of ever",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "As the last flowers bloom, our",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      130,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Let us hear one last time the ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      864,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "The rest of the tribe is alrea",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      420,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "soon ready to fly away towards",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      130,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "At night time, the majestic bi",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1178,
+      864,
+      550,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Like every year, as the sun br",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      425,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "they will leave us on the new ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1366,
+      130,
+      362,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "With the rising of the sun, th",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      864,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Everything is still to be done",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      115,
+      486,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Quietly, the first flower bloo",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1148,
+      130,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      943,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Drag",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      944,
+      73,
+      31,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1708,
+      1031,
+      172,
+      9
+     ]
+    }
+   ]
+  },
+  {
+   "at": "ending",
+   "items": [
+    {
+     "sel": ".subtitles",
+     "text": "Today is a big day for our tri",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1081,
+      162,
+      455,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A year has gone since we set f",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1075,
+      162,
+      461,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "We witnessed the birth of ever",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      480,
+      702,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "As the last flowers bloom, our",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      956,
+      162,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Let us hear one last time the ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      956,
+      162,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "The rest of the tribe is alrea",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      480,
+      702,
+      420,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "soon ready to fly away towards",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      956,
+      162,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "At night time, the majestic bi",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      986,
+      162,
+      550,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Like every year, as the sun br",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      480,
+      702,
+      425,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "they will leave us on the new ",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1174,
+      162,
+      362,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "With the rising of the sun, th",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      956,
+      162,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Everything is still to be done",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      480,
+      702,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "Quietly, the first flower bloo",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      956,
+      162,
+      580,
+      108
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "A page has been turned.",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      1261,
+      162,
+      275,
+      84
+     ]
+    },
+    {
+     "sel": ".subtitles",
+     "text": "May this year bring us many ex",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "24px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "30px 40px",
+     "opacity": "0",
+     "rect": [
+      480,
+      702,
+      449,
+      84
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Start",
+     "fontFamily": "Gotham",
+     "fontSize": "16px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "16px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      0,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "sel": ".button__text",
+     "text": "Next",
+     "fontFamily": "Gotham",
+     "fontSize": "12px",
+     "fontWeight": "700",
+     "letterSpacing": "normal",
+     "lineHeight": "12px",
+     "color": "rgb(248, 244, 236)",
+     "textTransform": "uppercase",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      943,
+      73,
+      34,
+      12
+     ]
+    },
+    {
+     "sel": ".cursor .text",
+     "text": "Drag",
+     "fontFamily": "Gotham",
+     "fontSize": "12.8px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "12.8px",
+     "color": "rgb(0, 0, 0)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "0",
+     "rect": [
+      944,
+      73,
+      31,
+      13
+     ]
+    },
+    {
+     "sel": ".audio-text__text",
+     "text": "Best experienced with sound",
+     "fontFamily": "\"Gotham Book\"",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "letterSpacing": "normal",
+     "lineHeight": "8.88px",
+     "color": "rgb(255, 255, 255)",
+     "textTransform": "none",
+     "padding": "0px",
+     "opacity": "1",
+     "rect": [
+      1708,
+      1031,
+      172,
+      9
+     ]
+    }
+   ]
+  }
+ ],
+ "sheets": [
+  "design-reference\\compare\\makemepulse_1920x1080_keyframes.jpg",
+  "design-reference\\compare\\makemepulse_1920x1080_motion.jpg"
+ ]
+}

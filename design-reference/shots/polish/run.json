@@ -1,0 +1,395 @@
+{
+ "tag": "polish",
+ "date": "2026-10-14T02:21:27.818Z",
+ "seconds": 566,
+ "result": "PASS",
+ "sizes": [
+  "1440x900",
+  "390x844"
+ ],
+ "numbers": {
+  "browser": "system Chrome 155.0.8059.79",
+  "lazyFiles": [
+   "assets/globe-Dlgn1VvN.js"
+  ],
+  "backend": {
+   "1440x900": "webgpu",
+   "390x844": "webgpu"
+  },
+  "hscroll": {
+   "1440x900/globe-idle": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/globe-pacific-bottle-1y": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/globe-pacific-bottle-10y": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/globe-atlantic-bag-1y": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/globe-atlantic-bag-10y": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/globe-indian-line-1y": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/globe-indian-line-10y": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/salish-idle": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/salish-fraser-1d": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/salish-fraser-end": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/reduced-globe-idle": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "390x844/globe-idle": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/globe-pacific-bottle-1y": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/globe-pacific-bottle-10y": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/globe-atlantic-bag-1y": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/globe-atlantic-bag-10y": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/globe-indian-line-1y": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/globe-indian-line-10y": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/salish-idle": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/salish-fraser-1d": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/salish-fraser-end": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/reduced-globe-idle": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "1440x900/globe-20k-members": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   }
+  },
+  "globeSimSeconds": {
+   "1440x900": 22.841,
+   "390x844": 12.723
+  },
+  "salishSimSeconds": {
+   "1440x900": 1.16,
+   "390x844": 1.055
+  },
+  "salishEndHours": 720,
+  "fps": {
+   "target": 60,
+   "failBelow": 30,
+   "gatedOn": "playing30x median",
+   "backend": "webgpu",
+   "gpu": {
+    "backend": "webgpu",
+    "adapter": {
+     "fallback": false,
+     "vendor": "nvidia",
+     "architecture": "ampere",
+     "description": ""
+    },
+    "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 (0x00002503) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+   },
+   "hardware": true,
+   "setup": {
+    "simMs": 316836.39999997616,
+    "minDay": 120,
+    "drops": 833
+   },
+   "dpr1": {
+    "paused": {
+     "frames": 533,
+     "drawnFrames": 533,
+     "drawnShare": 1,
+     "drawCalls": 10,
+     "seconds": 6,
+     "medianFps": 73.5,
+     "meanFps": 88.7,
+     "p50Ms": 13.6,
+     "p95Ms": 14.5,
+     "dpr": 1,
+     "canvas": "1440x900",
+     "members": 19992,
+     "cpu": {
+      "particles": 1.113245159645657,
+      "streamlines": 1.292268387530061,
+      "render": 1.1209258868930256
+     }
+    },
+    "playing30x": {
+     "frames": 454,
+     "drawnFrames": 454,
+     "drawnShare": 1,
+     "drawCalls": 10,
+     "seconds": 6,
+     "medianFps": 71.9,
+     "meanFps": 75.7,
+     "p50Ms": 13.9,
+     "p95Ms": 20.9,
+     "dpr": 1,
+     "canvas": "1440x900",
+     "members": 19992,
+     "cpu": {
+      "particles": 0.9144972241476826,
+      "streamlines": 0.8983951194491696,
+      "render": 0.8791019105764072
+     }
+    }
+   },
+   "dpr2": {
+    "paused": {
+     "frames": 519,
+     "drawnFrames": 519,
+     "drawnShare": 1,
+     "drawCalls": 10,
+     "seconds": 6,
+     "medianFps": 74.1,
+     "meanFps": 86.4,
+     "p50Ms": 13.5,
+     "p95Ms": 20.9,
+     "dpr": 2,
+     "canvas": "2880x1800",
+     "members": 19992,
+     "cpu": {
+      "particles": 1.0549624375351108,
+      "streamlines": 0.7283919535229894,
+      "render": 0.5620459978225859
+     }
+    },
+    "playing30x": {
+     "frames": 729,
+     "drawnFrames": 729,
+     "drawnShare": 1,
+     "drawCalls": 10,
+     "seconds": 6,
+     "medianFps": 142.9,
+     "meanFps": 121.4,
+     "p50Ms": 7,
+     "p95Ms": 13.9,
+     "dpr": 2,
+     "canvas": "2880x1800",
+     "members": 19992,
+     "cpu": {
+      "particles": 0.6984300065244896,
+      "streamlines": 0.6643266298382132,
+      "render": 0.5506132393718183
+     }
+    }
+   }
+  }
+ },
+ "checks": [
+  {
+   "name": "lazy chunk list found in the manifest",
+   "sizes": {
+    "build": true
+   },
+   "fails": []
+  },
+  {
+   "name": "lazy globe chunks load at the globe",
+   "sizes": {
+    "1440x900": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "three ocean drops accepted",
+   "sizes": {
+    "1440x900": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "disclaimer visible with tracks",
+   "sizes": {
+    "1440x900": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "Fraser mouth drop accepted",
+   "sizes": {
+    "1440x900": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "no horizontal scroll at 390",
+   "sizes": {
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "fps >= 30 with ~20k members (playing)",
+   "sizes": {
+    "1440x900": true
+   },
+   "fails": []
+  },
+  {
+   "name": "globe drew >= 90 % of frames",
+   "sizes": {
+    "1440x900": true
+   },
+   "fails": []
+  },
+  {
+   "name": "DPR 2 window drew at twice the pixels",
+   "sizes": {
+    "1440x900": true
+   },
+   "fails": []
+  },
+  {
+   "name": "fps measured on a hardware GPU backend",
+   "sizes": {
+    "1440x900": true
+   },
+   "fails": []
+  },
+  {
+   "name": "~20,000 members on the globe",
+   "sizes": {
+    "1440x900": true
+   },
+   "fails": []
+  },
+  {
+   "name": "no console errors",
+   "sizes": {
+    "1440x900": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "no failed requests",
+   "sizes": {
+    "1440x900": true,
+    "390x844": true
+   },
+   "fails": []
+  }
+ ],
+ "shots": [
+  "1440x900/globe-idle.jpg",
+  "1440x900/globe-pacific-bottle-1y.jpg",
+  "1440x900/globe-pacific-bottle-10y.jpg",
+  "1440x900/globe-atlantic-bag-1y.jpg",
+  "1440x900/globe-atlantic-bag-10y.jpg",
+  "1440x900/globe-indian-line-1y.jpg",
+  "1440x900/globe-indian-line-10y.jpg",
+  "1440x900/salish-idle.jpg",
+  "1440x900/salish-fraser-1d.jpg",
+  "1440x900/salish-fraser-end.jpg",
+  "1440x900/reduced-globe-idle.jpg",
+  "390x844/globe-idle.jpg",
+  "390x844/globe-pacific-bottle-1y.jpg",
+  "390x844/globe-pacific-bottle-10y.jpg",
+  "390x844/globe-atlantic-bag-1y.jpg",
+  "390x844/globe-atlantic-bag-10y.jpg",
+  "390x844/globe-indian-line-1y.jpg",
+  "390x844/globe-indian-line-10y.jpg",
+  "390x844/salish-idle.jpg",
+  "390x844/salish-fraser-1d.jpg",
+  "390x844/salish-fraser-end.jpg",
+  "390x844/reduced-globe-idle.jpg",
+  "1440x900/globe-20k-members.jpg"
+ ]
+}

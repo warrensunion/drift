@@ -1,0 +1,62 @@
+[   1s] drift shoot "polish2" sizes 1440x900, 390x844 with system Chrome 155.0.8059.79
+[   7s] built (development) in 5.9 s -> C:\Users\Warren\AppData\Local\Temp\drift-shoot-dev-5810
+[   7s] lazy files (manifest): assets/globe-Dlgn1VvN.js + assets/worker-*.js, *.wasm, *.onnx
+[   8s] serving C:\Users\Warren\AppData\Local\Temp\drift-shoot-dev-5810 at http://127.0.0.1:5810
+[   8s] == 1440x900
+[  13s]   1440x900/0-preloader-midfill.jpg
+[  18s]   1440x900/0-handoff.jpg
+[  20s]   1440x900/0-intro.jpg
+[  21s]   1440x900/0-begin.jpg
+[  27s]   1440x900/1-mid.jpg
+[  31s]   1440x900/1to2-transition.jpg
+[  37s]   1440x900/2-mid.jpg
+[  44s]   1440x900/2to3-transition.jpg
+[  52s]   1440x900/3-mid.jpg
+[  57s]   1440x900/3to4-transition.jpg
+[  62s]   1440x900/4-mid.jpg
+[  68s]   1440x900/4to5-transition.jpg
+[  74s]   1440x900/5-mid.jpg
+[  83s]   1440x900/5to6-transition.jpg
+1440x900 story console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
+1440x900 story console.info: [drift] renderer: webgpu
+1440x900 story worker started: worker-7Iho_Cnk.js
+[  91s]   1440x900/6-mid.jpg
+[ 100s]   1440x900/3-late.jpg
+[ 102s]   1440x900/8-about.jpg
+[ 103s]   1440x900/8-about-model.jpg
+[ 104s]   1440x900/8-about-sources.jpg
+[ 104s] == 390x844
+[ 108s]   390x844/0-preloader-midfill.jpg
+[ 113s]   390x844/0-handoff.jpg
+[ 115s]   390x844/0-intro.jpg
+[ 116s]   390x844/0-begin.jpg
+[ 119s]   390x844/1-mid.jpg
+[ 121s]   390x844/1to2-transition.jpg
+[ 125s]   390x844/2-mid.jpg
+[ 127s]   390x844/2to3-transition.jpg
+[ 131s]   390x844/3-mid.jpg
+[ 132s]   390x844/3to4-transition.jpg
+[ 136s]   390x844/4-mid.jpg
+[ 138s]   390x844/4to5-transition.jpg
+[ 141s]   390x844/5-mid.jpg
+[ 143s]   390x844/5to6-transition.jpg
+390x844 story console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
+390x844 story console.info: [drift] renderer: webgpu
+390x844 story worker started: worker-7Iho_Cnk.js
+[ 147s]   390x844/6-mid.jpg
+[ 152s]   390x844/3-late.jpg
+[ 154s]   390x844/8-about.jpg
+[ 155s]   390x844/8-about-model.jpg
+[ 155s]   390x844/8-about-sources.jpg
+[ 155s] == compare
+[ 156s]   design-reference/compare/three-up-0-preloader.jpg
+[ 156s]   design-reference/compare/three-up-0-handoff.jpg
+[ 157s]   design-reference/compare/three-up-1-bottle.jpg
+[ 157s]   design-reference/compare/three-up-2-breaks.jpg
+[ 158s]   design-reference/compare/three-up-3-currents.jpg
+[ 158s]   design-reference/compare/three-up-4-gyre.jpg
+[ 158s]   design-reference/compare/three-up-5-deep.jpg
+[ 159s]   design-reference/compare/three-up-6-yours.jpg
+[ 159s]   compare globe: no shot globe-pacific-bottle-10y
+[ 159s]   compare salish: no shot salish-fraser-end
+[ 159s]   design-reference/compare/three-up-about.jpg

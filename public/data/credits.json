@@ -1,0 +1,42 @@
+[
+  {
+    "name": "OSCAR surface currents (1/3 deg, 5-day, 2011-12-06..2014-09-26)",
+    "source": "https://coastwatch.pfeg.noaa.gov/erddap/griddap/jplOscar (NASA/JPL PO.DAAC OSCAR via NOAA CoastWatch ERDDAP; Bonjean and Lagerloef 2002)",
+    "url": "https://coastwatch.pfeg.noaa.gov/erddap/griddap/jplOscar",
+    "licence": "Free to use and redistribute, no warranty (ERDDAP dataset licence)",
+    "fetched": "2026-10-13",
+    "processing": "Every 3rd grid point (1 deg), averaged by calendar month ignoring NaN, shifted to 1 deg cell centres by a NaN-aware 4-point mean, lon wrapped to -180..180, packed as int16 at 0.001 m/s in 12 DRFT tiles (`public/data/currents/clim-01..12.bin`)"
+  },
+  {
+    "name": "QuikSCAT SeaWinds monthly 10 m winds (RSS science quality, 1999-08..2009-10)",
+    "source": "https://coastwatch.pfeg.noaa.gov/erddap/griddap/erdQSwindmday (Remote Sensing Systems, http://www.remss.com/)",
+    "url": "https://coastwatch.pfeg.noaa.gov/erddap/griddap/erdQSwindmday",
+    "licence": "Free to use and redistribute, no warranty (ERDDAP dataset licence)",
+    "fetched": "2026-10-13",
+    "processing": "Every 16th point (2 deg, 75S..75N), averaged by calendar month, monthly-mean speeds over 20 m/s masked (sea-ice contamination), then every remaining no-data cell (coast, sea ice, land; 36% of cells) filled per month by iterative nearest-valid-neighbour extrapolation (repeated NaN-aware 3x3 mean, lon wrapping) so the tile has no gaps, packed as int16 at 0.01 m/s in one 12-frame DRFT tile (`public/data/wind/clim.bin`). Replaces the planned ICOADS climatology, which the ERDDAP server stopped serving"
+  },
+  {
+    "name": "NOAA Global Drifter Program 6-hourly QC drifters, 2012-01-01..2014-09-26",
+    "source": "https://erddap.aoml.noaa.gov/gdp/erddap/tabledap/drifter_6hour_qc (Lumpkin and Centurioni 2019, doi:10.25921/7ntx-z961)",
+    "url": "https://erddap.aoml.noaa.gov/gdp/erddap/tabledap/drifter_6hour_qc",
+    "licence": "CC BY 4.0",
+    "fetched": "2026-10-13",
+    "processing": "One fix per drifter-day (`orderByClosest(\"ID,time/1day\")`), consecutive-day pairs with displacement under 300 km, windage = fix on/after drogue loss, joined to the sampled monthly current and wind fields (878,086 pairs from 4,079 drifters, 2012-01-01..2014-09-25; 9,747 pairs without a current or wind sample dropped: OSCAR coast gaps and poleward of the 75 deg wind grid); training pairs only (not shipped)"
+  },
+  {
+    "name": "Natural Earth 1:50m land",
+    "source": "https://github.com/nvkelso/natural-earth-vector (geojson/ne_50m_land.geojson)",
+    "url": "https://github.com/nvkelso/natural-earth-vector",
+    "licence": "Public domain",
+    "fetched": "2026-10-13",
+    "processing": "Polygons rasterised to a 2048x1024 equirectangular PNG, 255 = land (`public/data/landmask.png`)"
+  },
+  {
+    "name": "SalishSeaCast near-surface currents + land mask (Salish Sea tide loop, `public/data/salish/`)",
+    "source": "https://salishsea.eos.ubc.ca/erddap/ (datasets ubcSSfDepthAvgdCurrents1h, ubcSSnBathymetryV21-08, ubcSSn3DMeshMaskV21-08)",
+    "url": "https://salishsea.eos.ubc.ca/erddap/",
+    "licence": "Apache License 2.0, (c) SalishSeaCast Project Contributors and The University of British Columbia",
+    "fetched": "2026-10-13",
+    "processing": "`scripts/data/fetch_salish.py`: VelEast5/VelNorth5 (upper-5 m mean, hourly), 25 consecutive frames from 2026-10-09T08:30Z; model cells with no source current (about 10 % of water cells, coastal/shallow) dropped; nearest remaining model water cell within 1.5 model cells regridded onto a 251 x 284 grid (lon -125.20..-122.70 step 0.01, lat 48.20..49.90 step 0.006), int16 x 0.001 m/s (DRFT tile, cells outside the model domain are no-data); land.png at 4x (1004x1136) from tmask, values 0 = water, 255 = land, 128 = outside the model domain (no model point within 1.5 model cells, or nearest to the model's masked outer boundary row/column; only regions that reach the chart edge); the model's artificial straight Fraser channel (gridX 394) is drawn as land"
+  }
+]

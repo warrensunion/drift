@@ -1,0 +1,71 @@
+[   1s] drift shoot "polish" sizes 1440x900, 390x844 with system Chrome 155.0.8059.79
+[   4s] built (development) in 3.4 s -> C:\Users\Warren\AppData\Local\Temp\drift-shoot-dev-5640
+[   4s] lazy files (manifest): assets/globe-Dlgn1VvN.js + assets/worker-*.js, *.wasm, *.onnx
+[   4s] serving C:\Users\Warren\AppData\Local\Temp\drift-shoot-dev-5640 at http://127.0.0.1:5640
+[   4s] == 1440x900
+1440x900 globe console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
+1440x900 globe console.info: [drift] renderer: webgpu
+1440x900 globe worker started: worker-7Iho_Cnk.js
+[  30s]   1440x900 globe backend: webgpu
+[  33s]   1440x900/globe-idle.jpg
+[  56s]   1440x900 three drops computed to 10 y in 23 s
+[  58s]   1440x900/globe-pacific-bottle-1y.jpg
+[  60s]   1440x900/globe-pacific-bottle-10y.jpg
+[  62s]   1440x900/globe-atlantic-bag-1y.jpg
+[  64s]   1440x900/globe-atlantic-bag-10y.jpg
+[  67s]   1440x900/globe-indian-line-1y.jpg
+[  69s]   1440x900/globe-indian-line-10y.jpg
+1440x900 globe console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
+1440x900 globe console.info: [drift] renderer: webgpu
+1440x900 globe worker started: worker-7Iho_Cnk.js
+[  81s]   1440x900/salish-idle.jpg
+[  84s]   1440x900/salish-fraser-1d.jpg
+[  87s]   1440x900/salish-fraser-end.jpg
+1440x900 globe-reduced console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
+1440x900 globe-reduced console.info: [drift] renderer: webgpu
+1440x900 globe-reduced worker started: worker-7Iho_Cnk.js
+[ 105s]   1440x900/reduced-globe-idle.jpg
+[ 105s] == 390x844
+390x844 globe console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
+390x844 globe console.info: [drift] renderer: webgpu
+390x844 globe worker started: worker-7Iho_Cnk.js
+[ 125s]   390x844 globe backend: webgpu
+[ 128s]   390x844/globe-idle.jpg
+[ 141s]   390x844 three drops computed to 10 y in 13 s
+[ 143s]   390x844/globe-pacific-bottle-1y.jpg
+[ 145s]   390x844/globe-pacific-bottle-10y.jpg
+[ 147s]   390x844/globe-atlantic-bag-1y.jpg
+[ 149s]   390x844/globe-atlantic-bag-10y.jpg
+[ 151s]   390x844/globe-indian-line-1y.jpg
+[ 153s]   390x844/globe-indian-line-10y.jpg
+390x844 globe console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
+390x844 globe console.info: [drift] renderer: webgpu
+390x844 globe worker started: worker-7Iho_Cnk.js
+[ 158s]   390x844/salish-idle.jpg
+[ 161s]   390x844/salish-fraser-1d.jpg
+[ 163s]   390x844/salish-fraser-end.jpg
+390x844 globe-reduced console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
+390x844 globe-reduced console.info: [drift] renderer: webgpu
+390x844 globe-reduced worker started: worker-7Iho_Cnk.js
+[ 179s]   390x844/reduced-globe-idle.jpg
+[ 179s] == fps
+1440x900 fps console.warning: The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
+1440x900 fps console.info: [drift] renderer: webgpu
+1440x900 fps worker started: worker-7Iho_Cnk.js
+[ 528s]   fps setup: 833 drops to day 120 in 317 s (317 s total)
+[ 528s]   fps backend: webgpu, adapter {"fallback":false,"vendor":"nvidia","architecture":"ampere","description":""}, GL ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 (0x00002503) Direct3D11 vs_5_0 ps_5_0, D3D11)
+[ 545s]   1440x900/globe-20k-members.jpg
+[ 562s]   fps dpr1 (DPR 1, canvas 1440x900; target 60, fail < 30): playing 30x median 71.9 fps / p95 20.9 ms, drew 454/454; paused median 73.5 fps / p95 14.5 ms, drew 533/533; 19992 members
+[ 562s]   fps dpr2 (DPR 2, canvas 2880x1800; target 60, fail < 30): playing 30x median 142.9 fps / p95 13.9 ms, drew 729/729; paused median 74.1 fps / p95 20.9 ms, drew 519/519; 19992 members
+[ 562s] == compare
+[ 563s]   design-reference/compare/three-up-0-preloader.jpg
+[ 563s]   design-reference/compare/three-up-0-handoff.jpg
+[ 564s]   design-reference/compare/three-up-1-bottle.jpg
+[ 564s]   design-reference/compare/three-up-2-breaks.jpg
+[ 564s]   design-reference/compare/three-up-3-currents.jpg
+[ 565s]   design-reference/compare/three-up-4-gyre.jpg
+[ 565s]   design-reference/compare/three-up-5-deep.jpg
+[ 565s]   design-reference/compare/three-up-6-yours.jpg
+[ 565s]   design-reference/compare/three-up-globe.jpg
+[ 566s]   design-reference/compare/three-up-salish.jpg
+[ 566s]   design-reference/compare/three-up-about.jpg

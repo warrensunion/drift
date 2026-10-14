@@ -1,0 +1,28 @@
+{
+  "source": "SalishSeaCast ERDDAP ubcSSfDepthAvgdCurrents1h (VelEast5/VelNorth5, upper-5 m mean currents, NEMO v21-11 forecast); grid ubcSSnBathymetryV21-08; land mask tmask from ubcSSn3DMeshMaskV21-08",
+  "erddap": "https://salishsea.eos.ubc.ca/erddap/",
+  "datasetId": "ubcSSfDepthAvgdCurrents1h",
+  "firstFrame": "2026-10-09T08:30:00Z",
+  "frameStepSeconds": 3600,
+  "frames": 25,
+  "grid": {
+    "lon0": -125.2,
+    "lat0": 48.2,
+    "dlon": 0.01,
+    "dlat": 0.006,
+    "nx": 251,
+    "ny": 284,
+    "scale": 0.001,
+    "landPng": {
+      "width": 1004,
+      "height": 1136,
+      "northUp": true,
+      "values": {
+        "water": 0,
+        "land": 255,
+        "outsideModel": 128
+      }
+    }
+  },
+  "notes": "Frame times are hour-centred (:30 UTC) means. Window: fixed START_FRAME. Regridded by nearest model water cell within 1.5 model cells; land.png from tmask: 0 water, 255 land, 128 outside the model domain (no model point within 1.5 cells, or the model's masked outer boundary row/column). Licence: Apache-2.0, (c) SalishSeaCast Project Contributors and UBC."
+}

@@ -6,3 +6,8 @@ art-src/gen/_raw/
 design-reference/**/video/*.webm
 *.log
 __pycache__/
+.superpowers/
+art-src/gen/_log-*
+design-reference/**/frames/**/*.jpg
+design-reference/**/frames/**/*.png
+art-src/gen/_v1/

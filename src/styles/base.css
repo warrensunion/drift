@@ -1,0 +1,138 @@
+/* Base: reset, type, chrome, focus, grain. */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  background: var(--petrol);
+  color: var(--foam);
+  color-scheme: dark; /* scrollbars and native controls match the deep-water page */
+  -webkit-tap-highlight-color: rgba(127, 183, 174, .22); /* a glass tint, not the default grey */
+}
+/* No desktop rubber-band past the ends; phones keep pull-to-refresh. */
+@media (pointer: fine) { html { overscroll-behavior: none; } }
+body {
+  margin: 0;
+  min-height: 100%;
+  font: 400 var(--t-16)/var(--lh-body) var(--font-body);
+  background: var(--petrol);
+  color: var(--foam);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { max-width: none; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+/* No double-tap zoom delay on controls. */
+a, button, input, select, textarea, label, summary { touch-action: manipulation; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 300; margin: 0; }
+p { margin: 0; }
+
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--foam);
+  outline-offset: 3px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 5px rgba(14, 47, 54, .55);
+}
+
+.skip {
+  position: fixed; left: var(--margin); top: 0; z-index: 80;
+  padding: 10px 16px; border-radius: 999px;
+  background: var(--foam); color: var(--petrol);
+  font: 600 var(--t-13)/1 var(--font-display); text-decoration: none;
+  transform: translateY(-110%);
+}
+.skip:focus-visible { transform: translateY(max(var(--margin), env(safe-area-inset-top, 0px))); }
+
+/* Paper grain multiplied over everything (makemepulse: the frame is multiplied by a paper tile). */
+.grain {
+  position: fixed; inset: 0; z-index: 60; pointer-events: none;
+  background-image: var(--paper);
+  background-size: 512px 512px;
+  mix-blend-mode: multiply;
+  opacity: .5;
+}
+
+/* ---- chrome: one 40 px margin for every fixed control ---- */
+.chrome {
+  position: fixed; left: 0; right: 0; top: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: max(var(--margin), env(safe-area-inset-top, 0px)) max(var(--margin), env(safe-area-inset-right, 0px)) 0 max(var(--margin), env(safe-area-inset-left, 0px));
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden; /* hidden controls are never focusable */
+  transition: opacity .8s var(--ease-reveal), transform .8s var(--ease-reveal), visibility 0s linear .8s;
+}
+/* A soft top wash so the chrome reads over bright skies. */
+.chrome::before {
+  /* One soft, wide band along the top edge (full width, gone by ~120 px): no shape of its own. */
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 120px; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(7, 28, 33, .8) 0%, rgba(7, 28, 33, .74) 40%, rgba(7, 28, 33, .34) 72%, rgba(7, 28, 33, .08) 90%, rgba(7, 28, 33, 0) 100%);
+}
+.is-started .chrome { opacity: 1; visibility: visible; transition-delay: 0s; }
+.is-started.in-globe .chrome, .is-started.past-story .chrome { opacity: 0; visibility: hidden; transform: translateY(-12px); transition-delay: 0s, 0s, .8s; }
+.chrome > * { pointer-events: auto; position: relative; }
+.chrome__mark {
+  font: 400 1.375rem/1 var(--font-display);
+  font-variation-settings: 'wdth' 125;
+  letter-spacing: -.01em;
+  text-decoration: none;
+  text-shadow: 0 1px 14px rgba(7, 28, 33, .5);
+  display: inline-flex; align-items: center; min-height: var(--hit);
+}
+.chrome__links { display: flex; gap: 28px; }
+.chrome__links a {
+  font: 600 var(--t-13)/1 var(--font-display);
+  text-decoration: none;
+  display: inline-flex; align-items: center; min-height: var(--hit);
+  text-shadow: 0 1px 12px rgba(7, 28, 33, .6);
+  background: linear-gradient(currentColor, currentColor) 0 calc(50% + 11px) / 0 1px no-repeat;
+  transition: background-size .5s var(--ease-reveal);
+}
+.chrome__links a:hover { background-size: 100% 1px; }
+@media (max-width: 600px) {
+  .chrome__links a[href="#globe"] { display: none; }
+}
+
+/* ---- the cursor ---- */
+.cursor {
+  position: fixed; left: 0; top: 0; z-index: 70; pointer-events: none;
+  width: 0; height: 0;
+  opacity: 0; transition: opacity .25s;
+}
+.cursor.is-visible { opacity: 1; }
+.cursor.is-off { opacity: 0; }
+.cursor__dot {
+  position: absolute; left: 0; top: 0;
+  width: 75px; height: 75px; border-radius: 50%;
+  background: var(--foam);
+  mix-blend-mode: normal;
+  box-shadow: 0 0 0 1px rgba(14, 47, 54, .18);
+  transform: translate(-50%, -50%) scale(.24);
+  will-change: transform;
+}
+.cursor__label {
+  position: absolute; left: 0; top: 0;
+  transform: translate(-50%, -50%);
+  font: 600 var(--t-13)/1 var(--font-display);
+  color: var(--petrol);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity .25s linear 0s;
+}
+.cursor.has-label .cursor__label { opacity: 1; transition-delay: .15s; }
+/* The native cursor stays everywhere except over the art itself and labelled targets. */
+.has-cursor.is-started .stage,
+.has-cursor [data-cursor] { cursor: none; }
+.has-cursor .stage a:not([data-cursor]), .has-cursor .stage button { cursor: pointer; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01s !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}

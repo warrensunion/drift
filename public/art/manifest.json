@@ -1,0 +1,518 @@
+{
+ "totalBytes": 7915695,
+ "count": 87,
+ "files": [
+  {
+   "file": "asset-bottle.webp",
+   "w": 829,
+   "h": 1375,
+   "bytes": 305952
+  },
+  {
+   "file": "frag/fibres-1.webp",
+   "w": 429,
+   "h": 460,
+   "bytes": 59532
+  },
+  {
+   "file": "frag/fibres-2.webp",
+   "w": 320,
+   "h": 478,
+   "bytes": 36252
+  },
+  {
+   "file": "frag/fibres-3.webp",
+   "w": 376,
+   "h": 512,
+   "bytes": 58202
+  },
+  {
+   "file": "frag/fibres-4.webp",
+   "w": 370,
+   "h": 472,
+   "bytes": 37602
+  },
+  {
+   "file": "frag/fibres-5.webp",
+   "w": 389,
+   "h": 472,
+   "bytes": 65084
+  },
+  {
+   "file": "frag/fibres-6.webp",
+   "w": 356,
+   "h": 440,
+   "bytes": 50000
+  },
+  {
+   "file": "frag/fibres-7.webp",
+   "w": 383,
+   "h": 453,
+   "bytes": 51288
+  },
+  {
+   "file": "frag/fibres-8.webp",
+   "w": 372,
+   "h": 438,
+   "bytes": 56738
+  },
+  {
+   "file": "frag/fibres-atlas.json",
+   "bytes": 41
+  },
+  {
+   "file": "frag/fibres-atlas.webp",
+   "w": 768,
+   "h": 768,
+   "bytes": 210368
+  },
+  {
+   "file": "frag/film-1.webp",
+   "w": 648,
+   "h": 431,
+   "bytes": 30214
+  },
+  {
+   "file": "frag/film-2.webp",
+   "w": 517,
+   "h": 326,
+   "bytes": 23498
+  },
+  {
+   "file": "frag/film-3.webp",
+   "w": 472,
+   "h": 389,
+   "bytes": 20618
+  },
+  {
+   "file": "frag/film-4.webp",
+   "w": 501,
+   "h": 286,
+   "bytes": 26082
+  },
+  {
+   "file": "frag/film-5.webp",
+   "w": 608,
+   "h": 346,
+   "bytes": 30970
+  },
+  {
+   "file": "frag/film-6.webp",
+   "w": 304,
+   "h": 567,
+   "bytes": 28458
+  },
+  {
+   "file": "frag/film-7.webp",
+   "w": 611,
+   "h": 300,
+   "bytes": 26242
+  },
+  {
+   "file": "frag/film-8.webp",
+   "w": 483,
+   "h": 242,
+   "bytes": 22494
+  },
+  {
+   "file": "frag/film-atlas.json",
+   "bytes": 41
+  },
+  {
+   "file": "frag/film-atlas.webp",
+   "w": 768,
+   "h": 768,
+   "bytes": 90738
+  },
+  {
+   "file": "frag/nurdles-1.webp",
+   "w": 74,
+   "h": 72,
+   "bytes": 2170
+  },
+  {
+   "file": "frag/nurdles-10.webp",
+   "w": 79,
+   "h": 69,
+   "bytes": 1724
+  },
+  {
+   "file": "frag/nurdles-11.webp",
+   "w": 77,
+   "h": 68,
+   "bytes": 2004
+  },
+  {
+   "file": "frag/nurdles-12.webp",
+   "w": 72,
+   "h": 70,
+   "bytes": 1726
+  },
+  {
+   "file": "frag/nurdles-2.webp",
+   "w": 75,
+   "h": 71,
+   "bytes": 1934
+  },
+  {
+   "file": "frag/nurdles-3.webp",
+   "w": 76,
+   "h": 70,
+   "bytes": 2076
+  },
+  {
+   "file": "frag/nurdles-4.webp",
+   "w": 74,
+   "h": 70,
+   "bytes": 1780
+  },
+  {
+   "file": "frag/nurdles-5.webp",
+   "w": 82,
+   "h": 74,
+   "bytes": 2264
+  },
+  {
+   "file": "frag/nurdles-6.webp",
+   "w": 72,
+   "h": 74,
+   "bytes": 1876
+  },
+  {
+   "file": "frag/nurdles-7.webp",
+   "w": 73,
+   "h": 74,
+   "bytes": 1892
+  },
+  {
+   "file": "frag/nurdles-8.webp",
+   "w": 78,
+   "h": 71,
+   "bytes": 2202
+  },
+  {
+   "file": "frag/nurdles-9.webp",
+   "w": 79,
+   "h": 70,
+   "bytes": 2136
+  },
+  {
+   "file": "frag/nurdles-atlas.json",
+   "bytes": 42
+  },
+  {
+   "file": "frag/nurdles-atlas.webp",
+   "w": 1024,
+   "h": 768,
+   "bytes": 86624
+  },
+  {
+   "file": "frag/shard-1.webp",
+   "w": 647,
+   "h": 407,
+   "bytes": 52270
+  },
+  {
+   "file": "frag/shard-2.webp",
+   "w": 301,
+   "h": 414,
+   "bytes": 29634
+  },
+  {
+   "file": "frag/shard-3.webp",
+   "w": 357,
+   "h": 292,
+   "bytes": 27114
+  },
+  {
+   "file": "frag/shard-4.webp",
+   "w": 458,
+   "h": 369,
+   "bytes": 39312
+  },
+  {
+   "file": "frag/shard-5.webp",
+   "w": 442,
+   "h": 273,
+   "bytes": 29944
+  },
+  {
+   "file": "frag/shard-6.webp",
+   "w": 411,
+   "h": 315,
+   "bytes": 30656
+  },
+  {
+   "file": "frag/shard-7.webp",
+   "w": 472,
+   "h": 210,
+   "bytes": 25484
+  },
+  {
+   "file": "frag/shard-8.webp",
+   "w": 582,
+   "h": 254,
+   "bytes": 36456
+  },
+  {
+   "file": "frag/shard-atlas.json",
+   "bytes": 41
+  },
+  {
+   "file": "frag/shard-atlas.webp",
+   "w": 768,
+   "h": 768,
+   "bytes": 113456
+  },
+  {
+   "file": "frag/tyre-1.webp",
+   "w": 400,
+   "h": 243,
+   "bytes": 15632
+  },
+  {
+   "file": "frag/tyre-10.webp",
+   "w": 340,
+   "h": 227,
+   "bytes": 13842
+  },
+  {
+   "file": "frag/tyre-2.webp",
+   "w": 415,
+   "h": 163,
+   "bytes": 14200
+  },
+  {
+   "file": "frag/tyre-3.webp",
+   "w": 433,
+   "h": 233,
+   "bytes": 19068
+  },
+  {
+   "file": "frag/tyre-4.webp",
+   "w": 181,
+   "h": 364,
+   "bytes": 14984
+  },
+  {
+   "file": "frag/tyre-5.webp",
+   "w": 397,
+   "h": 187,
+   "bytes": 15770
+  },
+  {
+   "file": "frag/tyre-6.webp",
+   "w": 184,
+   "h": 384,
+   "bytes": 13922
+  },
+  {
+   "file": "frag/tyre-7.webp",
+   "w": 416,
+   "h": 183,
+   "bytes": 16240
+  },
+  {
+   "file": "frag/tyre-8.webp",
+   "w": 467,
+   "h": 182,
+   "bytes": 19284
+  },
+  {
+   "file": "frag/tyre-9.webp",
+   "w": 403,
+   "h": 264,
+   "bytes": 17508
+  },
+  {
+   "file": "frag/tyre-atlas.json",
+   "bytes": 42
+  },
+  {
+   "file": "frag/tyre-atlas.webp",
+   "w": 1024,
+   "h": 768,
+   "bytes": 94710
+  },
+  {
+   "file": "globe-fallback.webp",
+   "w": 1600,
+   "h": 1000,
+   "bytes": 59886
+  },
+  {
+   "file": "item-bag.webp",
+   "w": 1016,
+   "h": 1131,
+   "bytes": 161434
+  },
+  {
+   "file": "item-buoy.webp",
+   "w": 272,
+   "h": 1498,
+   "bytes": 83100
+  },
+  {
+   "file": "item-line.webp",
+   "w": 1195,
+   "h": 1151,
+   "bytes": 250754
+  },
+  {
+   "file": "item-tyre.webp",
+   "w": 1064,
+   "h": 1160,
+   "bytes": 322358
+  },
+  {
+   "file": "life-albatross.webp",
+   "w": 1516,
+   "h": 875,
+   "bytes": 100334
+  },
+  {
+   "file": "life-fish.webp",
+   "w": 1452,
+   "h": 888,
+   "bytes": 225612
+  },
+  {
+   "file": "life-jelly.webp",
+   "w": 762,
+   "h": 1495,
+   "bytes": 269980
+  },
+  {
+   "file": "life-turtle.webp",
+   "w": 1452,
+   "h": 728,
+   "bytes": 164424
+  },
+  {
+   "file": "life-whale.webp",
+   "w": 1509,
+   "h": 753,
+   "bytes": 148942
+  },
+  {
+   "file": "s1-bank.webp",
+   "w": 1536,
+   "h": 1024,
+   "bytes": 215648
+  },
+  {
+   "file": "s1-hills.webp",
+   "w": 2048,
+   "h": 683,
+   "bytes": 44934
+  },
+  {
+   "file": "s1-reeds.webp",
+   "w": 1024,
+   "h": 1536,
+   "bytes": 263322
+  },
+  {
+   "file": "s1-river.webp",
+   "w": 1536,
+   "h": 1024,
+   "bytes": 167116
+  },
+  {
+   "file": "s1-sky-1280.webp",
+   "w": 1280,
+   "h": 853,
+   "bytes": 160070
+  },
+  {
+   "file": "s1-sky.webp",
+   "w": 1536,
+   "h": 1024,
+   "bytes": 237428
+  },
+  {
+   "file": "s2-shards.webp",
+   "w": 1536,
+   "h": 1024,
+   "bytes": 263806
+  },
+  {
+   "file": "s2-surface-1280.webp",
+   "w": 1280,
+   "h": 853,
+   "bytes": 124416
+  },
+  {
+   "file": "s2-surface.webp",
+   "w": 1536,
+   "h": 1024,
+   "bytes": 179282
+  },
+  {
+   "file": "s2-wave.webp",
+   "w": 1983,
+   "h": 793,
+   "bytes": 270226
+  },
+  {
+   "file": "s3-clouds.webp",
+   "w": 1536,
+   "h": 1024,
+   "bytes": 170020
+  },
+  {
+   "file": "s3-ocean-1280.webp",
+   "w": 1280,
+   "h": 853,
+   "bytes": 175526
+  },
+  {
+   "file": "s3-ocean.webp",
+   "w": 1536,
+   "h": 1024,
+   "bytes": 276844
+  },
+  {
+   "file": "s3-rays.webp",
+   "w": 1024,
+   "h": 1536,
+   "bytes": 388336
+  },
+  {
+   "file": "s4-gyre.webp",
+   "w": 1254,
+   "h": 1254,
+   "bytes": 382984
+  },
+  {
+   "file": "s5-deep-1280.webp",
+   "w": 1280,
+   "h": 853,
+   "bytes": 104232
+  },
+  {
+   "file": "s5-deep.webp",
+   "w": 1536,
+   "h": 1024,
+   "bytes": 160318
+  },
+  {
+   "file": "s5-snow.webp",
+   "w": 1536,
+   "h": 1024,
+   "bytes": 109810
+  },
+  {
+   "file": "ui-paper.webp",
+   "w": 1024,
+   "h": 1024,
+   "bytes": 187302
+  },
+  {
+   "file": "ui-water.webp",
+   "w": 1024,
+   "h": 1024,
+   "bytes": 266818
+  }
+ ]
+}
