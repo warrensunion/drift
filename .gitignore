@@ -11,3 +11,8 @@ art-src/gen/_log-*
 design-reference/**/frames/**/*.jpg
 design-reference/**/frames/**/*.png
 art-src/gen/_v1/
+.env*
+test-results/
+playwright-report/
+.cache/
+.vite/

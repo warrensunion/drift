@@ -10,6 +10,8 @@ const pages = (process.env.DRIFT_PAGES ? process.env.DRIFT_PAGES.split(',') : ['
   .filter((f) => existsSync(resolve(root, f)));
 
 export default defineConfig({
+  // GitHub Pages serves the site under /drift/; local dev and preview stay at /.
+  base: process.env.GITHUB_PAGES ? '/drift/' : '/',
   build: {
     target: 'es2022',
     // The globe chunk (three.js WebGPU build, ~960 kB) is lazy-loaded only near the globe section.
