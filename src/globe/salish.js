@@ -19,6 +19,7 @@ import { salishSnapshotHours, SALISH } from '../sim/salish.js';
 
 const MAX_H = SALISH.maxHours;
 export const OUTSIDE_MESSAGE = 'Outside the current model';
+const SALISH_FALLBACK = { image: 'salish-fallback.webp', alt: 'A chart of the Fraser River mouth and the Strait of Georgia, with the tidal currents drawn as fine strokes.', what: 'the Salish Sea chart' };
 /** Main arm of the Fraser at Sand Heads, off Steveston (water in land.png). */
 export const RIVER_MOUTH = Object.freeze({ lon: -123.30, lat: 49.10 });
 
@@ -342,7 +343,7 @@ export function mountSalish(el, { embedded = true } = {}) {
       if (disposed) return;
       canvas.remove();
       root.classList.add('is-static');
-      mountStaticFallback(root, String((e && e.message) || e), base);
+      mountStaticFallback(root, String((e && e.message) || e), base, SALISH_FALLBACK);
       return;
     }
     if (disposed) { r.renderer.dispose(); return; }
@@ -389,7 +390,8 @@ export function mountSalish(el, { embedded = true } = {}) {
     layout();
     startWorker();
     bindInput();
-    renderer.setAnimationLoop(frame);
+    S.started = true;
+    applyRun();
   }
 
   function buildLabels() {
@@ -466,7 +468,7 @@ export function mountSalish(el, { embedded = true } = {}) {
     switch (msg.type) {
       case 'ready':
         S.ready = true;
-        ui.setStatus('');
+        ui.setStatus(S.stopped ? S.stopped : '');
         ui.setDropEnabled(true);
         ui.setItem(ui.item);
         while (pendingDrops.length) worker.postMessage(pendingDrops.shift());
@@ -496,6 +498,7 @@ export function mountSalish(el, { embedded = true } = {}) {
       case 'error':
         console.warn(`[drift] simulation ${msg.stage}: ${msg.reason}`);
         if (msg.stage === 'init') simFailed(msg.reason);
+        else if (msg.stage === 'step') { S.stopped = `The simulation stopped: ${msg.reason}`; ui.setStatus(S.stopped, 'error'); }
         else if (msg.stage === 'drop') {
           ui.showToast('That drop did not work. Try another spot.');
           const w = dropWaiters.shift();
@@ -611,7 +614,10 @@ export function mountSalish(el, { embedded = true } = {}) {
     listen(canvas, 'pointerup', up);
     listen(canvas, 'pointercancel', up);
     listen(canvas, 'wheel', (e) => {
-      if (embedded && !(e.ctrlKey || e.metaKey) && !root.contains(document.activeElement)) { showZoomHint(); return; }
+      // Embedded: a plain wheel always scrolls the page; zoom with Ctrl/Cmd + wheel, or the wheel
+      // while the canvas has keyboard focus (focus-visible, not after a click).
+      const keyboardFocus = document.activeElement === canvas && canvas.matches(':focus-visible');
+      if (embedded && !(e.ctrlKey || e.metaKey) && !keyboardFocus) { showZoomHint(); return; }
       e.preventDefault();
       zoomAt(e.offsetX, e.offsetY, Math.exp(e.deltaY * 0.0015));
     }, { passive: false });
@@ -760,7 +766,24 @@ export function mountSalish(el, { embedded = true } = {}) {
     };
   }
 
+  // ---- pause / resume (off screen, hidden tab): no drawing, no streamline compute ----
+  const pausedBy = { caller: false, hidden: document.hidden };
+  S.running = false;
+  function applyRun() {
+    if (!renderer || !S.started || disposed) return;
+    const run = !pausedBy.caller && !pausedBy.hidden;
+    if (run && !S.running) { last = performance.now(); renderer.setAnimationLoop(frame); S.running = true; }
+    if (!run && S.running) { renderer.setAnimationLoop(null); S.running = false; }
+  }
+  const onVisibility = () => { pausedBy.hidden = document.hidden; applyRun(); };
+  document.addEventListener('visibilitychange', onVisibility);
+  cleanups.push(() => document.removeEventListener('visibilitychange', onVisibility));
+
   return {
+    pause() { pausedBy.caller = true; applyRun(); },
+    resume() { pausedBy.caller = false; applyRun(); },
+    get paused() { return !S.running; },
+    get dropCount() { return S.tracks.size; },
     dispose() {
       disposed = true;
       if (renderer) renderer.setAnimationLoop(null);

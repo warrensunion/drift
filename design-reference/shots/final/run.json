@@ -1,7 +1,7 @@
 {
  "tag": "final",
- "date": "2026-10-14T01:25:56.172Z",
- "seconds": 1502,
+ "date": "2026-10-14T04:03:36.231Z",
+ "seconds": 983,
  "result": "PASS",
  "sizes": [
   "1440x900",
@@ -12,135 +12,728 @@
   "browser": "system Chrome 155.0.8059.79",
   "entryChunk": {
    "files": [
-    "assets/index-BVRR8LGc.js",
+    "assets/index-DsAdN9ky.js",
     "assets/preload-helper-CFijIu3R.js"
    ],
-   "bytes": 46149
+   "bytes": 47218
   },
+  "lazyFiles": [
+   "assets/globe-Df4rqhUM.js"
+  ],
   "preloaderFill": {
-   "1440x900": 0.509,
-   "1920x1080": 0.509,
-   "390x844": 0.488
+   "1440x900": 0.563,
+   "1920x1080": 0.563,
+   "390x844": 0.587
   },
   "hscroll": {
-   "1440x900/0-preloader-midfill": 0,
-   "1440x900/0-handoff": 0,
-   "1440x900/0-intro": 0,
-   "1440x900/0-begin": 0,
-   "1440x900/1-mid": 0,
-   "1440x900/1to2-transition": 0,
-   "1440x900/2-mid": 0,
-   "1440x900/2to3-transition": 0,
-   "1440x900/3-mid": 0,
-   "1440x900/3to4-transition": 0,
-   "1440x900/4-mid": 0,
-   "1440x900/4to5-transition": 0,
-   "1440x900/5-mid": 0,
-   "1440x900/5to6-transition": 0,
-   "1440x900/6-mid": 0,
-   "1440x900/3-late": 0,
-   "1440x900/8-about": 0,
-   "1440x900/8-about-model": 0,
-   "1440x900/8-about-sources": 0,
-   "1440x900/reduced-0-intro": 0,
-   "1440x900/reduced-1-mid": 0,
-   "1440x900/reduced-2-mid": 0,
-   "1440x900/reduced-3-mid": 0,
-   "1440x900/reduced-4-mid": 0,
-   "1440x900/reduced-5-mid": 0,
-   "1440x900/reduced-6-mid": 0,
-   "1440x900/reduced-8-about": 0,
-   "1440x900/globe-idle": 0,
-   "1440x900/globe-pacific-bottle-1y": 0,
-   "1440x900/globe-pacific-bottle-10y": 0,
-   "1440x900/globe-atlantic-bag-1y": 0,
-   "1440x900/globe-atlantic-bag-10y": 0,
-   "1440x900/globe-indian-line-1y": 0,
-   "1440x900/globe-indian-line-10y": 0,
-   "1440x900/salish-idle": 0,
-   "1440x900/salish-fraser-1d": 0,
-   "1440x900/salish-fraser-end": 0,
-   "1440x900/reduced-globe-idle": 0,
-   "1440x900/static-fallback": 0,
-   "1920x1080/0-preloader-midfill": 0,
-   "1920x1080/0-handoff": 0,
-   "1920x1080/0-intro": 0,
-   "1920x1080/0-begin": 0,
-   "1920x1080/1-mid": 0,
-   "1920x1080/1to2-transition": 0,
-   "1920x1080/2-mid": 0,
-   "1920x1080/2to3-transition": 0,
-   "1920x1080/3-mid": 0,
-   "1920x1080/3to4-transition": 0,
-   "1920x1080/4-mid": 0,
-   "1920x1080/4to5-transition": 0,
-   "1920x1080/5-mid": 0,
-   "1920x1080/5to6-transition": 0,
-   "1920x1080/6-mid": 0,
-   "1920x1080/3-late": 0,
-   "1920x1080/8-about": 0,
-   "1920x1080/8-about-model": 0,
-   "1920x1080/8-about-sources": 0,
-   "1920x1080/reduced-0-intro": 0,
-   "1920x1080/reduced-1-mid": 0,
-   "1920x1080/reduced-2-mid": 0,
-   "1920x1080/reduced-3-mid": 0,
-   "1920x1080/reduced-4-mid": 0,
-   "1920x1080/reduced-5-mid": 0,
-   "1920x1080/reduced-6-mid": 0,
-   "1920x1080/reduced-8-about": 0,
-   "1920x1080/globe-idle": 0,
-   "1920x1080/globe-pacific-bottle-1y": 0,
-   "1920x1080/globe-pacific-bottle-10y": 0,
-   "1920x1080/globe-atlantic-bag-1y": 0,
-   "1920x1080/globe-atlantic-bag-10y": 0,
-   "1920x1080/globe-indian-line-1y": 0,
-   "1920x1080/globe-indian-line-10y": 0,
-   "1920x1080/salish-idle": 0,
-   "1920x1080/salish-fraser-1d": 0,
-   "1920x1080/salish-fraser-end": 0,
-   "1920x1080/reduced-globe-idle": 0,
-   "1920x1080/static-fallback": 0,
-   "390x844/0-preloader-midfill": 0,
-   "390x844/0-handoff": 0,
-   "390x844/0-intro": 0,
-   "390x844/0-begin": 0,
-   "390x844/1-mid": 0,
-   "390x844/1to2-transition": 0,
-   "390x844/2-mid": 0,
-   "390x844/2to3-transition": 0,
-   "390x844/3-mid": 0,
-   "390x844/3to4-transition": 0,
-   "390x844/4-mid": 0,
-   "390x844/4to5-transition": 0,
-   "390x844/5-mid": 0,
-   "390x844/5to6-transition": 0,
-   "390x844/6-mid": 0,
-   "390x844/3-late": 0,
-   "390x844/8-about": 0,
-   "390x844/8-about-model": 0,
-   "390x844/8-about-sources": 0,
-   "390x844/reduced-0-intro": 0,
-   "390x844/reduced-1-mid": 0,
-   "390x844/reduced-2-mid": 0,
-   "390x844/reduced-3-mid": 0,
-   "390x844/reduced-4-mid": 0,
-   "390x844/reduced-5-mid": 0,
-   "390x844/reduced-6-mid": 0,
-   "390x844/reduced-8-about": 0,
-   "390x844/globe-idle": 0,
-   "390x844/globe-pacific-bottle-1y": 0,
-   "390x844/globe-pacific-bottle-10y": 0,
-   "390x844/globe-atlantic-bag-1y": 0,
-   "390x844/globe-atlantic-bag-10y": 0,
-   "390x844/globe-indian-line-1y": 0,
-   "390x844/globe-indian-line-10y": 0,
-   "390x844/salish-idle": 0,
-   "390x844/salish-fraser-1d": 0,
-   "390x844/salish-fraser-end": 0,
-   "390x844/reduced-globe-idle": 0,
-   "390x844/static-fallback": 0,
-   "1440x900/globe-20k-members": 0
+   "1440x900/0-preloader-midfill": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/0-handoff": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/0-intro": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/0-begin": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/1-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/1to2-transition": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/2-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/2to3-transition": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/3-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/3to4-transition": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/4-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/4to5-transition": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/5-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/5to6-transition": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/6-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/3-late": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/8-about": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/8-about-model": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/8-about-sources": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/reduced-0-intro": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/reduced-1-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/reduced-2-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/reduced-3-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/reduced-4-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/reduced-5-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/reduced-6-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/reduced-8-about": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/globe-idle": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/globe-pacific-bottle-1y": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/globe-pacific-bottle-10y": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/globe-atlantic-bag-1y": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/globe-atlantic-bag-10y": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/globe-indian-line-1y": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/globe-indian-line-10y": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/salish-idle": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/salish-fraser-1d": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/salish-fraser-end": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/reduced-globe-idle": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/static-fallback": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1920x1080/0-preloader-midfill": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/0-handoff": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/0-intro": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/0-begin": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/1-mid": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/1to2-transition": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/2-mid": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/2to3-transition": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/3-mid": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/3to4-transition": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/4-mid": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/4to5-transition": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/5-mid": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/5to6-transition": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/6-mid": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/3-late": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/8-about": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/8-about-model": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/8-about-sources": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/reduced-0-intro": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/reduced-1-mid": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/reduced-2-mid": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/reduced-3-mid": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/reduced-4-mid": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/reduced-5-mid": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/reduced-6-mid": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/reduced-8-about": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/globe-idle": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/globe-pacific-bottle-1y": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/globe-pacific-bottle-10y": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/globe-atlantic-bag-1y": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/globe-atlantic-bag-10y": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/globe-indian-line-1y": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/globe-indian-line-10y": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/salish-idle": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/salish-fraser-1d": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/salish-fraser-end": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/reduced-globe-idle": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "1920x1080/static-fallback": {
+    "clientWidth": 1920,
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "offenders": []
+   },
+   "390x844/0-preloader-midfill": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/0-handoff": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/0-intro": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/0-begin": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/1-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/1to2-transition": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/2-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/2to3-transition": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/3-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/3to4-transition": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/4-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/4to5-transition": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/5-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/5to6-transition": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/6-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/3-late": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/8-about": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/8-about-model": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/8-about-sources": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/reduced-0-intro": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/reduced-1-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/reduced-2-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/reduced-3-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/reduced-4-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/reduced-5-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/reduced-6-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/reduced-8-about": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/globe-idle": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/globe-pacific-bottle-1y": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/globe-pacific-bottle-10y": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/globe-atlantic-bag-1y": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/globe-atlantic-bag-10y": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/globe-indian-line-1y": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/globe-indian-line-10y": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/salish-idle": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/salish-fraser-1d": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/salish-fraser-end": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/reduced-globe-idle": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/static-fallback": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "1440x900/globe-20k-members": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   }
   },
   "aa": {
    "1440x900/ch1": {
@@ -151,25 +744,25 @@
      "pass": true
     },
     "body": {
-     "ratio": 8.16,
+     "ratio": 8.65,
      "need": 4.5,
      "text": "This is one bottle. It slipped off a riv",
      "pass": true
     },
     "cite": {
-     "ratio": 8.46,
+     "ratio": 8.45,
      "need": 4.5,
      "text": "1",
      "pass": true
     },
     "chrome": {
-     "ratio": 7.31,
+     "ratio": 5.49,
      "need": 4.5,
      "text": "The globe",
      "pass": true
     },
     "chapter": {
-     "ratio": 13.12,
+     "ratio": 12.94,
      "need": 4.5,
      "text": "One bottle",
      "pass": true
@@ -177,31 +770,31 @@
    },
    "1440x900/ch2": {
     "headline": {
-     "ratio": 11.83,
+     "ratio": 5.42,
      "need": 3,
      "text": "IIIttt",
      "pass": true
     },
     "body": {
-     "ratio": 4.57,
+     "ratio": 5.31,
      "need": 4.5,
      "text": "No one has timed this for a bottle on a ",
      "pass": true
     },
     "cite": {
-     "ratio": 7.82,
+     "ratio": 8.77,
      "need": 4.5,
      "text": "3",
      "pass": true
     },
     "chrome": {
-     "ratio": 4.9,
+     "ratio": 4.67,
      "need": 4.5,
      "text": "The globe",
      "pass": true
     },
     "chapter": {
-     "ratio": 11.54,
+     "ratio": 11.5,
      "need": 4.5,
      "text": "It breaks",
      "pass": true
@@ -209,13 +802,13 @@
    },
    "1440x900/ch3": {
     "headline": {
-     "ratio": 3.9,
+     "ratio": 3.91,
      "need": 3,
      "text": "cccuuurrrrrreeennntttsss",
      "pass": true
     },
     "body": {
-     "ratio": 7.22,
+     "ratio": 7.26,
      "need": 4.5,
      "text": "What escapes can cross an ocean. After t",
      "pass": true
@@ -227,13 +820,13 @@
      "pass": true
     },
     "chrome": {
-     "ratio": 5.01,
+     "ratio": 5.39,
      "need": 4.5,
-     "text": "The globe",
+     "text": "About the science",
      "pass": true
     },
     "chapter": {
-     "ratio": 7.14,
+     "ratio": 5.58,
      "need": 4.5,
      "text": "The currents carry it",
      "pass": true
@@ -241,31 +834,31 @@
    },
    "1440x900/ch4": {
     "headline": {
-     "ratio": 12.88,
+     "ratio": 12.92,
      "need": 3,
      "text": "GGGyyyrrreeesss",
      "pass": true
     },
     "body": {
-     "ratio": 7.24,
+     "ratio": 6.96,
      "need": 4.5,
      "text": "In the middle of each ocean basin the cu",
      "pass": true
     },
     "cite": {
-     "ratio": 10.6,
+     "ratio": 10.85,
      "need": 4.5,
      "text": "8",
      "pass": true
     },
     "chrome": {
-     "ratio": 8.39,
+     "ratio": 8.17,
      "need": 4.5,
-     "text": "About the science",
+     "text": "The globe",
      "pass": true
     },
     "chapter": {
-     "ratio": 12.02,
+     "ratio": 11.68,
      "need": 4.5,
      "text": "Gyres collect it",
      "pass": true
@@ -273,31 +866,31 @@
    },
    "1440x900/ch5": {
     "headline": {
-     "ratio": 5.9,
+     "ratio": 5.74,
      "need": 3,
      "text": "aaannnddd",
      "pass": true
     },
     "body": {
-     "ratio": 8.94,
+     "ratio": 9.05,
      "need": 4.5,
-     "text": "Near the surface, 59 % of the seabird sp",
+     "text": "Near the surface, 59 % of the seabird sp",
      "pass": true
     },
     "cite": {
-     "ratio": 7.73,
+     "ratio": 8.87,
      "need": 4.5,
      "text": "13",
      "pass": true
     },
     "chrome": {
-     "ratio": 11.1,
+     "ratio": 8.37,
      "need": 4.5,
      "text": "The globe",
      "pass": true
     },
     "chapter": {
-     "ratio": 12.34,
+     "ratio": 12.21,
      "need": 4.5,
      "text": "The deep and the food chain",
      "pass": true
@@ -305,25 +898,25 @@
    },
    "1440x900/ch6": {
     "headline": {
-     "ratio": 8.04,
+     "ratio": 7.7,
      "need": 3,
      "text": "ooowwwnnn",
      "pass": true
     },
     "body": {
-     "ratio": 13.54,
+     "ratio": 13.31,
      "need": 4.5,
-     "text": "Drop a bottle, a bag, a fishing line or ",
+     "text": "It is a simulation with uncertainty, not",
      "pass": true
     },
     "chrome": {
-     "ratio": 11.78,
+     "ratio": 10.88,
      "need": 4.5,
      "text": "The globe",
      "pass": true
     },
     "chapter": {
-     "ratio": 12.33,
+     "ratio": 14,
      "need": 4.5,
      "text": "Drop your own",
      "pass": true
@@ -337,25 +930,25 @@
      "pass": true
     },
     "body": {
-     "ratio": 7.74,
+     "ratio": 7.63,
      "need": 4.5,
      "text": "How long will it last? You may have hear",
      "pass": true
     },
     "cite": {
-     "ratio": 11.1,
+     "ratio": 10.98,
      "need": 4.5,
      "text": "1",
      "pass": true
     },
     "chrome": {
-     "ratio": 8.44,
+     "ratio": 6.49,
      "need": 4.5,
-     "text": "The globe",
+     "text": "About the science",
      "pass": true
     },
     "chapter": {
-     "ratio": 13.41,
+     "ratio": 13.27,
      "need": 4.5,
      "text": "One bottle",
      "pass": true
@@ -363,31 +956,31 @@
    },
    "1920x1080/ch2": {
     "headline": {
-     "ratio": 10.76,
+     "ratio": 6.2,
      "need": 3,
-     "text": "bbbrrreeeaaakkksss",
+     "text": "IIIttt",
      "pass": true
     },
     "body": {
-     "ratio": 6.28,
+     "ratio": 7.07,
      "need": 4.5,
      "text": "No one has timed this for a bottle on a ",
      "pass": true
     },
     "cite": {
-     "ratio": 9.13,
+     "ratio": 8.6,
      "need": 4.5,
-     "text": "3",
+     "text": "4",
      "pass": true
     },
     "chrome": {
-     "ratio": 4.95,
+     "ratio": 5.47,
      "need": 4.5,
-     "text": "The globe",
+     "text": "About the science",
      "pass": true
     },
     "chapter": {
-     "ratio": 11.87,
+     "ratio": 11.73,
      "need": 4.5,
      "text": "It breaks",
      "pass": true
@@ -407,19 +1000,19 @@
      "pass": true
     },
     "cite": {
-     "ratio": 8.82,
+     "ratio": 8.73,
      "need": 4.5,
      "text": "5",
      "pass": true
     },
     "chrome": {
-     "ratio": 5.07,
+     "ratio": 6.36,
      "need": 4.5,
-     "text": "The globe",
+     "text": "About the science",
      "pass": true
     },
     "chapter": {
-     "ratio": 6.93,
+     "ratio": 7.04,
      "need": 4.5,
      "text": "The currents carry it",
      "pass": true
@@ -427,31 +1020,31 @@
    },
    "1920x1080/ch4": {
     "headline": {
-     "ratio": 11.95,
+     "ratio": 12.19,
      "need": 3,
      "text": "iiittt",
      "pass": true
     },
     "body": {
-     "ratio": 12.08,
+     "ratio": 12.18,
      "need": 4.5,
      "text": "The one in the North Pacific holds an es",
      "pass": true
     },
     "cite": {
-     "ratio": 10.43,
+     "ratio": 11.2,
      "need": 4.5,
-     "text": "8",
+     "text": "7",
      "pass": true
     },
     "chrome": {
-     "ratio": 5.83,
+     "ratio": 8.54,
      "need": 4.5,
      "text": "The globe",
      "pass": true
     },
     "chapter": {
-     "ratio": 12.3,
+     "ratio": 12.02,
      "need": 4.5,
      "text": "Gyres collect it",
      "pass": true
@@ -459,31 +1052,31 @@
    },
    "1920x1080/ch5": {
     "headline": {
-     "ratio": 12.02,
+     "ratio": 11.99,
      "need": 3,
      "text": "ccchhhaaaiiinnn",
      "pass": true
     },
     "body": {
-     "ratio": 10.41,
+     "ratio": 11.14,
      "need": 4.5,
-     "text": "Near the surface, 59 % of the seabird sp",
+     "text": "Near the surface, 59 % of the seabird sp",
      "pass": true
     },
     "cite": {
-     "ratio": 8.16,
+     "ratio": 9.36,
      "need": 4.5,
-     "text": "13",
+     "text": "10",
      "pass": true
     },
     "chrome": {
-     "ratio": 11.67,
+     "ratio": 10.5,
      "need": 4.5,
      "text": "The globe",
      "pass": true
     },
     "chapter": {
-     "ratio": 12.87,
+     "ratio": 13.22,
      "need": 4.5,
      "text": "The deep and the food chain",
      "pass": true
@@ -497,19 +1090,19 @@
      "pass": true
     },
     "body": {
-     "ratio": 14.18,
+     "ratio": 14.16,
      "need": 4.5,
      "text": "One bottle told as one line is too neat.",
      "pass": true
     },
     "chrome": {
-     "ratio": 12.09,
+     "ratio": 11.2,
      "need": 4.5,
      "text": "The globe",
      "pass": true
     },
     "chapter": {
-     "ratio": 14.74,
+     "ratio": 12.88,
      "need": 4.5,
      "text": "Drop your own",
      "pass": true
@@ -523,19 +1116,19 @@
      "pass": true
     },
     "body": {
-     "ratio": 11.57,
+     "ratio": 11.6,
      "need": 4.5,
      "text": "How long will it last? You may have hear",
      "pass": true
     },
     "cite": {
-     "ratio": 8,
+     "ratio": 8.37,
      "need": 4.5,
      "text": "1",
      "pass": true
     },
     "chrome": {
-     "ratio": 8.23,
+     "ratio": 5.93,
      "need": 4.5,
      "text": "Drift",
      "pass": true
@@ -543,25 +1136,25 @@
    },
    "390x844/ch2": {
     "headline": {
-     "ratio": 7.68,
+     "ratio": 7.82,
      "need": 3,
      "text": "IIIttt",
      "pass": true
     },
     "body": {
-     "ratio": 9.86,
+     "ratio": 10.3,
      "need": 4.5,
      "text": "The breaking happens mostly on shore, wh",
      "pass": true
     },
     "cite": {
-     "ratio": 9.36,
+     "ratio": 9.37,
      "need": 4.5,
      "text": "3",
      "pass": true
     },
     "chrome": {
-     "ratio": 6.51,
+     "ratio": 6.06,
      "need": 4.5,
      "text": "About the science",
      "pass": true
@@ -575,7 +1168,7 @@
      "pass": true
     },
     "body": {
-     "ratio": 11.66,
+     "ratio": 11.67,
      "need": 4.5,
      "text": "Most of it never gets far. In a global s",
      "pass": true
@@ -587,33 +1180,33 @@
      "pass": true
     },
     "chrome": {
-     "ratio": 7.16,
+     "ratio": 8.33,
      "need": 4.5,
-     "text": "About the science",
+     "text": "Drift",
      "pass": true
     }
    },
    "390x844/ch4": {
     "headline": {
-     "ratio": 12.65,
+     "ratio": 12.57,
      "need": 3,
      "text": "GGGyyyrrreeesss",
      "pass": true
     },
     "body": {
-     "ratio": 11.81,
+     "ratio": 11.7,
      "need": 4.5,
      "text": "The one in the North Pacific holds an es",
      "pass": true
     },
     "cite": {
-     "ratio": 11.56,
+     "ratio": 11.42,
      "need": 4.5,
      "text": "8",
      "pass": true
     },
     "chrome": {
-     "ratio": 11.83,
+     "ratio": 11.22,
      "need": 4.5,
      "text": "About the science",
      "pass": true
@@ -621,9 +1214,9 @@
    },
    "390x844/ch5": {
     "headline": {
-     "ratio": 12.71,
+     "ratio": 11.53,
      "need": 3,
-     "text": "aaannnddd",
+     "text": "TTThhheee",
      "pass": true
     },
     "body": {
@@ -633,13 +1226,13 @@
      "pass": true
     },
     "cite": {
-     "ratio": 10.55,
+     "ratio": 10.69,
      "need": 4.5,
      "text": "12",
      "pass": true
     },
     "chrome": {
-     "ratio": 8.89,
+     "ratio": 6.65,
      "need": 4.5,
      "text": "About the science",
      "pass": true
@@ -647,19 +1240,19 @@
    },
    "390x844/ch6": {
     "headline": {
-     "ratio": 13.53,
+     "ratio": 14.04,
      "need": 3,
      "text": "DDDrrroooppp",
      "pass": true
     },
     "body": {
-     "ratio": 14.16,
+     "ratio": 14.02,
      "need": 4.5,
      "text": "Drop a bottle, a bag, a fishing line or ",
      "pass": true
     },
     "chrome": {
-     "ratio": 12.45,
+     "ratio": 11.82,
      "need": 4.5,
      "text": "About the science",
      "pass": true
@@ -672,52 +1265,116 @@
    "390x844": "webgpu"
   },
   "globeSimSeconds": {
-   "1440x900": 13.625,
-   "1920x1080": 12.466,
-   "390x844": 41.108
+   "1440x900": 11.959,
+   "1920x1080": 12.826,
+   "390x844": 6.549
   },
   "salishSimSeconds": {
-   "1440x900": 2.545,
-   "1920x1080": 1.058,
-   "390x844": 1.036
+   "1440x900": 1.039,
+   "1920x1080": 0.244,
+   "390x844": 1.152
   },
   "salishEndHours": 720,
   "fallbackReason": "[drift] static fallback: forced by ?gl=none",
   "fps": {
    "target": 60,
    "failBelow": 30,
+   "gatedOn": "playing30x median",
    "backend": "webgpu",
+   "gpu": {
+    "backend": "webgpu",
+    "adapter": {
+     "fallback": false,
+     "vendor": "nvidia",
+     "architecture": "ampere",
+     "description": ""
+    },
+    "glRenderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 (0x00002503) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+   },
+   "hardware": true,
    "setup": {
-    "simMs": 385446.59999999404,
+    "simMs": 254791.40000000596,
     "minDay": 120,
     "drops": 833
    },
-   "paused": {
-    "frames": 684,
-    "seconds": 6,
-    "medianFps": 142.9,
-    "meanFps": 113.9,
-    "p50Ms": 7,
-    "p95Ms": 13.9,
-    "members": 19992,
-    "cpu": {
-     "particles": 0.9997680503367603,
-     "streamlines": 0.8491496573494558,
-     "render": 0.550159908085506
+   "dpr1": {
+    "paused": {
+     "frames": 848,
+     "drawnFrames": 848,
+     "drawnShare": 1,
+     "drawCalls": 10,
+     "seconds": 6,
+     "medianFps": 142.9,
+     "meanFps": 141.4,
+     "p50Ms": 7,
+     "p95Ms": 7.2,
+     "dpr": 1,
+     "canvas": "1440x900",
+     "members": 19992,
+     "cpu": {
+      "particles": 0.7055886104431807,
+      "streamlines": 0.4898260160515467,
+      "render": 0.3928035649869901
+     }
+    },
+    "playing30x": {
+     "frames": 835,
+     "drawnFrames": 835,
+     "drawnShare": 1,
+     "drawCalls": 10,
+     "seconds": 6,
+     "medianFps": 142.9,
+     "meanFps": 139.2,
+     "p50Ms": 7,
+     "p95Ms": 7.2,
+     "dpr": 1,
+     "canvas": "1440x900",
+     "members": 19992,
+     "cpu": {
+      "particles": 0.6523424019087267,
+      "streamlines": 0.4876454474388372,
+      "render": 0.3825622204507765
+     }
     }
    },
-   "playing30x": {
-    "frames": 532,
-    "seconds": 6,
-    "medianFps": 77.5,
-    "meanFps": 88.6,
-    "p50Ms": 12.9,
-    "p95Ms": 20.5,
-    "members": 19992,
-    "cpu": {
-     "particles": 0.9613564330616833,
-     "streamlines": 0.6964595803648157,
-     "render": 0.5232989074922106
+   "dpr2": {
+    "paused": {
+     "frames": 856,
+     "drawnFrames": 856,
+     "drawnShare": 1,
+     "drawCalls": 10,
+     "seconds": 6,
+     "medianFps": 142.9,
+     "meanFps": 142.5,
+     "p50Ms": 7,
+     "p95Ms": 7.1,
+     "dpr": 2,
+     "canvas": "2880x1800",
+     "members": 19992,
+     "cpu": {
+      "particles": 0.6150825587440701,
+      "streamlines": 0.4548190957964441,
+      "render": 0.3403065589085099
+     }
+    },
+    "playing30x": {
+     "frames": 813,
+     "drawnFrames": 813,
+     "drawnShare": 1,
+     "drawCalls": 10,
+     "seconds": 6,
+     "medianFps": 142.9,
+     "meanFps": 135.4,
+     "p50Ms": 7,
+     "p95Ms": 13.8,
+     "dpr": 2,
+     "canvas": "2880x1800",
+     "members": 19992,
+     "cpu": {
+      "particles": 0.5677203141845386,
+      "streamlines": 0.47974158185469884,
+      "render": 0.3790125236997276
+     }
     }
    }
   }
@@ -732,6 +1389,13 @@
   },
   {
    "name": "production build",
+   "sizes": {
+    "build": true
+   },
+   "fails": []
+  },
+  {
+   "name": "lazy chunk list found in the manifest",
    "sizes": {
     "build": true
    },
@@ -766,6 +1430,15 @@
   },
   {
    "name": "citations numbered by first appearance",
+   "sizes": {
+    "1440x900": true,
+    "1920x1080": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "lazy globe chunks load at the globe",
    "sizes": {
     "1440x900": true,
     "1920x1080": true,
@@ -817,7 +1490,28 @@
    "fails": []
   },
   {
-   "name": "fps >= 30 with ~20k members",
+   "name": "fps >= 30 with ~20k members (playing)",
+   "sizes": {
+    "1440x900": true
+   },
+   "fails": []
+  },
+  {
+   "name": "globe drew >= 90 % of frames",
+   "sizes": {
+    "1440x900": true
+   },
+   "fails": []
+  },
+  {
+   "name": "DPR 2 window drew at twice the pixels",
+   "sizes": {
+    "1440x900": true
+   },
+   "fails": []
+  },
+  {
+   "name": "fps measured on a hardware GPU backend",
    "sizes": {
     "1440x900": true
    },

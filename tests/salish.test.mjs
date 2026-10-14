@@ -5,7 +5,7 @@ import { decodeTile } from '../src/sim/field.js';
 import { makeRng } from '../src/sim/fragment.js';
 import { CONSTANTS } from '../src/sim/constants.js';
 import {
-  createSalishEnv, stepMember, salishSnapshotHours, createSalishSim, packSalish, SALISH, MEMBER, sampleWater, MASK,
+  createSalishEnv, stepMember, salishSnapshotHours, createSalishSim, packSalish, SALISH, MEMBER, sampleWater, sampleWaterTime, MASK,
 } from '../src/sim/salish.js';
 
 // A 21 x 21 regional grid with the real tile's spacing (0.01 x 0.006 degrees), around 49.2 N.
@@ -226,4 +226,21 @@ test('a step into the area outside the model domain leaves the strait (it is not
   const m = { lon: GRID.lon0 + 9.6 * GRID.dlon, lat: 49.2, state: MEMBER.floating, distanceKm: 0 };
   stepMember(m, env, 0, makeRng(3));
   assert.equal(m.state, MEMBER.left);
+});
+
+test('sampleWaterTime blends the two frames around t and loops the cycle', () => {
+  // Three frames with u = 1, 2, 4 m/s everywhere.
+  const t = tile((f) => [[1000, 2000, 4000][f], 0], 3);
+  const lon = GRID.lon0 + 5.5 * GRID.dlon, lat = GRID.lat0 + 5.5 * GRID.dlat;
+  const u = (time) => sampleWaterTime(t, lon, lat, time)[0];
+  assert.ok(Math.abs(u(0) - 1) < 1e-6);
+  assert.ok(Math.abs(u(1) - 2) < 1e-6);
+  assert.ok(Math.abs(u(0.25) - 1.25) < 1e-6, `${u(0.25)}`);
+  assert.ok(Math.abs(u(1.5) - 3) < 1e-6, `${u(1.5)}`);
+  // Past the last frame it blends back into frame 0 (a repeating cycle), and wraps whole cycles.
+  assert.ok(Math.abs(u(2.5) - 2.5) < 1e-6, `${u(2.5)}`);
+  assert.ok(Math.abs(u(3) - 1) < 1e-6);
+  assert.ok(Math.abs(u(4.25) - 2.5) < 1e-6, `${u(4.25)}`);
+  // Off the grid: null.
+  assert.equal(sampleWaterTime(t, GRID.lon0 - 1, lat, 0.5), null);
 });

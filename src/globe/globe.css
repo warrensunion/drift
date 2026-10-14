@@ -648,10 +648,11 @@
 .salish-label--land, .salish-label--river { text-shadow: 0 0 2px rgba(230, 238, 233, .95), 0 0 6px rgba(230, 238, 233, .85); }
 .salish-label--sea, .salish-label--water, .salish-label--outside { text-shadow: 0 0 3px rgba(10, 41, 48, .9), 0 0 8px rgba(10, 41, 48, .7); }
 
-/* Scrolling columns: a thin glass scrollbar, and the scroll never chains to the page. */
-.drift-salish .globe-ui { overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: rgba(127, 183, 174, .45) transparent; }
+/* Scrolling columns: a thin glass scrollbar. The desktop Salish column keeps its scroll to
+   itself; the phone sheet lets its scroll chain to the page (embedded: never trap the page). */
+@media (min-width: 760px) { .drift-salish .globe-ui { overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: rgba(127, 183, 174, .45) transparent; } }
 @media (max-width: 759px) {
-  .globe-ui { overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: rgba(127, 183, 174, .45) transparent; }
+  .globe-ui { scrollbar-width: thin; scrollbar-color: rgba(127, 183, 174, .45) transparent; }
   .globe-ui, .drift-salish .globe-ui { padding-left: max(var(--g-margin), env(safe-area-inset-left, 0px)); padding-right: max(var(--g-margin), env(safe-area-inset-right, 0px)); }
 }
 

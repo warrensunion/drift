@@ -106,8 +106,7 @@ const cameraLon = (page) => page.evaluate(() => {
   const d0 = await dist();
   const y0 = await page.evaluate(() => window.scrollY);
   await page.mouse.wheel(0, 300);
-  await page.waitForTimeout(150);
-  const hint = await page.evaluate(() => document.querySelector('.globe-zoomhint').classList.contains('is-on'));
+  const hint = await page.waitForFunction(() => document.querySelector('.globe-zoomhint').classList.contains('is-on'), null, { timeout: 1000, polling: 30 }).then(() => true, () => false);
   await page.waitForTimeout(700);
   const y1 = await page.evaluate(() => window.scrollY);
   ok('desktop: plain wheel over the globe scrolls the page', y1 > y0 + 50, `scrollY ${y0} -> ${y1}`);
@@ -128,6 +127,28 @@ const cameraLon = (page) => page.evaluate(() => {
   await page.waitForTimeout(1200);
   ok('desktop: Ctrl+wheel zooms', (await dist()) < d1 - 0.05, `${d1} -> ${await dist()}`);
   ok('desktop: Ctrl+wheel does not scroll', Math.abs((await page.evaluate(() => window.scrollY)) - y2) < 5);
+  // Off screen the globe pauses (no frames drawn); back in view it resumes.
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.waitForTimeout(1200);
+  const fA = await page.evaluate(() => { window.__drift.resetFrames(); return 0; });
+  await page.waitForTimeout(1500);
+  const framesOff = await page.evaluate(() => window.__drift.frameStats().frames);
+  await page.evaluate(() => document.querySelector('.drift-globe__canvas').scrollIntoView({ block: 'center' }));
+  await page.waitForTimeout(1500);
+  const framesOn = await page.evaluate(() => window.__drift.frameStats().frames);
+  ok('desktop: off screen the globe pauses (no frames)', framesOff <= 1 + fA, `${framesOff} frames in 1.5 s off screen`);
+  ok('desktop: back in view it resumes', framesOn > framesOff + 20, `${framesOn - framesOff} frames in 1.5 s`);
+  // A click on the globe does not make the plain wheel zoom (it still scrolls the page).
+  const bc = await canvasBox(page);
+  await page.mouse.click(bc.x + 30, bc.y + bc.h - 30);
+  const yC = await page.evaluate(() => window.scrollY);
+  const dC = await dist();
+  await page.mouse.move(bc.x + bc.w * 0.64, bc.y + bc.h * 0.47);
+  await page.mouse.wheel(0, 300);
+  await page.waitForTimeout(800);
+  ok('desktop: after a click, a plain wheel still scrolls the page', (await page.evaluate(() => window.scrollY)) > yC + 50 && Math.abs((await dist()) - dC) < 0.01);
+  await page.evaluate(() => document.querySelector('.drift-globe__canvas').scrollIntoView({ block: 'center' }));
+  await page.waitForTimeout(800);
   // Space on the bare page is the page's, not the globe's.
   await page.evaluate(() => { document.activeElement && document.activeElement.blur(); window.__drift.play(false); });
   await page.keyboard.press('Space');

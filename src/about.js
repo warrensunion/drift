@@ -94,6 +94,8 @@ export async function initAbout(root) {
   const [meta, cred] = await Promise.allSettled([getJson('model/drift.meta.json'), getJson('data/credits.json')]);
   if (model) {
     if (meta.status === 'fulfilled' && meta.value && meta.value.rmse) model.innerHTML = renderModel(meta.value);
+    // A failed fetch is not the same as numbers still being computed (meta present, no rmse yet).
+    else if (meta.status === 'rejected') model.innerHTML = '<p class="pending">Model numbers could not be loaded.</p>';
     else model.innerHTML = '<p class="pending">Model numbers are being computed.</p>';
   }
   if (credits) credits.innerHTML = renderCredits(cred.status === 'fulfilled' ? cred.value : []);

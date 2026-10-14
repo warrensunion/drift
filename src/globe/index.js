@@ -44,12 +44,14 @@ function starfield(w = 900, h = 900) {
 }
 
 /**
- * Mount the globe into `el`. mode: 'global' (the Salish Sea view is Task 9 and currently shows
- * the global globe). embedded (default true): the globe sits inside a scrolling page, so a
- * one-finger vertical swipe scrolls the page (horizontal drags rotate, pinch zooms), the wheel
- * zooms only with Ctrl/Cmd held or while the globe has focus, and keys are scoped to the globe.
- * embedded:false is the full-screen harness: every drag rotates, the wheel always zooms.
- * Returns {dispose()} at once; loading continues in the background.
+ * Mount the globe into `el`. mode: 'global' or 'salish' (the Salish Sea chart, salish.js).
+ * embedded (default true): the globe sits inside a scrolling page, so a one-finger vertical
+ * swipe scrolls the page (horizontal drags rotate, pinch zooms), a plain wheel always scrolls
+ * the page (zoom: Ctrl/Cmd + wheel, pinch, + / - keys, or the wheel while the canvas has
+ * keyboard focus), and keys are scoped to the globe. embedded:false is the full-screen harness:
+ * every drag rotates, the wheel always zooms.
+ * Returns {dispose(), pause(), resume(), dropCount} at once; loading continues in the background.
+ * pause() stops drawing and the streamline compute (the worker keeps simulating).
  */
 export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
   if (mode === 'salish') return mountSalish(el, { embedded });
@@ -218,7 +220,8 @@ export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
     }
     bindInput();
     S.started = true;
-    renderer.setAnimationLoop(frame);
+    S.running = false;
+    if (S.applyRun) S.applyRun(); else { renderer.setAnimationLoop(frame); S.running = true; }
   }
 
   // ---- worker ----
@@ -258,11 +261,17 @@ export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
       case 'ready':
         S.ready = true;
         S.modelFallback = !!msg.fallback;
-        ui.setStatus(msg.fallback ? 'Model unavailable, showing plain advection.' : '', msg.fallback ? 'warn' : '');
-        if (msg.fallback) console.info('[drift] model unavailable, showing plain advection');
+        if (msg.modelPending) ui.setStatus('Model loading: drops use plain advection until it is ready.', 'warn');
+        else ui.setStatus(msg.fallback ? 'Model unavailable, showing plain advection.' : '', msg.fallback ? 'warn' : '');
+        if (msg.fallback && !msg.modelPending) console.info('[drift] model unavailable, showing plain advection');
         while (pendingDrops.length) worker.postMessage(pendingDrops.shift());
         break;
       case 'status':
+        if (msg.model === 'ready') {
+          S.modelFallback = false;
+          ui.setStatus('');
+          console.info('[drift] model ready');
+        }
         if (msg.fallback) {
           S.modelFallback = true;
           ui.setStatus('Model unavailable, showing plain advection.', 'warn');
@@ -310,6 +319,7 @@ export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
       case 'error':
         console.warn(`[drift] simulation ${msg.stage}: ${msg.reason}`);
         if (msg.stage === 'init') simFailed(msg.reason);
+        else if (msg.stage === 'step') ui.setStatus(`The simulation stopped: ${msg.reason}`, 'error');
         else if (msg.stage === 'drop') {
           ui.showToast('That drop did not work. Try another spot.');
           const w = dropWaiters.shift();
@@ -409,7 +419,6 @@ export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
     hintTimer = setTimeout(() => zoomHint.classList.remove('is-on'), 1500);
   }
   cleanups.push(() => clearTimeout(hintTimer));
-  const globeHasFocus = () => root.contains(document.activeElement);
 
   function bindInput() {
     listen(canvas, 'pointerdown', (e) => {
@@ -448,8 +457,10 @@ export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
     listen(canvas, 'pointerup', up);
     listen(canvas, 'pointercancel', up);
     listen(canvas, 'wheel', (e) => {
-      // Embedded in a page, a plain wheel scrolls the page; Ctrl/Cmd (or a focused globe) zooms.
-      if (embedded && !(e.ctrlKey || e.metaKey) && !globeHasFocus()) { showZoomHint(); return; }
+      // Embedded in a page, a plain wheel always scrolls the page. Zoom with Ctrl/Cmd + wheel, or
+      // with the wheel while the canvas has keyboard focus (focus-visible, not after a click).
+      const keyboardFocus = document.activeElement === canvas && canvas.matches(':focus-visible');
+      if (embedded && !(e.ctrlKey || e.metaKey) && !keyboardFocus) { showZoomHint(); return; }
       e.preventDefault();
       interacted = true;
       view.tDist = Math.min(view.maxDist, Math.max(view.minDist, view.tDist * Math.exp(e.deltaY * 0.0012)));
@@ -617,7 +628,24 @@ export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
     };
   }
 
+  // ---- pause / resume: off screen or in a hidden tab nothing is drawn or computed on the GPU ----
+  let pausedBy = { caller: false, hidden: typeof document !== 'undefined' && document.hidden };
+  const applyRun = () => {
+    if (!renderer || !S.started || disposed) return;
+    const run = !pausedBy.caller && !pausedBy.hidden;
+    if (run && !S.running) { last = performance.now(); renderer.setAnimationLoop(frame); S.running = true; }
+    if (!run && S.running) { renderer.setAnimationLoop(null); S.running = false; }
+  };
+  S.applyRun = applyRun;
+  const onVisibility = () => { pausedBy.hidden = document.hidden; applyRun(); };
+  document.addEventListener('visibilitychange', onVisibility);
+  cleanups.push(() => document.removeEventListener('visibilitychange', onVisibility));
+
   return {
+    pause() { pausedBy.caller = true; applyRun(); },
+    resume() { pausedBy.caller = false; applyRun(); },
+    get paused() { return !S.running; },
+    get dropCount() { return S.tracks.size; },
     dispose() {
       disposed = true;
       if (renderer) renderer.setAnimationLoop(null);

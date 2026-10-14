@@ -131,9 +131,10 @@ seed 20261013; Gaussian NLL; early stopping on validation only),
 drogue, sigma calibration, 10-day separation) and `export.py` (ONNX opset 17 +
 `tests/fixtures/onnx-ref.json`). `MODEL.md` is the honest write-up: the model
 is a little better than advection overall (RMSE 21.05 vs 21.78 km/day,
-10-day median separation 89.5 vs 94.9 km), best near coasts and for
-undrogued drifters, no better for drogued ones or in the Gulf Stream, slightly
-worse in the Kuroshio. Keep it honest when anything changes.
+10-day median separation 89.5 vs 94.9 km). Its largest RMSE gain is near
+coasts (22.20 -> 21.06 km/day, while the coastal median barely moves, 13.37 ->
+13.23) and for undrogued drifters; no better for drogued ones or in the Gulf
+Stream, slightly worse in the Kuroshio. Keep it honest when anything changes.
 
 **Art** (`art-src/`): every image was made by ChatGPT (Warren's Plus account)
 through the codex CLI's image tool - `bash art-src/tools/gen.sh [n]

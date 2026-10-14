@@ -405,7 +405,9 @@ test('worker: a drop arriving while session.run is pending is queued; both timel
     if (doneIds.size === 2 || msg.type === 'error') finish();
   }, { fetchFn, ortLib, featuresFn: () => new Float32Array(10) });
   await core.handle({ type: 'init', currentUrls: Array.from({ length: 12 }, (_, i) => `cur${i}.bin`), windUrl: 'wind.bin', modelUrl: 'drift.onnx' });
-  assert.ok(msgs.some((m) => m.type === 'ready' && m.fallback === false));
+  // Ready comes first (plain advection while the model loads); the model is then announced.
+  assert.ok(msgs.some((m) => m.type === 'ready' && m.modelPending === true));
+  assert.ok(msgs.some((m) => m.type === 'status' && m.model === 'ready'));
   core.handle({ type: 'drop', item: 'bag', lon: 0, lat: 0, startDoy: 100, seed: 1 });
   await done;
   assert.ok(!msgs.some((m) => m.type === 'error'), JSON.stringify(msgs.find((m) => m.type === 'error')));

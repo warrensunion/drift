@@ -6,8 +6,9 @@
 //      {type:'drop', item, lon, lat, startDoy, seed}
 //      {type:'clear'}
 //      {type:'mode', mode:'global'|'salish'}            (salish stepping is Task 9)
-// Out: {type:'status', fallback:true, reason}           model fetch/load or inference failed -> advection
-//      {type:'ready', fallback:boolean}                 after init
+// Out: {type:'status', fallback:true, reason}           model fetch/load (20 s cap) or inference failed -> advection
+//      {type:'ready', fallback:true, modelPending:true}  after the tiles load; steps use advection
+//      {type:'status', model:'ready'}                   the model loaded; later steps use it
 //      {type:'error', stage:'init'|'drop'|'clear'|'step'|'message', reason}
 //      {type:'dropped', dropId, item, lon, lat, startDoy, seed}
 //      {type:'snapshot', dropId, index, day, positions:Int16Array, meta:Uint8Array, fragments, usingFallback}
@@ -22,7 +23,7 @@
 // Scheduling: 'drop' and 'clear' are queued and applied only between steps (never while a step
 // awaits the model). Drops are stepped round-robin, newest first, one day per drop per turn;
 // the loop yields a macrotask every ~16 ms so new messages are handled.
-import * as ort from 'onnxruntime-web';
+import * as ort from 'onnxruntime-web/wasm';
 import { features } from './features.js';
 import { decodeTile } from './field.js';
 import { createSim, MAX_DAYS } from './ensemble.js';
@@ -30,6 +31,7 @@ import { snapshotDays, packSnapshot } from './snapshots.js';
 import { createSalishSim, packSalish, salishSnapshotHours, SALISH } from './salish.js';
 
 const now = () => (typeof performance !== 'undefined' ? performance.now() : Date.now());
+const MODEL_TIMEOUT_MS = 20000;
 const errText = (e) => String((e && e.message) || e);
 
 /** Yield to the event loop (a macrotask) so queued messages such as 'clear' are handled. */
@@ -89,14 +91,21 @@ export function createWorkerCore(post, { fetchFn = (u) => fetch(u), ortLib = ort
       post({ type: 'error', stage: 'init', reason: errText(e) });
       return;
     }
+    // Ready at once on plain advection, so drops start immediately; the model is swapped in when
+    // it has loaded (or the fallback is announced if it fails or takes longer than 20 s).
+    sim = createSim({ fields, predict: null, featuresFn, onRetire: (dropId) => post({ type: 'retired', dropId }) });
+    post({ type: 'ready', fallback: true, modelPending: true });
+    kick();
     try {
-      predict = await loadModel(modelUrl, wasmPaths);
+      let timer;
+      const timeout = new Promise((_, reject) => { timer = setTimeout(() => reject(new Error(`model load timed out after ${MODEL_TIMEOUT_MS / 1000} s`)), MODEL_TIMEOUT_MS); });
+      const p = await Promise.race([loadModel(modelUrl, wasmPaths), timeout]).finally(() => clearTimeout(timer));
+      predict = p;
+      sim.setPredict(p);
+      post({ type: 'status', model: 'ready' });
     } catch (e) {
       fallBack(`model unavailable: ${errText(e)}`);
     }
-    sim = createSim({ fields, predict, featuresFn, onRetire: (dropId) => post({ type: 'retired', dropId }) });
-    post({ type: 'ready', fallback: !predict });
-    kick();
   }
 
   function postSnapshot(dropId) {

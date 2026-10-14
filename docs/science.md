@@ -106,6 +106,10 @@ https://doi.org/10.1016/j.marpolbul.2022.113759
 
 ### 1.2 Per item
 
+**Modelling assumption (all items):** each split time in `src/sim/fragment.js` is jittered
+uniformly between 0.5x and 1.5x the half-life below (mean = the half-life), so the ensemble
+does not fragment in lockstep. The ±50 % width is a modelling choice, not a measured spread.
+
 #### (a) PET bottle
 
 - **Density:** PET ~1.37 g/cm3 `[Andrady2011]` *(the PET row of Andrady's Table 1 was not seen
@@ -608,6 +612,8 @@ in `[Blanken2020]`).
 6. **The Salish Sea K is not from the Salish Sea.** It comes from Okubo's general relation at an
    assumed 1 km scale. The Salish Sea drifter diffusivities in Pawlowicz 2019/2021 exist but could
    not be retrieved, so swap them in once someone has access.
+7. **Split times carry a ±50 % jitter** around each half-life (uniform 0.5-1.5x, `fragment.js`).
+   This spread is a modelling assumption, not data.
 
 ---
 

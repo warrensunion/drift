@@ -3,7 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import * as ort from 'onnxruntime-web';
+import * as ort from 'onnxruntime-web/wasm';
 import { features } from '../src/sim/features.js';
 
 const ref = JSON.parse(readFileSync(new URL('./fixtures/onnx-ref.json', import.meta.url), 'utf8'));

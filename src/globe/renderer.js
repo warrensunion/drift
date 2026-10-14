@@ -35,17 +35,17 @@ export async function createRenderer(canvas, { force = null } = {}) {
 }
 
 /** Mount the static globe image and a note in place of the 3D globe. */
-export function mountStaticFallback(host, reason, base = '/') {
+export function mountStaticFallback(host, reason, base = '/', { image = 'globe-fallback.webp', alt = 'A still picture of the ocean globe with its currents.', what = 'the 3D globe' } = {}) {
   console.info(`[drift] static fallback: ${reason}`);
   const wrap = document.createElement('div');
   wrap.className = 'globe-static';
   const img = document.createElement('img');
-  img.src = `${base}art/globe-fallback.webp`;
-  img.alt = 'A still picture of the ocean globe with its currents.';
+  img.src = `${base}art/${image}`;
+  img.alt = alt;
   img.decoding = 'async';
   const note = document.createElement('p');
   note.className = 'globe-static__note';
-  note.textContent = 'Your browser cannot draw the 3D globe here, so this is a still picture. Try a recent Chrome, Edge, Firefox or Safari.';
+  note.textContent = `Your browser cannot draw ${what} here, so this is a still picture. Try a recent Chrome, Edge, Firefox or Safari.`;
   wrap.append(img, note);
   host.append(wrap);
   return wrap;
