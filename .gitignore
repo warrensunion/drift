@@ -10,4 +10,4 @@ __pycache__/
 art-src/gen/_log-*
 design-reference/**/frames/**/*.jpg
 design-reference/**/frames/**/*.png
-gen/_v1/
+art-src/gen/_v1/
