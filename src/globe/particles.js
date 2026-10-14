@@ -8,7 +8,7 @@ import * as THREE from 'three/webgpu';
 import {
   Fn, If, uniform, texture, textureLoad, instanceIndex, ivec2, int, float, vec2, vec3, vec4, uv,
   mix, smoothstep, clamp, normalize, dot, length, select, cross, max, min, exp, mod, floor, cos, sin, radians,
-  cameraPosition, cameraProjectionMatrix, cameraViewMatrix, positionGeometry, varying, pow,
+  cameraPosition, cameraProjectionMatrix, cameraViewMatrix, positionGeometry, varying, pow, attribute,
 } from 'three/tsl';
 import { snapshotDays } from '../sim/snapshots.js';
 import { ABSENT, codeFrag, frameFor } from './tracks.js';
@@ -60,6 +60,22 @@ const oklabToLinear = (lab) => {
     l.mul(-0.0041960863).sub(m.mul(0.7034186147)).add(s.mul(1.707614701)),
   ).max(0);
 };
+/** Linear RGB of plastic aged `day` days, on the CPU (the same OKLab ramp as ageColor). */
+export function ageColorJS(day) {
+  const a = Math.min(1, Math.max(0, day / 730)), b = Math.min(1, Math.max(0, (day - 730) / (3650 - 730)));
+  const m = (x, y, t) => x + (y - x) * t;
+  const L = m(m(LAB_FRESH.x, LAB_OX.x, a), LAB_BONE.x, b);
+  const A = m(m(LAB_FRESH.y, LAB_OX.y, a), LAB_BONE.y, b);
+  const B = m(m(LAB_FRESH.z, LAB_OX.z, a), LAB_BONE.z, b);
+  const l = (L + 0.3963377774 * A + 0.2158037573 * B) ** 3;
+  const mm = (L - 0.1055613458 * A - 0.0638541728 * B) ** 3;
+  const q = (L - 0.0894841775 * A - 1.291485548 * B) ** 3;
+  return [
+    Math.max(0, 4.0767416621 * l - 3.3077115913 * mm + 0.2309699292 * q),
+    Math.max(0, -1.2684380046 * l + 2.6097574011 * mm - 0.3413193965 * q),
+    Math.max(0, -0.0041960863 * l - 0.7034186147 * mm + 1.707614701 * q),
+  ];
+}
 /** Linear RGB of plastic aged `day` days. */
 export const ageColor = (day) => {
   const a = clamp(day.div(730), 0, 1);
@@ -77,7 +93,7 @@ export const ageColor = (day) => {
  *        days; fadeSpan / ghost: how long (schedule units) fate-3 members take to fade, and to what.
  *  jump: schedule units per frame above which a frame counts as a fast scrub.
  */
-export function createParticles({ flat = null, days = snapshotDays(), ageScale = 1, fadeSpan = 150, ghost = 0.13, jump = 20 } = {}) {
+export function createParticles({ flat = null, days = snapshotDays(), ageScale = 1, fadeSpan = 150, ghost = 0.16, jump = 20 } = {}) {
   const cosC = flat ? Math.cos(flat.latC * Math.PI / 180) : 1;
   const nrm = flat ? (v) => v : normalize;
   const age = (d) => ageColor(d.mul(ageScale));
@@ -155,9 +171,14 @@ export function createParticles({ flat = null, days = snapshotDays(), ageScale =
     // CSS px by size class: macro, meso, micro, small.
     const hPx = select(hDec.size.equal(0), float(9), select(hDec.size.equal(1), float(6.5), select(hDec.size.equal(2), float(4.5), float(3.4))));
     const hScale = hPx.mul(3).mul(select(hSel, float(1.45), float(1))).mul(uPxWorld).mul(select(hAlpha.greaterThan(0.001), float(1), float(0)));
-    return { pos: flat ? hN : hN.mul(float(1.004).sub(sinkDepth(hDec.fate, hA.w, hDay))), scale: hScale, col: vec4(age(hDay), hAlpha) };
+    // Shape: x = how far into its sinking fade (drawn as a small dim ring where it went down),
+    // y = 1 on a beach (a small solid mark on the shore).
+    const sunkP = select(hDec.fate.equal(3), smoothstep(0, fadeSpan, hDay.sub(hA.w)), float(0));
+    const shape = vec2(sunkP, select(hDec.fate.equal(2), float(1), float(0)));
+    return { pos: flat ? hN : hN.mul(float(1.004).sub(sinkDepth(hDec.fate, hA.w, hDay))), scale: hScale, col: vec4(age(hDay), hAlpha), shape };
   };
   const headCol = varying(buildHead().col, 'vHeadCol');
+  const headShape = varying(buildHead().shape, 'vHeadShape');
 
   const headMat = new THREE.SpriteNodeMaterial({ transparent: true, depthTest: false, depthWrite: false, ...GLOW });
   headMat.sizeAttenuation = true;
@@ -170,8 +191,13 @@ export function createParticles({ flat = null, days = snapshotDays(), ageScale =
     const dc = d.mul(3);
     const core = exp(dc.mul(dc).mul(-1.4));
     const halo = exp(d.mul(-4.5)).mul(0.2).mul(clamp(float(1).sub(d), 0, 1));
-    const k = core.add(halo).mul(headCol.w);
-    return vec4(headCol.xyz.mul(k).mul(1.2).add(vec3(core.mul(headCol.w)).mul(0.2)), 1);
+    const glow = core.add(halo);
+    const ring = exp(dc.sub(1.1).mul(dc.sub(1.1)).mul(-14)).mul(0.9);
+    const mark = smoothstep(0.8, 0.45, dc).mul(1.6);
+    const shape = mix(mix(glow, ring, headShape.x), mark, headShape.y);
+    const k = shape.mul(headCol.w);
+    const hot = core.mul(headCol.w).mul(float(1).sub(headShape.x)).mul(float(1).sub(headShape.y));
+    return vec4(headCol.xyz.mul(k).mul(1.2).add(vec3(hot).mul(0.2)), 1);
   })();
   const heads = new THREE.Sprite(headMat);
   heads.count = 0;
@@ -238,8 +264,123 @@ export function createParticles({ flat = null, days = snapshotDays(), ageScale =
   trails.frustumCulled = false;
   trails.renderOrder = 3;
 
+  // ---- the selected drop's whole history (0 -> its latest computed snapshot) ----
+  // One soft ribbon per copy along its sampled snapshots, coloured by the age ramp, so a selected
+  // drop reads as a plume. Built on the CPU (rebuilt at most every 400 ms while the worker is
+  // still computing) and ordered by time, so drawing up to age t is a prefix of the index buffer.
+  const HIST_SEG = 60000;
+  const histA = new Float32Array(HIST_SEG * 4 * 3), histB = new Float32Array(HIST_SEG * 4 * 3);
+  const histC = new Float32Array(HIST_SEG * 4 * 4), histE = new Float32Array(HIST_SEG * 4 * 2);
+  const histI = new Uint32Array(HIST_SEG * 6);
+  for (let s = 0; s < HIST_SEG; s++) {
+    const v = 4 * s;
+    histI.set([v, v + 1, v + 2, v + 2, v + 1, v + 3], 6 * s);
+    for (let k = 0; k < 4; k++) { histE[2 * (v + k)] = k & 1; histE[2 * (v + k) + 1] = k >> 1 ? 1 : -1; }
+  }
+  const histGeo = new THREE.BufferGeometry();
+  const attrA = new THREE.BufferAttribute(histA, 3); // static usage: three re-uploads DynamicDraw buffers every frame
+  const attrB = new THREE.BufferAttribute(histB, 3);
+  const attrC = new THREE.BufferAttribute(histC, 4);
+  histGeo.setAttribute('position', attrA);
+  histGeo.setAttribute('hB', attrB);
+  histGeo.setAttribute('hC', attrC);
+  histGeo.setAttribute('hE', new THREE.BufferAttribute(histE, 2));
+  histGeo.setIndex(new THREE.BufferAttribute(histI, 1));
+  histGeo.setDrawRange(0, 0);
+  const buildHist = () => {
+    const ha = positionGeometry, hb = attribute('hB', 'vec3'), hc = attribute('hC', 'vec4'), he = attribute('hE', 'vec2');
+    const pEnd = select(he.x.greaterThan(0.5), hb, ha);
+    const across = cross(hb.sub(ha), flat ? vec3(0, 0, 1) : normalize(pEnd));
+    const aLen = length(across);
+    const acrossN = select(aLen.greaterThan(1e-9), across.div(max(aLen, 1e-9)), vec3(0, 0, 0));
+    const ribbon = (flat ? pEnd : pEnd.mul(1.002)).add(acrossN.mul(he.y).mul(uPxWorld).mul(0.7));
+    const clip = cameraProjectionMatrix.mul(cameraViewMatrix).mul(vec4(ribbon, 1));
+    return { clip, col: vec4(hc.xyz.mul(hc.w).mul(facing(nrm(pEnd))), 1) };
+  };
+  const histCol = varying(buildHist().col, 'vHistCol');
+  const histMat = new THREE.MeshBasicNodeMaterial({ transparent: true, depthTest: false, depthWrite: false, ...GLOW, side: THREE.DoubleSide });
+  histMat.vertexNode = buildHist().clip;
+  histMat.colorNode = histCol;
+  const history = new THREE.Mesh(histGeo, histMat);
+  history.visible = false;
+  history.frustumCulled = false;
+  history.renderOrder = 2;
+  const i365 = days.findIndex((d) => d >= 365);
+  const hist = { dropId: null, lastIndex: -1, version: -1, at: 0, samples: [], cum: [], builds: 0 };
+
+  function sampleIndices(L, nIds) {
+    const allowed = Math.max(2, Math.floor(HIST_SEG / Math.max(1, nIds)) + 1);
+    const all = Array.from({ length: L + 1 }, (_, i) => i);
+    if (all.length <= allowed) return all;
+    const year = flat || i365 < 0 ? -1 : Math.min(L, i365);
+    let out;
+    if (year >= 0 && year + 1 < allowed) {
+      // Every snapshot to 1 year, then every Nth.
+      out = all.slice(0, year + 1);
+      const stride = Math.ceil((L - year) / (allowed - out.length));
+      for (let s = year + stride; s < L; s += stride) out.push(s);
+    } else {
+      const stride = Math.ceil((L + 1) / allowed);
+      out = [];
+      for (let s = 0; s < L; s += stride) out.push(s);
+    }
+    out.push(L);
+    return out;
+  }
+
+  function rebuildHistory(d) {
+    const tr = d.track;
+    const L = tr.lastIndex, nIds = tr.ancestor.length;
+    const samples = sampleIndices(L, nIds);
+    const cum = [0];
+    let seg = 0;
+    for (let p = 0; p + 1 < samples.length && seg < HIST_SEG; p++) {
+      const sa = samples[p], sb = samples[p + 1];
+      const ca = ageColorJS(days[sa] * ageScale), cb = ageColorJS(days[sb] * ageScale);
+      for (let id = 0; id < nIds && seg < HIST_SEG; id++) {
+        const a = stateOf(tr, id, sa), b = stateOf(tr, id, sb);
+        if (!a || !b) continue;
+        const fa = (a.code >> 2) & 3;
+        if (fa === 3 || fa === 2) continue; // on the seafloor / a beach: it no longer moves
+        const pa = worldOf(a.lon, a.lat), pb = worldOf(b.lon, b.lat);
+        if (Math.abs(pa[0] - pb[0]) + Math.abs(pa[1] - pb[1]) + Math.abs(pa[2] - pb[2]) < 1e-7) continue;
+        for (let k = 0; k < 4; k++) {
+          const v = 4 * seg + k;
+          histA.set(pa, 3 * v);
+          histB.set(pb, 3 * v);
+          const c = k & 1 ? cb : ca;
+          histC[4 * v] = c[0]; histC[4 * v + 1] = c[1]; histC[4 * v + 2] = c[2]; histC[4 * v + 3] = 0.24;
+        }
+        seg++;
+      }
+      cum.push(seg);
+    }
+    for (const at of [attrA, attrB, attrC]) {
+      at.clearUpdateRanges();
+      at.addUpdateRange(0, Math.max(1, seg) * 4 * at.itemSize);
+      at.needsUpdate = true;
+    }
+    Object.assign(hist, { dropId: tr.dropId, lastIndex: L, version: tr.version, at: performance.now(), samples, cum, builds: hist.builds + 1, segs: seg });
+  }
+
+  function updateHistory(selId) {
+    const d = selId == null ? null : drops.get(selId);
+    const fr = d && frames.get(selId);
+    if (!d || !fr) { history.visible = false; hist.dropId = null; return; }
+    const tr = d.track;
+    const stale = hist.dropId !== tr.dropId || hist.version !== tr.version || hist.lastIndex !== tr.lastIndex;
+    if (stale && (hist.dropId !== tr.dropId || performance.now() - hist.at > 400)) rebuildHistory(d);
+    // Draw every sample pair that ends at or before the current snapshot.
+    let p = 0;
+    while (p + 1 < hist.samples.length && hist.samples[p + 1] <= fr.index) p++;
+    const n = 6 * (hist.cum[p] || 0);
+    if (histGeo.drawRange.count !== n) histGeo.setDrawRange(0, n);
+    history.visible = n > 0;
+  }
+
   const group = new THREE.Group();
-  group.add(trails, heads);
+  group.add(history, trails, heads);
+  let selDropId = null;
 
   // ---- CPU side: allocation and layer writes ----
   const drops = new Map(); // dropId -> {track, slot, blocks:[], loaded Int32Array(LAYERS), ver Int32Array(LAYERS)}
@@ -377,6 +518,7 @@ export function createParticles({ flat = null, days = snapshotDays(), ageScale =
     }
     if (n) rr = (rr + 1) % n;
     dropTex.needsUpdate = true;
+    updateHistory(selDropId);
     if (colDirty) { colTex.needsUpdate = true; colDirty = false; }
     if (dirtyLayers.size) {
       // Always per-layer uploads (a whole-texture upload is 6.3 MB).
@@ -425,10 +567,11 @@ export function createParticles({ flat = null, days = snapshotDays(), ageScale =
     forEachMember,
     hasDrop: (id) => drops.has(id),
     worldOf,
-    _debug: () => ({ layerData, colData, dropData, drops, LAYERS, CAP, BLOCK }),
+    _debug: () => ({ layerData, colData, dropData, drops, LAYERS, CAP, BLOCK, hist }),
     slotOf: (id) => (drops.has(id) ? drops.get(id).slot : -1),
     /** Highlight fragments (local ids) of one drop; null clears. */
     setSelection(dropId, locals = []) {
+      selDropId = dropId == null ? null : dropId;
       const d = dropId == null ? null : drops.get(dropId);
       uSelSlot.value = d ? d.slot : -1;
       selData.fill(0);
@@ -440,7 +583,7 @@ export function createParticles({ flat = null, days = snapshotDays(), ageScale =
     clear() { for (const id of [...drops.keys()]) removeDrop(id); },
     dispose() {
       layers.dispose(); colTex.dispose(); selTex.dispose(); dropTex.dispose(); dayTex.dispose();
-      headMat.dispose(); trailMat.dispose(); trails.geometry.dispose();
+      headMat.dispose(); trailMat.dispose(); histMat.dispose(); histGeo.dispose(); trails.geometry.dispose();
     },
   };
 }

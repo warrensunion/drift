@@ -121,7 +121,7 @@ export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
     // Desktop: globe in the right two-thirds; phone: centred, above the bottom sheet.
     const cx = phone ? w * 0.5 : w * 0.64;
     // With the fragment sheet open on a phone, the globe moves up and shrinks above it.
-    const sheet = phone && root.classList.contains('has-panel');
+    const sheet = phone && root.classList.contains('has-panel') && !root.classList.contains('is-collapsed');
     const cy = phone ? h * (sheet ? 0.25 : 0.4) : h * 0.47;
     const rPx = phone ? Math.min(w * (sheet ? 0.4 : 0.47), h * (sheet ? 0.21 : 0.33)) : Math.min(h * 0.46, w * 0.34);
     const tanHalf = Math.tan((FOV * Math.PI) / 360);
@@ -268,6 +268,10 @@ export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
         S.tracks.set(msg.dropId, tr);
         S.newest = msg.dropId;
         parts.addDrop(tr);
+        // Follow the new drop: select it (its panel), and on a phone collapse the sheet to the
+        // one-line summary so the map keeps most of the screen.
+        select({ dropId: msg.dropId, fragId: msg.dropId * 256 });
+        if (size.phone) ui.setCollapsed(true);
         const w = dropWaiters.shift();
         if (w) w(msg.dropId);
         break;
@@ -570,7 +574,7 @@ export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
       stopSim() { if (worker) worker.terminate(); worker = null; }, // measurement only: frees the CPU
       trailBudget(n) { parts.setTrailWriteBudget(n); },
       computed() { return [...S.tracks.values()].map((t) => ({ dropId: t.dropId, day: t.lastDay, done: t.done })); },
-      select(dropId, fragId = dropId * 256) { select({ dropId, fragId }); },
+      select(dropId, fragId = dropId * 256) { select(dropId == null ? null : { dropId, fragId }); },
       cpu() { return { ...S.cpu }; },
       frameStats() {
         const a = [...frameTimes].sort((x, y) => x - y);

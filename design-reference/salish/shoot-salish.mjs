@@ -77,6 +77,9 @@ for (const [w, h] of [[1440, 900], [390, 844]]) {
   await page.evaluate(() => { const D = window.__drift; D.setDay(0); D.speed(30); D.play(true); D.resetFrames(); });
   await page.waitForTimeout(5000);
   report[`${tag} fps (30x)`] = await page.evaluate(() => window.__drift.frameStats());
+  await page.evaluate(() => { const D = window.__drift; D.setDay(0); D.speed(365); D.play(true); D.resetFrames(); });
+  await page.waitForTimeout(2500); // 365 h/s reaches the 720 h end in about 2 s
+  report[`${tag} fps (365x, 2.5 s)`] = await page.evaluate(() => window.__drift.frameStats());
   await ctx.close();
 }
 await browser.close();

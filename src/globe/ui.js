@@ -75,6 +75,13 @@ export const GLOBAL_PROFILE = {
   when: (t) => (t >= MAX_DAY ? 'after 10 years' : `after ${formatAge(t).toLowerCase()} (still computing)`),
   primary: null,
   notes: [],
+  // A plain line when most copies sank within the first week (docs/science.md section 1).
+  whyNote: (s) => {
+    if (!(s.sankFirstWeek >= 0.5)) return '';
+    if (s.item === 'line') return 'Nylon is denser than seawater, so most fishing line sinks within days.';
+    if (s.item === 'tyre') return 'Tyre wear particles are denser than seawater and sink.';
+    return '';
+  },
 };
 
 export function createUI(root, { base = '/', touch = false, reducedMotion = false, profile = GLOBAL_PROFILE } = {}) {
@@ -91,6 +98,24 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
   head.append(el('h2', 'globe-ui__title', P.title));
   head.append(el('p', 'globe-ui__lede', P.lede(touch)));
   side.append(head);
+  // Phone: a one-line summary of the selected drop; the sheet collapses to it (and the timeline)
+  // so the globe gets the screen, and expands again on a tap.
+  const summary = el('button', 'globe-summary');
+  summary.type = 'button';
+  summary.hidden = true;
+  summary.setAttribute('aria-expanded', 'true');
+  const summaryText = el('span', 'globe-summary__text');
+  const summaryMore = el('span', 'globe-summary__more', 'Details');
+  summary.append(summaryText, summaryMore);
+  summary.addEventListener('click', () => setCollapsed(!root.classList.contains('is-collapsed')));
+  side.append(summary);
+  function setCollapsed(c) {
+    const was = root.classList.contains('is-collapsed');
+    root.classList.toggle('is-collapsed', !!c);
+    summary.setAttribute('aria-expanded', c ? 'false' : 'true');
+    summaryMore.textContent = c ? 'Details' : 'Less';
+    if (was !== !!c) emit('panel', !panel.hidden);
+  }
   let primaryBtn = null;
   if (P.primary) {
     primaryBtn = el('button', 'globe-primary', P.primary);
@@ -147,7 +172,9 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
     dl.append(w);
     return dd;
   };
-  const fSize = fact('Size'), fAge = fact('Age'), fDist = fact('Distance travelled');
+  const fSize = fact('Size'), fAge = fact('Age'), fDist = fact('Distance from where you dropped it');
+  const why = el('p', 'globe-panel__why');
+  why.hidden = true;
   const endTitle = el('h4', 'globe-panel__sub', 'Where it likely ends up');
   const endNote = el('p', 'globe-panel__note');
   const bars = el('ul', 'globe-fates');
@@ -164,7 +191,7 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
     bars.append(li);
     fateRows[k] = { val, fill };
   }
-  panel.append(pTop, dl, endTitle, bars, endNote);
+  panel.append(pTop, dl, why, endTitle, bars, endNote);
   side.append(panel);
 
   const status = el('p', 'globe-ui__status');
@@ -293,7 +320,8 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
 
   function setPanel(stats) {
     const was = !panel.hidden;
-    if (!stats) { panel.hidden = true; root.classList.remove('has-panel'); if (was) emit('panel', false); return; }
+    if (!stats) { panel.hidden = true; summary.hidden = true; root.classList.remove('has-panel'); setCollapsed(false); if (was) emit('panel', false); return; }
+    summary.hidden = false;
     panel.hidden = false;
     root.classList.add('has-panel');
     if (!was) emit('panel', true);
@@ -301,7 +329,14 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
     pTitle.textContent = stats.pieces > 1 ? `${copy.name}, now ${stats.pieces} pieces` : copy.name;
     fSize.textContent = stats.sizeClasses.length ? stats.sizeClasses.map((c) => SIZE_COPY[c] || c).join('; ') : 'Gone from the surface';
     fAge.textContent = P.formatAge(stats.day);
-    fDist.textContent = `${fmtKm(stats.distanceKm)} on average`;
+    const fd = stats.fromDropKm;
+    fDist.textContent = fd ? (fd.n > 4 && fd.p90 - fd.p10 > 1 ? `${fmtKm(fd.mean)} on average (most between ${fmtKm(fd.p10)} and ${fmtKm(fd.p90)})` : `${fmtKm(fd.mean)} on average`) : 'Not known yet';
+    const note = P.whyNote(stats);
+    why.textContent = note || '';
+    why.hidden = !note;
+    let top = null;
+    for (const [k, label] of FATES) if (!top || (stats.fates[k] || 0) > top[1]) top = [label, stats.fates[k] || 0];
+    summaryText.textContent = `${copy.short ? copy.short[0].toUpperCase() + copy.short.slice(1) : copy.name} · ${P.formatAge(stats.day)} · ${pct(top[1])} ${top[0].toLowerCase()}`;
     for (const [k] of FATES) {
       const f = stats.fates[k] || 0;
       fateRows[k].val.textContent = pct(f);
@@ -325,6 +360,8 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
       if (!ok && why) hint.textContent = why;
     },
     contains: (node) => side.contains(node) || tl.contains(node),
+    setCollapsed,
+    get collapsed() { return root.classList.contains('is-collapsed'); },
     dispose() { clearTimeout(toastTimer); if (tickRO) tickRO.disconnect(); if (phoneQuery) phoneQuery.removeEventListener('change', placeTimeline); side.remove(); tl.remove(); disclaimer.remove(); toast.remove(); },
   };
 }

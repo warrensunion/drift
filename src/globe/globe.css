@@ -623,3 +623,36 @@
 /* Chart-style halos so a name reads where it straddles the coast. */
 .salish-label--land, .salish-label--river { text-shadow: 0 0 2px rgba(230, 238, 233, .95), 0 0 6px rgba(230, 238, 233, .85); }
 .salish-label--sea, .salish-label--water, .salish-label--outside { text-shadow: 0 0 3px rgba(10, 41, 48, .9), 0 0 8px rgba(10, 41, 48, .7); }
+
+/* ---- phone: collapsible sheet with a one-line summary of the selected drop ---- */
+.globe-summary { display: none; }
+.globe-panel__why { margin: 10px 0 0; font-size: 14px; line-height: 1.5; color: var(--g-oxidised); }
+@media (max-width: 759px) {
+  .globe-summary:not([hidden]) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    min-height: 44px;
+    padding: 8px 14px;
+    border: 1px solid rgba(127, 183, 174, .3);
+    border-radius: 12px;
+    background: rgba(10, 34, 40, .7);
+    color: var(--g-foam);
+    font-family: var(--g-label);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+  }
+  .globe-summary__text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .globe-summary__more { flex: none; color: var(--g-glass); }
+  .globe-summary__more::after { content: ''; display: inline-block; margin-left: 6px; width: 7px; height: 7px; border-right: 2px solid currentColor; border-top: 2px solid currentColor; transform: translateY(1px) rotate(-45deg); }
+  .drift-globe.is-collapsed .globe-summary__more::after { transform: translateY(-2px) rotate(135deg); }
+  .drift-globe.is-collapsed.has-panel .globe-ui > :not(.globe-summary):not(.globe-timeline) { display: none; }
+  .drift-globe.is-collapsed.has-panel .globe-ui { max-height: none; }
+  .globe-summary:not([hidden]) { order: -2; }
+}
+/* The distance line is long: give it the full width of the facts grid. */
+.globe-fact:nth-child(3) { grid-column: 1 / -1; }

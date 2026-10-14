@@ -274,7 +274,7 @@ export function mountSalish(el, { embedded = true } = {}) {
     const mx = Math.max(0, map.width / 2 - hw), my = Math.max(0, map.height / 2 - hh);
     view.tcx = Math.min(mx, Math.max(-mx, view.tcx));
     // With the phone sheet open, allow the map to slide up by the sheet's height.
-    const sheet = size.phone && root.classList.contains('has-panel') ? size.h * 0.56 * view.ts : 0;
+    const sheet = size.phone && root.classList.contains('has-panel') && !root.classList.contains('is-collapsed') ? size.h * 0.56 * view.ts : 0;
     view.tcy = Math.min(my, Math.max(-my - sheet, view.tcy));
   }
 
@@ -467,6 +467,10 @@ export function mountSalish(el, { embedded = true } = {}) {
         S.tracks.set(msg.dropId, tr);
         S.newest = msg.dropId;
         parts.addDrop(tr);
+        // Follow the new drop: select it (its panel), and on a phone collapse the sheet to the
+        // one-line summary so the map keeps most of the screen.
+        select({ dropId: msg.dropId, fragId: msg.dropId * 256 });
+        if (size.phone) ui.setCollapsed(true);
         const w = dropWaiters.shift();
         if (w) w(msg.dropId);
         break;
@@ -618,7 +622,7 @@ export function mountSalish(el, { embedded = true } = {}) {
     ui.on('panel', (open) => {
       layout();
       // On a phone the sheet covers the lower half: lift the river mouth into view.
-      if (size.phone && open) {
+      if (size.phone && open && !ui.collapsed) {
         // Mouth at 16% of the height (the plume runs south of it, into the visible band).
         const [, my] = toWorld(RIVER_MOUTH.lon, RIVER_MOUTH.lat);
         view.tcy = my - (0.5 - 0.16) * size.h * view.ts;

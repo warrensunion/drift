@@ -120,3 +120,25 @@ test('lineage follows copies through splits whose intermediate fragments were ne
   assert.equal(s.endMembers, 2);
   assert.equal(s.fates.gyre, 1);
 });
+
+test('distance from the drop point: great-circle mean and 10th-90th percentile spread', async () => {
+  const { greatCircleKm } = await import('../src/globe/tracks.js');
+  near(greatCircleKm(0, 0, 1, 0), 111.19, 0.01);
+  const tr = createDropTrack({ dropId: 0, item: 'bottle', lon: 0, lat: 0, startDoy: 1 });
+  addSnapshot(tr, snap(0, 0, Array.from({ length: 10 }, () => [0, 0, 0]), [frag(0, { members: 10 })]));
+  // Copies 1..10 degrees east: distances 111..1112 km.
+  addSnapshot(tr, snap(1, 1, Array.from({ length: 10 }, (_, k) => [k + 1, 0, 0]), [frag(0, { members: 10, distanceKm: 99999 })]));
+  const s = fragmentStats(tr, 0, 1);
+  near(s.fromDropKm.mean, 5.5 * 111.19, 0.5);
+  near(s.fromDropKm.p10, 2 * 111.19, 0.5);
+  near(s.fromDropKm.p90, 9 * 111.19, 0.5);
+  assert.equal(s.fromDropKm.n, 10);
+  assert.equal(s.sankFirstWeek, 0);
+});
+
+test('sankFirstWeek counts copies that reached the seafloor within 7 days', () => {
+  const tr = createDropTrack({ dropId: 0, item: 'line', lon: 0, lat: 0, startDoy: 1 });
+  addSnapshot(tr, snap(0, 0, [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]], [frag(0, { members: 4 })]));
+  addSnapshot(tr, snap(1, 5, [[0, 0, 0, 0, 3], [0, 0, 0, 0, 3], [0, 0, 0, 0, 3], [0, 0, 0]], [frag(0, { members: 4 })]));
+  assert.equal(fragmentStats(tr, 0, 5).sankFirstWeek, 0.75);
+});

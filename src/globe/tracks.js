@@ -212,6 +212,28 @@ export function lineageAt(tr, index, fragId) {
   return snap.fragments.filter((f) => locals.has(f.local & 255));
 }
 
+const R_KM = 6371;
+export function greatCircleKm(lon1, lat1, lon2, lat2) {
+  const r = Math.PI / 180;
+  const a = Math.sin(((lat2 - lat1) * r) / 2) ** 2 + Math.cos(lat1 * r) * Math.cos(lat2 * r) * Math.sin(((lon2 - lon1) * r) / 2) ** 2;
+  return 2 * R_KM * Math.asin(Math.min(1, Math.sqrt(a)));
+}
+
+/** Mean and 10th/90th percentile distance (km) from the drop point of the copies in `locals`. */
+export function distancesFromDrop(tr, snap, locals) {
+  if (!snap || tr.lon == null) return null;
+  const d = [];
+  for (let i = 0; i < snap.n; i++) {
+    const c = snap.code[i];
+    if (c === ABSENT || !locals.has((c >> 4) & 255)) continue;
+    d.push(greatCircleKm(tr.lon, tr.lat, snap.pos[2 * i] / tr.sx, snap.pos[2 * i + 1] / tr.sy));
+  }
+  if (!d.length) return null;
+  d.sort((a, b) => a - b);
+  const q = (p) => d[Math.min(d.length - 1, Math.max(0, Math.round(p * (d.length - 1))))];
+  return { mean: d.reduce((s, v) => s + v, 0) / d.length, p10: q(0.1), p90: q(0.9), n: d.length };
+}
+
 /**
  * Panel stats for a selected fragment at age t: size classes now, mean distance (km), members,
  * and fate probabilities across the ensemble at the latest computed snapshot.
@@ -240,8 +262,18 @@ export function fragmentStats(tr, fragId, t) {
   }
   if (endMembers) for (const k of Object.keys(fates)) fates[k] /= endMembers;
   const root = tr.frags.get(fragId);
+  // Straight-line (great-circle) distance of each copy from the drop point at this age: the
+  // path length (distanceKm) adds up every random-walk step and overstates how far it got.
+  const fromDrop = distancesFromDrop(tr, snap, lineageLocalsAt(tr, fragId, fr.index));
+  // Share of all copies (alive at any time) that reached the seafloor within the first week.
+  let ids = 0, early = 0;
+  if (!tr.schedule) {
+    for (let i = 0; i < tr.sunkDay.length; i++) { ids++; if (tr.sunkDay[i] <= 7) early++; }
+  }
   return {
     item: tr.item,
+    fromDropKm: fromDrop,
+    sankFirstWeek: ids ? early / ids : 0,
     day: fr.day,
     pieces: now.length,
     sizeClasses: [...classes.keys()].sort((a, b) => SIZE_NAMES.indexOf(a) - SIZE_NAMES.indexOf(b)),
