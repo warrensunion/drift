@@ -1,7 +1,7 @@
 {
  "tag": "polish",
- "date": "2026-10-14T01:48:59.692Z",
- "seconds": 591,
+ "date": "2026-10-14T02:21:27.818Z",
+ "seconds": 566,
  "result": "PASS",
  "sizes": [
   "1440x900",
@@ -10,7 +10,7 @@
  "numbers": {
   "browser": "system Chrome 155.0.8059.79",
   "lazyFiles": [
-   "assets/globe-BVN_5GPF.js"
+   "assets/globe-Dlgn1VvN.js"
   ],
   "backend": {
    "1440x900": "webgpu",
@@ -157,12 +157,12 @@
    }
   },
   "globeSimSeconds": {
-   "1440x900": 14.752,
-   "390x844": 16.692
+   "1440x900": 22.841,
+   "390x844": 12.723
   },
   "salishSimSeconds": {
-   "1440x900": 1.086,
-   "390x844": 1.354
+   "1440x900": 1.16,
+   "390x844": 1.055
   },
   "salishEndHours": 720,
   "fps": {
@@ -182,87 +182,87 @@
    },
    "hardware": true,
    "setup": {
-    "simMs": 303681.8000000119,
+    "simMs": 316836.39999997616,
     "minDay": 120,
     "drops": 833
    },
    "dpr1": {
     "paused": {
-     "frames": 274,
-     "drawnFrames": 275,
-     "drawnShare": 1.004,
+     "frames": 533,
+     "drawnFrames": 533,
+     "drawnShare": 1,
      "drawCalls": 10,
      "seconds": 6,
-     "medianFps": 47.8,
-     "meanFps": 45.6,
-     "p50Ms": 20.9,
-     "p95Ms": 28,
+     "medianFps": 73.5,
+     "meanFps": 88.7,
+     "p50Ms": 13.6,
+     "p95Ms": 14.5,
      "dpr": 1,
      "canvas": "1440x900",
      "members": 19992,
      "cpu": {
-      "particles": 0.7444273457858758,
-      "streamlines": 0.5705623095651274,
-      "render": 12.84367877415859
+      "particles": 1.113245159645657,
+      "streamlines": 1.292268387530061,
+      "render": 1.1209258868930256
      }
     },
     "playing30x": {
-     "frames": 263,
-     "drawnFrames": 264,
-     "drawnShare": 1.004,
+     "frames": 454,
+     "drawnFrames": 454,
+     "drawnShare": 1,
      "drawCalls": 10,
      "seconds": 6,
-     "medianFps": 47.8,
-     "meanFps": 43.8,
-     "p50Ms": 20.9,
-     "p95Ms": 27.9,
+     "medianFps": 71.9,
+     "meanFps": 75.7,
+     "p50Ms": 13.9,
+     "p95Ms": 20.9,
      "dpr": 1,
      "canvas": "1440x900",
      "members": 19992,
      "cpu": {
-      "particles": 0.7745559349312721,
-      "streamlines": 0.6542901935454885,
-      "render": 13.783975464997123
+      "particles": 0.9144972241476826,
+      "streamlines": 0.8983951194491696,
+      "render": 0.8791019105764072
      }
     }
    },
    "dpr2": {
     "paused": {
-     "frames": 246,
-     "drawnFrames": 247,
-     "drawnShare": 1.004,
+     "frames": 519,
+     "drawnFrames": 519,
+     "drawnShare": 1,
      "drawCalls": 10,
      "seconds": 6,
-     "medianFps": 47.6,
-     "meanFps": 40.9,
-     "p50Ms": 21,
-     "p95Ms": 32.6,
+     "medianFps": 74.1,
+     "meanFps": 86.4,
+     "p50Ms": 13.5,
+     "p95Ms": 20.9,
      "dpr": 2,
      "canvas": "2880x1800",
      "members": 19992,
      "cpu": {
-      "particles": 0.7834925183816809,
-      "streamlines": 1.4155299433104458,
-      "render": 17.950560761532845
+      "particles": 1.0549624375351108,
+      "streamlines": 0.7283919535229894,
+      "render": 0.5620459978225859
      }
     },
     "playing30x": {
-     "frames": 215,
-     "drawnFrames": 216,
-     "drawnShare": 1.005,
+     "frames": 729,
+     "drawnFrames": 729,
+     "drawnShare": 1,
      "drawCalls": 10,
      "seconds": 6,
-     "medianFps": 36,
-     "meanFps": 35.8,
-     "p50Ms": 27.8,
-     "p95Ms": 41.3,
+     "medianFps": 142.9,
+     "meanFps": 121.4,
+     "p50Ms": 7,
+     "p95Ms": 13.9,
      "dpr": 2,
      "canvas": "2880x1800",
      "members": 19992,
      "cpu": {
-      "particles": 0.7281371791049146,
-      "streamlines": 1.1250362517170924,
-      "render": 17.010691345757497
+      "particles": 0.6984300065244896,
+      "streamlines": 0.6643266298382132,
+      "render": 0.5506132393718183
      }
     }
    }
@@ -324,6 +324,13 @@
   },
   {
    "name": "globe drew >= 90 % of frames",
+   "sizes": {
+    "1440x900": true
+   },
+   "fails": []
+  },
+  {
+   "name": "DPR 2 window drew at twice the pixels",
    "sizes": {
     "1440x900": true
    },
