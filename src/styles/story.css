@@ -203,12 +203,13 @@
 .l-reeds-r .art { height: 100%; width: auto; }
 
 /* ================= chapter 2: it breaks (the shoreline) ================= */
-.l-sky2 { inset: -6%; background: linear-gradient(180deg, #a9c7c1 0%, #c9dcd5 18%, #e4ebe1 30%, #eef0e3 36%, #d9e4dc 42%); }
+.l-sky2 { inset: -6%; background: linear-gradient(180deg, #a9c7c1 0%, #c9dcd5 16%, #e1e9df 26%, #d6e3dc 31%, #a8c6c0 37%, #7aa5a2 43%, #4f8282 52%); }
 .sun { position: absolute; left: 62%; top: 9%; width: 10vmin; height: 10vmin; border-radius: 50%; background: radial-gradient(circle, #fffdf2 0 55%, rgba(255, 252, 235, .0) 72%); box-shadow: 0 0 80px 40px rgba(255, 250, 225, .45); }
 .l-clouds-far { right: -8%; top: 7%; width: 44vw; opacity: .75; }
 .l-isle { right: -18%; top: 17%; width: 76vw; height: 16%; opacity: .8; -webkit-mask-image: linear-gradient(90deg, transparent, #000 30%); mask-image: linear-gradient(90deg, transparent, #000 30%); }
 .l-isle .art { height: 100%; object-fit: cover; object-position: 50% 56%; filter: hue-rotate(8deg) saturate(.6) brightness(1.05); }
-.l-sea { left: -5%; right: -5%; top: 27.6%; height: 16%; }
+/* The sea melts into a hazy horizon instead of ending on a hard line behind the headline. */
+.l-sea { left: -5%; right: -5%; top: 24.6%; height: 19%; -webkit-mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .55) 9%, #000 24%); mask-image: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .55) 9%, #000 24%); }
 .l-sea .art--plate { object-position: 50% 62%; }
 .l-underwater { left: -5%; right: -5%; top: 41%; bottom: -8%; }
 .l-underwater .art--plate { object-position: 50% 14%; }
@@ -335,7 +336,7 @@
   transition: opacity .8s var(--ease-reveal), visibility 0s linear .8s;
 }
 .is-started .chapters { opacity: 1; visibility: visible; transition-delay: 0s; }
-.is-started.past-story .chapters { opacity: 0; visibility: hidden; pointer-events: none; transition-delay: 0s, .8s; }
+.is-started.past-story .chapters, .is-started.in-globe .chapters { opacity: 0; visibility: hidden; pointer-events: none; transition-delay: 0s, .8s; }
 .chapters::before {
   content: ''; position: absolute; z-index: -1; pointer-events: none; left: -60px; right: -80px; top: -40px; bottom: -40px;
   background: radial-gradient(ellipse closest-side, rgba(7, 28, 33, .62), rgba(7, 28, 33, .35) 60%, rgba(7, 28, 33, 0));
@@ -371,9 +372,11 @@
   content: 'Loading the ocean…'; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
   font: italic 400 var(--t-16)/1 var(--font-body); color: var(--glass);
 }
+/* The map switch sits top centre: the globe's own controls hold the left column, the timeline the
+   bottom and the "not a forecast" disclaimer the top right, which must never be covered. */
 .globe__bar {
-  position: absolute; z-index: 5; right: var(--margin); top: var(--margin);
-  display: grid; justify-items: end; gap: 10px; pointer-events: none;
+  position: absolute; z-index: 5; left: 50%; top: var(--margin); transform: translateX(-50%);
+  display: grid; justify-items: center; gap: 10px; pointer-events: none; width: max-content; max-width: calc(100% - 2 * var(--margin));
 }
 .globe__switch {
   pointer-events: auto;
@@ -389,13 +392,18 @@
 }
 .globe__switch button[aria-pressed="true"] { background: var(--foam); color: var(--petrol); }
 .globe__note {
-  pointer-events: auto; max-width: 22rem; text-align: right;
+  pointer-events: auto; max-width: 22rem; text-align: center;
   font: italic 400 var(--t-13)/1.45 var(--font-body); color: var(--foam);
   background: rgba(7, 28, 33, .7); padding: 8px 12px; border-radius: 8px;
 }
-@media (max-width: 700px) {
-  .globe__bar { left: var(--margin); right: var(--margin); justify-items: center; }
-  .globe__note { text-align: center; }
+/* Below 760 px (the globe's phone layout) the disclaimer spans the top; it moves under the switch. */
+@media (max-width: 759px) {
+  .globe__bar { top: 14px; }
+  .globe .drift-globe .globe-disclaimer {
+    top: 66px; right: auto; width: fit-content; max-width: calc(100% - 2 * var(--g-margin));
+    padding: 6px 10px; border-radius: 8px; background: rgba(7, 28, 33, .62); color: var(--foam);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
 }
 
 /* ================= About the science ================= */
