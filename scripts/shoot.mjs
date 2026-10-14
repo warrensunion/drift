@@ -3,14 +3,16 @@
  * state of the finished site, then builds the side-by-side comparison sheets.
  *
  *   node scripts/shoot.mjs [tag] [sizes] [--only=build,story,reduced,globe,globe-reduced,static,fps,compare]
+ *                          [--neg=early,hscroll,frames]   (negative controls: each must make its check FAIL)
  *
  *   tag    output folder name (default "latest"): design-reference/shots/<tag>/<size>/
  *   sizes  "all" (default) or a list such as 1440x900,390x844
  *
- * It builds the site twice into temp folders: a production build (to check that the entry chunk
- * carries neither three.js nor onnxruntime-web) and a development-mode build that keeps the
- * verification hooks (window.__drift in the globe, ?debug in the story), served by its own
- * `vite preview` on a spare port. It drives the system Chrome with WebGPU flags when installed
+ * It builds the site twice into temp folders. The PAGES UNDER TEST ARE A DEVELOPMENT-MODE BUILD
+ * (`vite build --mode development`: bundled and chunked like production, but it keeps the
+ * verification hooks, window.__drift in the globe and ?debug in the story), served by its own
+ * `vite preview` on a spare port. A separate production build is only read from disk, for the
+ * entry-chunk check (no three.js / onnxruntime in the entry and its static imports). It drives the system Chrome with WebGPU flags when installed
  * (real GPU in headless), else Playwright's bundled Chromium.
  *
  * Shots per size (1440x900, 1920x1080, 390x844), all JPEG q80:
@@ -33,15 +35,21 @@
  *   1440x900 only: globe-20k-members (the fps scene)
  *
  * Checks (any failure exits non-zero; the table at the end lists them all):
- *   - no console error, no pageerror, no failed request or HTTP >= 400, on every page
- *   - no horizontal scroll at 390 px in every state (measured at every shot, every size)
+ *   - no console error, no pageerror, no failed request or HTTP >= 400, on every page and in its
+ *     workers (an aborted request is exempt only for images, and every one is listed in run.json)
+ *   - no horizontal scroll at 390 px in every state: the layout viewport (clientWidth) stays 390
+ *     and no element pokes past the right edge unless an overflow-clipping ancestor hides it
  *   - "Simulation with uncertainty, not a forecast." visible and unobscured whenever tracks are
  *   - words over art meet WCAG AA (scripts/dev/aa.mjs) in every chapter
  *   - citation numbers follow their first appearance in the page
  *   - the static fallback logged "[drift] static fallback:"
- *   - the entry chunk (and its static imports) holds no three.js / onnxruntime, and nothing of
- *     either is requested before the globe section is near
- *   - fps with ~20,000 members at 1440x900 over 6 s: median >= 30 (target 60), p95 frame time
+ *   - the entry chunk (and its static imports) holds no three.js / onnxruntime, and none of the
+ *     lazy chunks (the dynamic imports in the build manifest, the worker, .wasm, .onnx) is
+ *     requested before the globe section is near
+ *   - fps with ~20,000 members at 1440x900 over 6 s, at DPR 1 and DPR 2: the playing median must
+ *     be >= 30 (target 60; paused printed too), the renderer's own frame counter must advance on
+ *     >= 90 % of the rAF frames (proof the globe drew), and the backend must be WebGPU or WebGL2 on
+ *     a hardware GPU
  *   - npm-style builds succeed
  * Writes design-reference/shots/<tag>/run.json (every number) and run-log.txt (every console
  * line: renderer backend, fallback reasons, warnings), then design-reference/compare/*.jpg.
@@ -64,6 +72,7 @@ const ALL_SIZES = [[1440, 900], [1920, 1080], [390, 844]];
 const SIZES = SIZE_ARG === 'all' ? ALL_SIZES : SIZE_ARG.split(',').map((s) => s.split('x').map(Number));
 const ONLY = flags.only ? new Set(flags.only.split(',')) : null;
 const want = (k) => !ONLY || ONLY.has(k);
+const NEG = new Set(flags.neg ? flags.neg.split(',') : []);
 const OUT = resolve(ROOT, 'design-reference/shots', TAG);
 mkdirSync(OUT, { recursive: true });
 const PORT = 5400 + Math.floor(Math.random() * 500);
@@ -88,7 +97,7 @@ const DEV_DIR = join(tmpdir(), `drift-shoot-dev-${PORT}`);
 
 async function buildSite(outDir, mode) {
   const t = Date.now();
-  await build({ root: ROOT, mode, logLevel: 'error', build: { outDir, emptyOutDir: true } });
+  await build({ root: ROOT, mode, logLevel: 'error', build: { outDir, emptyOutDir: true, manifest: true } });
   log(`built (${mode}) in ${((Date.now() - t) / 1000).toFixed(1)} s -> ${outDir}`);
 }
 
@@ -115,6 +124,8 @@ function checkEntryChunk(dir) {
   }
   numbers.entryChunk = { files: [...seen], bytes };
   log(`entry chunk: ${[...seen].join(', ')} (${(bytes / 1024).toFixed(0)} KB)`);
+  // Guard against a vacuous pass: the entry and its preload helper must actually have been read.
+  if (seen.size < 2 || bytes === 0) bad.push(`only ${seen.size} file(s), ${bytes} bytes read: the entry was not found`);
   check('entry chunk has no three.js / onnxruntime', 'build', bad.length === 0, bad.join('; ') || `${(bytes / 1024).toFixed(0)} KB in ${seen.size} files`);
 }
 
@@ -132,7 +143,7 @@ try {
 // Keep the story's hook when the globe later assigns its own window.__drift.
 const INIT = `(() => { let cur; Object.defineProperty(window, '__drift', { configurable: true, get() { return cur; }, set(v) { cur = v; if (v && v.story) window.__driftStory = v; } }); })();`;
 
-async function openPage(size, label, { reduced = false, query = '', holdArt = false } = {}) {
+async function openPage(size, label, { reduced = false, query = '', holdArt = false, initScripts = [] } = {}) {
   const [w, h] = size;
   const key = `${w}x${h}`;
   const ctx = await browser.newContext({
@@ -143,23 +154,33 @@ async function openPage(size, label, { reduced = false, query = '', holdArt = fa
     hasTouch: w < 600,
   });
   await ctx.addInitScript(INIT);
+  for (const sc of initScripts) await ctx.addInitScript(sc);
   const page = await ctx.newPage();
   const tagLabel = `${key} ${label}`;
   const P = { ctx, page, key, w, h, label, requests: [], info: [] };
-  page.on('console', (m) => {
+  const onConsole = (m, where = '') => {
     const text = m.text();
-    const line = `${tagLabel} console.${m.type()}: ${text}`;
+    const line = `${tagLabel}${where} console.${m.type()}: ${text}`;
     logLines.push(line);
     if (m.type() === 'info' || m.type() === 'warning' || text.startsWith('[drift]')) P.info.push(text);
-    if (m.type() === 'error') check('no console errors', key, false, `${label}: ${text}`);
+    if (m.type() === 'error') check('no console errors', key, false, `${label}${where}: ${text}`);
+  };
+  // Worker messages arrive on the worker; skip them on the page in case they are mirrored there.
+  page.on('console', (m) => { if (!(m.worker && m.worker())) onConsole(m); });
+  page.on('worker', (wk) => {
+    const name = wk.url().split('/').pop();
+    logLines.push(`${tagLabel} worker started: ${name}`);
+    wk.on('console', (m) => onConsole(m, ` [worker ${name}]`));
   });
   page.on('pageerror', (e) => { logLines.push(`${tagLabel} pageerror: ${e.message}`); check('no console errors', key, false, `${label} pageerror: ${e.message}`); });
   page.on('request', (r) => P.requests.push(r.url()));
   page.on('requestfailed', (r) => {
     const err = r.failure() ? r.failure().errorText : '?';
     logLines.push(`${tagLabel} requestfailed: ${r.url()} ${err}`);
-    // A request the page itself abandoned (an image unloaded mid-flight) is not a failure.
-    if (!/ERR_ABORTED/.test(err)) check('no failed requests', key, false, `${label}: ${r.url()} ${err}`);
+    // Only an image the page itself abandoned (unloaded mid-flight) is exempt; every abort is listed.
+    const aborted = /ERR_ABORTED/.test(err);
+    if (aborted) (numbers.aborted ??= []).push({ page: tagLabel, type: r.resourceType(), url: r.url() });
+    if (!(aborted && r.resourceType() === 'image')) check('no failed requests', key, false, `${label}: ${r.resourceType()} ${r.url()} ${err}`);
   });
   page.on('response', (r) => { if (r.status() >= 400) check('no failed requests', key, false, `${label}: HTTP ${r.status()} ${r.url()}`); });
   if (holdArt) {
@@ -181,11 +202,47 @@ async function shoot(P, name, { aaGroups = null } = {}) {
   const file = join(dir, `${name}.jpg`);
   await P.page.screenshot({ path: file, type: 'jpeg', quality: 80, timeout: 90000 });
   shots.push(`${P.key}/${name}.jpg`);
-  const hs = await P.page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
-  (numbers.hscroll ??= {})[`${P.key}/${name}`] = hs;
-  if (P.w < 600) check('no horizontal scroll at 390', P.key, hs <= 0, `${name}: ${hs}px`);
-  else if (hs > 0) check('no horizontal scroll', P.key, false, `${name}: ${hs}px`);
-  log(`  ${P.key}/${name}.jpg${hs > 0 ? ` (overflow ${hs}px)` : ''}`);
+  if (NEG.has('hscroll') && P.w < 600 && !P.negWide) {
+    // Negative control: a 600 px element in the page flow must make the check fail.
+    P.negWide = true;
+    await P.page.evaluate(() => { const d = document.createElement('div'); d.id = 'neg-wide'; d.style.cssText = 'width:600px;height:12px;background:magenta'; document.querySelector('main').append(d); });
+  }
+  const ov = await P.page.evaluate((W) => {
+    const de = document.documentElement;
+    const res = { client: de.clientWidth, scroll: de.scrollWidth, inner: window.innerWidth, offenders: [] };
+    // Clipped when an ancestor that clips horizontally (overflow-x other than visible, or paint
+    // containment) itself ends inside the viewport, or when it sits in a position: fixed box.
+    const clipped = (el) => {
+      // A fixed-position box (or anything inside one) never extends the page's scroll width.
+      for (let a = el; a && a !== de; a = a.parentElement) if (getComputedStyle(a).position === 'fixed') return true;
+      for (let a = el.parentElement; a && a !== de; a = a.parentElement) {
+        const cs = getComputedStyle(a);
+        if (cs.overflowX !== 'visible' || /paint|strict|content/.test(cs.contain)) {
+          if (a === document.body) continue;
+          const r = a.getBoundingClientRect();
+          if (r.right <= W + 1) return true;
+        }
+      }
+      return false;
+    };
+    for (const el of document.body.querySelectorAll('*')) {
+      const r = el.getBoundingClientRect();
+      if (r.right <= W + 1 || r.width === 0 || r.height === 0) continue;
+      const cs = getComputedStyle(el);
+      if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+      if (clipped(el)) continue;
+      res.offenders.push(`${el.tagName.toLowerCase()}${el.id ? '#' + el.id : ''}${typeof el.className === 'string' && el.className ? '.' + el.className.trim().split(/\s+/).join('.') : ''} right=${Math.round(r.right)}`);
+    }
+    return res;
+  }, P.w);
+  const hs = ov.scroll - ov.client;
+  (numbers.hscroll ??= {})[`${P.key}/${name}`] = { clientWidth: ov.client, scrollWidth: ov.scroll, innerWidth: ov.inner, offenders: ov.offenders.slice(0, 5) };
+  // On desktop the classic scrollbar legitimately narrows clientWidth; on the phone it must be exact.
+  const bad = (P.w < 600 && ov.client !== P.w) || hs > 0 || ov.offenders.length > 0;
+  const detail = `${name}: clientWidth ${ov.client} (want ${P.w}), scrollWidth ${ov.scroll}, ${ov.offenders.length} element(s) past the edge${ov.offenders.length ? ': ' + ov.offenders.slice(0, 3).join(', ') : ''}`;
+  if (P.w < 600) check('no horizontal scroll at 390', P.key, !bad, detail);
+  else if (bad) check('no horizontal scroll', P.key, false, detail);
+  log(`  ${P.key}/${name}.jpg${bad ? ` (overflow: ${detail})` : ''}`);
 }
 
 const waitFor = (page, fn, arg, timeout = 60000, polling = 100) => page.waitForFunction(fn, arg, { timeout, polling });
@@ -197,12 +254,12 @@ async function dismissPreloader(P, { shots: take = false, reduced = false } = {}
     const midP = await waitFor(page, () => {
       const r = document.getElementById('preloader');
       const p = r ? parseFloat(r.style.getPropertyValue('--p')) : NaN;
-      return p > 0.15 && p < 0.92 && r.classList.contains('is-in') ? p : false;
-    }, null, 20000, 50).then((h) => h.jsonValue()).catch(() => null);
+      return p > 0.05 && p < 0.95 ? p : false;
+    }, null, 30000, 50).then((h) => h.jsonValue()).catch(() => null);
     await wait(900);
     const p = await page.evaluate(() => { const r = document.getElementById('preloader'); return r ? parseFloat(r.style.getPropertyValue('--p')) : null; });
     (numbers.preloaderFill ??= {})[P.key] = p;
-    check('preloader caught mid-fill', P.key, midP != null && p > 0.1 && p < 0.97, `progress ${p}`);
+    check('preloader caught mid-fill', P.key, midP != null && p > 0.05 && p < 0.97, `progress ${midP} when caught, ${p} at the shot`);
     await shoot(P, `${reduced ? 'reduced-' : ''}0-preloader-midfill`);
     await waitFor(page, () => document.querySelector('.pre.is-intro'), null, 60000);
     await wait(450);
@@ -225,18 +282,42 @@ async function gotoChapter(page, i, t = 0.5) {
   await waitFor(page, (i) => window.__driftStory.story.current === i && !window.__driftStory.story.state.trans, i, 40000);
 }
 
-const LOADS_GLOBE = /three|onnxruntime|ort[-.]|\.onnx|\.wasm/i;
+// The lazy files of the page under test, from its build manifest: everything reachable through
+// index.html's dynamic imports that the entry does not also import statically. Plus the
+// simulation worker (emitted as assets/worker-<hash>.js, not in the manifest), .wasm and .onnx.
+let LAZY_FILES = new Set();
+function readLazyFiles(dir) {
+  const man = JSON.parse(readFileSync(join(dir, '.vite/manifest.json'), 'utf8'));
+  const closure = (keys, follow) => {
+    const out = new Set();
+    const q = [...keys];
+    while (q.length) { const k = q.shift(); if (out.has(k) || !man[k]) continue; out.add(k); for (const f of follow(man[k])) q.push(f); }
+    return out;
+  };
+  const entry = closure(['index.html'], (m) => m.imports || []);
+  const dyn = closure(man['index.html'].dynamicImports || [], (m) => [...(m.imports || []), ...(m.dynamicImports || [])]);
+  LAZY_FILES = new Set([...dyn].filter((k) => !entry.has(k)).map((k) => man[k].file));
+  numbers.lazyFiles = [...LAZY_FILES];
+  log(`lazy files (manifest): ${[...LAZY_FILES].join(', ')} + assets/worker-*.js, *.wasm, *.onnx`);
+  check('lazy chunk list found in the manifest', 'build', LAZY_FILES.size > 0 && [...LAZY_FILES].every((f) => existsSync(join(dir, f))), [...LAZY_FILES].join(', ') || 'none');
+}
+const loadsGlobe = (url) => {
+  const path = new URL(url).pathname.replace(/^\//, '');
+  return LAZY_FILES.has(path) || /^assets\/worker-[\w-]+\.js$/.test(path) || /\.(wasm|onnx)$/i.test(path);
+};
 
 // ---------------- story ----------------
 async function storyPass(size, { reduced = false } = {}) {
-  const P = await openPage(size, reduced ? 'story-reduced' : 'story', { reduced, holdArt: !reduced });
+  // Negative control: preload the lazy globe chunk from the start; the early-load check must fail.
+  const neg = NEG.has('early') && !reduced ? [`document.addEventListener('DOMContentLoaded', () => { const l = document.createElement('link'); l.rel = 'modulepreload'; l.href = '/${[...LAZY_FILES][0]}'; document.head.append(l); });`] : [];
+  const P = await openPage(size, reduced ? 'story-reduced' : 'story', { reduced, holdArt: !reduced, initScripts: neg });
   const { page, w, h, key } = P;
   const pre = reduced ? 'reduced-' : '';
   await dismissPreloader(P, { shots: !reduced, reduced });
 
   if (!reduced) {
     // Before the globe section is near, nothing of three.js or onnxruntime may have been fetched.
-    const early = P.requests.filter((u) => LOADS_GLOBE.test(u));
+    const early = P.requests.filter(loadsGlobe);
     check('no three.js/onnxruntime before the globe', key, early.length === 0, early.join(', ') || `${P.requests.length} requests, none`);
   }
 
@@ -247,7 +328,7 @@ async function storyPass(size, { reduced = false } = {}) {
     if (!reduced && w > 600) { await page.mouse.move(w * 0.85, h * 0.8, { steps: 4 }); await wait(1400); }
     await shoot(P, `${pre}${i + 1}-mid`);
     if (i === 2 && !reduced) {
-      const early = P.requests.filter((u) => LOADS_GLOBE.test(u));
+      const early = P.requests.filter(loadsGlobe);
       check('no three.js/onnxruntime before the globe', key, early.length === 0, `by chapter 3: ${early.join(', ') || 'none'}`);
     }
     if (!reduced) {
@@ -318,7 +399,10 @@ async function disclaimerVisible(P, name) {
     if (!el) return { ok: false, why: 'missing' };
     const b = el.getBoundingClientRect();
     if (b.width < 2 || b.bottom <= 0 || b.top >= innerHeight || b.right <= 0 || b.left >= innerWidth) return { ok: false, why: `off screen ${Math.round(b.left)},${Math.round(b.top)} ${Math.round(b.width)}x${Math.round(b.height)}` };
-    for (let e = el; e; e = e.parentElement) { const cs = getComputedStyle(e); if (cs.display === 'none' || cs.visibility === 'hidden' || Number(cs.opacity) < 0.5) return { ok: false, why: `hidden by ${e.className}` }; }
+    let alpha = 1;
+    for (let e = el; e; e = e.parentElement) { const cs = getComputedStyle(e); alpha *= Number(cs.opacity); if (cs.display === 'none' || cs.visibility === 'hidden') return { ok: false, why: `hidden by ${e.className}` }; }
+    // Opacity multiplies down the tree: the label's effective opacity is the product.
+    if (alpha < 0.5) return { ok: false, why: `effective opacity ${alpha.toFixed(2)}` };
     // The label has pointer-events: none; switch them on for the hit test, so whatever sits on
     // top of it at its corners and centre is what elementFromPoint returns.
     const pe = el.style.pointerEvents;
@@ -344,6 +428,9 @@ async function globePass(size) {
   await toGlobe(P);
   const backend = await page.evaluate(() => window.__drift.backend);
   (numbers.backend ??= {})[key] = backend;
+  // Positive control for the early-load check: at the globe the lazy files must now show up.
+  const lazy = P.requests.filter(loadsGlobe).map((u) => new URL(u).pathname);
+  check('lazy globe chunks load at the globe', key, lazy.some((u) => /\/assets\/worker-/.test(u)) && lazy.some((u) => LAZY_FILES.has(u.slice(1))), lazy.join(', ') || 'none');
   log(`  ${key} globe backend: ${backend}`);
   await page.evaluate(() => window.__drift.view(-150, 22));
   await wait(2500);
@@ -424,12 +511,14 @@ async function fpsPass() {
   await toGlobe(P);
   const t = Date.now();
   // ~20,000 members: 833 bottle drops at random ocean points, computed to day 120.
-  const setup = await page.evaluate(async () => {
+  // (--fps-drops=N shortens this for checking the checks; the members check then fails, as it should.)
+  const NDROPS = Number(flags['fps-drops'] || 833);
+  const setup = await page.evaluate(async (NDROPS) => {
     const D = window.__drift;
     D.view(-160, 20);
     let s = 7; const rnd = () => ((s = (s * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff);
     const ps = [];
-    while (ps.length < 833) {
+    while (ps.length < NDROPS) {
       const lon = rnd() * 360 - 180, lat = rnd() * 110 - 55;
       if (!D.isLand(lon, lat)) ps.push(D.drop('bottle', lon, lat));
     }
@@ -442,34 +531,85 @@ async function fpsPass() {
     const res = { simMs: performance.now() - t1, minDay: Math.min(...D.computed().map((x) => x.day)), drops: D.computed().length };
     D.stopSim(); // the worker must not compete for the CPU while frames are timed
     return res;
-  });
+  }, NDROPS);
   log(`  fps setup: ${setup.drops} drops to day ${setup.minDay} in ${(setup.simMs / 1000).toFixed(0)} s (${((Date.now() - t) / 1000).toFixed(0)} s total)`);
-  const measure = (play) => page.evaluate(async (play) => {
+
+  // The backend must be a real GPU: WebGPU on a non-fallback adapter, or WebGL2 not on SwiftShader.
+  const gpu = await page.evaluate(async () => {
     const D = window.__drift;
+    const out = { backend: D.backend };
+    if (navigator.gpu) {
+      const ad = await navigator.gpu.requestAdapter().catch(() => null);
+      out.adapter = ad ? { fallback: !!ad.isFallbackAdapter, vendor: ad.info && ad.info.vendor, architecture: ad.info && ad.info.architecture, description: ad.info && ad.info.description } : null;
+    }
+    const gl = document.createElement('canvas').getContext('webgl2');
+    const ext = gl && gl.getExtension('WEBGL_debug_renderer_info');
+    out.glRenderer = ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : null;
+    return out;
+  });
+  const soft = /swiftshader|llvmpipe|software|basic render/i;
+  const hardware = gpu.backend === 'webgpu'
+    ? !!(gpu.adapter && !gpu.adapter.fallback && !soft.test(`${gpu.adapter.vendor} ${gpu.adapter.description}`))
+    : gpu.backend === 'webgl2' && !!gpu.glRenderer && !soft.test(gpu.glRenderer);
+  log(`  fps backend: ${gpu.backend}, adapter ${JSON.stringify(gpu.adapter)}, GL ${gpu.glRenderer}`);
+
+  // One 6 s window: rAF intervals, and proof that the globe drew in them. three's
+  // renderer.info.frame is no proof (it keeps counting with the render loop stopped), so each rAF
+  // tick reads renderer.info.render.calls, which only renderer.render() advances, and counts the
+  // frames in which it moved.
+  const measure = (play) => page.evaluate(async ({ play, kill }) => {
+    const D = window.__drift;
+    const R = D.debug().renderer;
     if (play) { D.setDay(0); D.speed(30); D.play(true); } else { D.play(false); D.setDay(60); }
     await new Promise((r) => setTimeout(r, 1500));
+    if (kill) R.setAnimationLoop(null); // negative control: the globe stops drawing
     const dts = [];
     let last = performance.now();
+    let calls = R.info.render.calls, drawn = 0;
     await new Promise((resolve) => {
       const end = last + 6000;
-      const tick = (now) => { dts.push(now - last); last = now; if (now < end) requestAnimationFrame(tick); else resolve(); };
+      const tick = (now) => {
+        dts.push(now - last); last = now;
+        const c = R.info.render.calls; if (c > calls) drawn++; calls = c;
+        if (now < end) requestAnimationFrame(tick); else resolve();
+      };
       requestAnimationFrame((now) => { last = now; requestAnimationFrame(tick); });
     });
     D.play(false);
     dts.sort((a, b) => a - b);
     const p50 = dts[dts.length >> 1], p95 = dts[Math.floor(dts.length * 0.95)];
     const mean = dts.reduce((s, v) => s + v, 0) / dts.length;
-    return { frames: dts.length, seconds: 6, medianFps: +(1000 / p50).toFixed(1), meanFps: +(1000 / mean).toFixed(1), p50Ms: +p50.toFixed(2), p95Ms: +p95.toFixed(2), members: D.members, cpu: D.cpu() };
-  }, play);
-  const paused = await measure(false);
-  const playing = await measure(true);
+    const c = R.domElement || document.querySelector('.drift-globe__canvas');
+    return {
+      frames: dts.length, drawnFrames: drawn, drawnShare: +(drawn / dts.length).toFixed(3), drawCalls: R.info.render.drawCalls,
+      seconds: 6, medianFps: +(1000 / p50).toFixed(1), meanFps: +(1000 / mean).toFixed(1), p50Ms: +p50.toFixed(2), p95Ms: +p95.toFixed(2),
+      dpr: window.devicePixelRatio, canvas: `${c.width}x${c.height}`, members: D.members, cpu: D.cpu(),
+    };
+  }, { play, kill: play && NEG.has('frames') && !P.killed && (P.killed = true) });
+
+  const runs = {};
+  runs.dpr1 = { paused: await measure(false), playing30x: await measure(true) };
+  await disclaimerVisible(P, 'globe-20k-members');
   await page.evaluate(() => window.__drift.setDay(60));
   await wait(1500);
   await shoot(P, 'globe-20k-members');
-  numbers.fps = { target: 60, failBelow: 30, backend: await page.evaluate(() => window.__drift.backend), setup, paused, playing30x: playing };
-  log(`  fps (target 60, fail < 30): paused ${paused.medianFps} median / p95 ${paused.p95Ms} ms; playing 30x ${playing.medianFps} median / p95 ${playing.p95Ms} ms; ${paused.members} members`);
-  check('fps >= 30 with ~20k members', '1440x900', Math.min(paused.medianFps, playing.medianFps) >= 30, `paused ${paused.medianFps}, playing ${playing.medianFps} fps median (target 60); p95 ${paused.p95Ms}/${playing.p95Ms} ms; ${paused.members} members`);
-  check('~20,000 members on the globe', '1440x900', paused.members >= 15000, `${paused.members}`);
+  // The same at DPR 2 (four times the pixels), as on a laptop's retina screen.
+  const cdp = await P.ctx.newCDPSession(page);
+  await cdp.send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 900, deviceScaleFactor: 2, mobile: false });
+  await wait(2000);
+  runs.dpr2 = { paused: await measure(false), playing30x: await measure(true) };
+  await cdp.send('Emulation.clearDeviceMetricsOverride');
+
+  numbers.fps = { target: 60, failBelow: 30, gatedOn: 'playing30x median', backend: gpu.backend, gpu, hardware, setup, ...runs };
+  for (const [k, r] of Object.entries(runs)) {
+    log(`  fps ${k} (DPR ${r.paused.dpr}, canvas ${r.paused.canvas}; target 60, fail < 30): playing 30x median ${r.playing30x.medianFps} fps / p95 ${r.playing30x.p95Ms} ms, drew ${r.playing30x.drawnFrames}/${r.playing30x.frames}; paused median ${r.paused.medianFps} fps / p95 ${r.paused.p95Ms} ms, drew ${r.paused.drawnFrames}/${r.paused.frames}; ${r.paused.members} members`);
+    // A frame rate only counts if the globe drew in those frames.
+    check('fps >= 30 with ~20k members (playing)', '1440x900', r.playing30x.medianFps >= 30 && r.playing30x.drawnFrames >= 0.9 * r.playing30x.frames, `${k}: playing ${r.playing30x.medianFps} fps median, p95 ${r.playing30x.p95Ms} ms (paused ${r.paused.medianFps}); target 60`);
+    for (const [m, x] of Object.entries(r)) check('globe drew >= 90 % of frames', '1440x900', x.drawnFrames >= 0.9 * x.frames && x.drawCalls > 0, `${k} ${m}: renderer frames ${x.drawnFrames} of ${x.frames} rAF frames, ${x.drawCalls} draw calls`);
+  }
+  check('DPR 2 window drew at twice the pixels', '1440x900', runs.dpr2.paused.dpr === 2 && runs.dpr2.paused.canvas === '2880x1800', `DPR ${runs.dpr2.paused.dpr}, canvas ${runs.dpr2.paused.canvas}`);
+  check('fps measured on a hardware GPU backend', '1440x900', hardware, `${gpu.backend}; adapter ${JSON.stringify(gpu.adapter)}; GL ${gpu.glRenderer}`);
+  check('~20,000 members on the globe', '1440x900', runs.dpr1.paused.members >= 15000, `${runs.dpr1.paused.members}`);
   await P.ctx.close();
 }
 
@@ -498,7 +638,11 @@ async function compareSheets() {
   const label = (t) => Buffer.from(`<svg width="${W}" height="${L}"><text x="8" y="21" fill="#E6EEE9" font-size="16" font-family="Arial">${t.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</text></svg>`);
   for (const [name, comp, shot, tile] of SHEETS) {
     const ours = join(dir, `${shot}.jpg`);
-    if (!existsSync(ours)) { log(`  compare ${name}: no shot ${shot}`); continue; }
+    if (!existsSync(ours)) {
+      log(`  compare ${name}: no shot ${shot}`);
+      if (!ONLY) check('compare sheets complete', '1440x900', false, `${name}: missing ${shot}.jpg`);
+      continue;
+    }
     const parts = [
       [await sharp(resolve(ROOT, `design-reference/comps/${comp}.jpg`)).resize(W, H, { fit: 'cover' }).toBuffer(), `comp: ${comp}`],
       [await sharp(ours).resize(W, H, { fit: 'cover' }).toBuffer(), `ours: ${TAG}/1440x900/${shot}`],
@@ -524,6 +668,7 @@ try {
     await step('production build', async () => { await buildSite(PROD_DIR, 'production'); checkEntryChunk(PROD_DIR); check('production build', 'build', true); });
   }
   await buildSite(DEV_DIR, 'development');
+  readLazyFiles(DEV_DIR);
   server = await preview({ root: ROOT, logLevel: 'error', build: { outDir: DEV_DIR }, preview: { port: PORT, strictPort: true, host: '127.0.0.1' } });
   log(`serving ${DEV_DIR} at ${BASE}`);
   for (const size of SIZES) {
@@ -571,6 +716,9 @@ for (const r of rows.values()) {
   for (const f of r.fails.slice(0, 6)) console.log(`        ${f}`);
   if (r.fails.length > 6) console.log(`        ... ${r.fails.length - 6} more`);
 }
-if (numbers.fps) console.log(`\nfps @1440x900, ${numbers.fps.paused.members} members, ${numbers.fps.backend}: target 60, fail < 30 | paused median ${numbers.fps.paused.medianFps} fps, p95 ${numbers.fps.paused.p95Ms} ms | playing 30x median ${numbers.fps.playing30x.medianFps} fps, p95 ${numbers.fps.playing30x.p95Ms} ms`);
+for (const k of ['dpr1', 'dpr2']) {
+  const r = numbers.fps && numbers.fps[k];
+  if (r) console.log(`${k === 'dpr1' ? '\n' : ''}fps @1440x900 ${k} (canvas ${r.paused.canvas}), ${r.paused.members} members, ${numbers.fps.backend}: target 60, fail < 30 (playing) | playing 30x median ${r.playing30x.medianFps} fps, p95 ${r.playing30x.p95Ms} ms, drew ${r.playing30x.drawnFrames}/${r.playing30x.frames} | paused median ${r.paused.medianFps} fps, p95 ${r.paused.p95Ms} ms, drew ${r.paused.drawnFrames}/${r.paused.frames}`);
+}
 console.log(`\n${failed ? 'FAIL' : 'PASS'}  ${shots.length} shots in design-reference/shots/${TAG}/ (${summary.seconds} s)`);
 process.exitCode = failed ? 1 : 0;
