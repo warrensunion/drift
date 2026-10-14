@@ -19,6 +19,7 @@ export const MODES = Object.freeze(['global', 'salish']);
 const FOV = 32;
 const PICK_PX = 16;
 const AUTO_ROTATE_DEG_S = 2.2;
+const KEY_HELP = 'With the keyboard: arrow keys turn it, plus and minus zoom, Enter drops at the ring in the middle.';
 
 const dayOfYear = (d = new Date()) => {
   const start = Date.UTC(d.getUTCFullYear(), 0, 1);
@@ -71,10 +72,14 @@ export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
   });
   const canvas = document.createElement('canvas');
   canvas.className = 'drift-globe__canvas';
-  canvas.setAttribute('aria-label', embedded
+  canvas.setAttribute('aria-label', `${embedded
     ? 'Ocean globe. Drag sideways to turn it, pinch or hold Ctrl and scroll to zoom, click or tap the ocean to drop the selected item.'
-    : 'Ocean globe. Drag to turn it, scroll or pinch to zoom, click or tap the ocean to drop the selected item.');
+    : 'Ocean globe. Drag to turn it, scroll or pinch to zoom, click or tap the ocean to drop the selected item.'} ${KEY_HELP}`);
   canvas.setAttribute('role', 'img');
+  canvas.tabIndex = 0; // the keyboard alternative to dragging and tapping
+  const aim = document.createElement('span');
+  aim.className = 'globe-aim';
+  aim.setAttribute('aria-hidden', 'true');
   const grain = document.createElement('div');
   grain.className = 'drift-globe__grain';
   grain.style.setProperty('--globe-paper', `url(${base}art/ui-paper.webp)`);
@@ -82,7 +87,7 @@ export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
   zoomHint.className = 'globe-zoomhint';
   zoomHint.setAttribute('aria-hidden', 'true');
   zoomHint.textContent = 'Hold Ctrl to zoom';
-  root.append(canvas, grain, zoomHint);
+  root.append(canvas, aim, grain, zoomHint);
   el.append(root);
 
   const ui = createUI(root, { base, touch, reducedMotion });
@@ -136,6 +141,7 @@ export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
       if (!S.started) view.dist = view.tDist;
     }
     size = { w, h, cx, cy, phone };
+    aim.style.transform = `translate(${cx.toFixed(1)}px, ${cy.toFixed(1)}px)`;
     if (renderer && camera) {
       renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
       renderer.setSize(w, h, false);
@@ -388,6 +394,13 @@ export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
     drop(ui.item, target.lon, target.lat);
   }
 
+  function dropAtAim() {
+    const target = dropTarget(rayAt(size.cx, size.cy), isLand);
+    if (!target.ok) { if (target.reason === 'land') ui.showToast(target.message, size.cx, size.cy); return; }
+    if (!S.simOk) { ui.showToast('Drops are off: the simulation could not start.', size.cx, size.cy); return; }
+    drop(ui.item, target.lon, target.lat);
+  }
+
   let hintTimer = 0;
   function showZoomHint() {
     if (zoomHint.classList.contains('is-on')) return;
@@ -443,11 +456,29 @@ export function mountGlobe(el, { mode = 'global', embedded = true } = {}) {
     }, { passive: false });
     // Keys only act while focus is inside the globe (or, full screen, on the bare page).
     const onKey = (e) => {
+      // Escape closes the panel from anywhere in the globe, the slider and buttons included.
+      if (e.key === 'Escape' && S.selected) { select(null); return; }
       const t = e.target;
       if (t && /^(input|textarea|select|button)$/i.test(t.tagName)) return;
       if (e.key === ' ') { e.preventDefault(); togglePlay(); }
-      if (e.key === 'Escape') select(null);
     };
+    // Keyboard alternative to the gestures: arrows turn, + / - zoom, Enter drops at the aim.
+    listen(canvas, 'keydown', (e) => {
+      const step = 10 * Math.min(1, view.tDist / view.defDist);
+      const turn = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, step], ArrowDown: [0, -step] }[e.key];
+      if (turn) {
+        interacted = true;
+        view.tLon += turn[0];
+        view.tLat = Math.max(-70, Math.min(70, view.tLat + turn[1]));
+      } else if (e.key === '+' || e.key === '=') {
+        view.tDist = Math.max(view.minDist, view.tDist * 0.85);
+      } else if (e.key === '-' || e.key === '_') {
+        view.tDist = Math.min(view.maxDist, view.tDist / 0.85);
+      } else if (e.key === 'Enter') {
+        dropAtAim();
+      } else return;
+      e.preventDefault();
+    });
     listen(root, 'keydown', onKey);
     if (!embedded) listen(window, 'keydown', (e) => { if (e.target === document.body) onKey(e); });
 

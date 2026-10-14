@@ -67,7 +67,7 @@ export const CHAPTERS = [
     title: 'It breaks',
     sweep: 'wave',
     copy: [
-      `Floating at sea, a bottle changes slowly. Bottles recovered from the seafloor stayed chemically sound for about 15 years.${cite('Ioakeimidis2016')}`,
+      `Floating at sea, a bottle changes slowly. Bottles recovered from the seafloor stayed chemically sound for about 15&nbsp;years.${cite('Ioakeimidis2016')}`,
       `The breaking happens mostly on shore, where sunlight, heat and sand work together. In a lab, a polypropylene pellet given a year of strong UV, roughly four years of real sun,${cite('Kaandorp2021')} and then two months of tumbling in sand split into about 6,000 pieces.${cite('Song2017')}`,
       'No one has timed this for a bottle on a real beach, so the timing here is uncertain, and the simulation says so.',
     ],
@@ -97,7 +97,7 @@ export const CHAPTERS = [
     sweep: 'cloud',
     copy: [
       'A high tide lifts the pieces back off the beach. Now the surface currents take over, and the wind pushes whatever rides high in the water.',
-      `Most of it never gets far. In a global simulation, at least 77 % of floating plastic was on a beach or within 10 km of one after five years.${cite('Onink2021')}`,
+      `Most of it never gets far. In a global simulation, at least 77&nbsp;% of floating plastic was on a beach or within 10&nbsp;km of one after five years.${cite('Onink2021')}`,
       `What escapes can cross an ocean. After the 2011 tsunami in Japan, the debris that caught the most wind reached North America within the first year.${cite('Maximenko2018')}`,
     ],
     layers: [
@@ -117,7 +117,7 @@ export const CHAPTERS = [
     sweep: 'bubbles',
     copy: [
       `In the middle of each ocean basin the currents turn in a slow, wide circle. Floating debris gathers where they meet, in five subtropical gyres.${cite('Maximenko2012')}`,
-      `The one in the North Pacific holds an estimated 79,000 tonnes across 1.6 million km². Microplastics are 94 % of its pieces but only 8 % of its weight; fishing nets are at least 46 %.${cite('Lebreton2018')}`,
+      `The one in the North Pacific holds an estimated 79,000&nbsp;tonnes across 1.6&nbsp;million&nbsp;km². Microplastics are 94&nbsp;% of its pieces but only 8&nbsp;% of its weight; fishing nets are at least 46&nbsp;%.${cite('Lebreton2018')}`,
     ],
     layers: [
       { cls: 'water4', depth: 'bg', bg: 'ui-water.webp' },
@@ -135,8 +135,8 @@ export const CHAPTERS = [
     sweep: 'snow',
     copy: [
       `Small pieces grow a skin of algae and sink. Tethered in a bay, plastic pieces reached an even chance of sinking after 17 to 66 days, the smallest first.${cite('FazeyRyan2016')}`,
-      `Far more plastic lies on the seafloor than floats.${cite('Eriksen2014', 'Barrett2020')} A bag has been found 10,898 m down in the Mariana Trench,${cite('Chiba2018')} and 65 of 90 amphipods from six of the deepest trenches had eaten synthetic particles.${cite('Jamieson2019')}`,
-      `Near the surface, 59 % of the seabird species studied between 1962 and 2012 had swallowed plastic.${cite('Wilcox2015')}`,
+      `Far more plastic lies on the seafloor than floats.${cite('Eriksen2014', 'Barrett2020')} A bag has been found 10,898&nbsp;m down in the Mariana Trench,${cite('Chiba2018')} and 65 of 90 amphipods from six of the deepest trenches had eaten synthetic particles.${cite('Jamieson2019')}`,
+      `Near the surface, 59&nbsp;% of the seabird species studied between 1962 and 2012 had swallowed plastic.${cite('Wilcox2015')}`,
     ],
     layers: [
       { cls: 'deep', src: 's5-deep.webp', small: 's5-deep-1280.webp', depth: 'bg', plate: true },

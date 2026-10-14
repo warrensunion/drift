@@ -44,6 +44,15 @@
 /* Embedded in a scrolling page: one-finger vertical swipes scroll the page; horizontal drags
    rotate and two-finger pinches zoom (the globe's own handlers). */
 .drift-globe.is-embedded .drift-globe__canvas { touch-action: pan-y; }
+/* Keyboard: the canvas is a tab stop (arrows turn or pan, + and - zoom, Enter drops at the aim). */
+.drift-globe__canvas:focus-visible { outline: 2px solid var(--g-glass); outline-offset: -6px; }
+.globe-aim {
+  position: absolute; z-index: 1; left: 0; top: 0; width: 28px; height: 28px; margin: -14px 0 0 -14px;
+  border: 2px solid var(--g-foam); border-radius: 50%; pointer-events: none; opacity: 0;
+  box-shadow: 0 0 0 1px rgba(7, 28, 33, .5), inset 0 0 0 1px rgba(7, 28, 33, .5);
+}
+.globe-aim::after { content: ''; position: absolute; left: 50%; top: 50%; width: 4px; height: 4px; margin: -2px 0 0 -2px; border-radius: 50%; background: var(--g-foam); }
+.drift-globe__canvas:focus-visible ~ .globe-aim { opacity: 1; }
 .drift-globe:focus { outline: none; }
 
 .globe-zoomhint {
@@ -82,7 +91,7 @@
   position: absolute;
   z-index: 2;
   top: var(--g-margin);
-  left: var(--g-margin);
+  left: max(var(--g-margin), env(safe-area-inset-left, 0px));
   bottom: calc(var(--g-margin) + 72px);
   width: 320px;
   display: flex;
@@ -210,7 +219,10 @@
   line-height: 1;
   cursor: pointer;
 }
-.globe-panel__close:hover, .globe-panel__close:focus-visible { background: rgba(127, 183, 174, .18); outline: none; }
+.globe-panel__close:hover, .globe-panel__close:focus-visible { background: rgba(127, 183, 174, .18); }
+.globe-panel__close:focus-visible { outline: 2px solid var(--g-foam); outline-offset: 0; }
+.globe-panel__close { position: relative; }
+@media (pointer: coarse) { .globe-panel__close::after { content: ''; position: absolute; inset: -6px; } }
 .globe-panel__facts { margin: 12px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
 .globe-fact { display: grid; gap: 2px; align-content: start; }
 .globe-fact:first-child { grid-column: 1 / -1; }
@@ -220,7 +232,7 @@
   font-weight: 600;
   color: var(--g-glass);
 }
-.globe-fact dd { margin: 0; font-size: 15px; line-height: 1.45; }
+.globe-fact dd { margin: 0; font-size: 15px; line-height: 1.45; font-variant-numeric: tabular-nums; }
 .globe-panel__sub {
   margin: 16px 0 8px;
   font-family: var(--g-label);
@@ -237,6 +249,7 @@
 .globe-fate--coast .globe-fate__fill { background: var(--g-foam); }
 .globe-fate--seafloor .globe-fate__fill { background: var(--g-glass); }
 .globe-fate--floating .globe-fate__fill { background: var(--g-fresh); }
+.globe-panel__note { font-variant-numeric: tabular-nums; }
 .globe-panel__note { margin: 10px 0 0; font-size: 13px; line-height: 1.5; font-style: italic; color: rgba(230, 238, 233, .72); }
 
 /* ---- timeline ---- */
@@ -244,8 +257,8 @@
   position: absolute;
   z-index: 2;
   left: calc(var(--g-margin) + 360px);
-  right: var(--g-margin);
-  bottom: var(--g-margin);
+  right: max(var(--g-margin), env(safe-area-inset-right, 0px));
+  bottom: max(var(--g-margin), env(safe-area-inset-bottom, 0px));
   display: flex;
   align-items: center;
   gap: 18px;
@@ -262,7 +275,8 @@
   color: var(--g-foam);
   cursor: pointer;
 }
-.globe-play:hover, .globe-play:focus-visible { border-color: var(--g-foam); outline: none; }
+.globe-play:hover { border-color: var(--g-foam); }
+.globe-play:focus-visible { border-color: var(--g-foam); outline: 2px solid var(--g-foam); outline-offset: 3px; }
 .globe-play__icon {
   position: absolute;
   left: 50%;
@@ -327,8 +341,16 @@
   background: var(--g-foam);
   box-shadow: 0 0 0 3px rgba(255, 77, 141, .55), 0 0 14px rgba(255, 77, 141, .6);
 }
-.globe-scrub__input:focus-visible { outline: none; }
+.globe-scrub__input:focus-visible { outline: none; box-shadow: none; } /* the thumb carries the focus ring */
 .globe-scrub__input:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--g-foam), 0 0 0 6px var(--g-fresh); }
+.globe-scrub__input:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 3px var(--g-foam), 0 0 0 6px var(--g-fresh); }
+/* Touch: a 44 px tall slider over the same 2 px track. */
+@media (pointer: coarse) {
+  .globe-scrub__input { top: -7px; height: 44px; }
+  .globe-scrub__input::-webkit-slider-runnable-track { height: 44px; }
+  .globe-scrub__input::-moz-range-track { height: 44px; }
+  .globe-scrub__input::-webkit-slider-thumb { margin-top: 14px; }
+}
 /* Labels sit below the thumb's reach (thumb + glow end ~26 px), so they never meet it. */
 .globe-scrub__ticks { position: absolute; left: 0; right: 0; top: 31px; height: 16px; pointer-events: none; }
 .globe-tick.is-hidden { visibility: hidden; }
@@ -376,6 +398,8 @@
   transition: background-color .25s var(--g-reveal), color .25s var(--g-reveal);
 }
 .globe-speed:hover { color: var(--g-foam); }
+.globe-speed { position: relative; font-variant-numeric: tabular-nums; }
+@media (pointer: coarse) { .globe-speed::after { content: ''; position: absolute; left: 0; right: 0; top: -5px; bottom: -5px; } }
 .globe-speed:focus-visible { outline: 2px solid var(--g-glass); outline-offset: -2px; }
 .globe-speed__x { margin-left: 1px; font-family: var(--g-body); font-weight: 500; font-size: 15px; }
 .globe-speed.is-on { background: var(--g-foam); color: var(--g-petrol); }
@@ -586,7 +610,7 @@
   top: 24px;
   left: 24px;
   bottom: auto;
-  max-height: calc(100% - 140px);
+  max-height: calc(100% - 48px);
   padding: 22px 22px 18px;
   width: 360px;
   border-radius: 16px;
@@ -624,6 +648,13 @@
 .salish-label--land, .salish-label--river { text-shadow: 0 0 2px rgba(230, 238, 233, .95), 0 0 6px rgba(230, 238, 233, .85); }
 .salish-label--sea, .salish-label--water, .salish-label--outside { text-shadow: 0 0 3px rgba(10, 41, 48, .9), 0 0 8px rgba(10, 41, 48, .7); }
 
+/* Scrolling columns: a thin glass scrollbar, and the scroll never chains to the page. */
+.drift-salish .globe-ui { overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: rgba(127, 183, 174, .45) transparent; }
+@media (max-width: 759px) {
+  .globe-ui { overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: rgba(127, 183, 174, .45) transparent; }
+  .globe-ui, .drift-salish .globe-ui { padding-left: max(var(--g-margin), env(safe-area-inset-left, 0px)); padding-right: max(var(--g-margin), env(safe-area-inset-right, 0px)); }
+}
+
 /* ---- phone: collapsible sheet with a one-line summary of the selected drop ---- */
 .globe-summary { display: none; }
 .globe-panel__why { margin: 10px 0 0; font-size: 14px; line-height: 1.5; color: var(--g-oxidised); }
@@ -646,7 +677,7 @@
     text-align: left;
     cursor: pointer;
   }
-  .globe-summary__text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .globe-summary__text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-variant-numeric: tabular-nums; }
   .globe-summary__more { flex: none; color: var(--g-glass); }
   .globe-summary__more::after { content: ''; display: inline-block; margin-left: 6px; width: 7px; height: 7px; border-right: 2px solid currentColor; border-top: 2px solid currentColor; transform: translateY(1px) rotate(-45deg); }
   .drift-globe.is-collapsed .globe-summary__more::after { transform: translateY(-2px) rotate(135deg); }
@@ -656,3 +687,7 @@
 }
 /* The distance line is long: give it the full width of the facts grid. */
 .globe-fact:nth-child(3) { grid-column: 1 / -1; }
+/* An empty status line takes no room (it held ~35 px under the Salish panel's footnote). */
+.globe-ui__status:empty { display: none; }
+/* The marker button is a point; its ring carries the focus ring. */
+.salish-marker:focus-visible { outline: none; box-shadow: none; }

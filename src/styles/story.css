@@ -122,6 +122,10 @@
   border-radius: 3px;
 }
 .cite a:hover { color: var(--foam); background: rgba(127, 183, 174, .18); }
+/* The numerals are tiny: an invisible 24 px (44 px on touch) hit area centred on each. */
+.cite a { position: relative; }
+.cite a::after { content: ''; position: absolute; left: 50%; top: 50%; width: 24px; height: 24px; transform: translate(-50%, -50%); }
+@media (pointer: coarse) { .cite a::after { width: 44px; height: 44px; } }
 .cite-sep { font: .68em/0 var(--font-display); vertical-align: super; color: #b8e0d8; }
 
 .cta {
@@ -336,7 +340,7 @@
 
 /* ================= chapter indicator ================= */
 .chapters {
-  position: fixed; left: var(--margin); bottom: var(--margin); z-index: 20;
+  position: fixed; left: max(var(--margin), env(safe-area-inset-left, 0px)); bottom: max(var(--margin), env(safe-area-inset-bottom, 0px)); z-index: 20;
   display: flex; align-items: center; gap: 18px;
   opacity: 0; visibility: hidden;
   transition: opacity .8s var(--ease-reveal), visibility 0s linear .8s;
@@ -360,6 +364,8 @@
   transition: color .4s var(--ease-reveal);
 }
 .chapters__btn:hover, .chapters__btn.is-current { color: var(--foam); }
+.chapters__n { font-variant-numeric: tabular-nums; }
+@media (pointer: coarse) { .chapters__btn { width: var(--hit); } }
 .chapters__bar { display: block; width: 18px; height: 1px; background: rgba(230, 238, 233, .25); overflow: hidden; }
 .chapters__bar > i { display: block; width: 100%; height: 100%; background: var(--foam); transform-origin: left; transform: scaleX(0); }
 .chapters__btn:not(.is-current) .chapters__bar > i { transform: scaleX(0) !important; }
@@ -382,7 +388,7 @@
 /* The map switch sits top centre: the globe's own controls hold the left column, the timeline the
    bottom and the "not a forecast" disclaimer the top right, which must never be covered. */
 .globe__bar {
-  position: absolute; z-index: 5; left: 50%; top: var(--margin); transform: translateX(-50%);
+  position: absolute; z-index: 5; left: 50%; top: max(var(--margin), env(safe-area-inset-top, 0px)); transform: translateX(-50%);
   display: grid; justify-items: center; gap: 10px; pointer-events: none; width: max-content; max-width: calc(100% - 2 * var(--margin));
 }
 .globe__switch {
@@ -398,6 +404,9 @@
   transition: background .4s var(--ease-reveal), color .4s var(--ease-reveal);
 }
 .globe__switch button[aria-pressed="true"] { background: var(--foam); color: var(--petrol); }
+.globe__switch button { position: relative; white-space: nowrap; }
+/* Touch: the 36 px pills keep their look; the hit area grows to 44 px. */
+@media (pointer: coarse) { .globe__switch button::after { content: ''; position: absolute; left: 0; right: 0; top: -4px; bottom: -4px; } }
 .globe__note {
   pointer-events: auto; max-width: 22rem; text-align: center;
   font: italic 400 var(--t-13)/1.45 var(--font-body); color: var(--foam);
@@ -405,7 +414,7 @@
 }
 /* Below 760 px (the globe's phone layout) the disclaimer spans the top; it moves under the switch. */
 @media (max-width: 759px) {
-  .globe__bar { top: 14px; }
+  .globe__bar { top: max(14px, env(safe-area-inset-top, 0px)); }
   .globe .drift-globe .globe-disclaimer {
     top: 66px; right: auto; width: fit-content; max-width: calc(100% - 2 * var(--g-margin));
     padding: 6px 10px; border-radius: 8px; background: rgba(7, 28, 33, .62); color: var(--foam);
@@ -474,7 +483,7 @@
 .pending { font-style: italic; color: var(--glass); }
 .fine { font-size: var(--t-13); color: rgba(230, 238, 233, .7); }
 .about__model strong { font-weight: 600; color: var(--foam); }
-.table-wrap { overflow-x: auto; margin: 1.6em 0 .6em; border-radius: 10px; box-shadow: inset 0 0 0 1px rgba(127, 183, 174, .22); max-width: 100%; }
+.table-wrap { overflow-x: auto; overscroll-behavior-x: contain; margin: 1.6em 0 .6em; border-radius: 10px; box-shadow: inset 0 0 0 1px rgba(127, 183, 174, .22); max-width: 100%; }
 .numbers { width: 100%; border-collapse: collapse; font: 400 var(--t-13)/1.35 var(--font-display); font-variant-numeric: tabular-nums; min-width: 30rem; }
 .numbers caption { text-align: left; padding: 14px 16px 6px; font: italic 400 var(--t-13)/1.4 var(--font-body); color: rgba(230, 238, 233, .75); }
 .numbers th, .numbers td { padding: 9px 16px; text-align: right; border-top: 1px solid rgba(127, 183, 174, .14); }

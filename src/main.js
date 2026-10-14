@@ -107,6 +107,10 @@ initGlobeSection(globeEl);
 initAbout(document.getElementById('about'));
 
 // ---- preloader: real progress over chapter 1's art and the fonts ----
+// While it covers the page, everything behind it is inert: Tab never lands on a hidden link.
+const behind = [document.querySelector('main'), document.querySelector('.chrome'), nav].filter(Boolean);
+const setBehindInert = (on) => behind.forEach((el) => { el.inert = on; });
+if (document.getElementById('preloader')) setBehindInert(true);
 const first = [...new Set([...chapterFiles(CHAPTERS[0]), 'ui-paper.webp'])];
 runPreloader({
   files: first,
@@ -116,6 +120,7 @@ runPreloader({
     html.classList.add('is-ready');
   },
   onBegin: () => {
+    setBehindInert(false);
     html.classList.add('is-started');
     // The begin button is about to disappear: hand focus to the first chapter's heading.
     const pre = document.getElementById('preloader');
@@ -128,6 +133,7 @@ runPreloader({
 }).catch((err) => {
   console.error('[drift] preloader failed', err);
   document.getElementById('preloader')?.remove();
+  setBehindInert(false);
   html.classList.remove('is-loading');
   story.start();
 });

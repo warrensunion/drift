@@ -44,7 +44,11 @@ export function formatAge(day) {
   return m > 0 && y < 5 ? `${ys} ${m} ${m === 1 ? 'month' : 'months'}` : ys;
 }
 
-const fmtKm = (km) => (km < 10 ? `${km.toFixed(1)} km` : `${Math.round(km).toLocaleString('en')} km`);
+// Numbers in the reader's locale; a non-breaking space keeps a number with its unit.
+const NBSP = String.fromCharCode(160);
+const fmtNum = (n, digits = 0) => n.toLocaleString(undefined, { minimumFractionDigits: digits, maximumFractionDigits: digits });
+const glue = (text) => text.replace(/(\d) (?=[a-z%])/g, `$1${NBSP}`); // '30 days' never breaks
+const fmtKm = (km) => `${fmtNum(km < 10 ? km : Math.round(km), km < 10 ? 1 : 0)}${NBSP}km`;
 const pct = (f) => `${Math.round(f * 100)}%`;
 
 const BOTTLE_SVG = `<svg viewBox="0 0 40 64" aria-hidden="true"><path d="M15 3h10v8c0 3 7 7 7 15v31c0 3-2 5-5 5H13c-3 0-5-2-5-5V26c0-8 7-12 7-15z" fill="#FF4D8D" fill-opacity=".85"/><path d="M13 30h14v14H13z" fill="#E6EEE9" fill-opacity=".7"/><path d="M15 3h10v4H15z" fill="#F2B544"/></svg>`;
@@ -66,11 +70,13 @@ export const GLOBAL_PROFILE = {
   ticks: [[0, '0'], [30, '1 mo'], [365, '1 y'], [1826, '5 y'], [3650, '10 y']],
   tickOrder: [0, 4, 2, 1, 3], // label priority when they crowd: 0, 10 y, 1 y, 1 mo, 5 y
   speedText: (s) => [String(s), '×'],
-  speedLabel: (s) => `${s} times`,
+  speedLabel: (s) => (s === 1 ? '1 simulated day per second' : `${s} simulated days per second`),
   speedTitle: (s) => (s === 1 ? '1 simulated day per second' : `${s} simulated days per second`),
   speedGroup: 'Playback speed',
   formatAge,
   zero: 'Day 0',
+  // Arrow keys on the timeline move by a readable step: days, then months, then years.
+  keyStep: (t, big) => (big ? (t < 365 ? 30.44 : 365) : t < 60 ? 1 : t < 5 * 365 ? 30.44 : 365),
   fates: [['gyre', 'In a gyre'], ['coast', 'On a coastline'], ['seafloor', 'On the seafloor'], ['floating', 'Still floating']],
   when: (t) => (t >= MAX_DAY ? 'after 10 years' : `after ${formatAge(t).toLowerCase()} (still computing)`),
   primary: null,
@@ -155,7 +161,6 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
   // ---- fragment panel ----
   const panel = el('section', 'globe-panel');
   panel.hidden = true;
-  panel.setAttribute('aria-live', 'polite');
   panel.setAttribute('aria-label', 'Selected fragment');
   const pTop = el('div', 'globe-panel__top');
   const pTitle = el('h3', 'globe-panel__title');
@@ -197,6 +202,12 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
   const status = el('p', 'globe-ui__status');
   status.setAttribute('role', 'status');
   side.append(status);
+  // Screen readers hear the selection and the computing state when they change, not every frame.
+  const live = el('p', 'visually-hidden');
+  live.setAttribute('role', 'status');
+  live.style.cssText = 'position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;margin:0';
+  let liveText = '';
+  const announce = (text) => { if (text && text !== liveText) { liveText = text; live.textContent = text; } };
 
   // ---- timeline ----
   const tl = el('div', 'globe-timeline');
@@ -242,6 +253,18 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
   range.addEventListener('input', () => { scrubbing = true; emit('scrub', scale.fromPos(+range.value / 1000)); });
   range.addEventListener('change', () => { scrubbing = false; });
   range.addEventListener('pointerup', () => { scrubbing = false; });
+  // The native step (1/1000 of a log scale) is a fraction of a day near 0: arrows and Page keys
+  // move by readable units instead, Home/End to the ends. aria-valuetext says the age in words.
+  range.addEventListener('keydown', (e) => {
+    const dir = { ArrowRight: 1, ArrowUp: 1, PageUp: 1, ArrowLeft: -1, ArrowDown: -1, PageDown: -1 }[e.key];
+    let t = null;
+    if (e.key === 'Home') t = 0;
+    else if (e.key === 'End') t = P.maxT;
+    else if (dir) t = Math.max(0, Math.min(P.maxT, curT + dir * P.keyStep(curT + (dir < 0 ? -1e-6 : 0), e.key.startsWith('Page'))));
+    if (t == null) return;
+    e.preventDefault();
+    emit('scrub', t);
+  });
 
   const speeds = el('div', 'globe-speeds');
   speeds.setAttribute('role', 'radiogroup');
@@ -260,7 +283,18 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
     speeds.append(b);
     return b;
   });
+  // A radio group (WAI-ARIA pattern): one Tab stop, arrow keys move the choice.
+  speeds.addEventListener('keydown', (e) => {
+    const d = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+    if (!d) return;
+    e.preventDefault();
+    const i = speedButtons.indexOf(document.activeElement);
+    const next = speedButtons[(Math.max(0, i) + d + SPEEDS.length) % SPEEDS.length];
+    next.focus();
+    next.click();
+  });
   const readout = el('output', 'globe-readout');
+  readout.setAttribute('aria-hidden', 'true'); // the slider's aria-valuetext says the same; no per-frame announcements
   tl.append(play, scrub, speeds, readout);
 
   const disclaimer = el('p', 'globe-disclaimer', DISCLAIMER);
@@ -268,7 +302,7 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
   const toast = el('p', 'globe-toast');
   toast.setAttribute('role', 'status');
 
-  root.append(side, tl, disclaimer, toast);
+  root.append(side, tl, disclaimer, toast, live);
 
   // On a phone the timeline lives in the bottom sheet, under the item picker.
   const phoneQuery = window.matchMedia ? window.matchMedia('(max-width: 759px)') : null;
@@ -289,6 +323,8 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
 
   let toastTimer = 0;
   function showToast(text, x, y) {
+    // Re-set even when unchanged so a repeated message is announced again.
+    if (toast.textContent === text) toast.textContent = '';
     toast.textContent = text;
     const r = root.getBoundingClientRect();
     if (x != null) {
@@ -300,27 +336,34 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
     }
     toast.classList.add('is-on');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove('is-on'), 1800);
+    toastTimer = setTimeout(() => { toast.classList.remove('is-on'); toastTimer = setTimeout(() => { toast.textContent = ''; }, 300); }, 1800);
   }
 
+  let curT = 0;
   function setTime(day, { playing, speed, computedDay }) {
+    curT = day;
     if (!scrubbing) range.value = String(Math.round(scale.toPos(day) * 1000));
     fill.style.width = `${scale.toPos(day) * 100}%`;
     computed.style.width = `${scale.toPos(computedDay) * 100}%`;
-    range.setAttribute('aria-valuetext', P.formatAge(day));
-    readout.textContent = day < 1 ? P.zero : P.formatAge(day);
-    play.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+    const vt = day < 1 ? P.zero : P.formatAge(day);
+    if (range.getAttribute('aria-valuetext') !== vt) range.setAttribute('aria-valuetext', vt);
+    if (readout.textContent !== vt) readout.textContent = vt;
+    const pl = playing ? 'Pause' : 'Play';
+    if (play.getAttribute('aria-label') !== pl) play.setAttribute('aria-label', pl);
     play.classList.toggle('is-playing', playing);
     speedButtons.forEach((b, i) => {
       const onIt = SPEEDS[i] === speed;
-      b.setAttribute('aria-checked', onIt ? 'true' : 'false');
+      if (b.getAttribute('aria-checked') !== String(onIt)) {
+        b.setAttribute('aria-checked', String(onIt));
+        b.tabIndex = onIt ? 0 : -1;
+      }
       b.classList.toggle('is-on', onIt);
     });
   }
 
   function setPanel(stats) {
     const was = !panel.hidden;
-    if (!stats) { panel.hidden = true; summary.hidden = true; root.classList.remove('has-panel'); setCollapsed(false); if (was) emit('panel', false); return; }
+    if (!stats) { liveText = ''; panel.hidden = true; summary.hidden = true; root.classList.remove('has-panel'); setCollapsed(false); if (was) emit('panel', false); return; }
     summary.hidden = false;
     panel.hidden = false;
     root.classList.add('has-panel');
@@ -328,7 +371,7 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
     const copy = ITEM_COPY[stats.item] || { name: stats.item };
     pTitle.textContent = stats.pieces > 1 ? `${copy.name}, now ${stats.pieces} pieces` : copy.name;
     fSize.textContent = stats.sizeClasses.length ? stats.sizeClasses.map((c) => SIZE_COPY[c] || c).join('; ') : 'Gone from the surface';
-    fAge.textContent = P.formatAge(stats.day);
+    fAge.textContent = glue(P.formatAge(stats.day));
     const fd = stats.fromDropKm;
     fDist.textContent = fd ? (fd.n > 4 && fd.p90 - fd.p10 > 1 ? `${fmtKm(fd.mean)} on average (most between ${fmtKm(fd.p10)} and ${fmtKm(fd.p90)})` : `${fmtKm(fd.mean)} on average`) : 'Not known yet';
     const note = P.whyNote(stats);
@@ -343,7 +386,9 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
       fateRows[k].fill.style.width = `${Math.round(f * 100)}%`;
     }
     const when = P.when(stats.fatesDay);
-    endNote.textContent = `Probability across ${stats.endMembers || 'its'} simulated copies, ${when}.`;
+    const n = stats.endMembers ? fmtNum(stats.endMembers) : 'its';
+    endNote.textContent = glue(`Probability across ${n} simulated copies, ${when}.`);
+    announce(`${copy.name}. ${/computing/.test(when) ? 'Still computing…' : `Computed, ${when}.`}`);
   }
 
   return {
@@ -362,6 +407,6 @@ export function createUI(root, { base = '/', touch = false, reducedMotion = fals
     contains: (node) => side.contains(node) || tl.contains(node),
     setCollapsed,
     get collapsed() { return root.classList.contains('is-collapsed'); },
-    dispose() { clearTimeout(toastTimer); if (tickRO) tickRO.disconnect(); if (phoneQuery) phoneQuery.removeEventListener('change', placeTimeline); side.remove(); tl.remove(); disclaimer.remove(); toast.remove(); },
+    dispose() { clearTimeout(toastTimer); if (tickRO) tickRO.disconnect(); if (phoneQuery) phoneQuery.removeEventListener('change', placeTimeline); side.remove(); tl.remove(); disclaimer.remove(); toast.remove(); live.remove(); },
   };
 }

@@ -6,7 +6,11 @@ html {
   text-size-adjust: 100%;
   background: var(--petrol);
   color: var(--foam);
+  color-scheme: dark; /* scrollbars and native controls match the deep-water page */
+  -webkit-tap-highlight-color: rgba(127, 183, 174, .22); /* a glass tint, not the default grey */
 }
+/* No desktop rubber-band past the ends; phones keep pull-to-refresh. */
+@media (pointer: fine) { html { overscroll-behavior: none; } }
 body {
   margin: 0;
   min-height: 100%;
@@ -20,6 +24,8 @@ body {
 img { max-width: none; }
 a { color: inherit; }
 button { font: inherit; color: inherit; }
+/* No double-tap zoom delay on controls. */
+a, button, input, select, textarea, label, summary { touch-action: manipulation; }
 h1, h2, h3 { font-family: var(--font-display); font-weight: 300; margin: 0; }
 p { margin: 0; }
 
@@ -43,7 +49,7 @@ p { margin: 0; }
   font: 600 var(--t-13)/1 var(--font-display); text-decoration: none;
   transform: translateY(-110%);
 }
-.skip:focus-visible { transform: translateY(var(--margin)); }
+.skip:focus-visible { transform: translateY(max(var(--margin), env(safe-area-inset-top, 0px))); }
 
 /* Paper grain multiplied over everything (makemepulse: the frame is multiplied by a paper tile). */
 .grain {
@@ -58,7 +64,7 @@ p { margin: 0; }
 .chrome {
   position: fixed; left: 0; right: 0; top: 0; z-index: 20;
   display: flex; align-items: center; justify-content: space-between;
-  padding: var(--margin) var(--margin) 0;
+  padding: max(var(--margin), env(safe-area-inset-top, 0px)) max(var(--margin), env(safe-area-inset-right, 0px)) 0 max(var(--margin), env(safe-area-inset-left, 0px));
   pointer-events: none;
   opacity: 0;
   visibility: hidden; /* hidden controls are never focusable */

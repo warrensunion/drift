@@ -6,6 +6,11 @@
   <title>Drift</title>
   <meta name="description" content="Follow one plastic bottle from a riverbank into the deep, then drop your own anywhere in the ocean and watch ten simulated years of possible paths." />
   <meta name="theme-color" content="#0E2F36" />
+  <meta name="color-scheme" content="dark" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Drift" />
+  <meta property="og:description" content="Follow one plastic bottle from a riverbank into the deep, then drop your own anywhere in the ocean and watch ten simulated years of possible paths." />
+  <meta name="twitter:card" content="summary" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,6 +20,7 @@
   <style>
     /* Critical: the preloader paints before any script or stylesheet arrives. */
     html, body { margin: 0; background: #0E2F36; }
+    html { color-scheme: dark; }
     html.is-loading, html.is-loading body { overflow: hidden; }
     .pre { position: fixed; inset: 0; z-index: 50; color: #E6EEE9; pointer-events: none; overflow: hidden; }
     .pre { --cap-y: 24vh; }
@@ -64,7 +70,10 @@
   </style>
   <script>
     // Never leave the page locked if a script fails to arrive.
-    setTimeout(function () { document.documentElement.classList.remove('is-loading'); }, 20000);
+    setTimeout(function () {
+      document.documentElement.classList.remove('is-loading');
+      if (!document.querySelector('.pre.is-js')) document.querySelectorAll('[inert]').forEach(function (el) { el.inert = false; });
+    }, 20000);
   </script>
 </head>
 <body>
@@ -103,9 +112,9 @@
     <div class="pre__ring" aria-hidden="true"></div>
     <div class="pre__intro">
       <div class="pre__intro-inner">
-        <p class="pre__title" aria-hidden="true">Drift</p>
+        <p class="pre__title" aria-hidden="true" translate="no">Drift</p>
         <p class="pre__lede">One plastic bottle, ten years, and a cloud of possible paths.</p>
-        <button class="pre__hint" type="button" data-cursor="Begin"><span>Scroll to begin</span><i aria-hidden="true"></i></button>
+        <button class="pre__hint" type="button" data-cursor="Begin" inert><span>Scroll to begin</span><i aria-hidden="true"></i></button>
       </div>
     </div>
     <!-- One hand-painted stroke: a wobbly, tapered wake, rough-edged and dry-brushed through a turbulence mask. -->
@@ -133,12 +142,17 @@
   </div>
 
   <header class="chrome" aria-label="Site">
-    <a class="chrome__mark" href="#top" aria-label="Drift, back to the start">Drift</a>
+    <a class="chrome__mark" href="#top" aria-label="Drift, back to the start" translate="no">Drift</a>
     <nav class="chrome__links" aria-label="Sections">
       <a href="#globe">The globe</a>
       <a href="#about">About the science</a>
     </nav>
   </header>
+
+  <nav class="chapters" aria-label="Chapters">
+    <ol class="chapters__list"></ol>
+    <p class="chapters__title" aria-hidden="true"></p>
+  </nav>
 
   <main id="top" tabindex="-1">
     <h1 class="visually-hidden">Drift: one plastic bottle, ten years, and a cloud of possible paths</h1>
@@ -149,7 +163,6 @@
 
     <section id="globe" class="globe" aria-labelledby="globe-title">
       <h2 id="globe-title" class="visually-hidden">Drop your own: the ocean globe</h2>
-      <div class="globe__mount"></div>
       <div class="globe__bar">
         <div class="globe__switch" role="group" aria-label="Choose a map">
           <button type="button" data-mode="global" aria-pressed="true">Global ocean</button>
@@ -157,6 +170,7 @@
         </div>
         <p class="globe__note" role="status" hidden></p>
       </div>
+      <div class="globe__mount"></div>
     </section>
 
     <section id="about" class="about" aria-labelledby="about-title">
@@ -170,7 +184,7 @@
         <div class="about__intro">
           <h2 id="about-title" class="about__title">About the science</h2>
           <p class="about__lede">Simulation with uncertainty, not a forecast.</p>
-          <p>Everything on the globe is built from real measurements: satellite-derived currents, satellite winds, and thousands of drifting buoys like the one on the right, a float at the surface tied to a drogue 15 m down. Here is what went in, what came out, and where it falls short.</p>
+          <p>Everything on the globe is built from real measurements: satellite-derived currents, satellite winds, and thousands of drifting buoys like the one on the right, a float at the surface tied to a drogue 15&nbsp;m down. Here is what went in, what came out, and where it falls short.</p>
         </div>
       </div>
 
@@ -179,7 +193,7 @@
           <h3>The data</h3>
           <dl class="facts">
             <dt>Currents</dt><dd>Monthly averages of the OSCAR surface currents, which are derived from satellites, over 2011 to 2014, on a grid of 1° cells.</dd>
-            <dt>Wind</dt><dd>Monthly averages of QuikSCAT satellite winds at 10 m, 1999 to 2009, with gaps near coasts and sea ice filled from the nearest open water.</dd>
+            <dt>Wind</dt><dd>Monthly averages of QuikSCAT satellite winds at 10&nbsp;m, 1999 to 2009, with gaps near coasts and sea ice filled from the nearest open water.</dd>
             <dt>Drifters</dt><dd>The Global Drifter Program’s buoys, 2012 to 2014, one position a day. Some lost their drogue and rode at the surface, catching more wind; the model uses that difference.</dd>
             <dt>Land</dt><dd>Natural Earth coastlines.</dd>
           </dl>
@@ -191,8 +205,8 @@
           <h3>Its limits</h3>
           <ul class="limits">
             <li><strong>Climatology, not live.</strong> Currents and winds are monthly averages over a few years. No particular storm or eddy is in them.</li>
-            <li><strong>A coarse grid.</strong> Currents sit on 1° cells, about 111 km at the equator, and winds on 2° cells, so coasts, straits and anything smaller are blurred.</li>
-            <li><strong>Windage is a proxy.</strong> The drifter record only covers objects that slip downwind at about 0.1 % to 1 % of the wind speed,<span data-cite="PazanNiiler2001,Poulain2009"></span> so a bottle riding high and a flat bag look the same to the model.</li>
+            <li><strong>A coarse grid.</strong> Currents sit on 1° cells, about 111&nbsp;km at the equator, and winds on 2° cells, so coasts, straits and anything smaller are blurred.</li>
+            <li><strong>Windage is a proxy.</strong> The drifter record only covers objects that slip downwind at about 0.1&nbsp;% to 1&nbsp;% of the wind speed,<span data-cite="PazanNiiler2001,Poulain2009"></span> so a bottle riding high and a flat bag look the same to the model.</li>
             <li><strong>Fragmentation timing is uncertain.</strong> No study has timed how long a floating item takes to break into smaller pieces. Drift’s rates are assumptions built from lab, beach and seafloor measurements.<span data-cite="Chamas2020,Song2017,Ioakeimidis2016"></span></li>
             <li><strong>Flat water.</strong> Sinking, beaching and gathering in gyres follow simple rules with cited rates; nothing moves in depth.</li>
           </ul>
@@ -207,11 +221,6 @@
       <footer class="about__foot"><p>Drift. A simulation with uncertainty, not a forecast.</p></footer>
     </section>
   </main>
-
-  <nav class="chapters" aria-label="Chapters">
-    <ol class="chapters__list"></ol>
-    <p class="chapters__title" aria-hidden="true"></p>
-  </nav>
 
   <div class="grain" aria-hidden="true"></div>
   <script type="module" src="/src/main.js"></script>

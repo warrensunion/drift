@@ -7,9 +7,10 @@ import { SOURCES } from './story/sources.js';
 const BASE = (import.meta.env && import.meta.env.BASE_URL) || '/';
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
-const km = (x) => (Number.isFinite(x) ? x.toFixed(1) : '–');
-const pct = (x) => (Number.isFinite(x) ? `${Math.round(x * 100)} %` : '–');
-const int = (x) => (Number.isFinite(x) ? x.toLocaleString('en-GB') : '–');
+// Numbers in the reader's locale; &nbsp; keeps a number with its unit.
+const km = (x) => (Number.isFinite(x) ? x.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 }) : '–');
+const pct = (x) => (Number.isFinite(x) ? `${Math.round(x * 100)}&nbsp;%` : '–');
+const int = (x) => (Number.isFinite(x) ? x.toLocaleString() : '–');
 
 async function getJson(path) {
   const res = await fetch(`${BASE}${path}`);
@@ -53,11 +54,11 @@ export function renderModel(meta) {
   return `
     <p>The model was tested on ${int(sp.drifters && sp.drifters.test)} drifters it never saw while training
       (${int(sp.pairs && sp.pairs.test)} day-to-day moves), split by drifter so no track leaks between sets.
-      Across all of them its typical one-day miss was <strong>${km(overall.medianModel)} km</strong>, against
-      ${km(overall.medianAdvection)} km for plain advection (moving with the current alone). That is a small gain,
-      about ${Number.isFinite(gain) ? Math.round(gain * 100) : '–'} %, and we report it as small.</p>
+      Across all of them its typical one-day miss was <strong>${km(overall.medianModel)}&nbsp;km</strong>, against
+      ${km(overall.medianAdvection)}&nbsp;km for plain advection (moving with the current alone). That is a small gain,
+      about ${Number.isFinite(gain) ? Math.round(gain * 100) : '–'}&nbsp;%, and we report it as small.</p>
     <p>After ten days, starting from real positions, the median distance from the true track was
-      ${km(ten.model)} km for the model, ${km(ten.advection)} km for advection and ${km(ten.stationary)} km for
+      ${km(ten.model)}&nbsp;km for the model, ${km(ten.advection)}&nbsp;km for advection and ${km(ten.stationary)}&nbsp;km for
       simply staying put. Its uncertainty is roughly honest: ${pct(cal.within2sigma)} of real moves fell inside its
       two-sigma spread, where ${pct(cal.ideal2sigma)} would be perfect.</p>
     ${lostNames.length ? `<p>Where it does not win: ${esc(lostNames.join('; '))}. In these, plain advection matched or beat the model on at least one measure (typical miss, average miss, or how often it was closer).</p>` : ''}

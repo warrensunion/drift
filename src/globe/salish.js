@@ -45,6 +45,7 @@ export const SALISH_PROFILE = {
   speedGroup: 'Simulated hours per second',
   formatAge: formatHours,
   zero: 'Hour 0',
+  keyStep: (t, big) => (big ? 24 : t < 48 ? 1 : t < 240 ? 6 : 24),
   fates: [['coast', 'On a beach'], ['left', 'Left the strait'], ['floating', 'Still floating']],
   when: (t) => (t >= MAX_H ? 'after 30 days' : `after ${formatHours(t).toLowerCase()} (still computing)`),
   primary: 'Drop at the river mouth',
@@ -221,7 +222,11 @@ export function mountSalish(el, { embedded = true } = {}) {
   const canvas = document.createElement('canvas');
   canvas.className = 'drift-globe__canvas';
   canvas.setAttribute('role', 'img');
-  canvas.setAttribute('aria-label', 'Chart of the Fraser River mouth and the Strait of Georgia. Drag to move, pinch or hold Ctrl and scroll to zoom, click or tap the water to drop the selected item.');
+  canvas.setAttribute('aria-label', 'Chart of the Fraser River mouth and the Strait of Georgia. Drag to move, pinch or hold Ctrl and scroll to zoom, click or tap the water to drop the selected item. With the keyboard: arrow keys move the chart, plus and minus zoom, Enter drops at the ring.');
+  canvas.tabIndex = 0; // the keyboard alternative to dragging and tapping
+  const aim = document.createElement('span');
+  aim.className = 'globe-aim';
+  aim.setAttribute('aria-hidden', 'true');
   const labels = document.createElement('div');
   labels.className = 'salish-labels';
   labels.setAttribute('aria-hidden', 'true');
@@ -232,7 +237,7 @@ export function mountSalish(el, { embedded = true } = {}) {
   zoomHint.className = 'globe-zoomhint';
   zoomHint.setAttribute('aria-hidden', 'true');
   zoomHint.textContent = 'Hold Ctrl to zoom';
-  root.append(canvas, labels, grain, zoomHint);
+  root.append(canvas, aim, labels, grain, zoomHint);
   el.append(root);
 
   const ui = createUI(root, { base, touch, reducedMotion, profile: SALISH_PROFILE });
@@ -284,6 +289,10 @@ export function mountSalish(el, { embedded = true } = {}) {
     const phone = w < 760;
     const first = size.w === 1;
     size = { w, h, phone };
+    // The aim sits in the middle of the chart that the controls leave open.
+    size.ax = phone ? w / 2 : (24 + 360 + w) / 2;
+    size.ay = phone ? h * 0.3 : h / 2;
+    aim.style.transform = `translate(${size.ax.toFixed(1)}px, ${size.ay.toFixed(1)}px)`;
     if (map) {
       const cover = Math.min(map.width / w, map.height / h);
       const ratio = view.ts / view.cover;
@@ -607,11 +616,28 @@ export function mountSalish(el, { embedded = true } = {}) {
       zoomAt(e.offsetX, e.offsetY, Math.exp(e.deltaY * 0.0015));
     }, { passive: false });
     const onKey = (e) => {
+      // Escape closes the panel from anywhere in the globe, the slider and buttons included.
+      if (e.key === 'Escape' && S.selected) { select(null); return; }
       const t = e.target;
       if (t && /^(input|textarea|select|button)$/i.test(t.tagName)) return;
       if (e.key === ' ') { e.preventDefault(); togglePlay(); }
-      if (e.key === 'Escape') select(null);
     };
+    // Keyboard alternative to the gestures: arrows pan, + / - zoom, Enter drops at the aim.
+    listen(canvas, 'keydown', (e) => {
+      const px = 80 * view.ts;
+      const pan = { ArrowLeft: [-px, 0], ArrowRight: [px, 0], ArrowUp: [0, px], ArrowDown: [0, -px] }[e.key];
+      if (pan) { view.tcx += pan[0]; view.tcy += pan[1]; clampView(); }
+      else if (e.key === '+' || e.key === '=') zoomAt(size.ax, size.ay, 0.8);
+      else if (e.key === '-' || e.key === '_') zoomAt(size.ax, size.ay, 1.25);
+      else if (e.key === 'Enter') {
+        const [lon, lat] = fromScreen(size.ax, size.ay);
+        if (isOutside(lon, lat)) ui.showToast(OUTSIDE_MESSAGE, size.ax, size.ay);
+        else if (isLand(lon, lat)) ui.showToast(LAND_MESSAGE, size.ax, size.ay);
+        else if (!S.simOk) ui.showToast('Drops are off: the simulation could not start.', size.ax, size.ay);
+        else drop(ui.item, lon, lat);
+      } else return;
+      e.preventDefault();
+    });
     listen(root, 'keydown', onKey);
     if (!embedded) listen(window, 'keydown', (e) => { if (e.target === document.body) onKey(e); });
     ui.on('play', togglePlay);

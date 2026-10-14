@@ -40,8 +40,9 @@ export function createCursor({ reduced = false } = {}) {
     target = c.size;
     if (c.text) { label.textContent = c.text; el.classList.add('has-label'); }
     else el.classList.remove('has-label');
-    // Over the globe's own canvas the globe owns the pointer.
-    el.classList.toggle('is-off', !!(e.target.closest && e.target.closest('.drift-globe')));
+    // Over the globe section (its canvas and its controls) the native cursor is enough: the dot
+    // would sit on the switch and button labels.
+    el.classList.toggle('is-off', !!(e.target.closest && e.target.closest('.drift-globe, .globe')));
   }
   function onLeave() { visible = false; el.classList.remove('is-visible'); }
 

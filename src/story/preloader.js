@@ -92,6 +92,7 @@ export async function runPreloader({ files, reduced = false, onReveal, onBegin }
   }
   await wait(reduced ? 0 : 1000);
   intro.classList.add('is-ready');
+  hint.inert = false; // focusable only once it is visible
   const status = document.getElementById('pre-status');
   if (status) status.textContent = 'Drift is ready. Scroll, or press the button, to begin.';
 

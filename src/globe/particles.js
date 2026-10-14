@@ -21,6 +21,11 @@ export const TRAIL = 12; // trail segments (previous snapshots)
 const BLOCK = 8; // columns per allocation block (one bottle drop = 24 members = 3 blocks)
 const MAX_DROPS = 1024;
 const INVALID = -1;
+// Sunk markers: only one member column in MARK_EVERY keeps a ghost ring where it went down (the
+// rest fade to nothing). Copies of one fragment sink close together and the glow is additive, so
+// a ring per copy piled up into bright dots; one in 24 is one per 24-member ensemble.
+const MARK_EVERY = 24;
+const RING_GAIN = 0.5;
 // Additive light that leaves the canvas alpha alone: the canvas is transparent over the page, and
 // plain additive blending would also add alpha, turning each glow quad at the limb into an opaque
 // square. Colours are premultiplied (rgb * intensity) in the shaders.
@@ -146,8 +151,8 @@ export function createParticles({ flat = null, days = snapshotDays(), ageScale =
   };
   // Alpha from fate: beached dim; sunk fades over 150 days after it sank, to a faint ghost that
   // marks where it went down.
-  const fateAlpha = (fate, sunkDay, tDay) => {
-    const sunkFade = mix(float(1), float(ghost), smoothstep(0, fadeSpan, tDay.sub(sunkDay)));
+  const fateAlpha = (fate, sunkDay, tDay, g = float(ghost)) => {
+    const sunkFade = mix(float(1), g, smoothstep(0, fadeSpan, tDay.sub(sunkDay)));
     return select(fate.equal(3), sunkFade, select(fate.equal(2), float(0.38), float(1)));
   };
   const sinkDepth = (fate, sunkDay, tDay) => (flat ? float(0) : select(fate.equal(3), smoothstep(0, fadeSpan, tDay.sub(sunkDay)).mul(0.035), float(0)));
@@ -166,7 +171,7 @@ export function createParticles({ flat = null, days = snapshotDays(), ageScale =
     const hValid = hSlot.greaterThanEqual(0).and(hAlive.greaterThan(0.5)).and(hA.z.greaterThanEqual(0));
     const hSel = hSlot.equal(uSelSlot).and(isSelFrag(hDec.frag));
     const hAlpha = select(hValid,
-      fateAlpha(hDec.fate, hA.w, hDay).mul(facing(hN)).mul(select(anySel.and(hSel.not()), float(0.5), float(1))),
+      fateAlpha(hDec.fate, hA.w, hDay, select(mod(float(instanceIndex), MARK_EVERY).lessThan(0.5), float(ghost), float(0))).mul(facing(hN)).mul(select(anySel.and(hSel.not()), float(0.5), float(1))),
       float(0));
     // CSS px by size class: macro, meso, micro, small.
     const hPx = select(hDec.size.equal(0), float(9), select(hDec.size.equal(1), float(6.5), select(hDec.size.equal(2), float(4.5), float(3.4))));
@@ -192,7 +197,7 @@ export function createParticles({ flat = null, days = snapshotDays(), ageScale =
     const core = exp(dc.mul(dc).mul(-1.4));
     const halo = exp(d.mul(-4.5)).mul(0.2).mul(clamp(float(1).sub(d), 0, 1));
     const glow = core.add(halo);
-    const ring = exp(dc.sub(1.1).mul(dc.sub(1.1)).mul(-14)).mul(0.9);
+    const ring = exp(dc.sub(1.1).mul(dc.sub(1.1)).mul(-14)).mul(RING_GAIN);
     const mark = smoothstep(0.8, 0.45, dc).mul(1.6);
     const shape = mix(mix(glow, ring, headShape.x), mark, headShape.y);
     const k = shape.mul(headCol.w);
