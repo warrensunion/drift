@@ -10,20 +10,30 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link id="fonts" rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" />
+  <link rel="preload" as="image" href="/art/s2-surface-1280.webp" fetchpriority="high" />
   <link rel="preload" as="image" href="/art/ui-paper.webp" />
   <style>
     /* Critical: the preloader paints before any script or stylesheet arrives. */
     html, body { margin: 0; background: #0E2F36; }
     html.is-loading, html.is-loading body { overflow: hidden; }
-    .pre { position: fixed; inset: 0; z-index: 50; color: #E6EEE9; pointer-events: none; }
+    .pre { position: fixed; inset: 0; z-index: 50; color: #E6EEE9; pointer-events: none; overflow: hidden; }
+    .pre { --cap-y: 24vh; }
+    .pre__scene { position: absolute; inset: 0; overflow: hidden; }
     .pre__water { position: absolute; inset: 0; background:
-      radial-gradient(ellipse 70% 42% at 50% -6%, rgba(214, 236, 226, .34), rgba(127, 183, 174, .08) 55%, transparent 75%),
-      radial-gradient(ellipse 120% 80% at 50% 0%, #1F5A5E 0%, #12404A 38%, #0B2A31 70%, #071C21 100%); }
-    .pre__rays { position: absolute; inset: 0; opacity: .5; background:
-      repeating-linear-gradient(98deg, transparent 0 6vw, rgba(214, 236, 226, .05) 6vw 7vw, transparent 7vw 12vw),
-      repeating-linear-gradient(82deg, transparent 0 9vw, rgba(214, 236, 226, .04) 9vw 9.6vw, transparent 9.6vw 15vw);
-      -webkit-mask-image: linear-gradient(#000, transparent 70%); mask-image: linear-gradient(#000, transparent 70%); }
-    .pre__bar { position: absolute; left: 50%; top: 50%; width: 36px; height: min(300px, 42vh); margin: calc(min(300px, 42vh) / -2) 0 0 -18px; overflow: hidden; transform: translate3d(0, 100%, 0); }
+      radial-gradient(ellipse 46% 30% at 50% 24vh, rgba(214, 236, 226, .42), rgba(127, 183, 174, .1) 60%, transparent 80%),
+      radial-gradient(ellipse 120% 90% at 50% 0%, #2a6d6d 0%, #1A5157 30%, #10393F 62%, #0A262C 85%, #071C21 100%); }
+    /* The lit sea surface seen from below: one small image, masked to the top, drifting gently. */
+    .pre__surface { position: absolute; left: -6%; right: -6%; top: 0; height: 48%; background: url(/art/s2-surface-1280.webp) 50% 0 / cover no-repeat;
+      -webkit-mask-image: linear-gradient(#000 30%, rgba(0,0,0,.5) 62%, transparent); mask-image: linear-gradient(#000 30%, rgba(0,0,0,.5) 62%, transparent);
+      animation: pre-drift 26s ease-in-out infinite alternate; }
+    @keyframes pre-drift { from { transform: translate3d(-1.6%, 0, 0) scale(1.05); } to { transform: translate3d(1.6%, .6%, 0) scale(1.05); } }
+    /* Soft god-rays fanning down from the cap. */
+    .pre__rays { position: absolute; left: 50%; top: var(--cap-y); width: 240vmax; height: 130vh; margin-left: -120vmax; pointer-events: none;
+      background: conic-gradient(from 130deg at 50% 0, transparent 0deg, transparent 0.0deg, rgba(226,242,234,0.100) 0.8deg, transparent 1.5deg, transparent 3.5deg, rgba(226,242,234,0.200) 5.0deg, transparent 6.4deg, transparent 9.3deg, rgba(226,242,234,0.125) 11.5deg, transparent 13.6deg, transparent 17.4deg, rgba(226,242,234,0.225) 18.5deg, transparent 19.6deg, transparent 24.3deg, rgba(226,242,234,0.150) 26.1deg, transparent 27.9deg, transparent 29.9deg, rgba(226,242,234,0.250) 30.6deg, transparent 31.4deg, transparent 34.3deg, rgba(226,242,234,0.175) 35.8deg, transparent 37.2deg, transparent 41.0deg, rgba(226,242,234,0.100) 43.1deg, transparent 45.3deg, transparent 50.0deg, rgba(226,242,234,0.200) 51.1deg, transparent 52.2deg, transparent 54.2deg, rgba(226,242,234,0.125) 56.0deg, transparent 57.8deg, transparent 60.7deg, rgba(226,242,234,0.225) 61.5deg, transparent 62.2deg, transparent 66.0deg, rgba(226,242,234,0.150) 67.5deg, transparent 68.9deg, transparent 73.6deg, rgba(226,242,234,0.250) 75.8deg, transparent 77.9deg, transparent 79.9deg, rgba(226,242,234,0.175) 81.0deg, transparent 82.1deg, transparent 85.0deg, rgba(226,242,234,0.100) 86.8deg, transparent 88.6deg, transparent 92.4deg, rgba(226,242,234,0.200) 93.1deg, transparent 93.9deg, transparent 100deg, transparent 360deg);
+      -webkit-mask-image: radial-gradient(ellipse 34% 100% at 50% 0, #000 20%, rgba(0,0,0,.6) 50%, transparent 85%); mask-image: radial-gradient(ellipse 34% 100% at 50% 0, #000 20%, rgba(0,0,0,.6) 50%, transparent 85%);
+      filter: blur(6px); opacity: 1; mix-blend-mode: screen; transform-origin: 50% 0; animation: pre-rays 11s ease-in-out infinite alternate; }
+    @keyframes pre-rays { from { transform: rotate(-2.5deg); opacity: .8; } to { transform: rotate(2.5deg); opacity: 1; } }
+    .pre__bar { position: absolute; left: 50%; top: calc(var(--cap-y) + 12px); width: 36px; height: min(330px, 48vh); margin-left: -18px; overflow: hidden; transform: translate3d(0, 100%, 0); }
     .pre__bar-inner { position: absolute; inset: 0; transform: translate3d(0, -100%, 0); }
     .pre__bar, .pre__bar-inner { transition: transform .8s cubic-bezier(.215, .61, .355, 1); }
     .pre.is-in .pre__bar, .pre.is-in .pre__bar-inner { transform: translate3d(0, 0, 0); }
@@ -33,13 +43,13 @@
     .pre__track { opacity: .2; }
     .pre__fill { position: absolute; inset: 0; overflow: hidden; transform: translate3d(0, 100%, 0); transition: transform .5s ease; }
     .pre__fill-inner { position: absolute; inset: 0; transform: translate3d(0, -100%, 0); transition: transform .5s ease; }
-    .pre__drop { position: absolute; left: 50%; top: calc(50% - min(150px, 21vh) - 22px); width: 26px; height: 16px; margin-left: -13px; border-radius: 50% 50% 46% 54% / 60% 60% 40% 40%;
-      background: radial-gradient(ellipse at 38% 30%, #ff9cc0 0, #FF4D8D 38%, #b8215d 100%); box-shadow: 0 0 18px rgba(255, 77, 141, .35);
-      opacity: calc(.25 + var(--p, 0) * .75); transition: opacity .5s ease, transform .8s cubic-bezier(.215, .61, .355, 1); }
-    .pre.is-out .pre__drop { transform: translate3d(0, -40vh, 0); opacity: 0; }
-    .pre__ripples { position: absolute; left: 50%; top: calc(50% - min(150px, 21vh) - 14px); width: 0; height: 0; }
-    .pre__ripples i { position: absolute; left: 0; top: 0; width: 120px; height: 30px; margin: -15px 0 0 -60px; border-radius: 50%; border: 1px solid rgba(230, 238, 233, .25); animation: pre-ripple 3.6s cubic-bezier(.215, .61, .355, 1) infinite; opacity: 0; }
-    .pre__ripples i:nth-child(2) { animation-delay: 1.2s; } .pre__ripples i:nth-child(3) { animation-delay: 2.4s; }
+    .pre__cap { position: absolute; left: 50%; top: var(--cap-y); width: 84px; height: 55px; margin: -34px 0 0 -42px; filter: drop-shadow(0 0 16px rgba(255, 77, 141, .35)) drop-shadow(0 6px 10px rgba(7, 28, 33, .35));
+      transition: opacity .6s ease, transform .8s cubic-bezier(.215, .61, .355, 1); animation: pre-bob 4.8s ease-in-out infinite; }
+    @keyframes pre-bob { 0%, 100% { translate: 0 0; rotate: -3deg; } 50% { translate: 0 3px; rotate: 2deg; } }
+    .pre.is-out .pre__cap { transform: translate3d(0, -40vh, 0); opacity: 0; }
+    .pre__ripples { position: absolute; left: 50%; top: calc(var(--cap-y) - 6px); width: 0; height: 0; }
+    .pre__ripples i { position: absolute; left: 0; top: 0; width: 220px; height: 44px; margin: -22px 0 0 -110px; border-radius: 50%; border: 2px solid rgba(240, 246, 242, .7); box-shadow: 0 0 14px rgba(230, 238, 233, .3), inset 0 0 10px rgba(230, 238, 233, .2); animation: pre-ripple 3.6s cubic-bezier(.215, .61, .355, 1) infinite; opacity: 0; }
+    .pre__ripples i:nth-child(1) { animation-delay: -.6s; } .pre__ripples i:nth-child(2) { animation-delay: .6s; } .pre__ripples i:nth-child(3) { animation-delay: 1.8s; }
     @keyframes pre-ripple { 0% { transform: scale(.15); opacity: 0; } 15% { opacity: 1; } 100% { transform: scale(2.6); opacity: 0; } }
     .pre.is-out .pre__ripples { opacity: 0; transition: opacity .6s; }
     .pre__ring { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform: translate(-50%, -50%); border-radius: 50%; box-shadow: 0 0 0 1px rgba(230, 238, 233, .35), 0 0 60px rgba(7, 28, 33, .5); opacity: 0; }
@@ -48,7 +58,8 @@
     .pre__lede, .pre__hint { opacity: 0; transition: opacity .5s ease; }
     @media (prefers-reduced-motion: reduce) {
       .pre__bar, .pre__bar-inner, .pre__fill, .pre__fill-inner { transition-duration: .01s; }
-      .pre__ripples { display: none; }
+      .pre__ripples i { animation: none; opacity: .5; transform: scale(.7); }
+      .pre__surface, .pre__rays, .pre__cap { animation: none; }
     }
   </style>
   <script>
@@ -61,10 +72,26 @@
 
   <div id="preloader" class="pre">
     <p id="pre-status" class="visually-hidden" role="status">Loading Drift…</p>
-    <div class="pre__water"></div>
-    <div class="pre__rays"></div>
+    <div class="pre__scene" aria-hidden="true">
+      <div class="pre__water"></div>
+      <div class="pre__surface"></div>
+      <div class="pre__rays"></div>
+    </div>
     <div class="pre__ripples" aria-hidden="true"><i></i><i></i><i></i></div>
-    <span class="pre__drop" aria-hidden="true"></span>
+    <!-- The drop of plastic: a magenta bottle cap seen from just below the surface. -->
+    <svg class="pre__cap" viewBox="0 0 58 38" aria-hidden="true">
+      <defs>
+        <linearGradient id="cap-side" x1="0" x2="1"><stop offset="0" stop-color="#8f1747" /><stop offset=".3" stop-color="#ff6aa2" /><stop offset=".55" stop-color="#f04585" /><stop offset="1" stop-color="#7c123d" /></linearGradient>
+        <radialGradient id="cap-top" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#ffb3cf" /><stop offset=".6" stop-color="#ff5d98" /><stop offset="1" stop-color="#c92766" /></radialGradient>
+      </defs>
+      <path d="M4 11 L4 27 A25 7.5 0 0 0 54 27 L54 11 Z" fill="url(#cap-side)" />
+      <g stroke="#7a0f3a" stroke-opacity=".5" stroke-width="1.1">
+        <path d="M8 13v16M12 14v16.5M16 14.5v17M20 15v17M24 15v17.4M28 15v17.5M32 15v17.4M36 15v17M40 14.5v17M44 14v16.5M48 13v16M51 12v15" />
+      </g>
+      <ellipse cx="29" cy="11" rx="25" ry="7.5" fill="url(#cap-top)" />
+      <ellipse cx="25" cy="9.4" rx="12" ry="2.6" fill="#fff" opacity=".35" />
+      <path d="M4 27 A25 7.5 0 0 0 54 27" fill="none" stroke="#5c0c2d" stroke-width="1.6" stroke-opacity=".8" />
+    </svg>
     <div class="pre__bar" aria-hidden="true">
       <div class="pre__bar-inner">
         <svg class="pre__stroke pre__track" viewBox="0 0 36 300" preserveAspectRatio="none"><use href="#stroke" /></svg>
@@ -137,6 +164,8 @@
         <div class="about__sky"><img class="about__clouds" src="/art/s3-clouds.webp" alt="" loading="lazy" decoding="async" /><img class="about__hills" src="/art/s1-hills.webp" alt="" loading="lazy" decoding="async" /></div>
         <img class="about__rays" src="/art/s3-rays.webp" alt="" loading="lazy" decoding="async" />
         <div class="about__sea"><i class="about__swell"></i></div>
+        <div class="about__glow" aria-hidden="true"></div>
+        <div class="about__haze" aria-hidden="true"></div>
         <img class="about__buoy" src="/art/item-buoy.webp" alt="" width="272" height="1498" loading="lazy" decoding="async" />
         <div class="about__intro">
           <h2 id="about-title" class="about__title">About the science</h2>

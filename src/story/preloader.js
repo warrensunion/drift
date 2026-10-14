@@ -34,7 +34,7 @@ export async function runPreloader({ files, reduced = false, onReveal, onBegin }
   const bar = root.querySelector('.pre__bar');
   const fill = root.querySelector('.pre__fill');
   const fillInner = root.querySelector('.pre__fill-inner');
-  const water = root.querySelector('.pre__water');
+  const water = root.querySelector('.pre__scene'); // the whole lit scene gets the disc hole
   const ring = root.querySelector('.pre__ring');
   const title = root.querySelector('.pre__title');
   const intro = root.querySelector('.pre__intro');
@@ -118,15 +118,19 @@ export async function runPreloader({ files, reduced = false, onReveal, onBegin }
 
   // Open the disc to the whole frame; the title lifts away.
   root.classList.add('is-leaving');
-  onBegin && onBegin();
+  let begun = false;
+  const begin = () => { if (!begun) { begun = true; onBegin && onBegin(); } };
   const full = Math.hypot(W(), H()) / 2 + 4;
   if (reduced) {
     root.style.transition = 'opacity 400ms linear';
     root.style.opacity = '0';
+    begin();
     await wait(400);
   } else {
     const r0 = r;
-    await tween(1200, (e) => setDisc(r0 + (full - r0) * e), ease.quart);
+    // Chapter 1 enters once the disc is ~70 % open, so its headline never meets the leaving title.
+    await tween(1200, (e) => { setDisc(r0 + (full - r0) * e); if (e >= 0.7) begin(); }, ease.quart);
+    begin();
   }
   root.remove();
 }

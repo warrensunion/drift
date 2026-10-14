@@ -57,7 +57,7 @@ export function createParticles(container, spec, { phone = false, reduced = fals
     } else {
       el = document.createElement('span');
     }
-    el.className = `pt ${spec.cls || ''}`;
+    el.className = `pt ${spec.cls || ''}${spec.aged && r() < spec.aged ? ' pt--aged' : ''}`;
     container.append(el);
     const sizeT = r() ** (spec.sizeBias ?? 2); // most pieces small, a few large
     items.push({
@@ -107,7 +107,8 @@ export function createParticles(container, spec, { phone = false, reduced = fals
       switch (spec.mode) {
         case 'cascade': {
           const [ox, oy] = spec.from, [tx, ty] = spec.to;
-          const k = u ** 0.85;
+          // density > 1 packs pieces near the origin, so the trail thins as it travels
+          const k = u ** (spec.density ?? 0.85);
           const spread = (spec.spreadAt ?? 0.25) * k;
           x = ox + (tx - ox) * k + it.spread * spread * 0.6 + Math.sin(tm * 0.9 + it.phase) * 0.008;
           y = oy + (ty - oy) * k + it.spread2 * spread + k * k * 0.06;
