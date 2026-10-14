@@ -1,0 +1,692 @@
+{
+ "tag": "polish2",
+ "date": "2026-10-14T02:21:20.777Z",
+ "seconds": 160,
+ "result": "PASS",
+ "sizes": [
+  "1440x900",
+  "390x844"
+ ],
+ "numbers": {
+  "browser": "system Chrome 155.0.8059.79",
+  "lazyFiles": [
+   "assets/globe-Dlgn1VvN.js"
+  ],
+  "preloaderFill": {
+   "1440x900": 0.563,
+   "390x844": 0.587
+  },
+  "hscroll": {
+   "1440x900/0-preloader-midfill": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/0-handoff": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/0-intro": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/0-begin": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/1-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/1to2-transition": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/2-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/2to3-transition": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/3-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/3to4-transition": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/4-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/4to5-transition": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/5-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/5to6-transition": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/6-mid": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/3-late": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/8-about": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/8-about-model": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "1440x900/8-about-sources": {
+    "clientWidth": 1440,
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "offenders": []
+   },
+   "390x844/0-preloader-midfill": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/0-handoff": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/0-intro": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/0-begin": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/1-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/1to2-transition": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/2-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/2to3-transition": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/3-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/3to4-transition": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/4-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/4to5-transition": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/5-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/5to6-transition": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/6-mid": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/3-late": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/8-about": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/8-about-model": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   },
+   "390x844/8-about-sources": {
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "offenders": []
+   }
+  },
+  "aa": {
+   "1440x900/ch1": {
+    "headline": {
+     "ratio": 6.79,
+     "need": 3,
+     "text": "bbbooottttttllleee",
+     "pass": true
+    },
+    "body": {
+     "ratio": 8.16,
+     "need": 4.5,
+     "text": "This is one bottle. It slipped off a riv",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 8.46,
+     "need": 4.5,
+     "text": "1",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 5.48,
+     "need": 4.5,
+     "text": "The globe",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 12.92,
+     "need": 4.5,
+     "text": "One bottle",
+     "pass": true
+    }
+   },
+   "1440x900/ch2": {
+    "headline": {
+     "ratio": 10,
+     "need": 3,
+     "text": "IIIttt",
+     "pass": true
+    },
+    "body": {
+     "ratio": 4.94,
+     "need": 4.5,
+     "text": "No one has timed this for a bottle on a ",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 8.02,
+     "need": 4.5,
+     "text": "3",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 4.67,
+     "need": 4.5,
+     "text": "The globe",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 11.5,
+     "need": 4.5,
+     "text": "It breaks",
+     "pass": true
+    }
+   },
+   "1440x900/ch3": {
+    "headline": {
+     "ratio": 3.91,
+     "need": 3,
+     "text": "cccuuurrrrrreeennntttsss",
+     "pass": true
+    },
+    "body": {
+     "ratio": 7.26,
+     "need": 4.5,
+     "text": "What escapes can cross an ocean. After t",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 6.16,
+     "need": 4.5,
+     "text": "6",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 5.39,
+     "need": 4.5,
+     "text": "About the science",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 5.58,
+     "need": 4.5,
+     "text": "The currents carry it",
+     "pass": true
+    }
+   },
+   "1440x900/ch4": {
+    "headline": {
+     "ratio": 11.71,
+     "need": 3,
+     "text": "iiittt",
+     "pass": true
+    },
+    "body": {
+     "ratio": 5.73,
+     "need": 4.5,
+     "text": "The one in the North Pacific holds an es",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 11.25,
+     "need": 4.5,
+     "text": "8",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 7.94,
+     "need": 4.5,
+     "text": "The globe",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 12.06,
+     "need": 4.5,
+     "text": "Gyres collect it",
+     "pass": true
+    }
+   },
+   "1440x900/ch5": {
+    "headline": {
+     "ratio": 5.63,
+     "need": 3,
+     "text": "aaannnddd",
+     "pass": true
+    },
+    "body": {
+     "ratio": 8.46,
+     "need": 4.5,
+     "text": "Near the surface, 59 % of the seabird sp",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 8.88,
+     "need": 4.5,
+     "text": "13",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 10.23,
+     "need": 4.5,
+     "text": "The globe",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 12.34,
+     "need": 4.5,
+     "text": "The deep and the food chain",
+     "pass": true
+    }
+   },
+   "1440x900/ch6": {
+    "headline": {
+     "ratio": 8.04,
+     "need": 3,
+     "text": "ooowwwnnn",
+     "pass": true
+    },
+    "body": {
+     "ratio": 13.41,
+     "need": 4.5,
+     "text": "One bottle told as one line is too neat.",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 10.88,
+     "need": 4.5,
+     "text": "The globe",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 14.76,
+     "need": 4.5,
+     "text": "Drop your own",
+     "pass": true
+    }
+   },
+   "390x844/ch1": {
+    "headline": {
+     "ratio": 11.99,
+     "need": 3,
+     "text": "bbbooottttttllleee",
+     "pass": true
+    },
+    "body": {
+     "ratio": 11.59,
+     "need": 4.5,
+     "text": "How long will it last? You may have hear",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 8.37,
+     "need": 4.5,
+     "text": "1",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 5.93,
+     "need": 4.5,
+     "text": "Drift",
+     "pass": true
+    }
+   },
+   "390x844/ch2": {
+    "headline": {
+     "ratio": 7.7,
+     "need": 3,
+     "text": "IIIttt",
+     "pass": true
+    },
+    "body": {
+     "ratio": 9.87,
+     "need": 4.5,
+     "text": "The breaking happens mostly on shore, wh",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 9.36,
+     "need": 4.5,
+     "text": "3",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 6.06,
+     "need": 4.5,
+     "text": "About the science",
+     "pass": true
+    }
+   },
+   "390x844/ch3": {
+    "headline": {
+     "ratio": 6.56,
+     "need": 3,
+     "text": "TTThhheee",
+     "pass": true
+    },
+    "body": {
+     "ratio": 11.63,
+     "need": 4.5,
+     "text": "Most of it never gets far. In a global s",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 11.93,
+     "need": 4.5,
+     "text": "5",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 8.32,
+     "need": 4.5,
+     "text": "About the science",
+     "pass": true
+    }
+   },
+   "390x844/ch4": {
+    "headline": {
+     "ratio": 12.43,
+     "need": 3,
+     "text": "GGGyyyrrreeesss",
+     "pass": true
+    },
+    "body": {
+     "ratio": 12.15,
+     "need": 4.5,
+     "text": "The one in the North Pacific holds an es",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 11.57,
+     "need": 4.5,
+     "text": "8",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 11.36,
+     "need": 4.5,
+     "text": "About the science",
+     "pass": true
+    }
+   },
+   "390x844/ch5": {
+    "headline": {
+     "ratio": 12.84,
+     "need": 3,
+     "text": "TTThhheee",
+     "pass": true
+    },
+    "body": {
+     "ratio": 12.66,
+     "need": 4.5,
+     "text": "Far more plastic lies on the seafloor th",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 10.42,
+     "need": 4.5,
+     "text": "12",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 7.8,
+     "need": 4.5,
+     "text": "About the science",
+     "pass": true
+    }
+   },
+   "390x844/ch6": {
+    "headline": {
+     "ratio": 14.01,
+     "need": 3,
+     "text": "DDDrrroooppp",
+     "pass": true
+    },
+    "body": {
+     "ratio": 14.12,
+     "need": 4.5,
+     "text": "Drop a bottle, a bag, a fishing line or ",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 11.75,
+     "need": 4.5,
+     "text": "About the science",
+     "pass": true
+    }
+   }
+  }
+ },
+ "checks": [
+  {
+   "name": "lazy chunk list found in the manifest",
+   "sizes": {
+    "build": true
+   },
+   "fails": []
+  },
+  {
+   "name": "preloader caught mid-fill",
+   "sizes": {
+    "1440x900": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "no three.js/onnxruntime before the globe",
+   "sizes": {
+    "1440x900": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "words over art meet AA",
+   "sizes": {
+    "1440x900": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "citations numbered by first appearance",
+   "sizes": {
+    "1440x900": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "no horizontal scroll at 390",
+   "sizes": {
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "no console errors",
+   "sizes": {
+    "1440x900": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "no failed requests",
+   "sizes": {
+    "1440x900": true,
+    "390x844": true
+   },
+   "fails": []
+  }
+ ],
+ "shots": [
+  "1440x900/0-preloader-midfill.jpg",
+  "1440x900/0-handoff.jpg",
+  "1440x900/0-intro.jpg",
+  "1440x900/0-begin.jpg",
+  "1440x900/1-mid.jpg",
+  "1440x900/1to2-transition.jpg",
+  "1440x900/2-mid.jpg",
+  "1440x900/2to3-transition.jpg",
+  "1440x900/3-mid.jpg",
+  "1440x900/3to4-transition.jpg",
+  "1440x900/4-mid.jpg",
+  "1440x900/4to5-transition.jpg",
+  "1440x900/5-mid.jpg",
+  "1440x900/5to6-transition.jpg",
+  "1440x900/6-mid.jpg",
+  "1440x900/3-late.jpg",
+  "1440x900/8-about.jpg",
+  "1440x900/8-about-model.jpg",
+  "1440x900/8-about-sources.jpg",
+  "390x844/0-preloader-midfill.jpg",
+  "390x844/0-handoff.jpg",
+  "390x844/0-intro.jpg",
+  "390x844/0-begin.jpg",
+  "390x844/1-mid.jpg",
+  "390x844/1to2-transition.jpg",
+  "390x844/2-mid.jpg",
+  "390x844/2to3-transition.jpg",
+  "390x844/3-mid.jpg",
+  "390x844/3to4-transition.jpg",
+  "390x844/4-mid.jpg",
+  "390x844/4to5-transition.jpg",
+  "390x844/5-mid.jpg",
+  "390x844/5to6-transition.jpg",
+  "390x844/6-mid.jpg",
+  "390x844/3-late.jpg",
+  "390x844/8-about.jpg",
+  "390x844/8-about-model.jpg",
+  "390x844/8-about-sources.jpg"
+ ]
+}
