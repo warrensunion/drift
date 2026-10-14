@@ -1,0 +1,972 @@
+{
+ "tag": "final",
+ "date": "2026-10-14T01:25:56.172Z",
+ "seconds": 1502,
+ "result": "PASS",
+ "sizes": [
+  "1440x900",
+  "1920x1080",
+  "390x844"
+ ],
+ "numbers": {
+  "browser": "system Chrome 155.0.8059.79",
+  "entryChunk": {
+   "files": [
+    "assets/index-BVRR8LGc.js",
+    "assets/preload-helper-CFijIu3R.js"
+   ],
+   "bytes": 46149
+  },
+  "preloaderFill": {
+   "1440x900": 0.509,
+   "1920x1080": 0.509,
+   "390x844": 0.488
+  },
+  "hscroll": {
+   "1440x900/0-preloader-midfill": 0,
+   "1440x900/0-handoff": 0,
+   "1440x900/0-intro": 0,
+   "1440x900/0-begin": 0,
+   "1440x900/1-mid": 0,
+   "1440x900/1to2-transition": 0,
+   "1440x900/2-mid": 0,
+   "1440x900/2to3-transition": 0,
+   "1440x900/3-mid": 0,
+   "1440x900/3to4-transition": 0,
+   "1440x900/4-mid": 0,
+   "1440x900/4to5-transition": 0,
+   "1440x900/5-mid": 0,
+   "1440x900/5to6-transition": 0,
+   "1440x900/6-mid": 0,
+   "1440x900/3-late": 0,
+   "1440x900/8-about": 0,
+   "1440x900/8-about-model": 0,
+   "1440x900/8-about-sources": 0,
+   "1440x900/reduced-0-intro": 0,
+   "1440x900/reduced-1-mid": 0,
+   "1440x900/reduced-2-mid": 0,
+   "1440x900/reduced-3-mid": 0,
+   "1440x900/reduced-4-mid": 0,
+   "1440x900/reduced-5-mid": 0,
+   "1440x900/reduced-6-mid": 0,
+   "1440x900/reduced-8-about": 0,
+   "1440x900/globe-idle": 0,
+   "1440x900/globe-pacific-bottle-1y": 0,
+   "1440x900/globe-pacific-bottle-10y": 0,
+   "1440x900/globe-atlantic-bag-1y": 0,
+   "1440x900/globe-atlantic-bag-10y": 0,
+   "1440x900/globe-indian-line-1y": 0,
+   "1440x900/globe-indian-line-10y": 0,
+   "1440x900/salish-idle": 0,
+   "1440x900/salish-fraser-1d": 0,
+   "1440x900/salish-fraser-end": 0,
+   "1440x900/reduced-globe-idle": 0,
+   "1440x900/static-fallback": 0,
+   "1920x1080/0-preloader-midfill": 0,
+   "1920x1080/0-handoff": 0,
+   "1920x1080/0-intro": 0,
+   "1920x1080/0-begin": 0,
+   "1920x1080/1-mid": 0,
+   "1920x1080/1to2-transition": 0,
+   "1920x1080/2-mid": 0,
+   "1920x1080/2to3-transition": 0,
+   "1920x1080/3-mid": 0,
+   "1920x1080/3to4-transition": 0,
+   "1920x1080/4-mid": 0,
+   "1920x1080/4to5-transition": 0,
+   "1920x1080/5-mid": 0,
+   "1920x1080/5to6-transition": 0,
+   "1920x1080/6-mid": 0,
+   "1920x1080/3-late": 0,
+   "1920x1080/8-about": 0,
+   "1920x1080/8-about-model": 0,
+   "1920x1080/8-about-sources": 0,
+   "1920x1080/reduced-0-intro": 0,
+   "1920x1080/reduced-1-mid": 0,
+   "1920x1080/reduced-2-mid": 0,
+   "1920x1080/reduced-3-mid": 0,
+   "1920x1080/reduced-4-mid": 0,
+   "1920x1080/reduced-5-mid": 0,
+   "1920x1080/reduced-6-mid": 0,
+   "1920x1080/reduced-8-about": 0,
+   "1920x1080/globe-idle": 0,
+   "1920x1080/globe-pacific-bottle-1y": 0,
+   "1920x1080/globe-pacific-bottle-10y": 0,
+   "1920x1080/globe-atlantic-bag-1y": 0,
+   "1920x1080/globe-atlantic-bag-10y": 0,
+   "1920x1080/globe-indian-line-1y": 0,
+   "1920x1080/globe-indian-line-10y": 0,
+   "1920x1080/salish-idle": 0,
+   "1920x1080/salish-fraser-1d": 0,
+   "1920x1080/salish-fraser-end": 0,
+   "1920x1080/reduced-globe-idle": 0,
+   "1920x1080/static-fallback": 0,
+   "390x844/0-preloader-midfill": 0,
+   "390x844/0-handoff": 0,
+   "390x844/0-intro": 0,
+   "390x844/0-begin": 0,
+   "390x844/1-mid": 0,
+   "390x844/1to2-transition": 0,
+   "390x844/2-mid": 0,
+   "390x844/2to3-transition": 0,
+   "390x844/3-mid": 0,
+   "390x844/3to4-transition": 0,
+   "390x844/4-mid": 0,
+   "390x844/4to5-transition": 0,
+   "390x844/5-mid": 0,
+   "390x844/5to6-transition": 0,
+   "390x844/6-mid": 0,
+   "390x844/3-late": 0,
+   "390x844/8-about": 0,
+   "390x844/8-about-model": 0,
+   "390x844/8-about-sources": 0,
+   "390x844/reduced-0-intro": 0,
+   "390x844/reduced-1-mid": 0,
+   "390x844/reduced-2-mid": 0,
+   "390x844/reduced-3-mid": 0,
+   "390x844/reduced-4-mid": 0,
+   "390x844/reduced-5-mid": 0,
+   "390x844/reduced-6-mid": 0,
+   "390x844/reduced-8-about": 0,
+   "390x844/globe-idle": 0,
+   "390x844/globe-pacific-bottle-1y": 0,
+   "390x844/globe-pacific-bottle-10y": 0,
+   "390x844/globe-atlantic-bag-1y": 0,
+   "390x844/globe-atlantic-bag-10y": 0,
+   "390x844/globe-indian-line-1y": 0,
+   "390x844/globe-indian-line-10y": 0,
+   "390x844/salish-idle": 0,
+   "390x844/salish-fraser-1d": 0,
+   "390x844/salish-fraser-end": 0,
+   "390x844/reduced-globe-idle": 0,
+   "390x844/static-fallback": 0,
+   "1440x900/globe-20k-members": 0
+  },
+  "aa": {
+   "1440x900/ch1": {
+    "headline": {
+     "ratio": 6.79,
+     "need": 3,
+     "text": "bbbooottttttllleee",
+     "pass": true
+    },
+    "body": {
+     "ratio": 8.16,
+     "need": 4.5,
+     "text": "This is one bottle. It slipped off a riv",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 8.46,
+     "need": 4.5,
+     "text": "1",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 7.31,
+     "need": 4.5,
+     "text": "The globe",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 13.12,
+     "need": 4.5,
+     "text": "One bottle",
+     "pass": true
+    }
+   },
+   "1440x900/ch2": {
+    "headline": {
+     "ratio": 11.83,
+     "need": 3,
+     "text": "IIIttt",
+     "pass": true
+    },
+    "body": {
+     "ratio": 4.57,
+     "need": 4.5,
+     "text": "No one has timed this for a bottle on a ",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 7.82,
+     "need": 4.5,
+     "text": "3",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 4.9,
+     "need": 4.5,
+     "text": "The globe",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 11.54,
+     "need": 4.5,
+     "text": "It breaks",
+     "pass": true
+    }
+   },
+   "1440x900/ch3": {
+    "headline": {
+     "ratio": 3.9,
+     "need": 3,
+     "text": "cccuuurrrrrreeennntttsss",
+     "pass": true
+    },
+    "body": {
+     "ratio": 7.22,
+     "need": 4.5,
+     "text": "What escapes can cross an ocean. After t",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 6.16,
+     "need": 4.5,
+     "text": "6",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 5.01,
+     "need": 4.5,
+     "text": "The globe",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 7.14,
+     "need": 4.5,
+     "text": "The currents carry it",
+     "pass": true
+    }
+   },
+   "1440x900/ch4": {
+    "headline": {
+     "ratio": 12.88,
+     "need": 3,
+     "text": "GGGyyyrrreeesss",
+     "pass": true
+    },
+    "body": {
+     "ratio": 7.24,
+     "need": 4.5,
+     "text": "In the middle of each ocean basin the cu",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 10.6,
+     "need": 4.5,
+     "text": "8",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 8.39,
+     "need": 4.5,
+     "text": "About the science",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 12.02,
+     "need": 4.5,
+     "text": "Gyres collect it",
+     "pass": true
+    }
+   },
+   "1440x900/ch5": {
+    "headline": {
+     "ratio": 5.9,
+     "need": 3,
+     "text": "aaannnddd",
+     "pass": true
+    },
+    "body": {
+     "ratio": 8.94,
+     "need": 4.5,
+     "text": "Near the surface, 59 % of the seabird sp",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 7.73,
+     "need": 4.5,
+     "text": "13",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 11.1,
+     "need": 4.5,
+     "text": "The globe",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 12.34,
+     "need": 4.5,
+     "text": "The deep and the food chain",
+     "pass": true
+    }
+   },
+   "1440x900/ch6": {
+    "headline": {
+     "ratio": 8.04,
+     "need": 3,
+     "text": "ooowwwnnn",
+     "pass": true
+    },
+    "body": {
+     "ratio": 13.54,
+     "need": 4.5,
+     "text": "Drop a bottle, a bag, a fishing line or ",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 11.78,
+     "need": 4.5,
+     "text": "The globe",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 12.33,
+     "need": 4.5,
+     "text": "Drop your own",
+     "pass": true
+    }
+   },
+   "1920x1080/ch1": {
+    "headline": {
+     "ratio": 3.12,
+     "need": 3,
+     "text": "bbbooottttttllleee",
+     "pass": true
+    },
+    "body": {
+     "ratio": 7.74,
+     "need": 4.5,
+     "text": "How long will it last? You may have hear",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 11.1,
+     "need": 4.5,
+     "text": "1",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 8.44,
+     "need": 4.5,
+     "text": "The globe",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 13.41,
+     "need": 4.5,
+     "text": "One bottle",
+     "pass": true
+    }
+   },
+   "1920x1080/ch2": {
+    "headline": {
+     "ratio": 10.76,
+     "need": 3,
+     "text": "bbbrrreeeaaakkksss",
+     "pass": true
+    },
+    "body": {
+     "ratio": 6.28,
+     "need": 4.5,
+     "text": "No one has timed this for a bottle on a ",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 9.13,
+     "need": 4.5,
+     "text": "3",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 4.95,
+     "need": 4.5,
+     "text": "The globe",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 11.87,
+     "need": 4.5,
+     "text": "It breaks",
+     "pass": true
+    }
+   },
+   "1920x1080/ch3": {
+    "headline": {
+     "ratio": 7.94,
+     "need": 3,
+     "text": "cccuuurrrrrreeennntttsss",
+     "pass": true
+    },
+    "body": {
+     "ratio": 8.45,
+     "need": 4.5,
+     "text": "What escapes can cross an ocean. After t",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 8.82,
+     "need": 4.5,
+     "text": "5",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 5.07,
+     "need": 4.5,
+     "text": "The globe",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 6.93,
+     "need": 4.5,
+     "text": "The currents carry it",
+     "pass": true
+    }
+   },
+   "1920x1080/ch4": {
+    "headline": {
+     "ratio": 11.95,
+     "need": 3,
+     "text": "iiittt",
+     "pass": true
+    },
+    "body": {
+     "ratio": 12.08,
+     "need": 4.5,
+     "text": "The one in the North Pacific holds an es",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 10.43,
+     "need": 4.5,
+     "text": "8",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 5.83,
+     "need": 4.5,
+     "text": "The globe",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 12.3,
+     "need": 4.5,
+     "text": "Gyres collect it",
+     "pass": true
+    }
+   },
+   "1920x1080/ch5": {
+    "headline": {
+     "ratio": 12.02,
+     "need": 3,
+     "text": "ccchhhaaaiiinnn",
+     "pass": true
+    },
+    "body": {
+     "ratio": 10.41,
+     "need": 4.5,
+     "text": "Near the surface, 59 % of the seabird sp",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 8.16,
+     "need": 4.5,
+     "text": "13",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 11.67,
+     "need": 4.5,
+     "text": "The globe",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 12.87,
+     "need": 4.5,
+     "text": "The deep and the food chain",
+     "pass": true
+    }
+   },
+   "1920x1080/ch6": {
+    "headline": {
+     "ratio": 13.58,
+     "need": 3,
+     "text": "ooowwwnnn",
+     "pass": true
+    },
+    "body": {
+     "ratio": 14.18,
+     "need": 4.5,
+     "text": "One bottle told as one line is too neat.",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 12.09,
+     "need": 4.5,
+     "text": "The globe",
+     "pass": true
+    },
+    "chapter": {
+     "ratio": 14.74,
+     "need": 4.5,
+     "text": "Drop your own",
+     "pass": true
+    }
+   },
+   "390x844/ch1": {
+    "headline": {
+     "ratio": 11.99,
+     "need": 3,
+     "text": "bbbooottttttllleee",
+     "pass": true
+    },
+    "body": {
+     "ratio": 11.57,
+     "need": 4.5,
+     "text": "How long will it last? You may have hear",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 8,
+     "need": 4.5,
+     "text": "1",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 8.23,
+     "need": 4.5,
+     "text": "Drift",
+     "pass": true
+    }
+   },
+   "390x844/ch2": {
+    "headline": {
+     "ratio": 7.68,
+     "need": 3,
+     "text": "IIIttt",
+     "pass": true
+    },
+    "body": {
+     "ratio": 9.86,
+     "need": 4.5,
+     "text": "The breaking happens mostly on shore, wh",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 9.36,
+     "need": 4.5,
+     "text": "3",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 6.51,
+     "need": 4.5,
+     "text": "About the science",
+     "pass": true
+    }
+   },
+   "390x844/ch3": {
+    "headline": {
+     "ratio": 6.55,
+     "need": 3,
+     "text": "TTThhheee",
+     "pass": true
+    },
+    "body": {
+     "ratio": 11.66,
+     "need": 4.5,
+     "text": "Most of it never gets far. In a global s",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 11.94,
+     "need": 4.5,
+     "text": "5",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 7.16,
+     "need": 4.5,
+     "text": "About the science",
+     "pass": true
+    }
+   },
+   "390x844/ch4": {
+    "headline": {
+     "ratio": 12.65,
+     "need": 3,
+     "text": "GGGyyyrrreeesss",
+     "pass": true
+    },
+    "body": {
+     "ratio": 11.81,
+     "need": 4.5,
+     "text": "The one in the North Pacific holds an es",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 11.56,
+     "need": 4.5,
+     "text": "8",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 11.83,
+     "need": 4.5,
+     "text": "About the science",
+     "pass": true
+    }
+   },
+   "390x844/ch5": {
+    "headline": {
+     "ratio": 12.71,
+     "need": 3,
+     "text": "aaannnddd",
+     "pass": true
+    },
+    "body": {
+     "ratio": 12.69,
+     "need": 4.5,
+     "text": "Far more plastic lies on the seafloor th",
+     "pass": true
+    },
+    "cite": {
+     "ratio": 10.55,
+     "need": 4.5,
+     "text": "12",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 8.89,
+     "need": 4.5,
+     "text": "About the science",
+     "pass": true
+    }
+   },
+   "390x844/ch6": {
+    "headline": {
+     "ratio": 13.53,
+     "need": 3,
+     "text": "DDDrrroooppp",
+     "pass": true
+    },
+    "body": {
+     "ratio": 14.16,
+     "need": 4.5,
+     "text": "Drop a bottle, a bag, a fishing line or ",
+     "pass": true
+    },
+    "chrome": {
+     "ratio": 12.45,
+     "need": 4.5,
+     "text": "About the science",
+     "pass": true
+    }
+   }
+  },
+  "backend": {
+   "1440x900": "webgpu",
+   "1920x1080": "webgpu",
+   "390x844": "webgpu"
+  },
+  "globeSimSeconds": {
+   "1440x900": 13.625,
+   "1920x1080": 12.466,
+   "390x844": 41.108
+  },
+  "salishSimSeconds": {
+   "1440x900": 2.545,
+   "1920x1080": 1.058,
+   "390x844": 1.036
+  },
+  "salishEndHours": 720,
+  "fallbackReason": "[drift] static fallback: forced by ?gl=none",
+  "fps": {
+   "target": 60,
+   "failBelow": 30,
+   "backend": "webgpu",
+   "setup": {
+    "simMs": 385446.59999999404,
+    "minDay": 120,
+    "drops": 833
+   },
+   "paused": {
+    "frames": 684,
+    "seconds": 6,
+    "medianFps": 142.9,
+    "meanFps": 113.9,
+    "p50Ms": 7,
+    "p95Ms": 13.9,
+    "members": 19992,
+    "cpu": {
+     "particles": 0.9997680503367603,
+     "streamlines": 0.8491496573494558,
+     "render": 0.550159908085506
+    }
+   },
+   "playing30x": {
+    "frames": 532,
+    "seconds": 6,
+    "medianFps": 77.5,
+    "meanFps": 88.6,
+    "p50Ms": 12.9,
+    "p95Ms": 20.5,
+    "members": 19992,
+    "cpu": {
+     "particles": 0.9613564330616833,
+     "streamlines": 0.6964595803648157,
+     "render": 0.5232989074922106
+    }
+   }
+  }
+ },
+ "checks": [
+  {
+   "name": "entry chunk has no three.js / onnxruntime",
+   "sizes": {
+    "build": true
+   },
+   "fails": []
+  },
+  {
+   "name": "production build",
+   "sizes": {
+    "build": true
+   },
+   "fails": []
+  },
+  {
+   "name": "preloader caught mid-fill",
+   "sizes": {
+    "1440x900": true,
+    "1920x1080": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "no three.js/onnxruntime before the globe",
+   "sizes": {
+    "1440x900": true,
+    "1920x1080": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "words over art meet AA",
+   "sizes": {
+    "1440x900": true,
+    "1920x1080": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "citations numbered by first appearance",
+   "sizes": {
+    "1440x900": true,
+    "1920x1080": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "three ocean drops accepted",
+   "sizes": {
+    "1440x900": true,
+    "1920x1080": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "disclaimer visible with tracks",
+   "sizes": {
+    "1440x900": true,
+    "1920x1080": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "Fraser mouth drop accepted",
+   "sizes": {
+    "1440x900": true,
+    "1920x1080": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "static fallback logged",
+   "sizes": {
+    "1440x900": true,
+    "1920x1080": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "no horizontal scroll at 390",
+   "sizes": {
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "fps >= 30 with ~20k members",
+   "sizes": {
+    "1440x900": true
+   },
+   "fails": []
+  },
+  {
+   "name": "~20,000 members on the globe",
+   "sizes": {
+    "1440x900": true
+   },
+   "fails": []
+  },
+  {
+   "name": "no console errors",
+   "sizes": {
+    "1440x900": true,
+    "1920x1080": true,
+    "390x844": true
+   },
+   "fails": []
+  },
+  {
+   "name": "no failed requests",
+   "sizes": {
+    "1440x900": true,
+    "1920x1080": true,
+    "390x844": true
+   },
+   "fails": []
+  }
+ ],
+ "shots": [
+  "1440x900/0-preloader-midfill.jpg",
+  "1440x900/0-handoff.jpg",
+  "1440x900/0-intro.jpg",
+  "1440x900/0-begin.jpg",
+  "1440x900/1-mid.jpg",
+  "1440x900/1to2-transition.jpg",
+  "1440x900/2-mid.jpg",
+  "1440x900/2to3-transition.jpg",
+  "1440x900/3-mid.jpg",
+  "1440x900/3to4-transition.jpg",
+  "1440x900/4-mid.jpg",
+  "1440x900/4to5-transition.jpg",
+  "1440x900/5-mid.jpg",
+  "1440x900/5to6-transition.jpg",
+  "1440x900/6-mid.jpg",
+  "1440x900/3-late.jpg",
+  "1440x900/8-about.jpg",
+  "1440x900/8-about-model.jpg",
+  "1440x900/8-about-sources.jpg",
+  "1440x900/reduced-0-intro.jpg",
+  "1440x900/reduced-1-mid.jpg",
+  "1440x900/reduced-2-mid.jpg",
+  "1440x900/reduced-3-mid.jpg",
+  "1440x900/reduced-4-mid.jpg",
+  "1440x900/reduced-5-mid.jpg",
+  "1440x900/reduced-6-mid.jpg",
+  "1440x900/reduced-8-about.jpg",
+  "1440x900/globe-idle.jpg",
+  "1440x900/globe-pacific-bottle-1y.jpg",
+  "1440x900/globe-pacific-bottle-10y.jpg",
+  "1440x900/globe-atlantic-bag-1y.jpg",
+  "1440x900/globe-atlantic-bag-10y.jpg",
+  "1440x900/globe-indian-line-1y.jpg",
+  "1440x900/globe-indian-line-10y.jpg",
+  "1440x900/salish-idle.jpg",
+  "1440x900/salish-fraser-1d.jpg",
+  "1440x900/salish-fraser-end.jpg",
+  "1440x900/reduced-globe-idle.jpg",
+  "1440x900/static-fallback.jpg",
+  "1920x1080/0-preloader-midfill.jpg",
+  "1920x1080/0-handoff.jpg",
+  "1920x1080/0-intro.jpg",
+  "1920x1080/0-begin.jpg",
+  "1920x1080/1-mid.jpg",
+  "1920x1080/1to2-transition.jpg",
+  "1920x1080/2-mid.jpg",
+  "1920x1080/2to3-transition.jpg",
+  "1920x1080/3-mid.jpg",
+  "1920x1080/3to4-transition.jpg",
+  "1920x1080/4-mid.jpg",
+  "1920x1080/4to5-transition.jpg",
+  "1920x1080/5-mid.jpg",
+  "1920x1080/5to6-transition.jpg",
+  "1920x1080/6-mid.jpg",
+  "1920x1080/3-late.jpg",
+  "1920x1080/8-about.jpg",
+  "1920x1080/8-about-model.jpg",
+  "1920x1080/8-about-sources.jpg",
+  "1920x1080/reduced-0-intro.jpg",
+  "1920x1080/reduced-1-mid.jpg",
+  "1920x1080/reduced-2-mid.jpg",
+  "1920x1080/reduced-3-mid.jpg",
+  "1920x1080/reduced-4-mid.jpg",
+  "1920x1080/reduced-5-mid.jpg",
+  "1920x1080/reduced-6-mid.jpg",
+  "1920x1080/reduced-8-about.jpg",
+  "1920x1080/globe-idle.jpg",
+  "1920x1080/globe-pacific-bottle-1y.jpg",
+  "1920x1080/globe-pacific-bottle-10y.jpg",
+  "1920x1080/globe-atlantic-bag-1y.jpg",
+  "1920x1080/globe-atlantic-bag-10y.jpg",
+  "1920x1080/globe-indian-line-1y.jpg",
+  "1920x1080/globe-indian-line-10y.jpg",
+  "1920x1080/salish-idle.jpg",
+  "1920x1080/salish-fraser-1d.jpg",
+  "1920x1080/salish-fraser-end.jpg",
+  "1920x1080/reduced-globe-idle.jpg",
+  "1920x1080/static-fallback.jpg",
+  "390x844/0-preloader-midfill.jpg",
+  "390x844/0-handoff.jpg",
+  "390x844/0-intro.jpg",
+  "390x844/0-begin.jpg",
+  "390x844/1-mid.jpg",
+  "390x844/1to2-transition.jpg",
+  "390x844/2-mid.jpg",
+  "390x844/2to3-transition.jpg",
+  "390x844/3-mid.jpg",
+  "390x844/3to4-transition.jpg",
+  "390x844/4-mid.jpg",
+  "390x844/4to5-transition.jpg",
+  "390x844/5-mid.jpg",
+  "390x844/5to6-transition.jpg",
+  "390x844/6-mid.jpg",
+  "390x844/3-late.jpg",
+  "390x844/8-about.jpg",
+  "390x844/8-about-model.jpg",
+  "390x844/8-about-sources.jpg",
+  "390x844/reduced-0-intro.jpg",
+  "390x844/reduced-1-mid.jpg",
+  "390x844/reduced-2-mid.jpg",
+  "390x844/reduced-3-mid.jpg",
+  "390x844/reduced-4-mid.jpg",
+  "390x844/reduced-5-mid.jpg",
+  "390x844/reduced-6-mid.jpg",
+  "390x844/reduced-8-about.jpg",
+  "390x844/globe-idle.jpg",
+  "390x844/globe-pacific-bottle-1y.jpg",
+  "390x844/globe-pacific-bottle-10y.jpg",
+  "390x844/globe-atlantic-bag-1y.jpg",
+  "390x844/globe-atlantic-bag-10y.jpg",
+  "390x844/globe-indian-line-1y.jpg",
+  "390x844/globe-indian-line-10y.jpg",
+  "390x844/salish-idle.jpg",
+  "390x844/salish-fraser-1d.jpg",
+  "390x844/salish-fraser-end.jpg",
+  "390x844/reduced-globe-idle.jpg",
+  "390x844/static-fallback.jpg",
+  "1440x900/globe-20k-members.jpg"
+ ]
+}

@@ -12,6 +12,8 @@ const pages = (process.env.DRIFT_PAGES ? process.env.DRIFT_PAGES.split(',') : ['
 export default defineConfig({
   build: {
     target: 'es2022',
+    // The globe chunk (three.js WebGPU build, ~960 kB) is lazy-loaded only near the globe section.
+    chunkSizeWarningLimit: 1100,
     rollupOptions: { input: Object.fromEntries(pages.map((f) => [f.replace('.html', ''), resolve(root, f)])) },
   },
   // The simulation worker is an ES module worker (it imports onnxruntime-web).

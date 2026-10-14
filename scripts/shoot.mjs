@@ -544,6 +544,10 @@ try {
 }
 
 // ---------------- report ----------------
+// Errors and failed requests are recorded only when they happen; list them as passes otherwise.
+for (const name of ['no console errors', 'no failed requests']) {
+  for (const [w, h] of SIZES) if (!checks.some((c) => c.name === name && c.size === `${w}x${h}`)) check(name, `${w}x${h}`, true);
+}
 const rows = new Map();
 for (const c of checks) {
   const r = rows.get(c.name) || { name: c.name, sizes: {}, fails: [] };
